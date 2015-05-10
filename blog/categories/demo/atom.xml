@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Demo | My Octopress Blog]]></title>
   <link href="http://hedleyyan.github.io/blog/categories/demo/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2015-05-10T14:14:51+08:00</updated>
+  <updated>2015-05-10T14:26:43+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[Your Name]]></name>
@@ -18,7 +18,9 @@
     <link href="http://hedleyyan.github.io/blog/2015/05/09/hello-world/"/>
     <updated>2015-05-09T22:45:12+08:00</updated>
     <id>http://hedleyyan.github.io/blog/2015/05/09/hello-world</id>
-    <content type="html"><![CDATA[<p>Hello World!</p>
+    <content type="html"><![CDATA[<p><img class="<a" src="href="http://placekitten.com/890/280">http://placekitten.com/890/280</a>&#8221;></p>
+
+<p>Hello World!</p>
 
 <pre><code>$ git clone git@github.com:imathis/octopress.git # fork octopress
 </code></pre>
