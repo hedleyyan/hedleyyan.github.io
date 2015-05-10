@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Demo | My Octopress Blog]]></title>
   <link href="http://hedleyyan.github.io/blog/categories/demo/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2015-05-10T13:48:17+08:00</updated>
+  <updated>2015-05-10T14:10:55+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[Your Name]]></name>
@@ -20,7 +20,11 @@
     <id>http://hedleyyan.github.io/blog/2015/05/09/hello-world</id>
     <content type="html"><![CDATA[<p>Hello World!</p>
 
-<p><figure class='code'><figcaption><span> (LocalizationCheckTool.java)</span> <a href='/downloads/code/LocalizationCheckTool.java'>download</a></figcaption>
+<pre><code>$ git clone git@github.com:imathis/octopress.git # fork octopress
+</code></pre>
+
+<p>//  注释
+<figure class='code'><figcaption><span> (LocalizationCheckTool.java)</span> <a href='/downloads/code/LocalizationCheckTool.java'>download</a></figcaption>
 <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
