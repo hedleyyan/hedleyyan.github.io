@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Demo | My Octopress Blog]]></title>
   <link href="http://hedleyyan.github.io/blog/categories/demo/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2015-05-10T14:26:43+08:00</updated>
+  <updated>2015-05-10T15:53:51+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[Your Name]]></name>
@@ -18,18 +18,35 @@
     <link href="http://hedleyyan.github.io/blog/2015/05/09/hello-world/"/>
     <updated>2015-05-09T22:45:12+08:00</updated>
     <id>http://hedleyyan.github.io/blog/2015/05/09/hello-world</id>
-    <content type="html"><![CDATA[<p><img class="<a" src="href="http://placekitten.com/890/280">http://placekitten.com/890/280</a>&#8221;></p>
+    <content type="html"><![CDATA[<!--图片-->
 
-<p>Hello World!</p>
+
+<p><img class="<a" src="href="http://placekitten.com/890/280">http://placekitten.com/890/280</a>&#8221;></p>
+
+<p>Hello World! Test2.</p>
+
+<!--注释-->
+
+
+<p><blockquote><p>夏天就得吃大串</p><footer><strong>hedley</strong> <cite>DL SAMA</cite></footer></blockquote></p>
+
+<!--代码片-->
+
 
 <pre><code>$ git clone git@github.com:imathis/octopress.git # fork octopress
 </code></pre>
 
+<p>Surround your pullquote like this {&#8221; text to be quoted &#8220;}</p>
+
 <!--more-->
 
 
-<p>//  注释
-<figure class='code'><figcaption><span> (LocalizationCheckTool.java)</span> <a href='/downloads/code/LocalizationCheckTool.java'>download</a></figcaption>
+
+
+<!--代码文件-->
+
+
+<p><figure class='code'><figcaption><span> (LocalizationCheckTool.java)</span> <a href='/downloads/code/LocalizationCheckTool.java'>download</a></figcaption>
 <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
