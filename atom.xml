@@ -4,7 +4,7 @@
   <title><![CDATA[My Octopress Blog]]></title>
   <link href="http://hedleyyan.github.io/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2015-05-10T16:29:12+08:00</updated>
+  <updated>2015-05-10T18:49:56+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[Your Name]]></name>
@@ -30,9 +30,10 @@
     <content type="html"><![CDATA[<!--图片-->
 
 
-<p><img src="http://placekitten.com/890/280"></p>
+<p><img src="http://placekitten.com/890/280">
+<img src="http://placekitten.com/890/280" title="Cats IMP" alt="cats" /></p>
 
-<p>Hello World! Test2.</p>
+<p>Hello World!</p>
 
 <!--注释-->
 
@@ -57,7 +58,40 @@ the text you want to pull, surround it like this and that&rsquo;s all there is t
 <!--more-->
 
 
+<!--more以上是摘要-->
 
+
+<h1>H1标题</h1>
+
+<p>H1 text.</p>
+
+<h2>H2标题</h2>
+
+<p>H2 text.</p>
+
+<h3>H3标题</h3>
+
+<p>H3 text.</p>
+
+<h4>H4标题</h4>
+
+<p>Use the <code>printf()</code> function.</p>
+
+<h5>H5标题</h5>
+
+<p>Visit <a href="http://daringfireball.net/">Daring Fireball</a> for more information.</p>
+
+<ul>
+<li>哈喽</li>
+<li>也楼</li>
+</ul>
+
+
+<p><em>single asterisks</em>
+<strong>double asterisks</strong></p>
+
+<p>I get 10 times more traffic from <a href="http://google.com/" title="Google">Google</a> than from
+<a href="http://search.yahoo.com/" title="Yahoo Search">Yahoo</a> or <a href="http://search.msn.com/" title="MSN Search">MSN</a>.</p>
 
 <!--代码文件-->
 
@@ -782,6 +816,9 @@ the text you want to pull, surround it like this and that&rsquo;s all there is t
 </span></code></pre></td></tr></table></div></figure>
 
 
+
+
+<!--引用-->
 
 ]]></content>
   </entry>
