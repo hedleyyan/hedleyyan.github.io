@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Demo | Hedley]]></title>
   <link href="http://hedleyyan.github.io/blog/categories/demo/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2015-05-10T23:57:57+08:00</updated>
+  <updated>2015-05-11T10:28:22+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[dL]]></name>
@@ -21,8 +21,15 @@
     <content type="html"><![CDATA[<!--图片-->
 
 
-<p><img class="<a" src="href="http://placekitten.com/890/280">http://placekitten.com/890/280</a>&#8221;>
-<img src="http://placekitten.com/890/280" title="Cats IMP" alt="cats" /></p>
+<p><img class="<a" src="href="http://placekitten.com/890/280">http://placekitten.com/890/280</a>&#8221;></p>
+
+<!--more-->
+
+
+<!--more以上是摘要-->
+
+
+<p><img src="http://placekitten.com/890/280" title="Cats IMP" alt="cats" /></p>
 
 <p>Hello World!</p>
 
@@ -38,12 +45,6 @@
 </code></pre>
 
 <p>Surround your pullquote like this {&#8221; text to be quoted &#8220;}</p>
-
-<!--more-->
-
-
-<!--more以上是摘要-->
-
 
 <h1>H1标题</h1>
 
