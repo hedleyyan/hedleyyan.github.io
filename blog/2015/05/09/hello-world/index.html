@@ -124,6 +124,12 @@ the text you want to pull, surround it like this and that&rsquo;s all there is t
 
 <p>H1 text.</p>
 
+<ul>
+<li>哈喽</li>
+<li>也楼</li>
+</ul>
+
+
 <h2>H2标题</h2>
 
 <p>H2 text.</p>
@@ -139,10 +145,6 @@ the text you want to pull, surround it like this and that&rsquo;s all there is t
 <h5>H5标题</h5>
 
 <p>Visit <a href="http://daringfireball.net/">Daring Fireball</a> for more information.</p>
-
-<pre><code>* 哈喽
-* 也楼
-</code></pre>
 
 <p><em>single asterisks</em>
 <strong>double asterisks</strong></p>
@@ -923,6 +925,12 @@ the text you want to pull, surround it like this and that&rsquo;s all there is t
 <aside class="sidebar">
   
     <section>
+  <h1>Categories</h1>
+  <ul id="categories">
+    {% category_list %} 
+  </ul>
+</section>
+<section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
     

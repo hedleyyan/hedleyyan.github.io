@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Demo | Hedley]]></title>
   <link href="http://hedleyyan.github.io/blog/categories/demo/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2015-05-11T10:31:11+08:00</updated>
+  <updated>2015-05-11T17:12:45+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[dL]]></name>
@@ -50,6 +50,12 @@
 
 <p>H1 text.</p>
 
+<ul>
+<li>哈喽</li>
+<li>也楼</li>
+</ul>
+
+
 <h2>H2标题</h2>
 
 <p>H2 text.</p>
@@ -65,10 +71,6 @@
 <h5>H5标题</h5>
 
 <p>Visit <a href="http://daringfireball.net/">Daring Fireball</a> for more information.</p>
-
-<pre><code>* 哈喽
-* 也楼
-</code></pre>
 
 <p><em>single asterisks</em>
 <strong>double asterisks</strong></p>

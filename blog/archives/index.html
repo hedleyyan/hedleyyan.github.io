@@ -10,7 +10,7 @@
 
   
   <meta name="description" content=" Blog Archive 2015 Hello World
-May 09 2015 posted in demo Recent Posts Hello World ">
+May 09 2015 posted in demo Categories {% category_list %} Recent Posts Hello World ">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -101,6 +101,12 @@ May 09 2015 posted in demo Recent Posts Hello World ">
 <aside class="sidebar">
   
     <section>
+  <h1>Categories</h1>
+  <ul id="categories">
+    {% category_list %} 
+  </ul>
+</section>
+<section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
     
