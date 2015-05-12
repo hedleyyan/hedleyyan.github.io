@@ -31,6 +31,18 @@ $ git clone git@github.com:imathis/octopress.git # fork octopress Surround your 
 <link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 
+<!--点击博客内链接，在新窗口中打开-->
+<script type="text/javascript">
+	function addBlankTargetForLinks () {
+	  $('a[href^="http"]').each(function(){
+	      $(this).attr('target', '_blank');
+	  });
+	}
+
+	$(document).bind('DOMNodeInserted', function(event) {
+	  addBlankTargetForLinks();
+	});
+</script>
   
 
 </head>
@@ -927,10 +939,10 @@ the text you want to pull, surround it like this and that&rsquo;s all there is t
     <section>
   <h1>Categories</h1>
   <ul id="categories">
-    {% category_list %} 
+    <li class='category'><a href='/blog/categories/demo/'>demo (1)</a></li>
+
   </ul>
-</section>
-<section>
+</section><section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
     
