@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Demo | Hedley]]></title>
   <link href="http://hedleyyan.github.io/blog/categories/demo/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2015-05-13T09:51:29+08:00</updated>
+  <updated>2015-05-13T10:08:43+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[dL]]></name>
@@ -12,6 +12,15 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Tag_cloud Test]]></title>
+    <link href="http://hedleyyan.github.io/blog/2015/05/13/tag-cloud-test/"/>
+    <updated>2015-05-13T10:08:19+08:00</updated>
+    <id>http://hedleyyan.github.io/blog/2015/05/13/tag-cloud-test</id>
+    <content type="html"><![CDATA[<p></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Hello World]]></title>
