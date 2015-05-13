@@ -4,7 +4,7 @@
   <title><![CDATA[Hedley]]></title>
   <link href="http://hedleyyan.github.io/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2015-05-13T10:56:32+08:00</updated>
+  <updated>2015-05-13T10:57:20+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[dL]]></name>
@@ -18,7 +18,7 @@
     <link href="http://hedleyyan.github.io/blog/2015/05/13/tag-cloud-test/"/>
     <updated>2015-05-13T10:08:19+08:00</updated>
     <id>http://hedleyyan.github.io/blog/2015/05/13/tag-cloud-test</id>
-    <content type="html"><![CDATA[
+    <content type="html"><![CDATA[<p><li><a style="font-size: NaN%" href="http://hedleyyan.github.io/tags/demo/">demo</a></li></p>
 ]]></content>
   </entry>
   
