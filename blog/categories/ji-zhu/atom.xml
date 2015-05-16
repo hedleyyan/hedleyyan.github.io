@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 技术 | Hedley]]></title>
   <link href="http://hedleyyan.github.io/blog/categories/ji-zhu/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2015-05-16T23:19:10+08:00</updated>
+  <updated>2015-05-16T23:38:59+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[dL]]></name>
@@ -20,9 +20,14 @@
     <id>http://hedleyyan.github.io/blog/2015/05/16/a-glossary-of-name-reuse</id>
     <content type="html"><![CDATA[<h2>关于</h2>
 
-<p>此文大概就是《Java Puzzlers》中Classier Pazzlers一节的简单翻译和整理，粗略总结了Java有关<em>命名重复</em>的场景和代码示例。</p>
+<p>此文大概就是《Java Puzzlers》中Classier Pazzlers一节的简单翻译和整理，粗略总结了Java有关<strong>命名重复</strong>的场景和代码示例。</p>
+
+<!--more-->
+
 
 <h2>Overriding</h2>
+
+<p><blockquote><p>An instance method <em>overrides</em> all accessible instance methods with the same signature in superclasses.</p><footer><strong>JLS 8.4.8.1</strong></footer></blockquote></p>
 
 <p><em>重写</em>。子类覆盖父类方法，最常见的<em>Name Reuse</em>场景。</p>
 
