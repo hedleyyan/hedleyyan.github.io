@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>http://hedleyyan.github.io/blog/2015/05/13/tag-cloud-test/</loc>
-    <lastmod>2015-05-13T10:08:19+08:00</lastmod>
+    <loc>http://hedleyyan.github.io/blog/2015/05/16/a-glossary-of-name-reuse/</loc>
+    <lastmod>2015-05-16T17:07:57+08:00</lastmod>
   </url>
   <url>
     <loc>http://hedleyyan.github.io/blog/2015/05/09/hello-world/</loc>
@@ -24,6 +24,9 @@
     <loc>http://hedleyyan.github.io/blog/categories/demo/</loc>
   </url>
   <url>
-    <loc>http://hedleyyan.github.io/tags/demo/</loc>
+    <loc>http://hedleyyan.github.io/blog/categories/ji-zhu/</loc>
+  </url>
+  <url>
+    <loc>http://hedleyyan.github.io/tags/java/</loc>
   </url>
 </urlset>
