@@ -9,7 +9,7 @@
   <meta name="author" content="dL">
 
   
-  <meta name="description" content="关于 此文大概就是《Java Puzzlers》中Classier Pazzlers一节的简单翻译和整理，粗略总结了Java有关命名重复的场景和代码示例。 Overriding An instance method *overrides* all accessible instance &hellip;">
+  <meta name="description" content="关于 此文大概就是《Java Puzzlers》中Classier Pazzlers一节的简单翻译和整理，粗略总结了Java有关命名重复的场景和代码示例。 Overriding An instance method overrides all accessible instance methods &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -105,10 +105,29 @@
 
 <h2>Overriding</h2>
 
-<blockquote><p>An instance method *overrides* all accessible instance methods with the same signature in superclasses.</p><footer><strong>JLS 8.4.8.1</strong></footer></blockquote>
+<blockquote><p>An instance method overrides all accessible instance methods with the same signature in superclasses.</p><footer><strong>JLS 8.4.8.1</strong></footer></blockquote>
 
 
-<p><em>重写</em>。子类覆盖父类方法，最常见的<em>Name Reuse</em>场景。</p>
+<p>重写的规范定义两个要点
+*  必须是实例方法（instance methods）。NOT 静态方法
+*  必须是同样签名（signature）。包括参数、返回类型、类型声明</p>
+
+<figure class='code'><figcaption><span>overriding</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">class</span> <span class="nc">Base</span> <span class="o">{</span>
+</span><span class='line'>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">f</span><span class="o">()</span> <span class="o">{</span> <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">class</span> <span class="nc">Derived</span> <span class="kd">extends</span> <span class="n">Base</span> <span class="o">{</span>
+</span><span class='line'>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">f</span><span class="o">()</span> <span class="o">{</span> <span class="o">}</span> <span class="c1">// overrrides Base.f()</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
 
 <h2>Overloading</h2>
 

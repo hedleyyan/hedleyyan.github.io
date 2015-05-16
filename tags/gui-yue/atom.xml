@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: 规约 | Hedley]]></title>
   <link href="http://hedleyyan.github.io/tags/gui-yue/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2015-05-16T23:38:59+08:00</updated>
+  <updated>2015-05-17T00:13:51+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[dL]]></name>
@@ -27,9 +27,21 @@
 
 <h2>Overriding</h2>
 
-<p><blockquote><p>An instance method <em>overrides</em> all accessible instance methods with the same signature in superclasses.</p><footer><strong>JLS 8.4.8.1</strong></footer></blockquote></p>
+<p><blockquote><p>An instance method overrides all accessible instance methods with the same signature in superclasses.</p><footer><strong>JLS 8.4.8.1</strong></footer></blockquote>
+重写的规范定义两个要点
+*  必须是实例方法（instance methods）。NOT 静态方法
+*  必须是同样签名（signature）。包括参数、返回类型、类型声明
+&#8220;` java overriding
+    class Base {
+        public void f() { }
+    }</p>
 
-<p><em>重写</em>。子类覆盖父类方法，最常见的<em>Name Reuse</em>场景。</p>
+<pre><code>class Derived extends Base {
+    public void f() { } // overrrides Base.f()
+}
+</code></pre>
+
+<p>&#8220;`</p>
 
 <h2>Overloading</h2>
 
