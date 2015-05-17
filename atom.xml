@@ -4,7 +4,7 @@
   <title><![CDATA[Hedley]]></title>
   <link href="http://hedleyyan.github.io/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2015-05-17T21:21:12+08:00</updated>
+  <updated>2015-05-17T22:07:43+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[dL]]></name>
@@ -20,7 +20,7 @@
     <id>http://hedleyyan.github.io/blog/2015/05/16/a-glossary-of-name-reuse</id>
     <content type="html"><![CDATA[<h2>关于</h2>
 
-<p>此文大概就是《Java Puzzlers》中Classier Pazzlers一节的简单翻译和整理，粗略总结了Java有关<strong>命名重复</strong>的场景和代码示例。</p>
+<p>此文大概就是《Java Puzzlers》中 Classier Pazzlers 一节的简单翻译和整理，粗略总结了 Java 有关<strong>命名重复</strong>的场景和代码示例。</p>
 
 <!--more-->
 
@@ -33,14 +33,14 @@
 <p>重写的规范定义包括：</p>
 
 <ul>
-<li>Context包括两个类，一个子类，一个父类。</li>
-<li>载体必须是实例方法(instance methods)，而非静态方法。</li>
-<li>必须是同样签名(signature)，包括参数、返回类型。</li>
+<li>Context 包括两个类，一个子类，一个父类。</li>
+<li>载体必须是实例方法 (instance methods)，而非静态方法。</li>
+<li>必须是同样签名 (signature)，包括参数、返回类型。</li>
 <li>重写方法不能缩小可见范围。</li>
 </ul>
 
 
-<p>重写是面向对象编程的核心概念，是<strong>唯一</strong>鼓励使用的Name Reuse场景。</p>
+<p>重写是面向对象编程的核心概念，是<strong>唯一</strong>鼓励使用的 Name Reuse 场景。</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -64,10 +64,10 @@
 <blockquote><p>Methods in a class overload one another if they have the same name and different signatures.</p><footer><strong>JLS 8.4.9</strong></footer></blockquote>
 
 
-<p>重载和重写是Name Reuse出现最多的场景。相对于重写，重载规范包括：</p>
+<p>重载和重写是 Name Reuse 出现最多的场景。相对于重写，重载规范包括：</p>
 
 <ul>
-<li>Context只有一个类。</li>
+<li>Context 只有一个类。</li>
 <li>载体可以是实例方法，也可以是静态方法。</li>
 <li>拥有不同的签名。
 
@@ -94,10 +94,10 @@
 <blockquote><p>A field, static method, or member type hides all accessible fields, static methods, or member types, respectively, with the same name (or, for methods, signature) in supertypes. Hiding a member prevents it from being inherited.</p><footer><strong>JLS 8.3-8.5</strong></footer></blockquote>
 
 
-<p>Hiding和重载场景比较像，重载的载体是实例方法，而Hiding的载体是除去实例方法以外的其他所有元素。</p>
+<p>Hiding 和重载场景比较像，重载的载体是实例方法，而 Hiding 的载体是除去实例方法以外的其他所有元素。</p>
 
 <ul>
-<li>Context包括子类和父类。</li>
+<li>Context 包括子类和父类。</li>
 <li>载体包括属性、静态方法、成员类。</li>
 <li>同样签名。</li>
 <li>可见范围无约束。</li>
@@ -142,7 +142,7 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>很明显，Hiding的代码是晦涩难懂的，更重要的是它破坏了Liskov替换原则。应极力避免这种Name Reuse场景。</p>
+<p>很明显，Hiding 的代码是晦涩难懂的，更重要的是它破坏了 Liskov替换原则。应极力避免这种 Name Reuse 场景。</p>
 
 <blockquote><p>Everything you can do with a base class, you can also do with a derived class.</p><footer><strong>Liskov Substitution Principle</strong></footer></blockquote>
 
@@ -153,7 +153,7 @@
 
 
 <ul>
-<li>Context可能只有一个类，也可能包括别的函数库的类。</li>
+<li>Context 可能只有一个类，也可能包括别的函数库的类。</li>
 <li>载体包括变量、方法和类。</li>
 </ul>
 
@@ -219,11 +219,11 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>产生Shadowing场景的Name Reuse，依最近的作用域来判定是哪个元素有效。</p>
+<p>产生 Shadowing 场景的 Name Reuse，依最近的作用域来判定是哪个元素有效。</p>
 
 <h2>Obscuring</h2>
 
-<p>Obscuring是指在作用域中，一个变量的名字和一个类相同，直接看示例代码。</p>
+<p>Obscuring 是指在作用域中，一个变量的名字和一个类相同，直接看示例代码。</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -252,12 +252,20 @@
 <h2>总结</h2>
 
 <ol>
-<li>除了Override，尽量避免Name Reuse。</li>
-<li>遵守Java命名规则，可以避免Obscuring。</li>
+<li>除了 Override，尽量避免 Name Reuse。</li>
+<li>遵守 Java 命名规则，可以避免 Obscuring。</li>
 </ol>
 
 
 <!--链接-->
+
+
+<p class='post-footer'>
+            original link:
+            <a href='http://hedleyyan.github.io/blog/2015/05/16/a-glossary-of-name-reuse/'>http://hedleyyan.github.io/blog/2015/05/16/a-glossary-of-name-reuse/</a><br/>
+            written by <a href='http://hedleyyan.github.io'>dL</a>
+            &nbsp;posted at <a href='http://hedleyyan.github.io'>http://hedleyyan.github.io</a>
+            </p>
 
 ]]></content>
   </entry>
@@ -1060,6 +1068,14 @@ the text you want to pull, surround it like this and that&rsquo;s all there is t
 
 
 <!--引用-->
+
+
+<p class='post-footer'>
+            original link:
+            <a href='http://hedleyyan.github.io/blog/2015/05/09/hello-world/'>http://hedleyyan.github.io/blog/2015/05/09/hello-world/</a><br/>
+            written by <a href='http://hedleyyan.github.io'>dL</a>
+            &nbsp;posted at <a href='http://hedleyyan.github.io'>http://hedleyyan.github.io</a>
+            </p>
 
 ]]></content>
   </entry>
