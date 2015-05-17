@@ -4,7 +4,7 @@
   <title><![CDATA[Hedley]]></title>
   <link href="http://hedleyyan.github.io/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2015-05-17T22:14:11+08:00</updated>
+  <updated>2015-05-17T23:01:56+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[dL]]></name>
@@ -12,6 +12,21 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Octopress 搭建记录]]></title>
+    <link href="http://hedleyyan.github.io/blog/2015/05/17/octopress-da-jian-ji-lu/"/>
+    <updated>2015-05-17T22:29:18+08:00</updated>
+    <id>http://hedleyyan.github.io/blog/2015/05/17/octopress-da-jian-ji-lu</id>
+    <content type="html"><![CDATA[<p class='post-footer'>
+            original link:
+            <a href='http://hedleyyan.github.io/blog/2015/05/17/octopress-da-jian-ji-lu/'>http://hedleyyan.github.io/blog/2015/05/17/octopress-da-jian-ji-lu/</a><br/>
+            written by <a href='http://hedleyyan.github.io'>dL</a>
+            &nbsp;posted at <a href='http://hedleyyan.github.io'>http://hedleyyan.github.io</a>
+            </p>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[A Glossary of Name Reuse]]></title>
@@ -133,7 +148,7 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>⬆️️️⬆️️️代码结果⬇️⬇️</p>
+<p>️️️代码结果</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -142,7 +157,7 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>很明显，Hiding 的代码是晦涩难懂的，更重要的是它破坏了 Liskov替换原则。应极力避免这种 Name Reuse 场景。</p>
+<p>很明显，Hiding 的代码是晦涩难懂的，更重要的是它破坏了 Liskov 替换原则。应极力避免这种 Name Reuse 场景。</p>
 
 <blockquote><p>Everything you can do with a base class, you can also do with a derived class.</p><footer><strong>Liskov Substitution Principle</strong></footer></blockquote>
 
@@ -212,7 +227,7 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>⬆️️️⬆️️️代码结果⬇️⬇️</p>
+<p>代码结果</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">Exception</span> <span class="n">in</span> <span class="n">thread</span> <span class="s">&quot;main&quot;</span> <span class="n">java</span><span class="o">.</span><span class="na">lang</span><span class="o">.</span><span class="na">NoSuchMethodError</span><span class="o">:</span> <span class="n">main</span>

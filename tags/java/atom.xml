@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: Java | Hedley]]></title>
   <link href="http://hedleyyan.github.io/tags/java/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2015-05-17T22:14:11+08:00</updated>
+  <updated>2015-05-17T23:01:56+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[dL]]></name>
@@ -103,12 +103,12 @@
     }
 </code></pre>
 
-<p>⬆️️️⬆️️️代码结果⬇️⬇️
+<p>️️️代码结果
 <code>
 PrivateMatter.java:11: className has private access in Derived
            System.out.println(new Derived().className);
 </code>
-很明显，Hiding 的代码是晦涩难懂的，更重要的是它破坏了 Liskov替换原则。应极力避免这种 Name Reuse 场景。</p>
+很明显，Hiding 的代码是晦涩难懂的，更重要的是它破坏了 Liskov 替换原则。应极力避免这种 Name Reuse 场景。</p>
 
 <p><blockquote><p>Everything you can do with a base class, you can also do with a derived class.</p><footer><strong>Liskov Substitution Principle</strong></footer></blockquote></p>
 
@@ -149,7 +149,7 @@ class String {
 }
 </code></pre>
 
-<p>⬆️️️⬆️️️代码结果⬇️⬇️
+<p>代码结果
 <code>
 Exception in thread "main" java.lang.NoSuchMethodError: main
 </code></p>
