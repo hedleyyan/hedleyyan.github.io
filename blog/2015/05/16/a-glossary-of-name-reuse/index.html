@@ -50,7 +50,7 @@
   <header role="banner"><hgroup>
   <h1><a href="/">Hedley</a></h1>
   
-    <h2>时光漫长，有我别慌</h2>
+    <h2>Stay Hungry, Stay Foolish.</h2>
   
 </hgroup>
 
@@ -172,7 +172,7 @@
 <blockquote><p>A field, static method, or member type hides all accessible fields, static methods, or member types, respectively, with the same name (or, for methods, signature) in supertypes. Hiding a member prevents it from being inherited.</p><footer><strong>JLS 8.3-8.5</strong></footer></blockquote>
 
 
-<p>Hiding 和重载场景比较像，重载的载体是实例方法，而 Hiding 的载体是除去实例方法以外的其他所有元素。</p>
+<p>Hiding 和重写场景比较像，重写的载体是实例方法，而 Hiding 的载体是除去实例方法以外的其他所有元素。</p>
 
 <ul>
 <li>Context 包括子类和父类。</li>
@@ -313,8 +313,8 @@
 </pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Obscure</span> <span class="o">{</span>
 </span><span class='line'>    <span class="kd">static</span> <span class="n">String</span> <span class="n">System</span><span class="o">;</span> <span class="c1">// Obscures type java.lang.System</span>
 </span><span class='line'>  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>      <span class="c1">// Next line won’t compile: </span>
-</span><span class='line'>      <span class="n">System</span> <span class="n">refers</span> <span class="n">to</span> <span class="kd">static</span> <span class="n">field</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;hello, obscure world!&quot;</span><span class="o">);</span>
+</span><span class='line'>      <span class="c1">// Next line won’t compile:  System refers to static field </span>
+</span><span class='line'>        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;hello, obscure world!&quot;</span><span class="o">);</span>
 </span><span class='line'>  <span class="o">}</span>
 </span><span class='line'><span class="o">}</span>
 </span></code></pre></td></tr></table></div></figure>
@@ -389,6 +389,28 @@
     </p>
   </footer>
 </article>
+
+
+
+  <section>
+   <div class="ds-thread" data-thread-key="/blog/2015/05/16/a-glossary-of-name-reuse" data-title="A Glossary of Name Reuse" data-url="http://hedleyyan.github.io/blog/2015/05/16/a-glossary-of-name-reuse/"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    var duoshuoQuery = {short_name:"hedleyyan"};
+    (function() {
+
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+     })();
+ </script>
+
+  </section>
+
 
 </div>
 

@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: Java | Hedley]]></title>
   <link href="http://hedleyyan.github.io/tags/java/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2015-05-17T23:01:56+08:00</updated>
+  <updated>2015-05-20T18:39:22+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[dL]]></name>
@@ -78,7 +78,7 @@
 
 <p><blockquote><p>A field, static method, or member type hides all accessible fields, static methods, or member types, respectively, with the same name (or, for methods, signature) in supertypes. Hiding a member prevents it from being inherited.</p><footer><strong>JLS 8.3-8.5</strong></footer></blockquote></p>
 
-<p>Hiding 和重载场景比较像，重载的载体是实例方法，而 Hiding 的载体是除去实例方法以外的其他所有元素。</p>
+<p>Hiding 和重写场景比较像，重写的载体是实例方法，而 Hiding 的载体是除去实例方法以外的其他所有元素。</p>
 
 <ul>
 <li>Context 包括子类和父类。</li>
@@ -103,12 +103,13 @@
     }
 </code></pre>
 
-<p>️️️代码结果
-<code>
-PrivateMatter.java:11: className has private access in Derived
+<p>️️️代码结果</p>
+
+<pre><code>PrivateMatter.java:11: className has private access in Derived
            System.out.println(new Derived().className);
-</code>
-很明显，Hiding 的代码是晦涩难懂的，更重要的是它破坏了 Liskov 替换原则。应极力避免这种 Name Reuse 场景。</p>
+</code></pre>
+
+<p>很明显，Hiding 的代码是晦涩难懂的，更重要的是它破坏了 Liskov 替换原则。应极力避免这种 Name Reuse 场景。</p>
 
 <p><blockquote><p>Everything you can do with a base class, you can also do with a derived class.</p><footer><strong>Liskov Substitution Principle</strong></footer></blockquote></p>
 
@@ -149,25 +150,25 @@ class String {
 }
 </code></pre>
 
-<p>代码结果
-<code>
-Exception in thread "main" java.lang.NoSuchMethodError: main
-</code></p>
+<p>代码结果</p>
+
+<pre><code>Exception in thread "main" java.lang.NoSuchMethodError: main
+</code></pre>
 
 <p>产生 Shadowing 场景的 Name Reuse，依最近的作用域来判定是哪个元素有效。</p>
 
 <h2>Obscuring</h2>
 
-<p>Obscuring 是指在作用域中，一个变量的名字和一个类相同，直接看示例代码。
-<code>java
-    public class Obscure {
+<p>Obscuring 是指在作用域中，一个变量的名字和一个类相同，直接看示例代码。</p>
+
+<pre><code class="java">    public class Obscure {
         static String System; // Obscures type java.lang.System
         public static void main(String[] args) {
-            // Next line won’t compile:
-            System refers to static field System.out.println("hello, obscure world!");
+            // Next line won’t compile:  System refers to static field 
+            System.out.println("hello, obscure world!");
         }
     }
-</code></p>
+</code></pre>
 
 <p><blockquote><p>If a type or a package is obscured, you cannot refer to it by its simple name except in a context where the syntax allows only a name from its namespace.</p></blockquote></p>
 

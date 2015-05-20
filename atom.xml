@@ -4,7 +4,7 @@
   <title><![CDATA[Hedley]]></title>
   <link href="http://hedleyyan.github.io/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2015-05-17T23:01:56+08:00</updated>
+  <updated>2015-05-20T18:39:22+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[dL]]></name>
@@ -109,7 +109,7 @@
 <blockquote><p>A field, static method, or member type hides all accessible fields, static methods, or member types, respectively, with the same name (or, for methods, signature) in supertypes. Hiding a member prevents it from being inherited.</p><footer><strong>JLS 8.3-8.5</strong></footer></blockquote>
 
 
-<p>Hiding 和重载场景比较像，重载的载体是实例方法，而 Hiding 的载体是除去实例方法以外的其他所有元素。</p>
+<p>Hiding 和重写场景比较像，重写的载体是实例方法，而 Hiding 的载体是除去实例方法以外的其他所有元素。</p>
 
 <ul>
 <li>Context 包括子类和父类。</li>
@@ -250,8 +250,8 @@
 </pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Obscure</span> <span class="o">{</span>
 </span><span class='line'>    <span class="kd">static</span> <span class="n">String</span> <span class="n">System</span><span class="o">;</span> <span class="c1">// Obscures type java.lang.System</span>
 </span><span class='line'>  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>      <span class="c1">// Next line won’t compile: </span>
-</span><span class='line'>      <span class="n">System</span> <span class="n">refers</span> <span class="n">to</span> <span class="kd">static</span> <span class="n">field</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;hello, obscure world!&quot;</span><span class="o">);</span>
+</span><span class='line'>      <span class="c1">// Next line won’t compile:  System refers to static field </span>
+</span><span class='line'>        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;hello, obscure world!&quot;</span><span class="o">);</span>
 </span><span class='line'>  <span class="o">}</span>
 </span><span class='line'><span class="o">}</span>
 </span></code></pre></td></tr></table></div></figure>
