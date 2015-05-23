@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: 配置 | Hedley]]></title>
   <link href="http://hedleyyan.github.io/tags/pei-zhi/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2015-05-24T00:45:33+08:00</updated>
+  <updated>2015-05-24T01:09:13+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[dL]]></name>
@@ -250,8 +250,20 @@
 
 <h2>其他</h2>
 
-<p>链接在新窗口打开、列表排版、404ERROR公益页面，参考<a href="http://blog.csdn.net/biaobiaoqi/article/details/9289563">这篇文章</a>。
-文章分类侧边栏、导航栏设置，参考<a href="http://www.jianshu.com/p/0ac2ac1a8e45">这篇文章</a>;</p>
+<ol>
+<li>链接在新窗口打开、列表排版、404ERROR公益页面，参考<a href="http://blog.csdn.net/biaobiaoqi/article/details/9289563">这篇文章</a>。</li>
+<li>文章分类侧边栏、导航栏设置，参考<a href="http://www.jianshu.com/p/0ac2ac1a8e45">这篇文章</a>。</li>
+</ol>
+
+
+<h2>如何书写</h2>
+
+<p>ST 安装几个插件：
+1.  Octopress ： 可以在 ST 中快捷新建 Post， 快捷生成、部署。
+2.  Octopress Snippets ： <code>CMD + SHIFT + P</code> 接输入 <code>Snippet</code> ，调用语法模板。
+3.  Markdown Extended ： <code>CMD + SHIFT + P</code> 接输入 <code>Set Syntax</code> ，设为 <code>Markdown Extended</code>。代码片段彩色显示。
+4.  Markdown Preview ： 主要用到 <code>Preview in browser</code> 来进行静态预览，以及 <code>cheat sheet</code> 来查看语法。
+5.  Monokai Neue ： <code>Color Scheme</code> 修改， Markdown 颜色显示。修改 <code>/Packages/Monokai Neue/Monokai-Neue.tmTheme</code> 文件，在 <code>settings -&gt; settings</code> 代码段下修改 <code>&lt;key&gt;selection&lt;/key&gt; &lt;string&gt;#00B2EE&lt;/string&gt;</code>，更改选中背景颜色。</p>
 ]]></content>
   </entry>
   
