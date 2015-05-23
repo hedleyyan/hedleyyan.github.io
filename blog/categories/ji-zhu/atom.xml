@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 技术 | Hedley]]></title>
   <link href="http://hedleyyan.github.io/blog/categories/ji-zhu/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2015-05-24T00:37:22+08:00</updated>
+  <updated>2015-05-24T00:45:33+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[dL]]></name>
@@ -12,6 +12,248 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Octopress 搭建记录]]></title>
+    <link href="http://hedleyyan.github.io/blog/2015/05/17/octopress-da-jian-ji-lu/"/>
+    <updated>2015-05-17T22:29:18+08:00</updated>
+    <id>http://hedleyyan.github.io/blog/2015/05/17/octopress-da-jian-ji-lu</id>
+    <content type="html"><![CDATA[<h2>关于</h2>
+
+<p>本文是小站搭建的流水账记录，收集了各种用到的链接地址。</p>
+
+<!--more-->
+
+
+<h2>搭建</h2>
+
+<ol>
+<li>参照 <a href="http://octopress.org/docs/setup/">octopress 官方搭建手册</a>，一步一步来。到 <code>gem install bundler</code> 时候卡壳，网络不通。</li>
+<li>修改 <a href="http://ruby.taobao.org/">RubyGems 镜像</a>, 连接通了。但是一直报缺少依赖包的异常，按照提示手动一个个安装完依赖包。</li>
+<li>安装完毕，修改 <code>_config.yml</code> 配置文件。</li>
+</ol>
+
+
+<h2>云标签</h2>
+
+<ol>
+<li>参照 <a href="http://codemacro.com/2012/07/18/add-tag-to-octopress/">Tag Cloud 搭建</a>，clone 几个文件到本地目录。</li>
+<li>使用方法：在文件头添加标识 <code>tags: xxx</code> ，但此时无法添加多个标签。</li>
+<li><a href="http://my.oschina.net/pangyi/blog/379606">这篇文章</a>给出了解决方案，修改 <code>tags.html</code> 文件去掉 <code>limit</code> 属性，多标签写法 <code>tags: [xx1, xx2]</code> 。</li>
+</ol>
+
+
+<h2>原文链接</h2>
+
+<p>参照<a href="http://my.oschina.net/pangyi/blog/379620">这篇文章</a>，在每篇文章下面自动生成作者信息，原文信息。</p>
+
+<h2>留言系统</h2>
+
+<ol>
+<li>参照<a href="http://droidyue.com/blog/2014/07/29/integrate-duoshuo-in-octopress/">这篇文章</a>添加多说评论。</li>
+<li><a href="http://shenchaofei.cn/duoshuo-comment-box-css-custom/328.html">修改多说样式</a>，样式代码在多说系统的管理后台 &ndash;> 基本设置里。</li>
+</ol>
+
+
+<p>最后自己做了一些小的调整，样式代码如下：</p>
+
+<p><figure class='code'><figcaption><span> (duoshuo.css)</span> <a href='/downloads/code/duoshuo.css'>download</a></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+<span class='line-number'>70</span>
+<span class='line-number'>71</span>
+<span class='line-number'>72</span>
+<span class='line-number'>73</span>
+<span class='line-number'>74</span>
+<span class='line-number'>75</span>
+<span class='line-number'>76</span>
+<span class='line-number'>77</span>
+<span class='line-number'>78</span>
+<span class='line-number'>79</span>
+<span class='line-number'>80</span>
+<span class='line-number'>81</span>
+<span class='line-number'>82</span>
+<span class='line-number'>83</span>
+<span class='line-number'>84</span>
+<span class='line-number'>85</span>
+<span class='line-number'>86</span>
+<span class='line-number'>87</span>
+<span class='line-number'>88</span>
+<span class='line-number'>89</span>
+<span class='line-number'>90</span>
+<span class='line-number'>91</span>
+<span class='line-number'>92</span>
+<span class='line-number'>93</span>
+<span class='line-number'>94</span>
+</pre></td><td class='code'><pre><code class='css'><span class='line'><span class="nf">#ds-reset</span> <span class="nc">.ds-avatar</span> <span class="nt">img</span><span class="o">,</span><span class="nf">#ds-reset</span> <span class="nc">.ds-avatar</span> <span class="nt">img</span><span class="nd">:hover</span><span class="p">{</span>
+</span><span class='line'>    <span class="o">-</span><span class="n">webkit</span><span class="o">-</span><span class="n">animation</span><span class="o">-</span><span class="n">fill</span><span class="o">-</span><span class="n">mode</span><span class="o">:</span> <span class="k">both</span><span class="p">;</span>
+</span><span class='line'>    <span class="o">-</span><span class="n">moz</span><span class="o">-</span><span class="n">animation</span><span class="o">-</span><span class="n">fill</span><span class="o">-</span><span class="n">mode</span><span class="o">:</span> <span class="k">both</span><span class="p">;</span>
+</span><span class='line'>    <span class="o">-</span><span class="n">ms</span><span class="o">-</span><span class="n">animation</span><span class="o">-</span><span class="n">fill</span><span class="o">-</span><span class="n">mode</span><span class="o">:</span> <span class="k">both</span><span class="p">;</span>
+</span><span class='line'>    <span class="o">-</span><span class="n">o</span><span class="o">-</span><span class="n">animation</span><span class="o">-</span><span class="n">fill</span><span class="o">-</span><span class="n">mode</span><span class="o">:</span> <span class="k">both</span><span class="p">;</span>
+</span><span class='line'>    <span class="n">animation</span><span class="o">-</span><span class="n">fill</span><span class="o">-</span><span class="n">mode</span><span class="o">:</span> <span class="k">both</span><span class="p">;</span>
+</span><span class='line'>    <span class="o">-</span><span class="n">webkit</span><span class="o">-</span><span class="n">animation</span><span class="o">-</span><span class="n">duration</span><span class="o">:</span> <span class="m">0s</span><span class="p">;</span>
+</span><span class='line'>    <span class="o">-</span><span class="n">moz</span><span class="o">-</span><span class="n">animation</span><span class="o">-</span><span class="n">duration</span><span class="o">:</span> <span class="m">0s</span><span class="p">;</span>
+</span><span class='line'>    <span class="o">-</span><span class="n">ms</span><span class="o">-</span><span class="n">animation</span><span class="o">-</span><span class="n">duration</span><span class="o">:</span> <span class="m">0s</span><span class="p">;</span>
+</span><span class='line'>    <span class="o">-</span><span class="n">o</span><span class="o">-</span><span class="n">animation</span><span class="o">-</span><span class="n">duration</span><span class="o">:</span> <span class="m">0s</span><span class="p">;</span>
+</span><span class='line'>    <span class="n">animation</span><span class="o">-</span><span class="n">duration</span><span class="o">:</span> <span class="m">0s</span><span class="p">;</span>
+</span><span class='line'>    <span class="o">-</span><span class="n">webkit</span><span class="o">-</span><span class="n">animation</span><span class="o">-</span><span class="n">duration</span><span class="o">:</span> <span class="m">0.7s</span><span class="p">;</span>
+</span><span class='line'>    <span class="o">-</span><span class="n">moz</span><span class="o">-</span><span class="n">animation</span><span class="o">-</span><span class="n">duration</span><span class="o">:</span> <span class="m">0.7s</span><span class="p">;</span>
+</span><span class='line'>    <span class="o">-</span><span class="n">ms</span><span class="o">-</span><span class="n">animation</span><span class="o">-</span><span class="n">duration</span><span class="o">:</span> <span class="m">0.7s</span><span class="p">;</span>
+</span><span class='line'>    <span class="o">-</span><span class="n">o</span><span class="o">-</span><span class="n">animation</span><span class="o">-</span><span class="n">duration</span><span class="o">:</span> <span class="m">0.7s</span><span class="p">;</span>
+</span><span class='line'>    <span class="n">animation</span><span class="o">-</span><span class="n">duration</span><span class="o">:</span> <span class="m">0.7s</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">@-webkit-keyframes</span> <span class="nt">swing</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nt">20</span><span class="o">%,</span> <span class="nt">40</span><span class="o">%,</span> <span class="nt">60</span><span class="o">%,</span> <span class="nt">80</span><span class="o">%,</span> <span class="nt">100</span><span class="o">%</span> <span class="p">{</span> <span class="o">-</span><span class="n">webkit</span><span class="o">-</span><span class="n">transform</span><span class="o">-</span><span class="n">origin</span><span class="o">:</span> <span class="k">top</span> <span class="k">center</span><span class="p">;</span> <span class="p">}</span>
+</span><span class='line'>    <span class="nt">20</span><span class="o">%</span> <span class="p">{</span> <span class="o">-</span><span class="n">webkit</span><span class="o">-</span><span class="n">transform</span><span class="o">:</span> <span class="n">rotate</span><span class="p">(</span><span class="m">15</span><span class="n">deg</span><span class="p">);</span> <span class="p">}</span>
+</span><span class='line'>    <span class="nt">40</span><span class="o">%</span> <span class="p">{</span> <span class="o">-</span><span class="n">webkit</span><span class="o">-</span><span class="n">transform</span><span class="o">:</span> <span class="n">rotate</span><span class="p">(</span><span class="m">-10</span><span class="n">deg</span><span class="p">);</span> <span class="p">}</span>
+</span><span class='line'>    <span class="nt">60</span><span class="o">%</span> <span class="p">{</span> <span class="o">-</span><span class="n">webkit</span><span class="o">-</span><span class="n">transform</span><span class="o">:</span> <span class="n">rotate</span><span class="p">(</span><span class="m">5</span><span class="n">deg</span><span class="p">);</span> <span class="p">}</span>
+</span><span class='line'>    <span class="nt">80</span><span class="o">%</span> <span class="p">{</span> <span class="o">-</span><span class="n">webkit</span><span class="o">-</span><span class="n">transform</span><span class="o">:</span> <span class="n">rotate</span><span class="p">(</span><span class="m">-5</span><span class="n">deg</span><span class="p">);</span> <span class="p">}</span>
+</span><span class='line'>    <span class="nt">100</span><span class="o">%</span> <span class="p">{</span> <span class="o">-</span><span class="n">webkit</span><span class="o">-</span><span class="n">transform</span><span class="o">:</span> <span class="n">rotate</span><span class="p">(</span><span class="m">0</span><span class="n">deg</span><span class="p">);</span> <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">@-moz-keyframes</span> <span class="nt">swing</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nt">20</span><span class="o">%</span> <span class="p">{</span> <span class="o">-</span><span class="n">moz</span><span class="o">-</span><span class="n">transform</span><span class="o">:</span> <span class="n">rotate</span><span class="p">(</span><span class="m">15</span><span class="n">deg</span><span class="p">);</span> <span class="p">}</span>
+</span><span class='line'>    <span class="nt">40</span><span class="o">%</span> <span class="p">{</span> <span class="o">-</span><span class="n">moz</span><span class="o">-</span><span class="n">transform</span><span class="o">:</span> <span class="n">rotate</span><span class="p">(</span><span class="m">-10</span><span class="n">deg</span><span class="p">);</span> <span class="p">}</span>
+</span><span class='line'>    <span class="nt">60</span><span class="o">%</span> <span class="p">{</span> <span class="o">-</span><span class="n">moz</span><span class="o">-</span><span class="n">transform</span><span class="o">:</span> <span class="n">rotate</span><span class="p">(</span><span class="m">5</span><span class="n">deg</span><span class="p">);</span> <span class="p">}</span>
+</span><span class='line'>    <span class="nt">80</span><span class="o">%</span> <span class="p">{</span> <span class="o">-</span><span class="n">moz</span><span class="o">-</span><span class="n">transform</span><span class="o">:</span> <span class="n">rotate</span><span class="p">(</span><span class="m">-5</span><span class="n">deg</span><span class="p">);</span> <span class="p">}</span>
+</span><span class='line'>    <span class="nt">100</span><span class="o">%</span> <span class="p">{</span> <span class="o">-</span><span class="n">moz</span><span class="o">-</span><span class="n">transform</span><span class="o">:</span> <span class="n">rotate</span><span class="p">(</span><span class="m">0</span><span class="n">deg</span><span class="p">);</span> <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">@-o-keyframes</span> <span class="nt">swing</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nt">20</span><span class="o">%</span> <span class="p">{</span> <span class="o">-</span><span class="n">o</span><span class="o">-</span><span class="n">transform</span><span class="o">:</span> <span class="n">rotate</span><span class="p">(</span><span class="m">15</span><span class="n">deg</span><span class="p">);</span> <span class="p">}</span>
+</span><span class='line'>    <span class="nt">40</span><span class="o">%</span> <span class="p">{</span> <span class="o">-</span><span class="n">o</span><span class="o">-</span><span class="n">transform</span><span class="o">:</span> <span class="n">rotate</span><span class="p">(</span><span class="m">-10</span><span class="n">deg</span><span class="p">);</span> <span class="p">}</span>
+</span><span class='line'>    <span class="nt">60</span><span class="o">%</span> <span class="p">{</span> <span class="o">-</span><span class="n">o</span><span class="o">-</span><span class="n">transform</span><span class="o">:</span> <span class="n">rotate</span><span class="p">(</span><span class="m">5</span><span class="n">deg</span><span class="p">);</span> <span class="p">}</span>
+</span><span class='line'>    <span class="nt">80</span><span class="o">%</span> <span class="p">{</span> <span class="o">-</span><span class="n">o</span><span class="o">-</span><span class="n">transform</span><span class="o">:</span> <span class="n">rotate</span><span class="p">(</span><span class="m">-5</span><span class="n">deg</span><span class="p">);</span> <span class="p">}</span>
+</span><span class='line'>    <span class="nt">100</span><span class="o">%</span> <span class="p">{</span> <span class="o">-</span><span class="n">o</span><span class="o">-</span><span class="n">transform</span><span class="o">:</span> <span class="n">rotate</span><span class="p">(</span><span class="m">0</span><span class="n">deg</span><span class="p">);</span> <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">@keyframes</span> <span class="nt">swing</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nt">20</span><span class="o">%</span> <span class="p">{</span> <span class="n">transform</span><span class="o">:</span> <span class="n">rotate</span><span class="p">(</span><span class="m">15</span><span class="n">deg</span><span class="p">);</span> <span class="p">}</span>
+</span><span class='line'>    <span class="nt">40</span><span class="o">%</span> <span class="p">{</span> <span class="n">transform</span><span class="o">:</span> <span class="n">rotate</span><span class="p">(</span><span class="m">-10</span><span class="n">deg</span><span class="p">);</span> <span class="p">}</span>
+</span><span class='line'>    <span class="nt">60</span><span class="o">%</span> <span class="p">{</span> <span class="n">transform</span><span class="o">:</span> <span class="n">rotate</span><span class="p">(</span><span class="m">5</span><span class="n">deg</span><span class="p">);</span> <span class="p">}</span>
+</span><span class='line'>    <span class="nt">80</span><span class="o">%</span> <span class="p">{</span> <span class="n">transform</span><span class="o">:</span> <span class="n">rotate</span><span class="p">(</span><span class="m">-5</span><span class="n">deg</span><span class="p">);</span> <span class="p">}</span>
+</span><span class='line'>    <span class="nt">100</span><span class="o">%</span> <span class="p">{</span> <span class="n">transform</span><span class="o">:</span> <span class="n">rotate</span><span class="p">(</span><span class="m">0</span><span class="n">deg</span><span class="p">);</span> <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="nf">#ds-reset</span> <span class="nc">.ds-avatar</span> <span class="nt">img</span><span class="nd">:hover</span><span class="p">{</span>
+</span><span class='line'>    <span class="o">-</span><span class="n">webkit</span><span class="o">-</span><span class="n">transform</span><span class="o">-</span><span class="n">origin</span><span class="o">:</span> <span class="k">top</span> <span class="k">center</span><span class="p">;</span>
+</span><span class='line'>    <span class="o">-</span><span class="n">moz</span><span class="o">-</span><span class="n">transform</span><span class="o">-</span><span class="n">origin</span><span class="o">:</span> <span class="k">top</span> <span class="k">center</span><span class="p">;</span>
+</span><span class='line'>    <span class="o">-</span><span class="n">o</span><span class="o">-</span><span class="n">transform</span><span class="o">-</span><span class="n">origin</span><span class="o">:</span> <span class="k">top</span> <span class="k">center</span><span class="p">;</span>
+</span><span class='line'>    <span class="n">transform</span><span class="o">-</span><span class="n">origin</span><span class="o">:</span> <span class="k">top</span> <span class="k">center</span><span class="p">;</span>
+</span><span class='line'>    <span class="o">-</span><span class="n">webkit</span><span class="o">-</span><span class="n">animation</span><span class="o">-</span><span class="n">name</span><span class="o">:</span> <span class="n">swing</span><span class="p">;</span>
+</span><span class='line'>    <span class="o">-</span><span class="n">moz</span><span class="o">-</span><span class="n">animation</span><span class="o">-</span><span class="n">name</span><span class="o">:</span> <span class="n">swing</span><span class="p">;</span>
+</span><span class='line'>    <span class="o">-</span><span class="n">o</span><span class="o">-</span><span class="n">animation</span><span class="o">-</span><span class="n">name</span><span class="o">:</span> <span class="n">swing</span><span class="p">;</span>
+</span><span class='line'>    <span class="n">animation</span><span class="o">-</span><span class="n">name</span><span class="o">:</span> <span class="n">swing</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="c">/*评论背景的边角默认是直角，如果想改成圆角*/</span>
+</span><span class='line'><span class="nf">#ds-thread</span><span class="p">{</span> <span class="k">border</span><span class="o">-</span><span class="n">radius</span><span class="o">:</span> <span class="m">5px</span><span class="p">;}</span>
+</span><span class='line'>
+</span><span class='line'><span class="c">/*定义评论框内字体和颜色*/</span>
+</span><span class='line'><span class="nf">#ds-thread</span> <span class="nf">#ds-reset</span> <span class="nc">.ds-textarea-wrapper</span> <span class="nt">textarea</span><span class="o">,</span> <span class="nf">#ds-thread</span> <span class="nf">#ds-reset</span> <span class="nc">.ds-textarea-wrapper</span> <span class="nc">.ds-hidden-text</span> <span class="p">{</span><span class="k">font-family</span><span class="o">:</span> <span class="err">‘微软雅黑’</span> <span class="err">‘</span><span class="n">Microsoft</span> <span class="n">Yahei</span><span class="err">’</span><span class="cp">!important</span><span class="p">;</span><span class="k">font-size</span><span class="o">:</span><span class="m">12px</span><span class="p">;</span><span class="k">letter-spacing</span><span class="o">:</span><span class="m">1px</span><span class="p">;}</span>
+</span><span class='line'><span class="c">/*修改评论正文的字体颜色*/</span>
+</span><span class='line'><span class="nf">#ds-thread</span> <span class="nf">#ds-reset</span> <span class="nc">.ds-comment-body</span> <span class="nt">p</span> <span class="p">{</span><span class="k">color</span><span class="o">:</span> <span class="m">#030303</span><span class="p">;</span><span class="k">font-family</span><span class="o">:</span> <span class="err">‘微软雅黑’</span> <span class="err">‘</span><span class="n">Microsoft</span> <span class="n">Yahei</span><span class="err">’</span><span class="cp">!important</span><span class="p">;</span><span class="k">font-size</span><span class="o">:</span><span class="m">14px</span><span class="p">;</span><span class="k">letter-spacing</span><span class="o">:</span><span class="m">1px</span><span class="p">;}</span>
+</span><span class='line'><span class="c">/*定义发布按钮字体，以及渐变色背景*/</span>
+</span><span class='line'><span class="nf">#ds-thread</span> <span class="nf">#ds-reset</span> <span class="nc">.ds-post-button</span><span class="p">{</span><span class="k">font-family</span><span class="o">:</span> <span class="err">‘微软雅黑’‘</span><span class="n">Microsoft</span> <span class="n">Yahei</span><span class="err">’</span><span class="cp">!important</span><span class="p">;</span><span class="k">font-weight</span><span class="o">:</span> <span class="k">bold</span><span class="p">;</span><span class="k">font-size</span><span class="o">:</span><span class="m">12px</span><span class="p">;</span><span class="m">1</span><span class="o">:</span><span class="k">none</span> <span class="cp">!important</span><span class="p">;</span><span class="k">color</span><span class="o">:</span><span class="m">#49976b</span> <span class="cp">!important</span><span class="p">;}</span>
+</span><span class='line'>
+</span><span class='line'><span class="c">/*隐藏评论右上方 最热 最新排序按钮*/</span>
+</span><span class='line'><span class="nf">#ds-thread</span> <span class="nf">#ds-reset</span> <span class="nc">.ds-sort</span> <span class="p">{</span><span class="k">display</span><span class="o">:</span><span class="k">none</span><span class="p">;}</span>
+</span><span class='line'><span class="c">/*隐藏底部多说版权*/</span>
+</span><span class='line'><span class="nf">#ds-thread</span> <span class="nf">#ds-reset</span> <span class="nc">.ds-powered-by</span><span class="p">{</span><span class="k">display</span><span class="o">:</span><span class="k">none</span><span class="p">;}</span>
+</span><span class='line'><span class="c">/*将评论框底部的分享到微博QQ空间什么的隐藏起来*/</span>
+</span><span class='line'><span class="nc">.ds-sync</span><span class="p">{</span><span class="k">display</span><span class="o">:</span><span class="k">none</span> <span class="cp">!important</span><span class="p">;}</span>
+</span><span class='line'><span class="c">/*隐藏评论左上方 评论总数背景色及边框 和一些设置*/</span>
+</span><span class='line'><span class="nf">#ds-thread</span> <span class="nf">#ds-reset</span> <span class="nt">li</span><span class="nc">.ds-tab</span> <span class="nt">a</span><span class="nc">.ds-current</span><span class="p">{</span><span class="k">background</span><span class="o">:</span><span class="k">none</span><span class="p">;</span><span class="k">border</span><span class="o">:</span><span class="k">none</span><span class="p">;</span><span class="k">font-size</span><span class="o">:</span> <span class="m">22px</span><span class="p">;</span><span class="k">font-weight</span><span class="o">:</span> <span class="m">400</span><span class="p">;</span><span class="k">color</span><span class="o">:</span> <span class="m">#999</span><span class="p">;</span><span class="k">font-family</span><span class="o">:</span> <span class="err">‘微软雅黑’‘</span><span class="n">Microsoft</span> <span class="n">Yahei</span><span class="err">’</span><span class="cp">!important</span><span class="p">;</span><span class="k">letter-spacing</span><span class="o">:</span><span class="m">1px</span><span class="p">;}</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="c">/*定义高亮字体颜色*/</span>
+</span><span class='line'><span class="nf">#ds-reset</span> <span class="nc">.ds-highlight</span><span class="p">{</span><span class="k">color</span><span class="o">:</span><span class="m">#49976b</span> <span class="cp">!important</span><span class="p">;</span><span class="k">font-family</span><span class="o">:</span> <span class="err">‘微软雅黑’</span> <span class="err">‘</span><span class="n">Microsoft</span> <span class="n">Yahei</span><span class="err">’</span><span class="cp">!important</span><span class="p">;}</span>
+</span><span class='line'><span class="c">/*定义评论框内其他高亮颜色*/</span>
+</span><span class='line'><span class="nf">#ds-thread</span> <span class="nf">#ds-reset</span> <span class="nf">#ds-bubble</span> <span class="nt">a</span><span class="p">{</span><span class="k">color</span><span class="o">:</span> <span class="m">#49976b</span> <span class="cp">!important</span><span class="p">;</span><span class="k">font-family</span><span class="o">:</span> <span class="err">‘微软雅黑’</span> <span class="err">‘</span><span class="n">Microsoft</span> <span class="n">Yahei</span><span class="err">’</span><span class="cp">!important</span><span class="p">;}</span>
+</span><span class='line'><span class="c">/*定义评论框内其他高亮颜色*/</span>
+</span><span class='line'><span class="nf">#ds-thread</span> <span class="nf">#ds-reset</span> <span class="nf">#ds-bubble</span> <span class="p">{</span><span class="k">color</span><span class="o">:</span> <span class="m">#49976b</span> <span class="cp">!important</span><span class="p">;</span><span class="k">font-family</span><span class="o">:</span> <span class="err">‘微软雅黑’</span> <span class="err">‘</span><span class="n">Microsoft</span> <span class="n">Yahei</span><span class="err">’</span><span class="cp">!important</span><span class="p">;}</span>
+</span><span class='line'><span class="c">/*定义评论框内其他高亮颜色*/</span>
+</span><span class='line'><span class="nf">#ds-reset</span> <span class="nf">#ds-ctx</span> <span class="nc">.ds-ctx-entry</span> <span class="nc">.ds-ctx-head</span> <span class="nt">a</span><span class="p">{</span><span class="k">color</span><span class="o">:</span> <span class="m">#49976b</span> <span class="cp">!important</span><span class="p">;</span><span class="k">font-family</span><span class="o">:</span> <span class="err">‘微软雅黑’</span> <span class="err">‘</span><span class="n">Microsoft</span> <span class="n">Yahei</span><span class="err">’</span><span class="cp">!important</span><span class="p">;}</span>
+</span><span class='line'><span class="c">/*定义评论框内其他高亮颜色*/</span>
+</span><span class='line'><span class="nf">#ds-thread</span> <span class="nf">#ds-reset</span> <span class="nt">a</span><span class="nc">.ds-comment-context</span><span class="nd">:hover</span><span class="p">{</span><span class="k">color</span><span class="o">:</span> <span class="m">#49976b</span> <span class="cp">!important</span><span class="p">;</span><span class="k">font-family</span><span class="o">:</span> <span class="err">‘微软雅黑’</span> <span class="err">‘</span><span class="n">Microsoft</span> <span class="n">Yahei</span><span class="err">’</span><span class="cp">!important</span><span class="p">;}</span>
+</span><span class='line'><span class="c">/*定义评论框内其他高亮颜色*/</span>
+</span><span class='line'><span class="nf">#ds-thread</span> <span class="nf">#ds-reset</span> <span class="nt">a</span><span class="nc">.ds-comment-context</span><span class="p">{</span><span class="k">color</span><span class="o">:</span> <span class="m">#49976b</span> <span class="cp">!important</span><span class="p">;</span><span class="k">font-family</span><span class="o">:</span> <span class="err">‘微软雅黑’</span> <span class="err">‘</span><span class="n">Microsoft</span> <span class="n">Yahei</span><span class="err">’</span><span class="cp">!important</span><span class="p">;}</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<h2>其他</h2>
+
+<p>链接在新窗口打开、列表排版、404ERROR公益页面，参考<a href="http://blog.csdn.net/biaobiaoqi/article/details/9289563">这篇文章</a>。
+文章分类侧边栏、导航栏设置，参考<a href="http://www.jianshu.com/p/0ac2ac1a8e45">这篇文章</a>;</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[A Glossary of Name Reuse]]></title>
