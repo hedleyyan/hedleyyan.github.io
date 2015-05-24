@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: 配置 | Hedley]]></title>
   <link href="http://hedleyyan.github.io/tags/pei-zhi/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2015-05-24T16:50:05+08:00</updated>
+  <updated>2015-05-24T16:54:23+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[dL]]></name>
@@ -29,7 +29,7 @@
 
 <ol>
 <li>参照 <a href="http://octopress.org/docs/setup/">octopress 官方搭建手册</a>，一步一步来。到 <code>gem install bundler</code> 时候卡壳，网络不通。</li>
-<li>修改 <a href="http://ruby.taobao.org/">RubyGems 镜像</a>, 连接通了。但是一直报缺少依赖包的异常，按照提示手动一个个安装完依赖包。</li>
+<li>修改 <a href="http://ruby.taobao.org/">RubyGems 镜像</a>，连接通了。但是一直报缺少依赖包的异常，按照提示手动一个个安装完依赖包。</li>
 <li>安装完毕，修改 <code>_config.yml</code> 配置文件。</li>
 </ol>
 
@@ -247,6 +247,14 @@
 </span><span class='line'><span class="c">/*定义评论框内其他高亮颜色*/</span>
 </span><span class='line'><span class="nf">#ds-thread</span> <span class="nf">#ds-reset</span> <span class="nt">a</span><span class="nc">.ds-comment-context</span><span class="p">{</span><span class="k">color</span><span class="o">:</span> <span class="m">#49976b</span> <span class="cp">!important</span><span class="p">;</span><span class="k">font-family</span><span class="o">:</span> <span class="err">‘微软雅黑’</span> <span class="err">‘</span><span class="n">Microsoft</span> <span class="n">Yahei</span><span class="err">’</span><span class="cp">!important</span><span class="p">;}</span>
 </span></code></pre></td></tr></table></div></figure></p>
+
+<h2>访问速度</h2>
+
+<ol>
+<li>参照[这篇文章][访问速度]替换若干google源。</li>
+<li>所有修改的源文件做好相应备份，相应目录下添加 <code>.bak</code> 备份文件。</li>
+</ol>
+
 
 <h2>其他</h2>
 
