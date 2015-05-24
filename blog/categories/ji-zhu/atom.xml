@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 技术 | Hedley]]></title>
   <link href="http://hedleyyan.github.io/blog/categories/ji-zhu/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2015-05-24T17:01:12+08:00</updated>
+  <updated>2015-05-24T17:03:49+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[dL]]></name>
@@ -264,9 +264,7 @@
 </ol>
 
 
-<h2>如何书写</h2>
-
-<p>ST 安装几个插件：</p>
+<h2>ST 书写插件</h2>
 
 <ol>
 <li>Octopress ： 可以在 ST 中快捷新建 Post， 快捷生成、部署。</li>
