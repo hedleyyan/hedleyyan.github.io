@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 技术 | Hedley]]></title>
   <link href="http://hedleyyan.github.io/blog/categories/ji-zhu/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2015-06-05T15:57:36+08:00</updated>
+  <updated>2015-06-05T22:05:52+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[dL]]></name>
@@ -14,7 +14,7 @@
 
   
   <entry>
-    <title type="html"><![CDATA[荒谬痛苦的嵌套类]]></title>
+    <title type="html"><![CDATA[荒谬痛苦的内部类]]></title>
     <link href="http://hedleyyan.github.io/blog/2015/06/05/huang-miu-tong-ku-de-nei-bu-lei/"/>
     <updated>2015-06-05T11:25:38+08:00</updated>
     <id>http://hedleyyan.github.io/blog/2015/06/05/huang-miu-tong-ku-de-nei-bu-lei</id>
@@ -29,7 +29,7 @@
 
 <h2>分类定义</h2>
 
-<h5>按位置</h5>
+<h4>按位置</h4>
 
 <ul>
 <li>成员嵌套类 <em>(Member Nested Class)</em> ：作为外部类 <em>(Enclosing Class)</em> 成员定义，成员嵌套类有 <em>Enclosing Class</em> 的属性。
@@ -43,7 +43,7 @@
 <ul>
 <li>可以使用 <code>final</code> 关键字，不能使用访问控制符</li>
 <li>局部类不能在外部进行创建，只能在方法调用的时候进行创建</li>
-<li>这个方法既可以是静态方法，也可以是实例方法，也可以是构造器方法或者静态初始化语句块</li>
+<li>这个方法可以是静态方法，可以是实例方法，也可以是构造器方法或者静态初始化语句块</li>
 <li>在 <code>static</code> 上下文定义的局部类，没有指向父类实例变量的引用</li>
 </ul>
 </li>
@@ -56,7 +56,7 @@
 </ul>
 
 
-<h5>按功能</h5>
+<h4>按功能</h4>
 
 <p>大多数情况下，嵌套类都按功能分：</p>
 
@@ -66,7 +66,7 @@
 
 <ul>
 <li>内部类不能定义为 <code>static</code>，不能有 <code>static</code> 方法和 <code>static</code> 初始化语句块</li>
-<li>可以有 <code>static final</code> 常量属性，但不推荐这么用（放外部类就OK了，为什么非用在这？）</li>
+<li>可以有 <code>static final</code> 常量属性，但不推荐这么用（放外部类就 OK ，为什么用在这？）</li>
 </ul>
 </li>
 </ul>
@@ -78,6 +78,62 @@
 
 <pre><code class="java">// 嵌套类实例代码，略
 </code></pre>
+
+<h2>痛苦场景</h2>
+
+<h4>反射</h4>
+
+<pre><code class="java">public class Outer {
+    public static void main(String[] args) throws Exception {
+        new Outer().greetWorld();
+    }
+
+    private void greetWorld() throws Exception {
+        System.out.println(Inner.class.newInstance());
+    }
+
+    public class Inner {
+        public String toString() {
+            return "Hello world";
+        }
+    }
+}
+</code></pre>
+
+<p>代码看上去就是另一个花样 <em>Hello world</em>，但是当你执行时，<em>Bazinga</em>！</p>
+
+<pre><code>Exception in thread "main" java.lang.InstantiationException: test.Outer$Inner
+    at java.lang.Class.newInstance0(Class.java:342)
+    at java.lang.Class.newInstance(Class.java:310)
+    at test.Outer.greetWorld(Outer.java:10)
+    at test.Outer.main(Outer.java:6)
+</code></pre>
+
+<p>OK，看来 <em>inner class</em> 持有 <em>enclosing class</em> 的一个实例变量 <em>(immediately enclosing instance)</em>是真的！编译器没那么牛逼每次都可以悄悄替你做了所有的事，至少在使用反射初始化时， <em>enclosing class</em> 的 <em>instance</em> 不会传进来。</p>
+
+<p><blockquote><p>The constructor of a non-static nested class is compiled such that it has as its first parameter an additional implicit parameter representing the immediately enclosing instance.</p><footer><strong>JLS 13.1</strong></footer></blockquote></p>
+
+<p><blockquote><p>This parameter is passed implicitly when you invoke the constructor from any point in the code where the compiler can find an appropriate enclosing instance. But this applies only when you invoke the constructor normally: nonreflectively.</p><footer><strong>JP Puzzle 80</strong></footer></blockquote></p>
+
+<p>用含参的构造方法测试一下：</p>
+
+<pre><code>private void greetWorld() throws Exception {
+       Constructor c = Inner.class.getConstructor(Outer.class);
+       System.out.println(c.newInstance(Outer.this));
+}
+</code></pre>
+
+<p><em>bingo</em>!
+观察一下，这个场景中为什么要使用 <em>inner class</em> 呢，明明 <em>static nested class</em> 就可以嘛！ <em>so</em> 更帅的解决办法是：</p>
+
+<pre><code>public static class Inner { ... }
+</code></pre>
+
+<p><blockquote><p>Unless you have a compelling need for an enclosing instance, prefer static member classes over nonstatic.</p><footer><strong>EJ Item 18</strong></footer></blockquote></p>
+
+<p>建议：能用静态嵌套类解决，就不用内部类。</p>
+
+<h4></h4>
 ]]></content>
   </entry>
   
@@ -373,7 +429,7 @@
 </ul>
 
 
-<p>重写是面向对象编程的核心概念，是<strong>唯一</strong>鼓励使用的 Name Reuse 场景。</p>
+<p>重写是面向对象编程的核心概念，是<strong>唯一</strong>鼓励使用的 <em>Name Reuse</em> 场景。</p>
 
 <pre><code class="java">    class Base {
         protected void f() { }

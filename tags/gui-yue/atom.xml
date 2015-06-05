@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: 规约 | Hedley]]></title>
   <link href="http://hedleyyan.github.io/tags/gui-yue/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2015-06-05T15:57:36+08:00</updated>
+  <updated>2015-06-05T22:05:52+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[dL]]></name>
@@ -39,7 +39,7 @@
 </ul>
 
 
-<p>重写是面向对象编程的核心概念，是<strong>唯一</strong>鼓励使用的 Name Reuse 场景。</p>
+<p>重写是面向对象编程的核心概念，是<strong>唯一</strong>鼓励使用的 <em>Name Reuse</em> 场景。</p>
 
 <pre><code class="java">    class Base {
         protected void f() { }

@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>荒谬痛苦的嵌套类 - Hedley</title>
+  <title>荒谬痛苦的内部类 - Hedley</title>
   <meta name="author" content="dL">
 
   
@@ -81,7 +81,7 @@
   
   <header>
     
-      <h1 class="entry-title">荒谬痛苦的嵌套类</h1>
+      <h1 class="entry-title">荒谬痛苦的内部类</h1>
     
     
       <p class="meta">
@@ -111,7 +111,7 @@
 
 <h2>分类定义</h2>
 
-<h5>按位置</h5>
+<h4>按位置</h4>
 
 <ul>
 <li>成员嵌套类 <em>(Member Nested Class)</em> ：作为外部类 <em>(Enclosing Class)</em> 成员定义，成员嵌套类有 <em>Enclosing Class</em> 的属性。
@@ -125,7 +125,7 @@
 <ul>
 <li>可以使用 <code>final</code> 关键字，不能使用访问控制符</li>
 <li>局部类不能在外部进行创建，只能在方法调用的时候进行创建</li>
-<li>这个方法既可以是静态方法，也可以是实例方法，也可以是构造器方法或者静态初始化语句块</li>
+<li>这个方法可以是静态方法，可以是实例方法，也可以是构造器方法或者静态初始化语句块</li>
 <li>在 <code>static</code> 上下文定义的局部类，没有指向父类实例变量的引用</li>
 </ul>
 </li>
@@ -138,7 +138,7 @@
 </ul>
 
 
-<h5>按功能</h5>
+<h4>按功能</h4>
 
 <p>大多数情况下，嵌套类都按功能分：</p>
 
@@ -148,7 +148,7 @@
 
 <ul>
 <li>内部类不能定义为 <code>static</code>，不能有 <code>static</code> 方法和 <code>static</code> 初始化语句块</li>
-<li>可以有 <code>static final</code> 常量属性，但不推荐这么用（放外部类就OK了，为什么非用在这？）</li>
+<li>可以有 <code>static final</code> 常量属性，但不推荐这么用（放外部类就 OK ，为什么用在这？）</li>
 </ul>
 </li>
 </ul>
@@ -166,7 +166,97 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
+<h2>痛苦场景</h2>
 
+<h4>反射</h4>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Outer</span> <span class="o">{</span>
+</span><span class='line'>    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+</span><span class='line'>        <span class="k">new</span> <span class="nf">Outer</span><span class="o">().</span><span class="na">greetWorld</span><span class="o">();</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">greetWorld</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+</span><span class='line'>        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">Inner</span><span class="o">.</span><span class="na">class</span><span class="o">.</span><span class="na">newInstance</span><span class="o">());</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">Inner</span> <span class="o">{</span>
+</span><span class='line'>        <span class="kd">public</span> <span class="n">String</span> <span class="nf">toString</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>            <span class="k">return</span> <span class="s">&quot;Hello world&quot;</span><span class="o">;</span>
+</span><span class='line'>        <span class="o">}</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>代码看上去就是另一个花样 <em>Hello world</em>，但是当你执行时，<em>Bazinga</em>！</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">Exception</span> <span class="n">in</span> <span class="n">thread</span> <span class="s">&quot;main&quot;</span> <span class="n">java</span><span class="o">.</span><span class="na">lang</span><span class="o">.</span><span class="na">InstantiationException</span><span class="o">:</span> <span class="n">test</span><span class="o">.</span><span class="na">Outer$Inner</span>
+</span><span class='line'>  <span class="n">at</span> <span class="n">java</span><span class="o">.</span><span class="na">lang</span><span class="o">.</span><span class="na">Class</span><span class="o">.</span><span class="na">newInstance0</span><span class="o">(</span><span class="n">Class</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">342</span><span class="o">)</span>
+</span><span class='line'>  <span class="n">at</span> <span class="n">java</span><span class="o">.</span><span class="na">lang</span><span class="o">.</span><span class="na">Class</span><span class="o">.</span><span class="na">newInstance</span><span class="o">(</span><span class="n">Class</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">310</span><span class="o">)</span>
+</span><span class='line'>  <span class="n">at</span> <span class="n">test</span><span class="o">.</span><span class="na">Outer</span><span class="o">.</span><span class="na">greetWorld</span><span class="o">(</span><span class="n">Outer</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">10</span><span class="o">)</span>
+</span><span class='line'>  <span class="n">at</span> <span class="n">test</span><span class="o">.</span><span class="na">Outer</span><span class="o">.</span><span class="na">main</span><span class="o">(</span><span class="n">Outer</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">6</span><span class="o">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>OK，看来 <em>inner class</em> 持有 <em>enclosing class</em> 的一个实例变量 <em>(immediately enclosing instance)</em>是真的！编译器没那么牛逼每次都可以悄悄替你做了所有的事，至少在使用反射初始化时， <em>enclosing class</em> 的 <em>instance</em> 不会传进来。</p>
+
+<blockquote><p>The constructor of a non-static nested class is compiled such that it has as its first parameter an additional implicit parameter representing the immediately enclosing instance.</p><footer><strong>JLS 13.1</strong></footer></blockquote>
+
+
+
+
+<blockquote><p>This parameter is passed implicitly when you invoke the constructor from any point in the code where the compiler can find an appropriate enclosing instance. But this applies only when you invoke the constructor normally: nonreflectively.</p><footer><strong>JP Puzzle 80</strong></footer></blockquote>
+
+
+<p>用含参的构造方法测试一下：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">private</span> <span class="kt">void</span> <span class="nf">greetWorld</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+</span><span class='line'>       <span class="n">Constructor</span> <span class="n">c</span> <span class="o">=</span> <span class="n">Inner</span><span class="o">.</span><span class="na">class</span><span class="o">.</span><span class="na">getConstructor</span><span class="o">(</span><span class="n">Outer</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+</span><span class='line'>       <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">c</span><span class="o">.</span><span class="na">newInstance</span><span class="o">(</span><span class="n">Outer</span><span class="o">.</span><span class="na">this</span><span class="o">));</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><em>bingo</em>!
+观察一下，这个场景中为什么要使用 <em>inner class</em> 呢，明明 <em>static nested class</em> 就可以嘛！ <em>so</em> 更帅的解决办法是：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kd">static</span> <span class="kd">class</span> <span class="nc">Inner</span> <span class="o">{</span> <span class="o">...</span> <span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<blockquote><p>Unless you have a compelling need for an enclosing instance, prefer static member classes over nonstatic.</p><footer><strong>EJ Item 18</strong></footer></blockquote>
+
+
+<p>建议：能用静态嵌套类解决，就不用内部类。</p>
+
+<h4></h4>
 
 <p class='post-footer'>
             original link:
@@ -221,7 +311,7 @@
 
 
   <section>
-   <div class="ds-thread" data-thread-key="/blog/2015/06/05/huang-miu-tong-ku-de-nei-bu-lei" data-title="荒谬痛苦的嵌套类" data-url="http://hedleyyan.github.io/blog/2015/06/05/huang-miu-tong-ku-de-nei-bu-lei/"></div>
+   <div class="ds-thread" data-thread-key="/blog/2015/06/05/huang-miu-tong-ku-de-nei-bu-lei" data-title="荒谬痛苦的内部类" data-url="http://hedleyyan.github.io/blog/2015/06/05/huang-miu-tong-ku-de-nei-bu-lei/"></div>
 <!-- 多说评论框 end -->
 <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 <script type="text/javascript">
@@ -264,7 +354,7 @@
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2015/06/05/huang-miu-tong-ku-de-nei-bu-lei/">荒谬痛苦的嵌套类</a>
+        <a href="/blog/2015/06/05/huang-miu-tong-ku-de-nei-bu-lei/">荒谬痛苦的内部类</a>
       </li>
     
       <li class="post">
