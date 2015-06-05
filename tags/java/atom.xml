@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: Java | Hedley]]></title>
   <link href="http://hedleyyan.github.io/tags/java/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2015-06-05T14:15:48+08:00</updated>
+  <updated>2015-06-05T14:24:16+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[dL]]></name>
@@ -32,19 +32,19 @@
 <h5>按定义位置</h5>
 
 <ul>
-<li>成员嵌套类 <em>(Member Nested Class)</em> : 作为外部类 <em>(Enclosing Class)</em> 的成员定义的，成员嵌套类有 <em>Enclosing Class</em> 的属性。
+<li>成员嵌套类 <em>(Member Nested Class)</em> ：作为外部类 <em>(Enclosing Class)</em> 的成员定义的，成员嵌套类有 <em>Enclosing Class</em> 的属性。
 
 <ul>
 <li>可以使用 <code>public</code> 等访问控制符，也可以用 <code>static</code>、 <code>final</code> 关键字。</li>
 </ul>
 </li>
-<li>局部嵌套类 <em>(Local Nested Class)</em> : 局部嵌套类定义在 <em>Enclosing Class</em> 的方法里面，局部嵌套类有 <em>Enclosing Class</em> 的属性和外部方法 <em>(Enclosing Method)</em> 的属性。
+<li>局部嵌套类 <em>(Local Nested Class)</em> ：局部嵌套类定义在 <em>Enclosing Class</em> 的方法里面，局部嵌套类有 <em>Enclosing Class</em> 的属性和外部方法 <em>(Enclosing Method)</em> 的属性。
 
 <ul>
 <li>可以使用 <code>final</code> 关键字。</li>
 </ul>
 </li>
-<li>匿名嵌套类 <em>(Anonymous Nested Class)</em> : 匿名嵌套类没有显示的定义一个类，直接通过 <code>new</code> 的方法创建类的实例。
+<li>匿名嵌套类 <em>(Anonymous Nested Class)</em> ：匿名嵌套类没有显示的定义一个类，直接通过 <code>new</code> 的方法创建类的实例。
 
 <ul>
 <li>不使用任何关键字和访问控制符。</li>
@@ -58,8 +58,8 @@
 <p>大多数情况下，嵌套类都按功能分：</p>
 
 <ul>
-<li>静态嵌套类 <em>(Static Nested Class)</em> : <code>static</code> 修饰的<strong>成员嵌套类</strong>。</li>
-<li>内部类 <em>(Inner Class)</em> : 静态嵌套类之外所有的嵌套类的总称。
+<li>静态嵌套类 <em>(Static Nested Class)</em> ：<code>static</code> 修饰的<strong>成员嵌套类</strong>。</li>
+<li>内部类 <em>(Inner Class)</em> ：静态嵌套类之外所有的嵌套类的总称。
 
 <ul>
 <li>内部类不能定义为 <code>static</code>，不能有 <code>static</code> 方法和 <code>static</code> 初始化语句块。</li>
@@ -81,7 +81,7 @@
     <id>http://hedleyyan.github.io/blog/2015/05/16/a-glossary-of-name-reuse</id>
     <content type="html"><![CDATA[<h2>关于</h2>
 
-<p>此文大概就是《Java Puzzlers》中 Classier Pazzlers 一节的简单翻译和整理，粗略总结了 Java 有关<strong>命名重复</strong>的场景和代码示例。</p>
+<p>此文大概就是《Java Puzzlers》中 <em>Classier Pazzlers</em> 一节的简单翻译和整理，粗略总结了 Java 有关<strong>命名重复</strong>的场景和代码示例。</p>
 
 <!--more-->
 
@@ -94,8 +94,8 @@
 
 <ul>
 <li>Context 包括两个类，一个子类，一个父类。</li>
-<li>载体必须是实例方法 (instance methods)，而非静态方法。</li>
-<li>必须是同样签名 (signature)，包括参数、返回类型。</li>
+<li>载体必须是实例方法 <em>(instance methods)</em>，而非静态方法。</li>
+<li>必须是同样签名 <em>(signature)</em>，包括参数、返回类型。</li>
 <li>重写方法不能缩小可见范围。</li>
 </ul>
 
@@ -115,7 +115,7 @@
 
 <p><blockquote><p>Methods in a class overload one another if they have the same name and different signatures.</p><footer><strong>JLS 8.4.9</strong></footer></blockquote></p>
 
-<p>重载和重写是 Name Reuse 出现最多的场景。相对于重写，重载规范包括：</p>
+<p>重载和重写是 <em>Name Reuse</em> 出现最多的场景。相对于重写，重载规范包括：</p>
 
 <ul>
 <li>Context 只有一个类。</li>
@@ -139,7 +139,7 @@
 
 <p><blockquote><p>A field, static method, or member type hides all accessible fields, static methods, or member types, respectively, with the same name (or, for methods, signature) in supertypes. Hiding a member prevents it from being inherited.</p><footer><strong>JLS 8.3-8.5</strong></footer></blockquote></p>
 
-<p>Hiding 和重写场景比较像，重写的载体是实例方法，而 Hiding 的载体是除去实例方法以外的其他所有元素。</p>
+<p><em>Hiding</em> 和 <em>Overriding</em> 场景比较像，<em>Overriding</em> 的载体是实例方法，而 <em>Hiding</em> 的载体是除去实例方法以外的其他所有元素。</p>
 
 <ul>
 <li>Context 包括子类和父类。</li>
@@ -170,7 +170,7 @@
            System.out.println(new Derived().className);
 </code></pre>
 
-<p>很明显，Hiding 的代码是晦涩难懂的，更重要的是它破坏了 Liskov 替换原则。应极力避免这种 Name Reuse 场景。</p>
+<p>很明显，<em>Hiding</em> 的代码是晦涩难懂的，更重要的是它破坏了 <em>Liskov</em> 替换原则。应极力避免这种 <em>Name Reuse</em> 场景。</p>
 
 <p><blockquote><p>Everything you can do with a base class, you can also do with a derived class.</p><footer><strong>Liskov Substitution Principle</strong></footer></blockquote></p>
 
@@ -216,11 +216,11 @@ class String {
 <pre><code>Exception in thread "main" java.lang.NoSuchMethodError: main
 </code></pre>
 
-<p>产生 Shadowing 场景的 Name Reuse，依最近的作用域来判定是哪个元素有效。</p>
+<p>产生 <em>Shadowing</em> 场景的 <em>Name Reuse</em> ，依最近的作用域来判定是哪个元素有效。</p>
 
 <h2>Obscuring</h2>
 
-<p>Obscuring 是指在作用域中，一个变量的名字和一个类相同，直接看示例代码。</p>
+<p><em>Obscuring</em> 是指在作用域中，一个变量的名字和一个类相同，直接看示例代码。</p>
 
 <pre><code class="java">    public class Obscure {
         static String System; // Obscures type java.lang.System
@@ -238,8 +238,9 @@ class String {
 <h2>总结</h2>
 
 <ol>
-<li>除了 Override，尽量避免 Name Reuse。</li>
-<li>遵守 Java 命名规则，可以避免 Obscuring。</li>
+<li>除了 <em>Override</em> ，尽量避免 <em>Name Reuse</em> 。</li>
+<li>遵守 <em>Java</em> 命名规则，可以避免 <em>Obscuring</em> 。</li>
+<li>避免和 <code>java.lang</code> 类库中的命名冲突。</li>
 </ol>
 
 

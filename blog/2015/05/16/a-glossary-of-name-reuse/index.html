@@ -99,7 +99,7 @@
 
 <div class="entry-content"><h2>关于</h2>
 
-<p>此文大概就是《Java Puzzlers》中 Classier Pazzlers 一节的简单翻译和整理，粗略总结了 Java 有关<strong>命名重复</strong>的场景和代码示例。</p>
+<p>此文大概就是《Java Puzzlers》中 <em>Classier Pazzlers</em> 一节的简单翻译和整理，粗略总结了 Java 有关<strong>命名重复</strong>的场景和代码示例。</p>
 
 <!--more-->
 
@@ -113,8 +113,8 @@
 
 <ul>
 <li>Context 包括两个类，一个子类，一个父类。</li>
-<li>载体必须是实例方法 (instance methods)，而非静态方法。</li>
-<li>必须是同样签名 (signature)，包括参数、返回类型。</li>
+<li>载体必须是实例方法 <em>(instance methods)</em>，而非静态方法。</li>
+<li>必须是同样签名 <em>(signature)</em>，包括参数、返回类型。</li>
 <li>重写方法不能缩小可见范围。</li>
 </ul>
 
@@ -143,7 +143,7 @@
 <blockquote><p>Methods in a class overload one another if they have the same name and different signatures.</p><footer><strong>JLS 8.4.9</strong></footer></blockquote>
 
 
-<p>重载和重写是 Name Reuse 出现最多的场景。相对于重写，重载规范包括：</p>
+<p>重载和重写是 <em>Name Reuse</em> 出现最多的场景。相对于重写，重载规范包括：</p>
 
 <ul>
 <li>Context 只有一个类。</li>
@@ -173,7 +173,7 @@
 <blockquote><p>A field, static method, or member type hides all accessible fields, static methods, or member types, respectively, with the same name (or, for methods, signature) in supertypes. Hiding a member prevents it from being inherited.</p><footer><strong>JLS 8.3-8.5</strong></footer></blockquote>
 
 
-<p>Hiding 和重写场景比较像，重写的载体是实例方法，而 Hiding 的载体是除去实例方法以外的其他所有元素。</p>
+<p><em>Hiding</em> 和 <em>Overriding</em> 场景比较像，<em>Overriding</em> 的载体是实例方法，而 <em>Hiding</em> 的载体是除去实例方法以外的其他所有元素。</p>
 
 <ul>
 <li>Context 包括子类和父类。</li>
@@ -221,7 +221,7 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>很明显，Hiding 的代码是晦涩难懂的，更重要的是它破坏了 Liskov 替换原则。应极力避免这种 Name Reuse 场景。</p>
+<p>很明显，<em>Hiding</em> 的代码是晦涩难懂的，更重要的是它破坏了 <em>Liskov</em> 替换原则。应极力避免这种 <em>Name Reuse</em> 场景。</p>
 
 <blockquote><p>Everything you can do with a base class, you can also do with a derived class.</p><footer><strong>Liskov Substitution Principle</strong></footer></blockquote>
 
@@ -298,11 +298,11 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>产生 Shadowing 场景的 Name Reuse，依最近的作用域来判定是哪个元素有效。</p>
+<p>产生 <em>Shadowing</em> 场景的 <em>Name Reuse</em> ，依最近的作用域来判定是哪个元素有效。</p>
 
 <h2>Obscuring</h2>
 
-<p>Obscuring 是指在作用域中，一个变量的名字和一个类相同，直接看示例代码。</p>
+<p><em>Obscuring</em> 是指在作用域中，一个变量的名字和一个类相同，直接看示例代码。</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -331,8 +331,9 @@
 <h2>总结</h2>
 
 <ol>
-<li>除了 Override，尽量避免 Name Reuse。</li>
-<li>遵守 Java 命名规则，可以避免 Obscuring。</li>
+<li>除了 <em>Override</em> ，尽量避免 <em>Name Reuse</em> 。</li>
+<li>遵守 <em>Java</em> 命名规则，可以避免 <em>Obscuring</em> 。</li>
+<li>避免和 <code>java.lang</code> 类库中的命名冲突。</li>
 </ol>
 
 
