@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: Java | Hedley]]></title>
   <link href="http://hedleyyan.github.io/tags/java/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2015-06-05T12:14:15+08:00</updated>
+  <updated>2015-06-05T14:12:31+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[dL]]></name>
@@ -29,14 +29,48 @@
 
 <h2>分类</h2>
 
-<h3>按定义位置</h3>
+<h5>按定义位置</h5>
 
 <ul>
-<li>成员嵌套类 (Member Nested Class) : 作为外部类 (Enclosing Class) 的成员定义的，成员嵌套类有 Enclosing Class 的属性。</li>
-<li>局部嵌套类 (Local Nested Class) : 局部嵌套类定义在 Enclosing Class 的方法里面，局部嵌套类有 Enclosing Class 的属性和外部方法 (Enclosing Method) 的属性。</li>
-<li>匿名嵌套类 (Anonymous Nested Class) : 匿名嵌套类没有显示的定义一个类，直接通过 <code>new</code> 的方法创建类的实例。</li>
+<li>成员嵌套类 (Member Nested Class) : 作为外部类 (Enclosing Class) 的成员定义的，成员嵌套类有 Enclosing Class 的属性。
+
+<ul>
+<li>可以使用 public 等访问控制符，也可以用 static、 final 关键字。</li>
+</ul>
+</li>
+<li>局部嵌套类 (Local Nested Class) : 局部嵌套类定义在 Enclosing Class 的方法里面，局部嵌套类有 Enclosing Class 的属性和外部方法 (Enclosing Method) 的属性。
+
+<ul>
+<li>可以使用final关键字。</li>
+</ul>
+</li>
+<li>匿名嵌套类 (Anonymous Nested Class) : 匿名嵌套类没有显示的定义一个类，直接通过 <code>new</code> 的方法创建类的实例。
+
+<ul>
+<li>不使用任何关键字和访问控制符。</li>
+</ul>
+</li>
 </ul>
 
+
+<h5>按功能</h5>
+
+<p>大多数情况下，嵌套类都按功能分：</p>
+
+<ul>
+<li>静态嵌套类 (Static Nested Class) : static 修饰的<strong>成员嵌套类</strong>。</li>
+<li>内部类 (Inner Class) : 静态嵌套类之外所有的嵌套类的总称。
+
+<ul>
+<li>内部类不能定义为 static，不能有 static 方法和 static 初始化语句块。</li>
+</ul>
+</li>
+</ul>
+
+
+<p>所以，局部嵌套类和匿名嵌套类肯定是内部类，成员嵌套类则分为静态和非静态的。</p>
+
+<p><blockquote><p>An inner class is a nested class that is not explicitly or implicitly declared static. Inner classes may not declare static initializers or member interfaces.</p></blockquote></p>
 ]]></content>
   </entry>
   
