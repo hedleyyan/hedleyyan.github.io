@@ -99,7 +99,7 @@
 
 <div class="entry-content"><h2>关于</h2>
 
-<p>此文简单总结嵌套类 (Nested Class) 的使用场景与一般建议：能使用<strong>静态嵌套类</strong> (Static Nested Class) 的时候就不用<strong>内部类</strong> (Inner Class)。</p>
+<p>此文简单总结嵌套类 <em>(Nested Class)</em> 的使用场景与一般建议：能使用<strong>静态嵌套类</strong> <em>(Static Nested Class)</em> 的时候就不用<strong>内部类</strong> <em>(Inner Class)</em>。</p>
 
 <blockquote><p>A nested class is any class whose declaration occurs within the body of another class or interface. A top level class is a class that is not a nested class.</p></blockquote>
 
@@ -114,19 +114,19 @@
 <h5>按定义位置</h5>
 
 <ul>
-<li>成员嵌套类 (Member Nested Class) : 作为外部类 (Enclosing Class) 的成员定义的，成员嵌套类有 Enclosing Class 的属性。
+<li>成员嵌套类 <em>(Member Nested Class)</em> : 作为外部类 <em>(Enclosing Class)</em> 的成员定义的，成员嵌套类有 <em>Enclosing Class</em> 的属性。
 
 <ul>
-<li>可以使用 public 等访问控制符，也可以用 static、 final 关键字。</li>
+<li>可以使用 <code>public</code> 等访问控制符，也可以用 <code>static</code>、 <code>final</code> 关键字。</li>
 </ul>
 </li>
-<li>局部嵌套类 (Local Nested Class) : 局部嵌套类定义在 Enclosing Class 的方法里面，局部嵌套类有 Enclosing Class 的属性和外部方法 (Enclosing Method) 的属性。
+<li>局部嵌套类 <em>(Local Nested Class)</em> : 局部嵌套类定义在 <em>Enclosing Class</em> 的方法里面，局部嵌套类有 <em>Enclosing Class</em> 的属性和外部方法 <em>(Enclosing Method)</em> 的属性。
 
 <ul>
-<li>可以使用final关键字。</li>
+<li>可以使用 <code>final</code> 关键字。</li>
 </ul>
 </li>
-<li>匿名嵌套类 (Anonymous Nested Class) : 匿名嵌套类没有显示的定义一个类，直接通过 <code>new</code> 的方法创建类的实例。
+<li>匿名嵌套类 <em>(Anonymous Nested Class)</em> : 匿名嵌套类没有显示的定义一个类，直接通过 <code>new</code> 的方法创建类的实例。
 
 <ul>
 <li>不使用任何关键字和访问控制符。</li>
@@ -140,11 +140,11 @@
 <p>大多数情况下，嵌套类都按功能分：</p>
 
 <ul>
-<li>静态嵌套类 (Static Nested Class) : static 修饰的<strong>成员嵌套类</strong>。</li>
-<li>内部类 (Inner Class) : 静态嵌套类之外所有的嵌套类的总称。
+<li>静态嵌套类 <em>(Static Nested Class)</em> : <code>static</code> 修饰的<strong>成员嵌套类</strong>。</li>
+<li>内部类 <em>(Inner Class)</em> : 静态嵌套类之外所有的嵌套类的总称。
 
 <ul>
-<li>内部类不能定义为 static，不能有 static 方法和 static 初始化语句块。</li>
+<li>内部类不能定义为 <code>static</code>，不能有 <code>static</code> 方法和 <code>static</code> 初始化语句块。</li>
 </ul>
 </li>
 </ul>
