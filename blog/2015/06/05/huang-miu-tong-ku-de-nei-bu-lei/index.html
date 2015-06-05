@@ -9,7 +9,7 @@
   <meta name="author" content="dL">
 
   
-  <meta name="description" content="关于 此文简单总结嵌套类 (Nested Classes) 的使用场景与一般建议：能使用静态内部类 (Static Nested Classes) 的时候就不用非静态内部类。 A nested class is any class whose declaration occurs within &hellip;">
+  <meta name="description" content="关于 此文简单总结嵌套类 (Nested Class) 的使用场景与一般建议：能使用静态嵌套类 (Static Nested Class) 的时候就不用内部类 (Inner Class)。 A nested class is any class whose declaration occurs &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -99,9 +99,9 @@
 
 <div class="entry-content"><h2>关于</h2>
 
-<p>此文简单总结嵌套类 (Nested Classes) 的使用场景与一般建议：能使用<strong>静态</strong>内部类 (Static Nested Classes) 的时候就不用非静态内部类。</p>
+<p>此文简单总结嵌套类 (Nested Class) 的使用场景与一般建议：能使用<strong>静态嵌套类</strong> (Static Nested Class) 的时候就不用<strong>内部类</strong> (Inner Class)。</p>
 
-<blockquote><p>A nested class is any class whose declaration occurs within the body of another class or interface. A top level class is a class that is not a nested class.</p><footer><strong>JLS</strong></footer></blockquote>
+<blockquote><p>A nested class is any class whose declaration occurs within the body of another class or interface. A top level class is a class that is not a nested class.</p></blockquote>
 
 
 
@@ -109,14 +109,20 @@
 <!--more-->
 
 
+<h2>分类</h2>
 
+<h3>按定义位置</h3>
 
-<p class='post-footer'>
-            original link:
-            <a href='http://hedleyyan.github.io/blog/2015/06/05/huang-miu-tong-ku-de-nei-bu-lei/'>http://hedleyyan.github.io/blog/2015/06/05/huang-miu-tong-ku-de-nei-bu-lei/</a><br/>
-            written by <a href='http://hedleyyan.github.io'>dL</a>
-            &nbsp;posted at <a href='http://hedleyyan.github.io'>http://hedleyyan.github.io</a>
-            </p>
+<ul>
+<li>成员嵌套类 (Member Nested Class) : 作为外部类 (Enclosing Class) 的成员定义的，成员嵌套类有 Enclosing Class 的属性。</li>
+<li>局部嵌套类 (Local Nested Class) : 局部嵌套类定义在 Enclosing Class 的方法里面，局部嵌套类有 Enclosing Class 的属性和外部方法 (Enclosing Method) 的属性。</li>
+<li>匿名嵌套类 (Anonymous Nested Class) : 匿名嵌套类没有显示的定义一个类，直接通过 <code>new</code> 的方法创建类的实例。<p class='post-footer'>
+         original link:
+         <a href='http://hedleyyan.github.io/blog/2015/06/05/huang-miu-tong-ku-de-nei-bu-lei/'><a href="http://hedleyyan.github.io/blog/2015/06/05/huang-miu-tong-ku-de-nei-bu-lei/">http://hedleyyan.github.io/blog/2015/06/05/huang-miu-tong-ku-de-nei-bu-lei/</a></a><br/>
+         written by <a href='http://hedleyyan.github.io'>dL</a>
+         &nbsp;posted at <a href='http://hedleyyan.github.io'><a href="http://hedleyyan.github.io">http://hedleyyan.github.io</a></a>
+         </p></li>
+</ul>
 
 </div>
 
