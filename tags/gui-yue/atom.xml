@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: 规约 | Hedley]]></title>
   <link href="http://hedleyyan.github.io/tags/gui-yue/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2015-06-05T14:24:16+08:00</updated>
+  <updated>2015-06-05T15:57:36+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[dL]]></name>
@@ -20,7 +20,7 @@
     <id>http://hedleyyan.github.io/blog/2015/05/16/a-glossary-of-name-reuse</id>
     <content type="html"><![CDATA[<h2>关于</h2>
 
-<p>此文大概就是《Java Puzzlers》中 <em>Classier Pazzlers</em> 一节的简单翻译和整理，粗略总结了 Java 有关<strong>命名重复</strong>的场景和代码示例。</p>
+<p>此文大概就是《Java Puzzlers》中 <em>Classier Pazzlers</em> 一节的简单翻译和整理，粗略总结了 <em>Java</em> 有关<strong>命名重复</strong>的场景和代码示例。</p>
 
 <!--more-->
 

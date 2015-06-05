@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 技术 | Hedley]]></title>
   <link href="http://hedleyyan.github.io/blog/categories/ji-zhu/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2015-06-05T14:24:16+08:00</updated>
+  <updated>2015-06-05T15:57:36+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[dL]]></name>
@@ -27,27 +27,30 @@
 <!--more-->
 
 
-<h2>分类</h2>
+<h2>分类定义</h2>
 
-<h5>按定义位置</h5>
-
-<ul>
-<li>成员嵌套类 <em>(Member Nested Class)</em> ：作为外部类 <em>(Enclosing Class)</em> 的成员定义的，成员嵌套类有 <em>Enclosing Class</em> 的属性。
+<h5>按位置</h5>
 
 <ul>
-<li>可以使用 <code>public</code> 等访问控制符，也可以用 <code>static</code>、 <code>final</code> 关键字。</li>
+<li>成员嵌套类 <em>(Member Nested Class)</em> ：作为外部类 <em>(Enclosing Class)</em> 成员定义，成员嵌套类有 <em>Enclosing Class</em> 的属性。
+
+<ul>
+<li>可以使用 <code>public</code>、 <code>private</code> 等访问控制符，也可以用 <code>static</code>、 <code>final</code> 关键字</li>
 </ul>
 </li>
 <li>局部嵌套类 <em>(Local Nested Class)</em> ：局部嵌套类定义在 <em>Enclosing Class</em> 的方法里面，局部嵌套类有 <em>Enclosing Class</em> 的属性和外部方法 <em>(Enclosing Method)</em> 的属性。
 
 <ul>
-<li>可以使用 <code>final</code> 关键字。</li>
+<li>可以使用 <code>final</code> 关键字，不能使用访问控制符</li>
+<li>局部类不能在外部进行创建，只能在方法调用的时候进行创建</li>
+<li>这个方法既可以是静态方法，也可以是实例方法，也可以是构造器方法或者静态初始化语句块</li>
+<li>在 <code>static</code> 上下文定义的局部类，没有指向父类实例变量的引用</li>
 </ul>
 </li>
 <li>匿名嵌套类 <em>(Anonymous Nested Class)</em> ：匿名嵌套类没有显示的定义一个类，直接通过 <code>new</code> 的方法创建类的实例。
 
 <ul>
-<li>不使用任何关键字和访问控制符。</li>
+<li>不使用任何关键字和访问控制符</li>
 </ul>
 </li>
 </ul>
@@ -62,15 +65,19 @@
 <li>内部类 <em>(Inner Class)</em> ：静态嵌套类之外所有的嵌套类的总称。
 
 <ul>
-<li>内部类不能定义为 <code>static</code>，不能有 <code>static</code> 方法和 <code>static</code> 初始化语句块。</li>
+<li>内部类不能定义为 <code>static</code>，不能有 <code>static</code> 方法和 <code>static</code> 初始化语句块</li>
+<li>可以有 <code>static final</code> 常量属性，但不推荐这么用（放外部类就OK了，为什么非用在这？）</li>
 </ul>
 </li>
 </ul>
 
 
-<p>所以，局部嵌套类和匿名嵌套类肯定是内部类，成员嵌套类则分为静态和非静态的。</p>
+<p>所以，局部嵌套类和匿名嵌套类肯定是内部类，成员嵌套类则分为静态嵌套类和内部类。</p>
 
 <p><blockquote><p>An inner class is a nested class that is not explicitly or implicitly declared static. Inner classes may not declare static initializers or member interfaces.</p></blockquote></p>
+
+<pre><code class="java">// 嵌套类实例代码，略
+</code></pre>
 ]]></content>
   </entry>
   
@@ -347,7 +354,7 @@
     <id>http://hedleyyan.github.io/blog/2015/05/16/a-glossary-of-name-reuse</id>
     <content type="html"><![CDATA[<h2>关于</h2>
 
-<p>此文大概就是《Java Puzzlers》中 <em>Classier Pazzlers</em> 一节的简单翻译和整理，粗略总结了 Java 有关<strong>命名重复</strong>的场景和代码示例。</p>
+<p>此文大概就是《Java Puzzlers》中 <em>Classier Pazzlers</em> 一节的简单翻译和整理，粗略总结了 <em>Java</em> 有关<strong>命名重复</strong>的场景和代码示例。</p>
 
 <!--more-->
 
