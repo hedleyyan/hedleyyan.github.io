@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 技术 | Hedley]]></title>
   <link href="http://hedleyyan.github.io/blog/categories/ji-zhu/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2015-05-25T09:56:18+08:00</updated>
+  <updated>2015-06-05T11:38:13+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[dL]]></name>
@@ -12,6 +12,24 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[荒谬痛苦的嵌套类]]></title>
+    <link href="http://hedleyyan.github.io/blog/2015/06/05/huang-miu-tong-ku-de-nei-bu-lei/"/>
+    <updated>2015-06-05T11:25:38+08:00</updated>
+    <id>http://hedleyyan.github.io/blog/2015/06/05/huang-miu-tong-ku-de-nei-bu-lei</id>
+    <content type="html"><![CDATA[<h2>关于</h2>
+
+<p>此文简单总结嵌套类 (Nested Classes) 的使用场景与一般建议：能使用<strong>静态</strong>内部类 (Static Nested Classes) 的时候就不用非静态内部类。</p>
+
+<p><blockquote><p>A nested class is any class whose declaration occurs within the body of another class or interface. A top level class is a class that is not a nested class.</p><footer><strong>JLS</strong></footer></blockquote></p>
+
+<!--more-->
+
+
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Octopress 搭建记录]]></title>
