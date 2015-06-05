@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: Java | Hedley]]></title>
   <link href="http://hedleyyan.github.io/tags/java/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2015-06-06T00:06:18+08:00</updated>
+  <updated>2015-06-06T00:17:30+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[dL]]></name>
@@ -181,6 +181,18 @@
 
 <p><code>LinkedList&lt;E&gt;.Node&lt;E&gt;</code> 和 <code>LinkedList&lt;E&gt;.Node&lt;E&gt;</code> 类型不符？！定位问题代码： <code>this.next = head; head = this;</code>。
 前面的 <code>Node&lt;E&gt;</code> 与后面的 <code>Node&lt;E&gt;</code> 虽然看上去一模一样，但它们压根就不是一个类型。具体点说，因为这段代码有两个 <code>*&lt;E&gt;*</code> 类型声明 <em>(type parameter)</em>，第一个是 <code>LinkedList</code> 的 <code>*&lt;E&gt;*</code> ，第二个是 <code>LinkedList.Node</code> 的 <code>*&lt;E&gt;*</code>。后面的 <em><a href="http://hedleyyan.github.io/blog/2015/05/16/a-glossary-of-name-reuse/">Shadow</a></em> 了前面的。</p>
+
+<p>如果这里把 <em>inner class</em> 的声明换一个 <em>(type parameter)</em> <code>Node&lt;T&gt;</code>，可以看到更多一点的细节：</p>
+
+<pre><code>……
+    Type mismatch: cannot convert from LinkedList&lt;E&gt;.Node&lt;E&gt; to LinkedList&lt;E&gt;.Node&lt;T&gt;
+    Type mismatch: cannot convert from LinkedList&lt;E&gt;.Node&lt;T&gt; to LinkedList&lt;E&gt;.Node&lt;E&gt;
+……
+</code></pre>
+
+<p><blockquote><p>An inner class of a generic class has access to the type parameters of its outer class.</p><footer><strong>JP Puzzle 89</strong></footer></blockquote></p>
+
+<p><em>so</em>，<em>inner class</em> 可以访问 <em>enclosing class</em> 的各种属性，包括 <em>(type parameter)</em> 。</p>
 ]]></content>
   </entry>
   
