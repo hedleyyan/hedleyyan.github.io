@@ -233,7 +233,7 @@
 
 <ul>
 <li>Context 可能只有一个类，也可能包括别的函数库的类。</li>
-<li>载体包括变量、方法和类。</li>
+<li>载体包括变量、方法、类、类型声明 <em>(<T>)</em>。</li>
 </ul>
 
 
@@ -313,8 +313,8 @@
 <span class='line-number'>7</span>
 </pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Obscure</span> <span class="o">{</span>
 </span><span class='line'>    <span class="kd">static</span> <span class="n">String</span> <span class="n">System</span><span class="o">;</span> <span class="c1">// Obscures type java.lang.System</span>
-</span><span class='line'>  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>      <span class="c1">// Next line won’t compile:  System refers to static field </span>
+</span><span class='line'>    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>        <span class="c1">// Next line won’t compile:  System refers to static field </span>
 </span><span class='line'>        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;hello, obscure world!&quot;</span><span class="o">);</span>
 </span><span class='line'>  <span class="o">}</span>
 </span><span class='line'><span class="o">}</span>

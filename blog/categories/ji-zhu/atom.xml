@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 技术 | Hedley]]></title>
   <link href="http://hedleyyan.github.io/blog/categories/ji-zhu/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2015-06-05T22:05:52+08:00</updated>
+  <updated>2015-06-06T00:06:18+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[dL]]></name>
@@ -32,7 +32,7 @@
 <h4>按位置</h4>
 
 <ul>
-<li>成员嵌套类 <em>(Member Nested Class)</em> ：作为外部类 <em>(Enclosing Class)</em> 成员定义，成员嵌套类有 <em>Enclosing Class</em> 的属性。
+<li>成员嵌套类 <em>(Member Nested Class)</em> ：作为外部类 <em>(Enclosing Class)</em> <strong>成员</strong>定义，成员嵌套类有 <em>Enclosing Class</em> 的属性。
 
 <ul>
 <li>可以使用 <code>public</code>、 <code>private</code> 等访问控制符，也可以用 <code>static</code>、 <code>final</code> 关键字</li>
@@ -43,7 +43,7 @@
 <ul>
 <li>可以使用 <code>final</code> 关键字，不能使用访问控制符</li>
 <li>局部类不能在外部进行创建，只能在方法调用的时候进行创建</li>
-<li>这个方法可以是静态方法，可以是实例方法，也可以是构造器方法或者静态初始化语句块</li>
+<li><em>Enclosing Class</em> 可以是静态方法，可以是实例方法，也可以是构造器方法或者静态初始化语句块</li>
 <li>在 <code>static</code> 上下文定义的局部类，没有指向父类实例变量的引用</li>
 </ul>
 </li>
@@ -58,7 +58,7 @@
 
 <h4>按功能</h4>
 
-<p>大多数情况下，嵌套类都按功能分：</p>
+<p>大多数情况下，嵌套类都按功能分为：</p>
 
 <ul>
 <li>静态嵌套类 <em>(Static Nested Class)</em> ：<code>static</code> 修饰的<strong>成员嵌套类</strong>。</li>
@@ -100,7 +100,7 @@
 }
 </code></pre>
 
-<p>代码看上去就是另一个花样 <em>Hello world</em>，但是当你执行时，<em>Bazinga</em>！</p>
+<p>代码看上去就是一个花样 <em>Hello world</em>，但是当你执行时，<em>Bazinga</em>！</p>
 
 <pre><code>Exception in thread "main" java.lang.InstantiationException: test.Outer$Inner
     at java.lang.Class.newInstance0(Class.java:342)
@@ -109,7 +109,7 @@
     at test.Outer.main(Outer.java:6)
 </code></pre>
 
-<p>OK，看来 <em>inner class</em> 持有 <em>enclosing class</em> 的一个实例变量 <em>(immediately enclosing instance)</em>是真的！编译器没那么牛逼每次都可以悄悄替你做了所有的事，至少在使用反射初始化时， <em>enclosing class</em> 的 <em>instance</em> 不会传进来。</p>
+<p>OK，看来 <em>inner class</em> 持有 <em>enclosing class</em> 的一个实例变量 <em>(immediately enclosing instance)</em> 是真的！编译器没那么牛逼每次都可以悄悄替你做了所有的事，至少在使用反射初始化时， <em>enclosing class</em> 的 <em>instance</em> 不会传进来。</p>
 
 <p><blockquote><p>The constructor of a non-static nested class is compiled such that it has as its first parameter an additional implicit parameter representing the immediately enclosing instance.</p><footer><strong>JLS 13.1</strong></footer></blockquote></p>
 
@@ -117,23 +117,70 @@
 
 <p>用含参的构造方法测试一下：</p>
 
-<pre><code>private void greetWorld() throws Exception {
+<pre><code class="java">private void greetWorld() throws Exception {
        Constructor c = Inner.class.getConstructor(Outer.class);
        System.out.println(c.newInstance(Outer.this));
 }
 </code></pre>
 
-<p><em>bingo</em>!
-观察一下，这个场景中为什么要使用 <em>inner class</em> 呢，明明 <em>static nested class</em> 就可以嘛！ <em>so</em> 更帅的解决办法是：</p>
+<p><em>bingo</em>！观察一下，这个场景中为什么要使用 <em>inner class</em> 呢，明明 <em>static nested class</em> 就可以嘛！ <em>so</em> 更帅的解决办法是：</p>
 
-<pre><code>public static class Inner { ... }
+<pre><code class="java">public static class Inner { ... }
 </code></pre>
 
 <p><blockquote><p>Unless you have a compelling need for an enclosing instance, prefer static member classes over nonstatic.</p><footer><strong>EJ Item 18</strong></footer></blockquote></p>
 
-<p>建议：能用静态嵌套类解决，就不用内部类。</p>
+<p><strong>建议：能用静态嵌套类解决，就不用内部类。</strong></p>
 
-<h4></h4>
+<h4>泛型</h4>
+
+<pre><code class="java">public class LinkedList&lt;E&gt; {
+    private Node&lt;E&gt; head = null;
+
+    private class Node&lt;E&gt; {
+        E value;
+
+        Node&lt;E&gt; next;
+
+        // Node constructor links the node as a new head
+        Node(E value) {
+            this.value = value;
+            this.next = head;
+            head = this;
+        }
+    }
+
+    public void add(E e) {
+        new Node&lt;E&gt;(e);     // Link node as new head
+    }
+
+    public void dump() {
+        for (Node&lt;E&gt; n = head; n != null; n = n.next)
+            System.out.print(n.value + " ");
+    }
+
+    public static void main(String[] args) {
+        LinkedList&lt;String&gt; list = new LinkedList&lt;String&gt;();
+        list.add("world");
+        list.add("Hello");
+        list.dump();
+    }
+}
+</code></pre>
+
+<p>代码看上去就是另一个花样 <em>Hello world</em>，但是当你执行时，<em>Double Bazinga</em>！</p>
+
+<pre><code>Exception in thread "main" java.lang.Error: Unresolved compilation problems: 
+    Type mismatch: cannot convert from LinkedList&lt;E&gt;.Node&lt;E&gt; to LinkedList&lt;E&gt;.Node&lt;E&gt;
+    Type mismatch: cannot convert from LinkedList&lt;E&gt;.Node&lt;E&gt; to LinkedList&lt;E&gt;.Node&lt;E&gt;
+
+    at test.LinkedList$Node.&lt;init&gt;(LinkedList.java:15)
+    at test.LinkedList.add(LinkedList.java:21)
+    at test.LinkedList.main(LinkedList.java:32)
+</code></pre>
+
+<p><code>LinkedList&lt;E&gt;.Node&lt;E&gt;</code> 和 <code>LinkedList&lt;E&gt;.Node&lt;E&gt;</code> 类型不符？！定位问题代码： <code>this.next = head; head = this;</code>。
+前面的 <code>Node&lt;E&gt;</code> 与后面的 <code>Node&lt;E&gt;</code> 虽然看上去一模一样，但它们压根就不是一个类型。具体点说，因为这段代码有两个 <code>*&lt;E&gt;*</code> 类型声明 <em>(type parameter)</em>，第一个是 <code>LinkedList</code> 的 <code>*&lt;E&gt;*</code> ，第二个是 <code>LinkedList.Node</code> 的 <code>*&lt;E&gt;*</code>。后面的 <em><a href="http://hedleyyan.github.io/blog/2015/05/16/a-glossary-of-name-reuse/">Shadow</a></em> 了前面的。</p>
 ]]></content>
   </entry>
   
@@ -382,7 +429,7 @@
 <h2>其他</h2>
 
 <ol>
-<li>链接在新窗口打开、列表排版、404ERROR公益页面，参考<a href="http://blog.csdn.net/biaobiaoqi/article/details/9289563">这篇文章</a>。</li>
+<li>链接在新窗口打开、列表排版、<em>404ERROR</em> 公益页面，参考<a href="http://blog.csdn.net/biaobiaoqi/article/details/9289563">这篇文章</a>。</li>
 <li>文章分类侧边栏、导航栏设置，参考<a href="http://www.jianshu.com/p/0ac2ac1a8e45">这篇文章</a>。</li>
 </ol>
 
@@ -509,7 +556,7 @@
 
 <ul>
 <li>Context 可能只有一个类，也可能包括别的函数库的类。</li>
-<li>载体包括变量、方法和类。</li>
+<li>载体包括变量、方法、类、类型声明 <em>(<T>)</em>。</li>
 </ul>
 
 
@@ -551,13 +598,13 @@ class String {
 
 <p><em>Obscuring</em> 是指在作用域中，一个变量的名字和一个类相同，直接看示例代码。</p>
 
-<pre><code class="java">    public class Obscure {
-        static String System; // Obscures type java.lang.System
-        public static void main(String[] args) {
-            // Next line won’t compile:  System refers to static field 
-            System.out.println("hello, obscure world!");
-        }
+<pre><code class="java">public class Obscure {
+    static String System; // Obscures type java.lang.System
+    public static void main(String[] args) {
+        // Next line won’t compile:  System refers to static field 
+        System.out.println("hello, obscure world!");
     }
+}
 </code></pre>
 
 <p><blockquote><p>If a type or a package is obscured, you cannot refer to it by its simple name except in a context where the syntax allows only a name from its namespace.</p></blockquote></p>

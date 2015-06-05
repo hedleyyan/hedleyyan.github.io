@@ -4,7 +4,7 @@
   <title><![CDATA[Hedley]]></title>
   <link href="http://hedleyyan.github.io/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2015-06-05T22:05:52+08:00</updated>
+  <updated>2015-06-06T00:06:18+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[dL]]></name>
@@ -35,7 +35,7 @@
 <h4>按位置</h4>
 
 <ul>
-<li>成员嵌套类 <em>(Member Nested Class)</em> ：作为外部类 <em>(Enclosing Class)</em> 成员定义，成员嵌套类有 <em>Enclosing Class</em> 的属性。
+<li>成员嵌套类 <em>(Member Nested Class)</em> ：作为外部类 <em>(Enclosing Class)</em> <strong>成员</strong>定义，成员嵌套类有 <em>Enclosing Class</em> 的属性。
 
 <ul>
 <li>可以使用 <code>public</code>、 <code>private</code> 等访问控制符，也可以用 <code>static</code>、 <code>final</code> 关键字</li>
@@ -46,7 +46,7 @@
 <ul>
 <li>可以使用 <code>final</code> 关键字，不能使用访问控制符</li>
 <li>局部类不能在外部进行创建，只能在方法调用的时候进行创建</li>
-<li>这个方法可以是静态方法，可以是实例方法，也可以是构造器方法或者静态初始化语句块</li>
+<li><em>Enclosing Class</em> 可以是静态方法，可以是实例方法，也可以是构造器方法或者静态初始化语句块</li>
 <li>在 <code>static</code> 上下文定义的局部类，没有指向父类实例变量的引用</li>
 </ul>
 </li>
@@ -61,7 +61,7 @@
 
 <h4>按功能</h4>
 
-<p>大多数情况下，嵌套类都按功能分：</p>
+<p>大多数情况下，嵌套类都按功能分为：</p>
 
 <ul>
 <li>静态嵌套类 <em>(Static Nested Class)</em> ：<code>static</code> 修饰的<strong>成员嵌套类</strong>。</li>
@@ -124,7 +124,7 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>代码看上去就是另一个花样 <em>Hello world</em>，但是当你执行时，<em>Bazinga</em>！</p>
+<p>代码看上去就是一个花样 <em>Hello world</em>，但是当你执行时，<em>Bazinga</em>！</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -139,7 +139,7 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>OK，看来 <em>inner class</em> 持有 <em>enclosing class</em> 的一个实例变量 <em>(immediately enclosing instance)</em>是真的！编译器没那么牛逼每次都可以悄悄替你做了所有的事，至少在使用反射初始化时， <em>enclosing class</em> 的 <em>instance</em> 不会传进来。</p>
+<p>OK，看来 <em>inner class</em> 持有 <em>enclosing class</em> 的一个实例变量 <em>(immediately enclosing instance)</em> 是真的！编译器没那么牛逼每次都可以悄悄替你做了所有的事，至少在使用反射初始化时， <em>enclosing class</em> 的 <em>instance</em> 不会传进来。</p>
 
 <blockquote><p>The constructor of a non-static nested class is compiled such that it has as its first parameter an additional implicit parameter representing the immediately enclosing instance.</p><footer><strong>JLS 13.1</strong></footer></blockquote>
 
@@ -162,8 +162,7 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p><em>bingo</em>!
-观察一下，这个场景中为什么要使用 <em>inner class</em> 呢，明明 <em>static nested class</em> 就可以嘛！ <em>so</em> 更帅的解决办法是：</p>
+<p><em>bingo</em>！观察一下，这个场景中为什么要使用 <em>inner class</em> 呢，明明 <em>static nested class</em> 就可以嘛！ <em>so</em> 更帅的解决办法是：</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kd">static</span> <span class="kd">class</span> <span class="nc">Inner</span> <span class="o">{</span> <span class="o">...</span> <span class="o">}</span>
@@ -175,17 +174,105 @@
 <blockquote><p>Unless you have a compelling need for an enclosing instance, prefer static member classes over nonstatic.</p><footer><strong>EJ Item 18</strong></footer></blockquote>
 
 
-<p>建议：能用静态嵌套类解决，就不用内部类。</p>
+<p><strong>建议：能用静态嵌套类解决，就不用内部类。</strong></p>
 
-<h4></h4>
+<h4>泛型</h4>
 
-<p class='post-footer'>
-            original link:
-            <a href='http://hedleyyan.github.io/blog/2015/06/05/huang-miu-tong-ku-de-nei-bu-lei/'>http://hedleyyan.github.io/blog/2015/06/05/huang-miu-tong-ku-de-nei-bu-lei/</a><br/>
-            written by <a href='http://hedleyyan.github.io'>dL</a>
-            &nbsp;posted at <a href='http://hedleyyan.github.io'>http://hedleyyan.github.io</a>
-            </p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">LinkedList</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="o">{</span>
+</span><span class='line'>    <span class="kd">private</span> <span class="n">Node</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="n">head</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="kd">private</span> <span class="kd">class</span> <span class="nc">Node</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="o">{</span>
+</span><span class='line'>        <span class="n">E</span> <span class="n">value</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">Node</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="n">next</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="c1">// Node constructor links the node as a new head</span>
+</span><span class='line'>        <span class="n">Node</span><span class="o">(</span><span class="n">E</span> <span class="n">value</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>            <span class="k">this</span><span class="o">.</span><span class="na">value</span> <span class="o">=</span> <span class="n">value</span><span class="o">;</span>
+</span><span class='line'>            <span class="k">this</span><span class="o">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">head</span><span class="o">;</span>
+</span><span class='line'>            <span class="n">head</span> <span class="o">=</span> <span class="k">this</span><span class="o">;</span>
+</span><span class='line'>        <span class="o">}</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">add</span><span class="o">(</span><span class="n">E</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>        <span class="k">new</span> <span class="n">Node</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;(</span><span class="n">e</span><span class="o">);</span>        <span class="c1">// Link node as new head</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">dump</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>        <span class="k">for</span> <span class="o">(</span><span class="n">Node</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="n">n</span> <span class="o">=</span> <span class="n">head</span><span class="o">;</span> <span class="n">n</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">;</span> <span class="n">n</span> <span class="o">=</span> <span class="n">n</span><span class="o">.</span><span class="na">next</span><span class="o">)</span>
+</span><span class='line'>            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">n</span><span class="o">.</span><span class="na">value</span> <span class="o">+</span> <span class="s">&quot; &quot;</span><span class="o">);</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>        <span class="n">LinkedList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;();</span>
+</span><span class='line'>        <span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">&quot;world&quot;</span><span class="o">);</span>
+</span><span class='line'>        <span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">&quot;Hello&quot;</span><span class="o">);</span>
+</span><span class='line'>        <span class="n">list</span><span class="o">.</span><span class="na">dump</span><span class="o">();</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
 
+
+<p>代码看上去就是另一个花样 <em>Hello world</em>，但是当你执行时，<em>Double Bazinga</em>！</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">Exception</span> <span class="n">in</span> <span class="n">thread</span> <span class="s">&quot;main&quot;</span> <span class="n">java</span><span class="o">.</span><span class="na">lang</span><span class="o">.</span><span class="na">Error</span><span class="o">:</span> <span class="n">Unresolved</span> <span class="n">compilation</span> <span class="nl">problems:</span>
+</span><span class='line'>  <span class="n">Type</span> <span class="nl">mismatch:</span> <span class="n">cannot</span> <span class="n">convert</span> <span class="n">from</span> <span class="n">LinkedList</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;.</span><span class="na">Node</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="n">to</span> <span class="n">LinkedList</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;.</span><span class="na">Node</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span>
+</span><span class='line'>  <span class="n">Type</span> <span class="nl">mismatch:</span> <span class="n">cannot</span> <span class="n">convert</span> <span class="n">from</span> <span class="n">LinkedList</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;.</span><span class="na">Node</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="n">to</span> <span class="n">LinkedList</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;.</span><span class="na">Node</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">at</span> <span class="n">test</span><span class="o">.</span><span class="na">LinkedList$Node</span><span class="o">.&lt;</span><span class="n">init</span><span class="o">&gt;(</span><span class="n">LinkedList</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">15</span><span class="o">)</span>
+</span><span class='line'>  <span class="n">at</span> <span class="n">test</span><span class="o">.</span><span class="na">LinkedList</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">LinkedList</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">21</span><span class="o">)</span>
+</span><span class='line'>  <span class="n">at</span> <span class="n">test</span><span class="o">.</span><span class="na">LinkedList</span><span class="o">.</span><span class="na">main</span><span class="o">(</span><span class="n">LinkedList</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">32</span><span class="o">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>LinkedList&lt;E&gt;.Node&lt;E&gt;</code> 和 <code>LinkedList&lt;E&gt;.Node&lt;E&gt;</code> 类型不符？！定位问题代码： <code>this.next = head; head = this;</code>。
+前面的 <code>Node&lt;E&gt;</code> 与后面的 <code>Node&lt;E&gt;</code> 虽然看上去一模一样，但它们压根就不是一个类型。具体点说，因为这段代码有两个 <code>*&lt;E&gt;*</code> 类型声明 <em>(type parameter)</em>，第一个是 <code>LinkedList</code> 的 <code>*&lt;E&gt;*</code> ，第二个是 <code>LinkedList.Node</code> 的 <code>*&lt;E&gt;*</code>。后面的 <em><a href="http://hedleyyan.github.io/blog/2015/05/16/a-glossary-of-name-reuse/&lt;p">Shadow</a></em> 了前面的。</p>
+
+<pre><code>        original link:
+        &lt;a href='http://hedleyyan.github.io/blog/2015/06/05/huang-miu-tong-ku-de-nei-bu-lei/'&gt;http://hedleyyan.github.io/blog/2015/06/05/huang-miu-tong-ku-de-nei-bu-lei/&lt;/a&gt;&lt;br/&gt;
+        written by &lt;a href='http://hedleyyan.github.io'&gt;dL&lt;/a&gt;
+        &amp;nbsp;posted at &lt;a href='http://hedleyyan.github.io'&gt;http://hedleyyan.github.io&lt;/a&gt;
+        &lt;/p&gt;
+</code></pre>
 ]]></content>
   </entry>
   
@@ -436,7 +523,7 @@
 <h2>其他</h2>
 
 <ol>
-<li>链接在新窗口打开、列表排版、404ERROR公益页面，参考<a href="http://blog.csdn.net/biaobiaoqi/article/details/9289563">这篇文章</a>。</li>
+<li>链接在新窗口打开、列表排版、<em>404ERROR</em> 公益页面，参考<a href="http://blog.csdn.net/biaobiaoqi/article/details/9289563">这篇文章</a>。</li>
 <li>文章分类侧边栏、导航栏设置，参考<a href="http://www.jianshu.com/p/0ac2ac1a8e45">这篇文章</a>。</li>
 </ol>
 
@@ -606,7 +693,7 @@
 
 <ul>
 <li>Context 可能只有一个类，也可能包括别的函数库的类。</li>
-<li>载体包括变量、方法和类。</li>
+<li>载体包括变量、方法、类、类型声明 <em>(<T>)</em>。</li>
 </ul>
 
 
@@ -686,8 +773,8 @@
 <span class='line-number'>7</span>
 </pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Obscure</span> <span class="o">{</span>
 </span><span class='line'>    <span class="kd">static</span> <span class="n">String</span> <span class="n">System</span><span class="o">;</span> <span class="c1">// Obscures type java.lang.System</span>
-</span><span class='line'>  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>      <span class="c1">// Next line won’t compile:  System refers to static field </span>
+</span><span class='line'>    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>        <span class="c1">// Next line won’t compile:  System refers to static field </span>
 </span><span class='line'>        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;hello, obscure world!&quot;</span><span class="o">);</span>
 </span><span class='line'>  <span class="o">}</span>
 </span><span class='line'><span class="o">}</span>

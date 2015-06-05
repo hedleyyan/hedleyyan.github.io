@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: 规约 | Hedley]]></title>
   <link href="http://hedleyyan.github.io/tags/gui-yue/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2015-06-05T22:05:52+08:00</updated>
+  <updated>2015-06-06T00:06:18+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[dL]]></name>
@@ -119,7 +119,7 @@
 
 <ul>
 <li>Context 可能只有一个类，也可能包括别的函数库的类。</li>
-<li>载体包括变量、方法和类。</li>
+<li>载体包括变量、方法、类、类型声明 <em>(<T>)</em>。</li>
 </ul>
 
 
@@ -161,13 +161,13 @@ class String {
 
 <p><em>Obscuring</em> 是指在作用域中，一个变量的名字和一个类相同，直接看示例代码。</p>
 
-<pre><code class="java">    public class Obscure {
-        static String System; // Obscures type java.lang.System
-        public static void main(String[] args) {
-            // Next line won’t compile:  System refers to static field 
-            System.out.println("hello, obscure world!");
-        }
+<pre><code class="java">public class Obscure {
+    static String System; // Obscures type java.lang.System
+    public static void main(String[] args) {
+        // Next line won’t compile:  System refers to static field 
+        System.out.println("hello, obscure world!");
     }
+}
 </code></pre>
 
 <p><blockquote><p>If a type or a package is obscured, you cannot refer to it by its simple name except in a context where the syntax allows only a name from its namespace.</p></blockquote></p>
