@@ -4,7 +4,7 @@
   <title><![CDATA[Hedley]]></title>
   <link href="http://hedleyyan.github.io/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2015-06-06T11:17:55+08:00</updated>
+  <updated>2015-06-06T15:18:46+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[dL]]></name>
@@ -139,14 +139,14 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>OK，看来 <em>inner class</em> 持有 <em>enclosing class</em> 的一个实例变量 <em>(immediately enclosing instance)</em> 是真的！编译器没那么牛逼每次都可以悄悄替你做了所有的事，至少在使用反射初始化时， <em>enclosing class</em> 的 <em>instance</em> 不会传进来。</p>
+<p><em>OK</em> ，看来 <em>inner class</em> 持有 <em>enclosing class</em> 的一个实例变量 <em>(immediately enclosing instance)</em> 是真的！编译器没那么牛逼每次都可以悄悄替你做了所有的事，至少在使用反射初始化时， <em>enclosing class</em> 的 <em>instance</em> 不会传进来。</p>
 
 <blockquote><p>The constructor of a non-static nested class is compiled such that it has as its first parameter an additional implicit parameter representing the immediately enclosing instance.</p><footer><strong>JLS 13.1</strong></footer></blockquote>
 
 
 
 
-<blockquote><p>This parameter is passed implicitly when you invoke the constructor from any point in the code where the compiler can find an appropriate enclosing instance. But this applies only when you invoke the constructor normally: nonreflectively.</p><footer><strong>JP Puzzle 80</strong></footer></blockquote>
+<blockquote><p>This parameter is passed implicitly when you invoke the constructor from any point in the code where the compiler can find an appropriate enclosing instance. But this applies only when you invoke the constructor normally: nonreflectively.</p></blockquote>
 
 
 <p>用含参的构造方法测试一下：</p>
@@ -162,16 +162,11 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p><em>bingo</em>！观察一下，这个场景中为什么要使用 <em>inner class</em> 呢，明明 <em>static nested class</em> 就可以嘛！ <em>so</em> 更帅的解决办法是：</p>
+<p><em>bingo</em> ！观察一下，这个场景中为什么要使用 <em>inner class</em> 呢，明明 <em>static nested class</em> 就可以嘛！ <em>so</em> 更帅的解决办法是：</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kd">static</span> <span class="kd">class</span> <span class="nc">Inner</span> <span class="o">{</span> <span class="o">...</span> <span class="o">}</span>
 </span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<blockquote><p>Unless you have a compelling need for an enclosing instance, prefer static member classes over nonstatic.</p><footer><strong>EJ Item 18</strong></footer></blockquote>
 
 
 <p><strong>建议：能用静态嵌套类解决，就不用内部类。</strong></p>
@@ -245,7 +240,7 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>代码看上去就是另一个花样 <em>Hello world</em>，但是当你执行时，<em>Double Bazinga</em>！</p>
+<p>代码看上去就是另一个花样 <em>Hello world</em>，但是当你执行时，<em>Double Bazinga</em> ！</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -264,28 +259,29 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p><code>LinkedList&lt;E&gt;.Node&lt;E&gt;</code> 和 <code>LinkedList&lt;E&gt;.Node&lt;E&gt;</code> 类型不符？原因是
-前面的 <code>Node&lt;E&gt;</code> 与后面的 <code>Node&lt;E&gt;</code> 虽然看上去一模一样，但它们压根就不是一个类型。具体点说，因为这段代码有两个 <code>&lt;E&gt;</code> 类型声明 <em>(type parameter)</em>，第一个是 <code>LinkedList</code> 的 <code>&lt;E&gt;</code> ，第二个是 <code>LinkedList.Node</code> 的 <code>&lt;E&gt;</code>。后面的 <em><a href="http://hedleyyan.github.io/blog/2015/05/16/a-glossary-of-name-reuse/">Shadow</a></em> 了前面的。</p>
+<p><code>LinkedList&lt;E&gt;.Node&lt;E&gt;</code> 和 <code>LinkedList&lt;E&gt;.Node&lt;E&gt;</code> 类型不符？？？</p>
 
-<p>如果这里把 <em>inner class</em> 的声明换一个 <em>type parameter</em> <code>Node&lt;T&gt;</code>，可以看到更多一点的细节：</p>
+<p>原因是前面的 <code>Node&lt;E&gt;</code> 与后面的 <code>Node&lt;E&gt;</code> 虽然看上去一模一样，但它们压根就不是一个类型。具体点说，因为这段代码有两个 <code>&lt;E&gt;</code> 类型声明 <em>(type parameter)</em>，第一个是 <code>LinkedList</code> 的 <code>&lt;E&gt;</code> ，第二个是 <code>LinkedList.Node</code> 的 <code>&lt;E&gt;</code> 。后面的 <em><a href="http://hedleyyan.github.io/blog/2015/05/16/a-glossary-of-name-reuse/#%E9%94%9A%E7%82%B9">Shadow</a></em> 了前面的。</p>
+
+<p>如果这里把 <em>inner class</em> 的声明换一个 <em>type parameter</em> <code>Node&lt;T&gt;</code> ，可以看到更多一点的细节：</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="err">……</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="o">...</span>
 </span><span class='line'>  <span class="n">Type</span> <span class="nl">mismatch:</span> <span class="n">cannot</span> <span class="n">convert</span> <span class="n">from</span> <span class="n">LinkedList</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;.</span><span class="na">Node</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="n">to</span> <span class="n">LinkedList</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;.</span><span class="na">Node</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span>
 </span><span class='line'>  <span class="n">Type</span> <span class="nl">mismatch:</span> <span class="n">cannot</span> <span class="n">convert</span> <span class="n">from</span> <span class="n">LinkedList</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;.</span><span class="na">Node</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">to</span> <span class="n">LinkedList</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;.</span><span class="na">Node</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span>
-</span><span class='line'><span class="err">……</span>
+</span><span class='line'><span class="o">...</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
 
 
-<blockquote><p>An inner class of a generic class has access to the type parameters of its outer class.</p><footer><strong>JP Puzzle 89</strong></footer></blockquote>
+<blockquote><p>An inner class of a generic class has access to the type parameters of its outer class.</p></blockquote>
 
 
-<p><em>so</em>，<em>inner class</em> 可以访问 <em>enclosing class</em> 的各种属性，包括 <em>type parameter</em> 。</p>
+<p><em>So</em>，<em>inner class</em> 可以访问 <em>enclosing class</em> 的各种属性，包括 <em>type parameter</em> 。</p>
 
 <p>这段代码的初衷本来就是 <code>Node</code> 持有和 <code>LinkedList</code> 一样的  <em>type parameter</em> ，所以我们可以这样修正：</p>
 
@@ -314,7 +310,6 @@
 <span class='line-number'>23</span>
 <span class='line-number'>24</span>
 <span class='line-number'>25</span>
-<span class='line-number'>26</span>
 </pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">LinkedList</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="o">{</span>
 </span><span class='line'>    <span class="kd">private</span> <span class="n">Node</span> <span class="n">head</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
 </span><span class='line'>
@@ -332,8 +327,7 @@
 </span><span class='line'>    <span class="o">}</span>
 </span><span class='line'>
 </span><span class='line'>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">add</span><span class="o">(</span><span class="n">E</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>        <span class="k">new</span> <span class="nf">Node</span><span class="o">(</span><span class="n">e</span><span class="o">);</span>
-</span><span class='line'>        <span class="c1">// Link node as new head</span>
+</span><span class='line'>        <span class="k">new</span> <span class="nf">Node</span><span class="o">(</span><span class="n">e</span><span class="o">);</span>      <span class="c1">// Link node as new head</span>
 </span><span class='line'>    <span class="o">}</span>
 </span><span class='line'>
 </span><span class='line'>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">dump</span><span class="o">()</span> <span class="o">{</span>
@@ -344,12 +338,12 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>但是这不是一个好的修正。它的功能完全可以通过 <em>static nested class</em> 实现；并且 <em>inner class</em> 的构造方法里修改了 <em>enclosing class</em> 的属性 <code>head</code>，<strong>这不是好的实践</strong>。</p>
+<p>但是这不是一个漂亮的修正。它的功能完全可以通过 <em>static nested class</em> 实现；并且 <em>inner class</em> 的构造方法里修改了 <em>enclosing class</em> 的属性 <code>head</code> ，<strong>这不是好的实践</strong>。</p>
 
-<blockquote><p>Change instance fields of a class only in its own instance methods.</p><footer><strong>JP Puzzle 89</strong></footer></blockquote>
+<blockquote><p>Change instance fields of a class only in its own instance methods.</p></blockquote>
 
 
-<p>更帅的解决方法当然是用 <em>static nested class</em> 实现<code>Node</code>，并且把对 <em>enclosing class</em> 的属性修改抽离出来。</p>
+<p>更帅的解决方法当然是用 <em>static nested class</em> 实现 <code>Node</code> ，并且把对 <em>enclosing class</em> 的属性修改抽离出来。</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -400,9 +394,10 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>这样<code>Node&lt;T&gt;</code>完全与他的<code>LinkedList&lt;E&gt;</code>是解耦合的，想象一下你不止可以声明一个<code>Node&lt;E&gt;</code>，你完全可以声明<code>Node&lt;Integer&gt;</code>、<code>Node&lt;String&gt;</code>，是不是爽多了。</p>
+<p>这样 <code>Node&lt;T&gt;</code> 完全与他的 <code>LinkedList&lt;E&gt;</code> 是解耦合的，想象一下你不止可以声明一个 <code>Node&lt;E&gt;</code> ，你完全可以声明 <code>Node&lt;Integer&gt;</code> 、 <code>Node&lt;String&gt;</code> ，是不是爽多了。</p>
 
-<p><strong>建议：能用静态嵌套类解决，就不用内部类！！</strong></p>
+<p><strong>建议1：类 A 的成员变量，只在 A 的成员方法里改。</strong>
+<strong>建议2：能用静态嵌套类解决，就不用内部类！！</strong></p>
 
 <h4><em>Puzzle 90</em>：嵌套继承</h4>
 
@@ -417,7 +412,90 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>为什么这么简单的代码就是不给编译过呢？搞咩搞咩？</p>
+<p>为什么这么简单的代码就是不给编译过呢？搞咩？不过这次的错误提示好像有点帮助。。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">No</span> <span class="n">enclosing</span> <span class="n">instance</span> <span class="n">of</span> <span class="n">type</span> <span class="n">Outer</span> <span class="n">is</span> <span class="n">available</span> <span class="n">due</span> <span class="n">to</span> <span class="n">some</span> <span class="n">intermediate</span> <span class="n">constructor</span> <span class="n">invocation</span><span class="o">.</span>
+</span><span class='line'><span class="n">at</span> <span class="n">test</span><span class="o">.</span><span class="na">Outer$Inner2</span><span class="o">.&lt;</span><span class="n">init</span><span class="o">&gt;(</span><span class="n">Outer</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">8</span><span class="o">)</span>
+</span><span class='line'><span class="o">...</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<blockquote><p>The instantiation of an inner class, requires an enclosing instance to be supplied to the constructor. Normally, it is supplied implicitly, but it can also be supplied explicitly with a superclass constructor invocation of the form *expression.super(args)*.</p><footer><strong>JLS 8.8.7</strong></footer></blockquote>
+
+
+<p>原来 <em>inner class</em> 可以使用显示地调用 <em>enclosing instance</em> ，编译器帮不了还得自己来。和<a href="%E6%89%BE%E9%94%9A%E7%82%B9">反射</a>很像嘛</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">class</span> <span class="nc">Inner2</span> <span class="kd">extends</span> <span class="n">Inner1</span> <span class="o">{</span>
+</span><span class='line'>  <span class="c1">// Plan A</span>
+</span><span class='line'>    <span class="n">Inner2</span><span class="o">(</span><span class="n">Outer</span> <span class="n">outer</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>        <span class="n">outer</span><span class="o">.</span><span class="na">super</span><span class="o">();</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>也可以</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">class</span> <span class="nc">Inner2</span> <span class="kd">extends</span> <span class="n">Inner1</span> <span class="o">{</span>
+</span><span class='line'>  <span class="c1">// Plan B</span>
+</span><span class='line'>    <span class="n">Inner2</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>        <span class="n">Outer</span><span class="o">.</span><span class="na">this</span><span class="o">.</span><span class="na">super</span><span class="o">();</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><em>《Thinking in Java》</em> 推荐 <em>Plan A</em> 的写法，它更通用一些。如果 <code>Inner2</code> 不是 <code>Outer</code> 的 <em>inner class</em> ，它只能用 <em>Plan A</em> 的写法来继承 <code>Inner1</code>， 无论是否 <code>Inner1 extends Outer</code> 。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Outer</span> <span class="o">{</span>
+</span><span class='line'>    <span class="kd">class</span> <span class="nc">Inner1</span> <span class="o">{};</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">class</span> <span class="nc">Inner2</span> <span class="kd">extends</span> <span class="n">Outer</span><span class="o">.</span><span class="na">Inner1</span> <span class="o">{</span>
+</span><span class='line'>  <span class="c1">// Outer.this doesn&#39;t work here</span>
+</span><span class='line'>    <span class="kd">public</span> <span class="nf">Inner2</span><span class="o">(</span><span class="n">Outer</span> <span class="n">outer</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>        <span class="n">outer</span><span class="o">.</span><span class="na">super</span><span class="o">();</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><em>OK</em> ，是不是有点晕？晕就对了。无论何时，当你要写一个 <em>inner class</em> 的时候，问问自己，真的不可以用 <em>static nested class</em> 来代替吗？真的有必要吗？ <em>inner class</em> 还要继承 <em>enclosing class</em> ？真的真的有必要吗？</p>
+
+<p><strong>建议1：尽量避免继承内部类。</strong>
+<strong>建议2：能用静态嵌套类解决，就不用内部类！！！！</strong></p>
+
+<blockquote><p>Unless you have a compelling need for an enclosing instance, prefer static member classes over nonstatic.</p><footer><strong>EJ Item 18</strong></footer></blockquote>
+
+
+
 
 <p class='post-footer'>
             original link:
