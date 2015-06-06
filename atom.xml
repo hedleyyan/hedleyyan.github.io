@@ -4,7 +4,7 @@
   <title><![CDATA[Hedley]]></title>
   <link href="http://hedleyyan.github.io/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2015-06-06T10:57:15+08:00</updated>
+  <updated>2015-06-06T11:17:55+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[dL]]></name>
@@ -89,7 +89,7 @@
 
 <h2>痛苦场景</h2>
 
-<h4>反射</h4>
+<h4><em>Puzzle 80</em>：反射</h4>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -176,7 +176,7 @@
 
 <p><strong>建议：能用静态嵌套类解决，就不用内部类。</strong></p>
 
-<h4>泛型</h4>
+<h4><em>Puzzle 89</em>：泛型</h4>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -264,7 +264,7 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p><code>LinkedList&lt;E&gt;.Node&lt;E&gt;</code> 和 <code>LinkedList&lt;E&gt;.Node&lt;E&gt;</code> 类型不符？！定位问题代码： <code>this.next = head; head = this;</code>。
+<p><code>LinkedList&lt;E&gt;.Node&lt;E&gt;</code> 和 <code>LinkedList&lt;E&gt;.Node&lt;E&gt;</code> 类型不符？原因是
 前面的 <code>Node&lt;E&gt;</code> 与后面的 <code>Node&lt;E&gt;</code> 虽然看上去一模一样，但它们压根就不是一个类型。具体点说，因为这段代码有两个 <code>&lt;E&gt;</code> 类型声明 <em>(type parameter)</em>，第一个是 <code>LinkedList</code> 的 <code>&lt;E&gt;</code> ，第二个是 <code>LinkedList.Node</code> 的 <code>&lt;E&gt;</code>。后面的 <em><a href="http://hedleyyan.github.io/blog/2015/05/16/a-glossary-of-name-reuse/">Shadow</a></em> 了前面的。</p>
 
 <p>如果这里把 <em>inner class</em> 的声明换一个 <em>type parameter</em> <code>Node&lt;T&gt;</code>，可以看到更多一点的细节：</p>
@@ -344,12 +344,80 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>但是这不是一个好的修正。它的功能完全可以通过 <em>static nested class</em> 实现，没必要用 <em>inner class</em> ；并且 <em>inner class</em> 的构造方法里修改了 <em>enclosing class</em> 的属性 <code>head</code>。</p>
+<p>但是这不是一个好的修正。它的功能完全可以通过 <em>static nested class</em> 实现；并且 <em>inner class</em> 的构造方法里修改了 <em>enclosing class</em> 的属性 <code>head</code>，<strong>这不是好的实践</strong>。</p>
 
 <blockquote><p>Change instance fields of a class only in its own instance methods.</p><footer><strong>JP Puzzle 89</strong></footer></blockquote>
 
 
+<p>更帅的解决方法当然是用 <em>static nested class</em> 实现<code>Node</code>，并且把对 <em>enclosing class</em> 的属性修改抽离出来。</p>
 
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">class</span> <span class="nc">LinkedList</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="o">{</span>
+</span><span class='line'>    <span class="kd">private</span> <span class="n">Node</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="n">head</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">class</span> <span class="nc">Node</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">{</span>
+</span><span class='line'>        <span class="n">T</span> <span class="n">value</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">Node</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">next</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">Node</span><span class="o">(</span><span class="n">T</span> <span class="n">value</span><span class="o">,</span> <span class="n">Node</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">next</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>            <span class="k">this</span><span class="o">.</span><span class="na">value</span> <span class="o">=</span> <span class="n">value</span><span class="o">;</span>
+</span><span class='line'>            <span class="k">this</span><span class="o">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">next</span><span class="o">;</span>
+</span><span class='line'>        <span class="o">}</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">add</span><span class="o">(</span><span class="n">E</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>        <span class="n">head</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Node</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;(</span><span class="n">e</span><span class="o">,</span> <span class="n">head</span><span class="o">);</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">dump</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>        <span class="k">for</span> <span class="o">(</span><span class="n">Node</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="n">n</span> <span class="o">=</span> <span class="n">head</span><span class="o">;</span> <span class="n">n</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">;</span> <span class="n">n</span> <span class="o">=</span> <span class="n">n</span><span class="o">.</span><span class="na">next</span><span class="o">)</span>
+</span><span class='line'>            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">n</span><span class="o">.</span><span class="na">value</span> <span class="o">+</span> <span class="s">&quot; &quot;</span><span class="o">);</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这样<code>Node&lt;T&gt;</code>完全与他的<code>LinkedList&lt;E&gt;</code>是解耦合的，想象一下你不止可以声明一个<code>Node&lt;E&gt;</code>，你完全可以声明<code>Node&lt;Integer&gt;</code>、<code>Node&lt;String&gt;</code>，是不是爽多了。</p>
+
+<p><strong>建议：能用静态嵌套类解决，就不用内部类！！</strong></p>
+
+<h4><em>Puzzle 90</em>：嵌套继承</h4>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Outer</span> <span class="o">{</span>
+</span><span class='line'>       <span class="kd">class</span> <span class="nc">Inner1</span> <span class="kd">extends</span> <span class="n">Outer</span> <span class="o">{}</span>
+</span><span class='line'>       <span class="kd">class</span> <span class="nc">Inner2</span> <span class="kd">extends</span> <span class="n">Inner1</span> <span class="o">{}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>为什么这么简单的代码就是不给编译过呢？搞咩搞咩？</p>
 
 <p class='post-footer'>
             original link:

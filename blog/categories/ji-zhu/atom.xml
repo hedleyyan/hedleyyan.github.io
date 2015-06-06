@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 技术 | Hedley]]></title>
   <link href="http://hedleyyan.github.io/blog/categories/ji-zhu/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2015-06-06T10:57:15+08:00</updated>
+  <updated>2015-06-06T11:17:55+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[dL]]></name>
@@ -81,7 +81,7 @@
 
 <h2>痛苦场景</h2>
 
-<h4>反射</h4>
+<h4><em>Puzzle 80</em>：反射</h4>
 
 <pre><code class="java">public class Outer {
     public static void main(String[] args) throws Exception {
@@ -132,7 +132,7 @@
 
 <p><strong>建议：能用静态嵌套类解决，就不用内部类。</strong></p>
 
-<h4>泛型</h4>
+<h4><em>Puzzle 89</em>：泛型</h4>
 
 <pre><code class="java">public class LinkedList&lt;E&gt; {
     private Node&lt;E&gt; head = null;
@@ -179,7 +179,7 @@
     at test.LinkedList.main(LinkedList.java:32)
 </code></pre>
 
-<p><code>LinkedList&lt;E&gt;.Node&lt;E&gt;</code> 和 <code>LinkedList&lt;E&gt;.Node&lt;E&gt;</code> 类型不符？！定位问题代码： <code>this.next = head; head = this;</code>。
+<p><code>LinkedList&lt;E&gt;.Node&lt;E&gt;</code> 和 <code>LinkedList&lt;E&gt;.Node&lt;E&gt;</code> 类型不符？原因是
 前面的 <code>Node&lt;E&gt;</code> 与后面的 <code>Node&lt;E&gt;</code> 虽然看上去一模一样，但它们压根就不是一个类型。具体点说，因为这段代码有两个 <code>&lt;E&gt;</code> 类型声明 <em>(type parameter)</em>，第一个是 <code>LinkedList</code> 的 <code>&lt;E&gt;</code> ，第二个是 <code>LinkedList.Node</code> 的 <code>&lt;E&gt;</code>。后面的 <em><a href="http://hedleyyan.github.io/blog/2015/05/16/a-glossary-of-name-reuse/">Shadow</a></em> 了前面的。</p>
 
 <p>如果这里把 <em>inner class</em> 的声明换一个 <em>type parameter</em> <code>Node&lt;T&gt;</code>，可以看到更多一点的细节：</p>
@@ -224,9 +224,50 @@
 }
 </code></pre>
 
-<p>但是这不是一个好的修正。它的功能完全可以通过 <em>static nested class</em> 实现，没必要用 <em>inner class</em> ；并且 <em>inner class</em> 的构造方法里修改了 <em>enclosing class</em> 的属性 <code>head</code>。</p>
+<p>但是这不是一个好的修正。它的功能完全可以通过 <em>static nested class</em> 实现；并且 <em>inner class</em> 的构造方法里修改了 <em>enclosing class</em> 的属性 <code>head</code>，<strong>这不是好的实践</strong>。</p>
 
 <p><blockquote><p>Change instance fields of a class only in its own instance methods.</p><footer><strong>JP Puzzle 89</strong></footer></blockquote></p>
+
+<p>更帅的解决方法当然是用 <em>static nested class</em> 实现<code>Node</code>，并且把对 <em>enclosing class</em> 的属性修改抽离出来。</p>
+
+<pre><code class="java">class LinkedList&lt;E&gt; {
+    private Node&lt;E&gt; head = null;
+
+    private static class Node&lt;T&gt; {
+        T value;
+
+        Node&lt;T&gt; next;
+
+        Node(T value, Node&lt;T&gt; next) {
+            this.value = value;
+            this.next = next;
+        }
+    }
+
+    public void add(E e) {
+        head = new Node&lt;E&gt;(e, head);
+    }
+
+    public void dump() {
+        for (Node&lt;E&gt; n = head; n != null; n = n.next)
+            System.out.print(n.value + " ");
+    }
+}
+</code></pre>
+
+<p>这样<code>Node&lt;T&gt;</code>完全与他的<code>LinkedList&lt;E&gt;</code>是解耦合的，想象一下你不止可以声明一个<code>Node&lt;E&gt;</code>，你完全可以声明<code>Node&lt;Integer&gt;</code>、<code>Node&lt;String&gt;</code>，是不是爽多了。</p>
+
+<p><strong>建议：能用静态嵌套类解决，就不用内部类！！</strong></p>
+
+<h4><em>Puzzle 90</em>：嵌套继承</h4>
+
+<pre><code class="java">public class Outer {
+       class Inner1 extends Outer {}
+       class Inner2 extends Inner1 {}
+}
+</code></pre>
+
+<p>为什么这么简单的代码就是不给编译过呢？搞咩搞咩？</p>
 ]]></content>
   </entry>
   
