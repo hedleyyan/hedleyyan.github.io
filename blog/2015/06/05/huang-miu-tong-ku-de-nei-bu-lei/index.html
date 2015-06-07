@@ -125,7 +125,7 @@
 <ul>
 <li>可以使用 <code>final</code> 关键字，不能使用访问控制符</li>
 <li>局部类不能在外部进行创建，只能在方法调用的时候进行创建</li>
-<li><em>Enclosing Class</em> 可以是静态方法，可以是实例方法，也可以是构造器方法或者静态初始化语句块</li>
+<li><em>Enclosing Method</em> 可以是静态方法，可以是实例方法，也可以是构造器方法或者静态初始化语句块</li>
 <li>在 <code>static</code> 上下文定义的局部类，没有指向父类实例变量的引用</li>
 </ul>
 </li>
@@ -148,7 +148,7 @@
 
 <ul>
 <li>内部类不能定义为 <code>static</code>，不能有 <code>static</code> 方法和 <code>static</code> 初始化语句块</li>
-<li>可以有 <code>static final</code> 常量属性，但不推荐这么用（放外部类就 OK ，为什么用在这？）</li>
+<li>可以有 <code>static final</code> 常量属性，但不推荐这么用（放外部类就 <em>OK</em> ，为什么用在这？）</li>
 </ul>
 </li>
 </ul>
@@ -571,9 +571,83 @@
 <p><strong>建议1：尽量避免继承内部类。</strong> <br>
 <strong>建议2：能用静态嵌套类解决，就不用内部类！！！！</strong></p>
 
+<h4>另类匿名类</h4>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Twisted</span> <span class="o">{</span>
+</span><span class='line'>    <span class="kd">private</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">Twisted</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>        <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="kd">private</span> <span class="n">String</span> <span class="nf">name</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>        <span class="k">return</span> <span class="n">name</span><span class="o">;</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">reproduce</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>        <span class="k">new</span> <span class="nf">Twisted</span><span class="o">(</span><span class="s">&quot;reproduce&quot;</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>            <span class="kt">void</span> <span class="nf">printName</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>                <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">name</span><span class="o">());</span>
+</span><span class='line'>            <span class="o">}</span>
+</span><span class='line'>        <span class="o">}.</span><span class="na">printName</span><span class="o">();</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>        <span class="k">new</span> <span class="nf">Twisted</span><span class="o">(</span><span class="s">&quot;main&quot;</span><span class="o">).</span><span class="na">reproduce</span><span class="o">();</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>肤浅的分析：无法编译！因为 <code>reproduce</code> 里面的 <em>anonymous class</em> 尝试访问 <code>Twisted</code> 的 <code>private</code>方法。而 <code>private</code> 的属性应该只有    <code>Twisted</code> 可以访问。 <br></p>
+
+<blockquote><p>Within a top-level type, all the local, inner, nested, and anonymous classes can access one another’s members without any restrictions.</p><footer><strong>JLS 6.6.1</strong></footer></blockquote>
+
+
+<p>其实 <em>nested class</em> 和 <em>enclosing class</em> 就是一家子， <em>enclosing class</em> 的所有成员变量都可以被 <em>nested class</em> 无限制访问。</p>
+
+<p>知道了这个振奋人心的消息后，你的答案可能是：输出 <code>reproduce</code> 。显而易见，我使用了 <code>reproduce</code> 作为参数传入构造函数产生实例 <code>new Twisted("reproduce")</code> ，调用 <code>printName()</code> 方法，再调用 <code>name()</code> 方法，输出。但很遗憾，它的输出是 <code>main</code> 。</p>
+
+<blockquote><p>Private members are never inherited.</p><footer><strong>JLS 8.2</strong></footer></blockquote>
+
+
+<p><strong>私有方法无法被继承！</strong> <em>This is the key</em>！ <em>So</em> ，<code>new Twisted("reproduce")</code> 实例没有 <code>name()</code> 方法，而 <code>printName()</code> 方法会依最小作用域找到 <code>enclosing instance</code> 的 <code>name()</code> 方法并调用。</p>
+
+<p><strong>建议：避免一个内部类继承它的外部类。</strong></p>
+
+<h2>总结</h2>
+
+<p>说到口都干了：能用静态嵌套类解决，就不用内部类。</p>
+
 <blockquote><p>Unless you have a compelling need for an enclosing instance, prefer static member classes over nonstatic.</p><footer><strong>EJ Item 18</strong></footer></blockquote>
 
 
+
+
+<!--## 引用-->
 
 
 <p class='post-footer'>
