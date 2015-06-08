@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: 配置 | Hedley]]></title>
   <link href="http://hedleyyan.github.io/tags/pei-zhi/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2015-06-08T18:29:14+08:00</updated>
+  <updated>2015-06-08T18:31:09+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[dL]]></name>
@@ -264,7 +264,7 @@
 
 <h1><em>TOC (Table of Contents)</em></h1>
 
-<p>参照[这边文章][TOC]搭建 <em>TOC</em> 解决方案。遇到几个问题：</p>
+<p>参照[这边文章][TOC]搭建 <em>TOC</em> 解决方案。遇到几个问题</p>
 
 <ul>
 <li>如果 <em>TOC</em> 的左面有 <code>blockquote</code> ， <em>TOC</em> 的 <code>link</code> 无法点击。
