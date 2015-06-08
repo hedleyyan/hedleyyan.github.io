@@ -25,9 +25,6 @@
     <loc>http://hedleyyan.github.io/page2/</loc>
   </url>
   <url>
-    <loc>http://hedleyyan.github.io/blog/categories/ji-zhu/</loc>
-  </url>
-  <url>
     <loc>http://hedleyyan.github.io/tags/java/</loc>
   </url>
   <url>
@@ -35,5 +32,8 @@
   </url>
   <url>
     <loc>http://hedleyyan.github.io/tags/pei-zhi/</loc>
+  </url>
+  <url>
+    <loc>http://hedleyyan.github.io/blog/categories/ji-zhu/</loc>
   </url>
 </urlset>
