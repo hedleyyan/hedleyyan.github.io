@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 技术 | Hedley]]></title>
   <link href="http://hedleyyan.github.io/blog/categories/ji-zhu/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2015-06-08T15:31:41+08:00</updated>
+  <updated>2015-06-08T15:48:50+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[dL]]></name>
@@ -258,7 +258,7 @@
 <p><strong>建议1：类 A 的成员变量，只在 A 的成员方法里改。</strong> <br>
 <strong>建议2：能用静态嵌套类解决，就不用内部类！！</strong></p>
 
-<h3><em>Puzzle 90</em>：嵌套继承</h3>
+<h2><em>Puzzle 90</em>：嵌套继承</h2>
 
 <pre><code class="java">public class Outer {
        class Inner1 extends Outer {}
@@ -314,7 +314,7 @@ class Inner2 extends Outer.Inner1 {
 <p><strong>建议1：尽量避免继承内部类。</strong> <br>
 <strong>建议2：能用静态嵌套类解决，就不用内部类！！！！</strong></p>
 
-<h3>另类匿名类</h3>
+<h2><em>Puzzle 92</em>：另类匿名类</h2>
 
 <pre><code class="java">public class Twisted {
     private final String name;
