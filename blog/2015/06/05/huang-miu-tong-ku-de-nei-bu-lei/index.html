@@ -106,7 +106,7 @@
   </header>
 
 
-<div class="entry-content"><h2>关于</h2>
+<div class="entry-content"><h1>关于</h1>
 
 <p>此文简单总结嵌套类 <em>(Nested Class)</em> 的使用场景与一般建议：能使用<strong>静态嵌套类</strong> <em>(Static Nested Class)</em> 的时候就不用<strong>内部类</strong> <em>(Inner Class)</em>。</p>
 
@@ -118,9 +118,9 @@
 <!--more-->
 
 
-<h2>分类定义</h2>
+<h1>分类定义</h1>
 
-<h4>按位置</h4>
+<h2>按位置</h2>
 
 <ul>
 <li>成员嵌套类 <em>(Member Nested Class)</em> ：作为外部类 <em>(Enclosing Class)</em> <strong>成员</strong>定义，成员嵌套类有 <em>Enclosing Class</em> 的属性。
@@ -147,7 +147,7 @@
 </ul>
 
 
-<h4>按功能</h4>
+<h2>按功能</h2>
 
 <p>大多数情况下，嵌套类都按功能分为：</p>
 
@@ -175,9 +175,9 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<h2>痛苦场景</h2>
+<h1>痛苦场景</h1>
 
-<h4><em>Puzzle 80</em>：反射</h4>
+<h2><em>Puzzle 80</em>：反射</h2>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -259,7 +259,7 @@
 
 <p><strong>建议：能用静态嵌套类解决，就不用内部类。</strong></p>
 
-<h4><em>Puzzle 89</em>：泛型</h4>
+<h2><em>Puzzle 89</em>：泛型</h2>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -487,7 +487,7 @@
 <p><strong>建议1：类 A 的成员变量，只在 A 的成员方法里改。</strong> <br>
 <strong>建议2：能用静态嵌套类解决，就不用内部类！！</strong></p>
 
-<h4><em>Puzzle 90</em>：嵌套继承</h4>
+<h2><em>Puzzle 90</em>：嵌套继承</h2>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -516,7 +516,7 @@
 <blockquote><p>The instantiation of an inner class, requires an enclosing instance to be supplied to the constructor. Normally, it is supplied implicitly, but it can also be supplied explicitly with a superclass constructor invocation of the form expression.super(args).</p><footer><strong>JLS 8.8.7</strong></footer></blockquote>
 
 
-<p>原来 <em>inner class</em> 可以显示调用 <em>enclosing instance</em> ，编译器帮不了还得自己来。和<a href="/#Puzzle80">反射</a>很像嘛</p>
+<p>原来 <em>inner class</em> 可以显示调用 <em>enclosing instance</em> ，编译器帮不了还得自己来。和<a href="#Puzzle80">反射</a>很像嘛</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -580,7 +580,7 @@
 <p><strong>建议1：尽量避免继承内部类。</strong> <br>
 <strong>建议2：能用静态嵌套类解决，就不用内部类！！！！</strong></p>
 
-<h4><em>Puzzle 92</em>：另类匿名类</h4>
+<h2><em>Puzzle 92</em>：另类匿名类</h2>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -647,7 +647,7 @@
 
 <p><strong>建议：避免一个内部类继承它的外部类。</strong></p>
 
-<h2>总结</h2>
+<h1>总结</h1>
 
 <p>说到口都干了：能用静态嵌套类解决，就不用内部类。</p>
 
@@ -793,6 +793,13 @@
 
 
 
+
+  <script type="text/javascript">
+  jQuery(document).ready(function() {
+    // Put a TOC right before the entry content.
+    generateTOC('.entry-content', 'Table of Contents');
+  });
+  </script>
 
 
 </body>
