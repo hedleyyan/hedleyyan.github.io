@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 技术 | Hedley]]></title>
   <link href="http://hedleyyan.github.io/blog/categories/ji-zhu/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2015-06-08T16:18:31+08:00</updated>
+  <updated>2015-06-08T16:34:49+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[dL]]></name>
@@ -18,7 +18,7 @@
     <link href="http://hedleyyan.github.io/blog/2015/06/05/huang-miu-tong-ku-de-nei-bu-lei/"/>
     <updated>2015-06-05T11:25:38+08:00</updated>
     <id>http://hedleyyan.github.io/blog/2015/06/05/huang-miu-tong-ku-de-nei-bu-lei</id>
-    <content type="html"><![CDATA[<h1>关于</h1>
+    <content type="html"><![CDATA[<h2>关于</h2>
 
 <p>此文简单总结嵌套类 <em>(Nested Class)</em> 的使用场景与一般建议：能使用<strong>静态嵌套类</strong> <em>(Static Nested Class)</em> 的时候就不用<strong>内部类</strong> <em>(Inner Class)</em>。</p>
 
@@ -27,9 +27,9 @@
 <!--more-->
 
 
-<h1>分类定义</h1>
+<h2>分类定义</h2>
 
-<h2>按位置</h2>
+<h4>按位置</h4>
 
 <ul>
 <li>成员嵌套类 <em>(Member Nested Class)</em> ：作为外部类 <em>(Enclosing Class)</em> <strong>成员</strong>定义，成员嵌套类有 <em>Enclosing Class</em> 的属性。
@@ -56,7 +56,7 @@
 </ul>
 
 
-<h2>按功能</h2>
+<h4>按功能</h4>
 
 <p>大多数情况下，嵌套类都按功能分为：</p>
 
@@ -79,9 +79,9 @@
 <pre><code class="java">// 嵌套类实例代码，略
 </code></pre>
 
-<h1>痛苦场景</h1>
+<h2>痛苦场景</h2>
 
-<h2><em>Puzzle 80</em>：反射</h2>
+<h4><em>Puzzle 80</em>：反射</h4>
 
 <pre><code class="java">public class Outer {
     public static void main(String[] args) throws Exception {
@@ -130,7 +130,7 @@
 
 <p><strong>建议：能用静态嵌套类解决，就不用内部类。</strong></p>
 
-<h2><em>Puzzle 89</em>：泛型</h2>
+<h4><em>Puzzle 89</em>：泛型</h4>
 
 <pre><code class="java">public class LinkedList&lt;E&gt; {
     private Node&lt;E&gt; head = null;
@@ -258,7 +258,7 @@
 <p><strong>建议1：类 A 的成员变量，只在 A 的成员方法里改。</strong> <br>
 <strong>建议2：能用静态嵌套类解决，就不用内部类！！</strong></p>
 
-<h2><em>Puzzle 90</em>：嵌套继承</h2>
+<h4><em>Puzzle 90</em>：嵌套继承</h4>
 
 <pre><code class="java">public class Outer {
        class Inner1 extends Outer {}
@@ -314,7 +314,7 @@ class Inner2 extends Outer.Inner1 {
 <p><strong>建议1：尽量避免继承内部类。</strong> <br>
 <strong>建议2：能用静态嵌套类解决，就不用内部类！！！！</strong></p>
 
-<h2><em>Puzzle 92</em>：另类匿名类</h2>
+<h4><em>Puzzle 92</em>：另类匿名类</h4>
 
 <pre><code class="java">public class Twisted {
     private final String name;
@@ -355,7 +355,7 @@ class Inner2 extends Outer.Inner1 {
 
 <p><strong>建议：避免一个内部类继承它的外部类。</strong></p>
 
-<h1>总结</h1>
+<h2>总结</h2>
 
 <p>说到口都干了：能用静态嵌套类解决，就不用内部类。
 <blockquote><p>Unless you have a compelling need for an enclosing instance, prefer static member classes over nonstatic.</p><footer><strong>EJ Item 18</strong></footer></blockquote></p>
