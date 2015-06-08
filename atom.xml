@@ -4,7 +4,7 @@
   <title><![CDATA[Hedley]]></title>
   <link href="http://hedleyyan.github.io/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2015-06-08T18:54:17+08:00</updated>
+  <updated>2015-06-08T18:55:34+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[dL]]></name>
@@ -856,24 +856,24 @@
 </ul>
 
 
-<h1>风格</h1>
-
-<p>生成网页的风格个性化都在 <code>/sass/custom</code> 中进行定义，参考了 <a href="https://github.com/bmc/brizzled">https://github.com/bmc/brizzled</a> ，主要对标题的字体大小进行了调整，其他一些微调待定。</p>
-
 <h1>其他</h1>
 
 <ul>
 <li>链接在新窗口打开、列表排版、<em>404ERROR</em> 公益页面，参考<a href="http://blog.csdn.net/biaobiaoqi/article/details/9289563">这篇文章</a>。</li>
-<li><p>文章分类侧边栏、导航栏设置，参考<a href="http://www.jianshu.com/p/0ac2ac1a8e45">这篇文章</a>。</p>
-
-<pre><code>    original link:
-    &lt;a href='http://hedleyyan.github.io/blog/2015/05/17/octopress-da-jian-ji-lu/'&gt;http://hedleyyan.github.io/blog/2015/05/17/octopress-da-jian-ji-lu/&lt;/a&gt;&lt;br/&gt;
-    written by &lt;a href='http://hedleyyan.github.io'&gt;dL&lt;/a&gt;
-    &amp;nbsp;posted at &lt;a href='http://hedleyyan.github.io'&gt;http://hedleyyan.github.io&lt;/a&gt;
-    &lt;/p&gt;
-</code></pre></li>
+<li>文章分类侧边栏、导航栏设置，参考<a href="http://www.jianshu.com/p/0ac2ac1a8e45">这篇文章</a>。</li>
 </ul>
 
+
+<h1>风格</h1>
+
+<p>生成网页的风格个性化都在 <code>/sass/custom</code> 中进行定义，参考了 <a href="https://github.com/bmc/brizzled">https://github.com/bmc/brizzled</a> ，主要对标题的字体大小进行了调整，其他一些微调待定。</p>
+
+<pre><code>        original link:
+        &lt;a href='http://hedleyyan.github.io/blog/2015/05/17/octopress-da-jian-ji-lu/'&gt;http://hedleyyan.github.io/blog/2015/05/17/octopress-da-jian-ji-lu/&lt;/a&gt;&lt;br/&gt;
+        written by &lt;a href='http://hedleyyan.github.io'&gt;dL&lt;/a&gt;
+        &amp;nbsp;posted at &lt;a href='http://hedleyyan.github.io'&gt;http://hedleyyan.github.io&lt;/a&gt;
+        &lt;/p&gt;
+</code></pre>
 ]]></content>
   </entry>
   
