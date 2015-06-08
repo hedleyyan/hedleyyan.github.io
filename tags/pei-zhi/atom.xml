@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: 配置 | Hedley]]></title>
   <link href="http://hedleyyan.github.io/tags/pei-zhi/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2015-06-08T18:26:04+08:00</updated>
+  <updated>2015-06-08T18:29:14+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[dL]]></name>
@@ -22,9 +22,6 @@
 
 <p>本文是小站搭建的流水账记录，收集了各种用到的链接地址。</p>
 
-<!--more-->
-
-
 <h1>搭建</h1>
 
 <ul>
@@ -32,6 +29,9 @@
 <li>修改 <a href="http://ruby.taobao.org/">RubyGems 镜像</a>，连接通了。但是一直报缺少依赖包的异常，按照提示手动一个个安装完依赖包。</li>
 <li>安装完毕，修改 <code>_config.yml</code> 配置文件。</li>
 </ul>
+
+
+<!--more-->
 
 
 <h1>留言系统</h1>
@@ -264,14 +264,26 @@
 
 <h1><em>TOC (Table of Contents)</em></h1>
 
-<p>参照[这边文章][TOC]搭建 <em>TOC</em> 解决方案。遇到几个问题：
-*   如果 <em>TOC</em> 的左面有 <code>blockquote</code> ， <em>TOC</em> 的 <code>link</code> 无法点击。
-    *   在 <code>/sass/custom/_screen.scss</code> 中加入代码 <code>position:relative; z-index: 99999;</code> ，将 <em>TOC</em> 的 <code>&lt;div&gt;</code> 置顶
-*   自动生成的锚点只对英文标题有效。
-    *   编辑 <code>/source/javascripts/jquery.tableofcontents.min.js</code>  ，搜索 <code>text.toLowerCase().replace</code> ，去掉 <code>.replace(/[^a-z0-9 -]/gi,'')</code> 这部分代码，这句代码过滤了中文字符。
-*   此方案的 <em>TOC</em> 只能生成 <code>h1 ~ h3</code> ，它的配置可以在 <code>/source/javascripts/jquery.tableofcontents.min.js</code> 中修改。但是为了方便，应用此默认配置，修改标题风格。</p>
+<p>参照[这边文章][TOC]搭建 <em>TOC</em> 解决方案。遇到几个问题：</p>
 
-<h1>修改</h1>
+<ul>
+<li>如果 <em>TOC</em> 的左面有 <code>blockquote</code> ， <em>TOC</em> 的 <code>link</code> 无法点击。
+
+<ul>
+<li>在 <code>/sass/custom/_screen.scss</code> 中加入代码 <code>position:relative; z-index: 99999;</code> ，将 <em>TOC</em> 的 <code>&lt;div&gt;</code> 置顶</li>
+</ul>
+</li>
+<li>自动生成的锚点只对英文标题有效。
+
+<ul>
+<li>编辑 <code>/source/javascripts/jquery.tableofcontents.min.js</code>  ，搜索 <code>text.toLowerCase().replace</code> ，去掉 <code>.replace(/[^a-z0-9 -]/gi,'')</code> 这部分代码，这句代码过滤了中文字符。</li>
+</ul>
+</li>
+<li>此方案的 <em>TOC</em> 只能生成 <code>h1 ~ h3</code> ，它的配置可以在 <code>/source/javascripts/jquery.tableofcontents.min.js</code> 中修改。但是为了方便，应用此默认配置，修改标题风格。</li>
+</ul>
+
+
+<h1>风格</h1>
 
 <h1>其他</h1>
 
