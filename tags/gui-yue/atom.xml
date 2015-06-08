@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: 规约 | Hedley]]></title>
   <link href="http://hedleyyan.github.io/tags/gui-yue/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2015-06-08T16:42:54+08:00</updated>
+  <updated>2015-06-08T16:45:49+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[dL]]></name>
@@ -113,7 +113,7 @@
 
 <p><blockquote><p>Everything you can do with a base class, you can also do with a derived class.</p><footer><strong>Liskov Substitution Principle</strong></footer></blockquote></p>
 
-<h2>Shadowing</h2>
+<h2><a name='shadowing'>Shadowing</a></h2>
 
 <p><blockquote><p>A variable, method, or type shadows all variables, methods, or types, respectively, with the same name in a textually enclosing scope.</p><footer><strong>JLS 6.3.1</strong></footer></blockquote></p>
 
