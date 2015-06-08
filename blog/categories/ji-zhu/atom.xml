@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 技术 | Hedley]]></title>
   <link href="http://hedleyyan.github.io/blog/categories/ji-zhu/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2015-06-08T16:34:49+08:00</updated>
+  <updated>2015-06-08T16:42:54+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[dL]]></name>
@@ -179,7 +179,7 @@
 
 <p><code>LinkedList&lt;E&gt;.Node&lt;E&gt;</code> 和 <code>LinkedList&lt;E&gt;.Node&lt;E&gt;</code> 类型不符？？？</p>
 
-<p>原因是前面的 <code>Node&lt;E&gt;</code> 与后面的 <code>Node&lt;E&gt;</code> 虽然看上去一模一样，但它们压根就不是一个类型。具体点说，因为这段代码有两个 <code>&lt;E&gt;</code> 类型声明 <em>(type parameter)</em>，第一个是 <code>LinkedList</code> 的 <code>&lt;E&gt;</code> ，第二个是 <code>LinkedList.Node</code> 的 <code>&lt;E&gt;</code> 。后面的 <em><a href="http://hedleyyan.github.io/blog/2015/05/16/a-glossary-of-name-reuse/#%E9%94%9A%E7%82%B9">Shadow</a></em> 了前面的。</p>
+<p>原因是前面的 <code>Node&lt;E&gt;</code> 与后面的 <code>Node&lt;E&gt;</code> 虽然看上去一模一样，但它们压根就不是一个类型。具体点说，因为这段代码有两个 <code>&lt;E&gt;</code> 类型声明 <em>(type parameter)</em>，第一个是 <code>LinkedList</code> 的 <code>&lt;E&gt;</code> ，第二个是 <code>LinkedList.Node</code> 的 <code>&lt;E&gt;</code> 。后面的 <em><a href="http://hedleyyan.github.io/blog/2015/05/16/a-glossary-of-name-reuse/#Shadowing">Shadow</a></em> 了前面的。</p>
 
 <p>如果这里把 <em>inner class</em> 的声明换一个 <em>type parameter</em> <code>Node&lt;T&gt;</code> ，可以看到更多一点的细节：</p>
 
@@ -275,7 +275,7 @@
 
 <p><blockquote><p>The instantiation of an inner class, requires an enclosing instance to be supplied to the constructor. Normally, it is supplied implicitly, but it can also be supplied explicitly with a superclass constructor invocation of the form expression.super(args).</p><footer><strong>JLS 8.8.7</strong></footer></blockquote></p>
 
-<p>原来 <em>inner class</em> 可以显示调用 <em>enclosing instance</em> ，编译器帮不了还得自己来。和<a href="%E6%89%BE%E9%94%9A%E7%82%B9">反射</a>很像嘛</p>
+<p>原来 <em>inner class</em> 可以显示调用 <em>enclosing instance</em> ，编译器帮不了还得自己来。和<a href="/#Puzzle80">反射</a>很像嘛</p>
 
 <pre><code class="java">class Inner2 extends Inner1 {
     // Plan A
