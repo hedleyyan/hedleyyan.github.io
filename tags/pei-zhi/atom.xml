@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: 配置 | Hedley]]></title>
   <link href="http://hedleyyan.github.io/tags/pei-zhi/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2015-06-08T18:33:53+08:00</updated>
+  <updated>2015-06-08T18:46:01+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[dL]]></name>
@@ -28,8 +28,8 @@
 <h1>搭建</h1>
 
 <ul>
-<li>参照 <em><a href="http://octopress.org/docs/setup/">octopress 官方搭建手册</a></em>[]，一步一步来。到 <code>gem install bundler</code> 时候卡壳，网络不通。</li>
-<li>修改 <em><a href="http://ruby.taobao.org/">RubyGems 镜像</a></em>[]，连接通了。但是一直报缺少依赖包的异常，按照提示手动一个个安装完依赖包。</li>
+<li>参照 <em><a href="http://octopress.org/docs/setup/">octopress 官方搭建手册</a></em>，一步一步来。到 <code>gem install bundler</code> 时候卡壳，网络不通。</li>
+<li>修改 <em><a href="http://ruby.taobao.org/">RubyGems 镜像</a></em>，连接通了。但是一直报缺少依赖包的异常，按照提示手动一个个安装完依赖包。</li>
 <li>安装完毕，修改 <code>_config.yml</code> 配置文件。</li>
 </ul>
 
@@ -262,9 +262,12 @@
 </ul>
 
 
+<p>效果如下
+<img src="/images/Snip20150525_38.png"></p>
+
 <h1><em>TOC (Table of Contents)</em></h1>
 
-<p>参照[这边文章][TOC]搭建 <em>TOC</em> 解决方案。遇到几个问题</p>
+<p>参照<a href="http://brizzled.clapper.org/blog/2012/02/04/generating-a-table-of-contents-in-octopress/">这边文章</a>搭建 <em>TOC</em> 解决方案。遇到几个问题</p>
 
 <ul>
 <li>如果 <em>TOC</em> 的左面有 <code>blockquote</code> ， <em>TOC</em> 的 <code>link</code> 无法点击。
@@ -285,6 +288,8 @@
 
 <h1>风格</h1>
 
+<p>生成网页的风格个性化都在 <code>/sass/custom</code> 中进行定义，参考了 [<a href="https://github.com/bmc/brizzled">https://github.com/bmc/brizzled</a>][] ，主要对标题的字体大小进行了调整，其他一些微调待定。</p>
+
 <h1>其他</h1>
 
 <ul>
@@ -292,9 +297,6 @@
 <li>文章分类侧边栏、导航栏设置，参考<a href="http://www.jianshu.com/p/0ac2ac1a8e45">这篇文章</a>。</li>
 </ul>
 
-
-<p>效果如下
-<img src="/images/Snip20150525_38.png"></p>
 ]]></content>
   </entry>
   
