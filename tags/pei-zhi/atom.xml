@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: 配置 | Hedley]]></title>
   <link href="http://hedleyyan.github.io/tags/pei-zhi/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2015-06-08T18:46:01+08:00</updated>
+  <updated>2015-06-08T18:49:46+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[dL]]></name>
@@ -288,7 +288,7 @@
 
 <h1>风格</h1>
 
-<p>生成网页的风格个性化都在 <code>/sass/custom</code> 中进行定义，参考了 [<a href="https://github.com/bmc/brizzled">https://github.com/bmc/brizzled</a>][] ，主要对标题的字体大小进行了调整，其他一些微调待定。</p>
+<p>生成网页的风格个性化都在 <code>/sass/custom</code> 中进行定义，参考了 <a href="https://github.com/bmc/brizzled">https://github.com/bmc/brizzled</a> ，主要对标题的字体大小进行了调整，其他一些微调待定。</p>
 
 <h1>其他</h1>
 

@@ -4,7 +4,7 @@
   <title><![CDATA[Hedley]]></title>
   <link href="http://hedleyyan.github.io/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2015-06-08T18:46:01+08:00</updated>
+  <updated>2015-06-08T18:49:46+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[dL]]></name>
@@ -428,7 +428,7 @@
 <blockquote><p>The instantiation of an inner class, requires an enclosing instance to be supplied to the constructor. Normally, it is supplied implicitly, but it can also be supplied explicitly with a superclass constructor invocation of the form expression.super(args).</p><footer><strong>JLS 8.8.7</strong></footer></blockquote>
 
 
-<p>原来 <em>inner class</em> 可以显示调用 <em>enclosing instance</em> ，编译器帮不了还得自己来。和<a href="#Puzzle80">反射</a>很像嘛</p>
+<p>原来 <em>inner class</em> 可以显示调用 <em>enclosing instance</em> ，编译器帮不了还得自己来。和<a href="#puzzle-80">反射</a>很像嘛</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -858,7 +858,7 @@
 
 <h1>风格</h1>
 
-<p>生成网页的风格个性化都在 <code>/sass/custom</code> 中进行定义，参考了 [<a href="https://github.com/bmc/brizzled">https://github.com/bmc/brizzled</a>][] ，主要对标题的字体大小进行了调整，其他一些微调待定。</p>
+<p>生成网页的风格个性化都在 <code>/sass/custom</code> 中进行定义，参考了 <a href="https://github.com/bmc/brizzled">https://github.com/bmc/brizzled</a> ，主要对标题的字体大小进行了调整，其他一些微调待定。</p>
 
 <h1>其他</h1>
 
@@ -882,14 +882,14 @@
     <link href="http://hedleyyan.github.io/blog/2015/05/16/a-glossary-of-name-reuse/"/>
     <updated>2015-05-16T17:07:57+08:00</updated>
     <id>http://hedleyyan.github.io/blog/2015/05/16/a-glossary-of-name-reuse</id>
-    <content type="html"><![CDATA[<h2>关于</h2>
+    <content type="html"><![CDATA[<h1>关于</h1>
 
 <p>此文大概就是《Java Puzzlers》中 <em>Classier Pazzlers</em> 一节的简单翻译和整理，粗略总结了 <em>Java</em> 有关<strong>命名重复</strong>的场景和代码示例。</p>
 
 <!--more-->
 
 
-<h2>Overriding</h2>
+<h1>Overriding</h1>
 
 <blockquote><p>An instance method overrides all accessible instance methods with the same signature in superclasses.</p><footer><strong>JLS 8.4.8.1</strong></footer></blockquote>
 
@@ -923,7 +923,7 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<h2>Overloading</h2>
+<h1>Overloading</h1>
 
 <blockquote><p>Methods in a class overload one another if they have the same name and different signatures.</p><footer><strong>JLS 8.4.9</strong></footer></blockquote>
 
@@ -953,7 +953,7 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<h2>Hiding</h2>
+<h1>Hiding</h1>
 
 <blockquote><p>A field, static method, or member type hides all accessible fields, static methods, or member types, respectively, with the same name (or, for methods, signature) in supertypes. Hiding a member prevents it from being inherited.</p><footer><strong>JLS 8.3-8.5</strong></footer></blockquote>
 
@@ -1011,7 +1011,7 @@
 <blockquote><p>Everything you can do with a base class, you can also do with a derived class.</p><footer><strong>Liskov Substitution Principle</strong></footer></blockquote>
 
 
-<h2><a name='shadowing'>Shadowing</a></h2>
+<h1><a name='shadowing'>Shadowing</a></h1>
 
 <blockquote><p>A variable, method, or type shadows all variables, methods, or types, respectively, with the same name in a textually enclosing scope.</p><footer><strong>JLS 6.3.1</strong></footer></blockquote>
 
@@ -1085,7 +1085,7 @@
 
 <p>产生 <em>Shadowing</em> 场景的 <em>Name Reuse</em> ，依最近的作用域来判定是哪个元素有效。</p>
 
-<h2>Obscuring</h2>
+<h1>Obscuring</h1>
 
 <p><em>Obscuring</em> 是指在作用域中，一个变量的名字和一个类相同，直接看示例代码。</p>
 
@@ -1111,9 +1111,9 @@
 <blockquote><p>If a type or a package is obscured, you cannot refer to it by its simple name except in a context where the syntax allows only a name from its namespace.</p></blockquote>
 
 
-<h2>常见陷阱</h2>
+<h1>常见陷阱</h1>
 
-<h2>总结</h2>
+<h1>总结</h1>
 
 <ol>
 <li>除了 <em>Override</em> ，尽量避免 <em>Name Reuse</em> 。</li>

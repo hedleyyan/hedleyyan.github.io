@@ -106,14 +106,14 @@
   </header>
 
 
-<div class="entry-content"><h2>关于</h2>
+<div class="entry-content"><h1>关于</h1>
 
 <p>此文大概就是《Java Puzzlers》中 <em>Classier Pazzlers</em> 一节的简单翻译和整理，粗略总结了 <em>Java</em> 有关<strong>命名重复</strong>的场景和代码示例。</p>
 
 <!--more-->
 
 
-<h2>Overriding</h2>
+<h1>Overriding</h1>
 
 <blockquote><p>An instance method overrides all accessible instance methods with the same signature in superclasses.</p><footer><strong>JLS 8.4.8.1</strong></footer></blockquote>
 
@@ -147,7 +147,7 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<h2>Overloading</h2>
+<h1>Overloading</h1>
 
 <blockquote><p>Methods in a class overload one another if they have the same name and different signatures.</p><footer><strong>JLS 8.4.9</strong></footer></blockquote>
 
@@ -177,7 +177,7 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<h2>Hiding</h2>
+<h1>Hiding</h1>
 
 <blockquote><p>A field, static method, or member type hides all accessible fields, static methods, or member types, respectively, with the same name (or, for methods, signature) in supertypes. Hiding a member prevents it from being inherited.</p><footer><strong>JLS 8.3-8.5</strong></footer></blockquote>
 
@@ -235,7 +235,7 @@
 <blockquote><p>Everything you can do with a base class, you can also do with a derived class.</p><footer><strong>Liskov Substitution Principle</strong></footer></blockquote>
 
 
-<h2><a name='shadowing'>Shadowing</a></h2>
+<h1><a name='shadowing'>Shadowing</a></h1>
 
 <blockquote><p>A variable, method, or type shadows all variables, methods, or types, respectively, with the same name in a textually enclosing scope.</p><footer><strong>JLS 6.3.1</strong></footer></blockquote>
 
@@ -309,7 +309,7 @@
 
 <p>产生 <em>Shadowing</em> 场景的 <em>Name Reuse</em> ，依最近的作用域来判定是哪个元素有效。</p>
 
-<h2>Obscuring</h2>
+<h1>Obscuring</h1>
 
 <p><em>Obscuring</em> 是指在作用域中，一个变量的名字和一个类相同，直接看示例代码。</p>
 
@@ -335,9 +335,9 @@
 <blockquote><p>If a type or a package is obscured, you cannot refer to it by its simple name except in a context where the syntax allows only a name from its namespace.</p></blockquote>
 
 
-<h2>常见陷阱</h2>
+<h1>常见陷阱</h1>
 
-<h2>总结</h2>
+<h1>总结</h1>
 
 <ol>
 <li>除了 <em>Override</em> ，尽量避免 <em>Name Reuse</em> 。</li>
