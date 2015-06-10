@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 技术 | Hedley]]></title>
   <link href="http://hedleyyan.github.io/blog/categories/ji-zhu/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2015-06-10T09:32:18+08:00</updated>
+  <updated>2015-06-10T09:36:34+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[dL]]></name>
@@ -398,20 +398,6 @@ class Inner2 extends Outer.Inner1 {
 
 <p>参照<a href="http://droidyue.com/blog/2014/06/22/fix-octopress-slow-loading-speed-issue-in-china-mainland/">这篇文章</a>替换若干 <em>google</em> 源。</p>
 
-<h1>原文链接</h1>
-
-<p>参照<a href="http://my.oschina.net/pangyi/blog/379620">这篇文章</a>，在每篇文章下面自动生成作者信息，原文信息。
-*   注意：每篇文章最后要有留白行，否者生成的原文信息会有问题。</p>
-
-<h1>云标签</h1>
-
-<ul>
-<li>参照 <a href="http://codemacro.com/2012/07/18/add-tag-to-octopress/">Tag Cloud 搭建</a>，<em>clone</em> 几个文件到本地目录。</li>
-<li>使用方法：在文件头添加标识 <code>tags: xxx</code> ，但此时无法添加多个标签。</li>
-<li><a href="http://my.oschina.net/pangyi/blog/379606">这篇文章</a>给出了解决方案，修改 <code>tags.html</code> 文件去掉 <code>limit</code> 属性，多标签写法 <code>tags: [xx1, xx2]</code> 。</li>
-</ul>
-
-
 <h1><em>ST</em> 书写插件</h1>
 
 <ul>
@@ -447,6 +433,10 @@ class Inner2 extends Outer.Inner1 {
 </ul>
 
 
+<h1>风格</h1>
+
+<p>生成网页的风格个性化都在 <code>sass/custom</code> 中进行定义，参考了 <a href="https://github.com/bmc/brizzled">https://github.com/bmc/brizzled</a> ，主要对标题的字体大小进行了调整，其他一些微调待定。标题的字体颜色主要在 <code>source/_includes/custom/header.html</code> ， <code>sass/custom/_fonts.scss</code> ， <code>sass/custom/_styles.scss</code> 几个地方相应修改。其他样式对应位置<a href="http://www.360doc.com/content/12/0215/22/1016783_186940749.shtml">参考这里</a>。</p>
+
 <h1>其他</h1>
 
 <ul>
@@ -455,9 +445,23 @@ class Inner2 extends Outer.Inner1 {
 </ul>
 
 
-<h1>风格</h1>
+<h2>原文链接</h2>
 
-<p>生成网页的风格个性化都在 <code>sass/custom</code> 中进行定义，参考了 <a href="https://github.com/bmc/brizzled">https://github.com/bmc/brizzled</a> ，主要对标题的字体大小进行了调整，其他一些微调待定。标题的字体颜色主要在 <code>source/_includes/custom/header.html</code> ， <code>sass/custom/_fonts.scss</code> ， <code>sass/custom/_styles.scss</code> 几个地方相应修改。其他样式对应位置<a href="http://www.360doc.com/content/12/0215/22/1016783_186940749.shtml">参考这里</a>。</p>
+<p>参照<a href="http://my.oschina.net/pangyi/blog/379620">这篇文章</a>，在每篇文章下面自动生成作者信息，原文信息。
+*   注意：每篇文章最后要有留白行，否者生成的原文信息会有问题。</p>
+
+<h2>云标签</h2>
+
+<ul>
+<li>参照 <a href="http://codemacro.com/2012/07/18/add-tag-to-octopress/">Tag Cloud 搭建</a>，<em>clone</em> 几个文件到本地目录。</li>
+<li>使用方法：在文件头添加标识 <code>tags: xxx</code> ，但此时无法添加多个标签。</li>
+<li><a href="http://my.oschina.net/pangyi/blog/379606">这篇文章</a>给出了解决方案，修改 <code>tags.html</code> 文件去掉 <code>limit</code> 属性，多标签写法 <code>tags: [xx1, xx2]</code> 。</li>
+</ul>
+
+
+<h2>回到顶部</h2>
+
+<p>参考<a href="http://www.tuicool.com/articles/qu6ZfiV">Octopress添加回到顶部功能</a>。</p>
 ]]></content>
   </entry>
   
