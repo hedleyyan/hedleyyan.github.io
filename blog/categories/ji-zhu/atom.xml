@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 技术 | Hedley]]></title>
   <link href="http://hedleyyan.github.io/blog/categories/ji-zhu/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2015-06-20T17:01:20+08:00</updated>
+  <updated>2015-06-20T17:03:29+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[dL]]></name>
@@ -18,47 +18,41 @@
     <link href="http://hedleyyan.github.io/blog/2015/06/20/fu-dian-yun-suan/"/>
     <updated>2015-06-20T09:44:10+08:00</updated>
     <id>http://hedleyyan.github.io/blog/2015/06/20/fu-dian-yun-suan</id>
-    <content type="html"><![CDATA[<h1>关于</h1>
+    <content type="html"><![CDATA[<h1 id="section">关于</h1>
 
 <p>此文深入剖析困扰哥已久的浮点数表示和运算。</p>
 
 <!--more-->
 
-
-<h1>定义</h1>
-
+<h1 id="section-1">定义</h1>
 <p>Java 浮点数定义采纳 <a href="http://www.eecs.berkeley.edu/~wkahan/ieee754status/IEEE754.PDF">IEEE Standard 754</a> 标准：单精度 <code>float</code> 32位，双精度 <code>double</code> 64位。本文主要以 <code>float</code> 为例。</p>
 
 <p><img src="/images/float.png"></p>
 
 <ul>
-<li>最高位符号位
-
-<ul>
-<li>0 正 1 负</li>
-</ul>
-</li>
-<li>接 8 位指数位，并有 127 的偏移量
-
-<ul>
-<li>所以指数范围为：$0 - 127$ ~ $(2<sup>8</sup> - 1) - 127$</li>
-<li>全 0 和全 1 保留用特殊表示，所以指数域的修正范围为 -126 ~ 127</li>
-</ul>
-</li>
-<li>剩下 23 位为尾数域
-
-<ul>
-<li>IEEE 要求浮点数必须是规范的，即小数点的左侧必须为1，这样腾出了一个二进制位来保存更多的尾数，即我们用 23 位尾数域表达了 24 位的尾数</li>
-<li>所以尾数域上限为 $2<sup>24</sup> - 1$，即 0 ~ 16777215</li>
-<li>$10<sup>7</sup>$ &lt; 16777215 &lt; $10<sup>8</sup>$，所以 <code>float</code> 可以精确到小数点后 7 位</li>
-</ul>
-</li>
-<li>特殊表示
-
-<ul>
-<li></li>
-</ul>
-</li>
+  <li>最高位符号位
+    <ul>
+      <li>0 正 1 负</li>
+    </ul>
+  </li>
+  <li>接 8 位指数位，并有 127 的偏移量
+    <ul>
+      <li>所以指数范围为：$0 - 127$ ~ $(2^8 - 1) - 127$</li>
+      <li>全 0 和全 1 保留用特殊表示，所以指数域的修正范围为 -126 ~ 127</li>
+    </ul>
+  </li>
+  <li>剩下 23 位为尾数域
+    <ul>
+      <li>IEEE 要求浮点数必须是规范的，即小数点的左侧必须为1，这样腾出了一个二进制位来保存更多的尾数，即我们用 23 位尾数域表达了 24 位的尾数</li>
+      <li>所以尾数域上限为 $2^24 - 1$，即 0 ~ 16777215</li>
+      <li>$10^7$ &lt; 16777215 &lt; $10^8$，所以 <code>float</code> 可以精确到小数点后 7 位</li>
+    </ul>
+  </li>
+  <li>特殊表示
+    <ul>
+      <li></li>
+    </ul>
+  </li>
 </ul>
 
 ]]></content>
@@ -69,7 +63,7 @@
     <link href="http://hedleyyan.github.io/blog/2015/06/05/huang-miu-tong-ku-de-nei-bu-lei/"/>
     <updated>2015-06-05T11:25:38+08:00</updated>
     <id>http://hedleyyan.github.io/blog/2015/06/05/huang-miu-tong-ku-de-nei-bu-lei</id>
-    <content type="html"><![CDATA[<h1><a name="about">关于</a></h1>
+    <content type="html"><![CDATA[<h1 id="a-nameabouta"><a name="about">关于</a></h1>
 
 <p>此文简单总结嵌套类 <em>(Nested Class)</em> 的使用场景与一般建议：能使用<strong>静态嵌套类</strong> <em>(Static Nested Class)</em> 的时候就不用<strong>内部类</strong> <em>(Inner Class)</em>。</p>
 
@@ -77,88 +71,83 @@
 
 <!--more-->
 
+<h1 id="section">分类定义</h1>
 
-<h1>分类定义</h1>
-
-<h2>按位置</h2>
-
-<ul>
-<li>成员嵌套类 <em>(Member Nested Class)</em> ：作为外部类 <em>(Enclosing Class)</em> <strong>成员</strong>定义，成员嵌套类有 <em>Enclosing Class</em> 的属性。
+<h2 id="section-1">按位置</h2>
 
 <ul>
-<li>可以使用 <code>public</code>、 <code>private</code> 等访问控制符，也可以用 <code>static</code>、 <code>final</code> 关键字</li>
+  <li>成员嵌套类 <em>(Member Nested Class)</em> ：作为外部类 <em>(Enclosing Class)</em> <strong>成员</strong>定义，成员嵌套类有 <em>Enclosing Class</em> 的属性。
+    <ul>
+      <li>可以使用 <code>public</code>、 <code>private</code> 等访问控制符，也可以用 <code>static</code>、 <code>final</code> 关键字</li>
+    </ul>
+  </li>
+  <li>局部嵌套类 <em>(Local Nested Class)</em> ：局部嵌套类定义在 <em>Enclosing Class</em> 的方法里面，局部嵌套类有 <em>Enclosing Class</em> 的属性和外部方法 <em>(Enclosing Method)</em> 的属性。
+    <ul>
+      <li>可以使用 <code>final</code> 关键字，不能使用访问控制符</li>
+      <li>局部类不能在外部进行创建，只能在方法调用的时候进行创建</li>
+      <li><em>Enclosing Method</em> 可以是静态方法，可以是实例方法，也可以是构造器方法或者静态初始化语句块</li>
+      <li>在 <code>static</code> 上下文定义的局部类，没有指向父类实例变量的引用</li>
+    </ul>
+  </li>
+  <li>匿名嵌套类 <em>(Anonymous Nested Class)</em> ：匿名嵌套类没有显示的定义一个类，直接通过 <code>new</code> 的方法创建类的实例。
+    <ul>
+      <li>不使用任何关键字和访问控制符</li>
+    </ul>
+  </li>
 </ul>
-</li>
-<li>局部嵌套类 <em>(Local Nested Class)</em> ：局部嵌套类定义在 <em>Enclosing Class</em> 的方法里面，局部嵌套类有 <em>Enclosing Class</em> 的属性和外部方法 <em>(Enclosing Method)</em> 的属性。
 
-<ul>
-<li>可以使用 <code>final</code> 关键字，不能使用访问控制符</li>
-<li>局部类不能在外部进行创建，只能在方法调用的时候进行创建</li>
-<li><em>Enclosing Method</em> 可以是静态方法，可以是实例方法，也可以是构造器方法或者静态初始化语句块</li>
-<li>在 <code>static</code> 上下文定义的局部类，没有指向父类实例变量的引用</li>
-</ul>
-</li>
-<li>匿名嵌套类 <em>(Anonymous Nested Class)</em> ：匿名嵌套类没有显示的定义一个类，直接通过 <code>new</code> 的方法创建类的实例。
-
-<ul>
-<li>不使用任何关键字和访问控制符</li>
-</ul>
-</li>
-</ul>
-
-
-<h2>按功能</h2>
+<h2 id="section-2">按功能</h2>
 
 <p>大多数情况下，嵌套类都按功能分为：</p>
 
 <ul>
-<li>静态嵌套类 <em>(Static Nested Class)</em> ：<code>static</code> 修饰的<strong>成员嵌套类</strong>。</li>
-<li>内部类 <em>(Inner Class)</em> ：静态嵌套类之外所有的嵌套类的总称。
-
-<ul>
-<li>内部类不能定义为 <code>static</code>，不能有 <code>static</code> 方法和 <code>static</code> 初始化语句块</li>
-<li>可以有 <code>static final</code> 常量属性，但不推荐这么用（放外部类就 <em>OK</em> ，为什么用在这？）</li>
+  <li>静态嵌套类 <em>(Static Nested Class)</em> ：<code>static</code> 修饰的<strong>成员嵌套类</strong>。</li>
+  <li>内部类 <em>(Inner Class)</em> ：静态嵌套类之外所有的嵌套类的总称。
+    <ul>
+      <li>内部类不能定义为 <code>static</code>，不能有 <code>static</code> 方法和 <code>static</code> 初始化语句块</li>
+      <li>可以有 <code>static final</code> 常量属性，但不推荐这么用（放外部类就 <em>OK</em> ，为什么用在这？）</li>
+    </ul>
+  </li>
 </ul>
-</li>
-</ul>
-
 
 <p>所以，局部嵌套类和匿名嵌套类肯定是内部类，成员嵌套类则分为静态嵌套类和内部类。</p>
 
 <p><blockquote><p>An inner class is a nested class that is not explicitly or implicitly declared static. Inner classes may not declare static initializers or member interfaces.</p></blockquote></p>
 
-<pre><code class="java">// 嵌套类实例代码，略
-</code></pre>
+<p><code>java
+// 嵌套类实例代码，略
+</code></p>
 
-<h1>痛苦场景</h1>
+<h1 id="section-3">痛苦场景</h1>
 
-<h2><em>Puzzle 80</em>：反射</h2>
+<h2 id="puzzle-80"><em>Puzzle 80</em>：反射</h2>
 
-<pre><code class="java">public class Outer {
+<p>&#8220;` java
+public class Outer {
     public static void main(String[] args) throws Exception {
         new Outer().greetWorld();
-    }
+    }</p>
 
-    private void greetWorld() throws Exception {
-        System.out.println(Inner.class.newInstance());
-    }
-
-    public class Inner {
-        public String toString() {
-            return "Hello world";
-        }
-    }
+<pre><code>private void greetWorld() throws Exception {
+    System.out.println(Inner.class.newInstance());
 }
+
+public class Inner {
+    public String toString() {
+        return "Hello world";
+    }
+} } ```
 </code></pre>
 
 <p>代码看上去就是一个花样 <em>Hello world</em>，但是当你执行时，<em>Bazinga</em>！</p>
 
-<pre><code>Exception in thread "main" java.lang.InstantiationException: test.Outer$Inner
-    at java.lang.Class.newInstance0(Class.java:342)
-    at java.lang.Class.newInstance(Class.java:310)
-    at test.Outer.greetWorld(Outer.java:10)
-    at test.Outer.main(Outer.java:6)
-</code></pre>
+<p><code>
+Exception in thread "main" java.lang.InstantiationException: test.Outer$Inner
+	at java.lang.Class.newInstance0(Class.java:342)
+	at java.lang.Class.newInstance(Class.java:310)
+	at test.Outer.greetWorld(Outer.java:10)
+	at test.Outer.main(Outer.java:6)
+</code></p>
 
 <p><em>OK</em> ，看来 <em>inner class</em> 持有 <em>enclosing class</em> 的一个实例变量 <em>(immediately enclosing instance)</em> 是真的！编译器没那么牛逼每次都可以悄悄替你做了所有的事，至少在使用反射初始化时， <em>enclosing class</em> 的 <em>instance</em> 不会传进来。</p>
 
@@ -168,64 +157,67 @@
 
 <p>用含参的构造方法测试一下：</p>
 
-<pre><code class="java">private void greetWorld() throws Exception {
+<p><code>java
+private void greetWorld() throws Exception {
        Constructor c = Inner.class.getConstructor(Outer.class);
        System.out.println(c.newInstance(Outer.this));
 }
-</code></pre>
+</code></p>
 
 <p><em>bingo</em> ！观察一下，这个场景中为什么要使用 <em>inner class</em> 呢，明明 <em>static nested class</em> 就可以嘛！ <em>so</em> 更帅的解决办法是：</p>
 
-<pre><code class="java">public static class Inner { ... }
-</code></pre>
+<p><code>java
+public static class Inner { ... }
+</code></p>
 
 <p><strong>建议：能用静态嵌套类解决，就不用内部类。</strong></p>
 
-<h2><em>Puzzle 89</em>：泛型</h2>
+<h2 id="puzzle-89"><em>Puzzle 89</em>：泛型</h2>
 
-<pre><code class="java">public class LinkedList&lt;E&gt; {
-    private Node&lt;E&gt; head = null;
+<p>&#8220;` java
+public class LinkedList<e> {
+    private Node<e> head = null;</e></e></p>
 
-    private class Node&lt;E&gt; {
-        E value;
+<pre><code>private class Node&lt;E&gt; {
+    E value;
 
-        Node&lt;E&gt; next;
+    Node&lt;E&gt; next;
 
-        // Node constructor links the node as a new head
-        Node(E value) {
-            this.value = value;
-            this.next = head;
-            head = this;
-        }
-    }
-
-    public void add(E e) {
-        new Node&lt;E&gt;(e);     // Link node as new head
-    }
-
-    public void dump() {
-        for (Node&lt;E&gt; n = head; n != null; n = n.next)
-            System.out.print(n.value + " ");
-    }
-
-    public static void main(String[] args) {
-        LinkedList&lt;String&gt; list = new LinkedList&lt;String&gt;();
-        list.add("world");
-        list.add("Hello");
-        list.dump();
+    // Node constructor links the node as a new head
+    Node(E value) {
+        this.value = value;
+        this.next = head;
+        head = this;
     }
 }
+
+public void add(E e) {
+    new Node&lt;E&gt;(e);		// Link node as new head
+}
+
+public void dump() {
+    for (Node&lt;E&gt; n = head; n != null; n = n.next)
+        System.out.print(n.value + " ");
+}
+
+public static void main(String[] args) {
+    LinkedList&lt;String&gt; list = new LinkedList&lt;String&gt;();
+    list.add("world");
+    list.add("Hello");
+    list.dump();
+} } ```
 </code></pre>
 
 <p>代码看上去就是另一个花样 <em>Hello world</em>，但是当你执行时，<em>Double Bazinga</em> ！</p>
 
-<pre><code>Exception in thread "main" java.lang.Error: Unresolved compilation problems: 
-    Type mismatch: cannot convert from LinkedList&lt;E&gt;.Node&lt;E&gt; to LinkedList&lt;E&gt;.Node&lt;E&gt;
-    Type mismatch: cannot convert from LinkedList&lt;E&gt;.Node&lt;E&gt; to LinkedList&lt;E&gt;.Node&lt;E&gt;
+<p>&#8220;`
+Exception in thread “main” java.lang.Error: Unresolved compilation problems: 
+	Type mismatch: cannot convert from LinkedList<e>.Node<e> to LinkedList<e>.Node<e>
+	Type mismatch: cannot convert from LinkedList<e>.Node<e> to LinkedList<e>.Node<e></e></e></e></e></e></e></e></e></p>
 
-    at test.LinkedList$Node.&lt;init&gt;(LinkedList.java:15)
-    at test.LinkedList.add(LinkedList.java:21)
-    at test.LinkedList.main(LinkedList.java:32)
+<pre><code>at test.LinkedList$Node.&lt;init&gt;(LinkedList.java:15)
+at test.LinkedList.add(LinkedList.java:21)
+at test.LinkedList.main(LinkedList.java:32) ```
 </code></pre>
 
 <p><code>LinkedList&lt;E&gt;.Node&lt;E&gt;</code> 和 <code>LinkedList&lt;E&gt;.Node&lt;E&gt;</code> 类型不符？？？</p>
@@ -234,11 +226,12 @@
 
 <p>如果这里把 <em>inner class</em> 的声明换一个 <em>type parameter</em> <code>Node&lt;T&gt;</code> ，可以看到更多一点的细节：</p>
 
-<pre><code>...
-    Type mismatch: cannot convert from LinkedList&lt;E&gt;.Node&lt;E&gt; to LinkedList&lt;E&gt;.Node&lt;T&gt;
-    Type mismatch: cannot convert from LinkedList&lt;E&gt;.Node&lt;T&gt; to LinkedList&lt;E&gt;.Node&lt;E&gt;
+<p><code>
 ...
-</code></pre>
+	Type mismatch: cannot convert from LinkedList&lt;E&gt;.Node&lt;E&gt; to LinkedList&lt;E&gt;.Node&lt;T&gt;
+	Type mismatch: cannot convert from LinkedList&lt;E&gt;.Node&lt;T&gt; to LinkedList&lt;E&gt;.Node&lt;E&gt;
+...
+</code></p>
 
 <p><blockquote><p>An inner class of a generic class has access to the type parameters of its outer class.</p></blockquote></p>
 
@@ -246,31 +239,31 @@
 
 <p>这段代码的初衷本来就是 <code>Node</code> 持有和 <code>LinkedList</code> 一样的  <em>type parameter</em> ，所以我们可以这样修正：</p>
 
-<pre><code class="java">public class LinkedList&lt;E&gt; {
-    private Node head = null;
+<p>&#8220;`java
+public class LinkedList<e> {
+    private Node head = null;</e></p>
 
-    private class Node {
-        E value;
+<pre><code>private class Node {
+    E value;
 
-        Node next;
+    Node next;
 
-        // Node constructor links the node as a new head
-        Node(E value) {
-            this.value = value;
-            this.next = head;
-            head = this;
-        }
-    }
-
-    public void add(E e) {
-        new Node(e);        // Link node as new head
-    }
-
-    public void dump() {
-        for (Node n = head; n != null; n = n.next)
-            System.out.print(n.value + " ");
+    // Node constructor links the node as a new head
+    Node(E value) {
+        this.value = value;
+        this.next = head;
+        head = this;
     }
 }
+
+public void add(E e) {
+    new Node(e);		// Link node as new head
+}
+
+public void dump() {
+    for (Node n = head; n != null; n = n.next)
+        System.out.print(n.value + " ");
+} } ```
 </code></pre>
 
 <p>但是这不是一个漂亮的修正。它的功能完全可以通过 <em>static nested class</em> 实现；并且 <em>inner class</em> 的构造方法里修改了 <em>enclosing class</em> 的属性 <code>head</code> ，<strong>这不是好的实践</strong>。</p>
@@ -279,120 +272,125 @@
 
 <p>更帅的解决方法当然是用 <em>static nested class</em> 实现 <code>Node</code> ，并且把对 <em>enclosing class</em> 的属性修改抽离出来。</p>
 
-<pre><code class="java">class LinkedList&lt;E&gt; {
-    private Node&lt;E&gt; head = null;
+<p>&#8220;`java
+class LinkedList<e> {
+    private Node<e> head = null;</e></e></p>
 
-    private static class Node&lt;T&gt; {
-        T value;
+<pre><code>private static class Node&lt;T&gt; {
+    T value;
 
-        Node&lt;T&gt; next;
+    Node&lt;T&gt; next;
 
-        Node(T value, Node&lt;T&gt; next) {
-            this.value = value;
-            this.next = next;
-        }
-    }
-
-    public void add(E e) {
-        head = new Node&lt;E&gt;(e, head);
-    }
-
-    public void dump() {
-        for (Node&lt;E&gt; n = head; n != null; n = n.next)
-            System.out.print(n.value + " ");
+    Node(T value, Node&lt;T&gt; next) {
+        this.value = value;
+        this.next = next;
     }
 }
+
+public void add(E e) {
+    head = new Node&lt;E&gt;(e, head);
+}
+
+public void dump() {
+    for (Node&lt;E&gt; n = head; n != null; n = n.next)
+        System.out.print(n.value + " ");
+} } ```
 </code></pre>
 
 <p>这样 <code>Node&lt;T&gt;</code> 完全与他的 <code>LinkedList&lt;E&gt;</code> 是解耦合的，想象一下你不止可以声明一个 <code>Node&lt;E&gt;</code> ，你完全可以声明 <code>Node&lt;Integer&gt;</code> 、 <code>Node&lt;String&gt;</code> ，是不是爽多了。</p>
 
-<p><strong>建议1：类 A 的成员变量，只在 A 的成员方法里改。</strong> <br>
+<p><strong>建议1：类 A 的成员变量，只在 A 的成员方法里改。</strong> <br />
 <strong>建议2：能用静态嵌套类解决，就不用内部类！！</strong></p>
 
-<h2><em>Puzzle 90</em>：嵌套继承</h2>
+<h2 id="puzzle-90"><em>Puzzle 90</em>：嵌套继承</h2>
 
-<pre><code class="java">public class Outer {
+<p><code>java
+public class Outer {
        class Inner1 extends Outer {}
        class Inner2 extends Inner1 {}
 }
-</code></pre>
+</code></p>
 
 <p>为什么这么简单的代码就是不给编译过呢？搞咩？不过这次的错误提示好像有点帮助。。</p>
 
-<pre><code>    No enclosing instance of type Outer is available due to some intermediate constructor invocation.
-    at test.Outer$Inner2.&lt;init&gt;(Outer.java:8)
-    ...
-</code></pre>
+<p><code>
+	No enclosing instance of type Outer is available due to some intermediate constructor invocation.
+	at test.Outer$Inner2.&lt;init&gt;(Outer.java:8)
+	...
+</code></p>
 
 <p><blockquote><p>The instantiation of an inner class, requires an enclosing instance to be supplied to the constructor. Normally, it is supplied implicitly, but it can also be supplied explicitly with a superclass constructor invocation of the form expression.super(args).</p><footer><strong>JLS 8.8.7</strong></footer></blockquote></p>
 
 <p>原来 <em>inner class</em> 可以显示调用 <em>enclosing instance</em> ，编译器帮不了还得自己来。和<a href="#puzzle-80">反射</a>很像嘛</p>
 
-<pre><code class="java">class Inner2 extends Inner1 {
-    // Plan A
+<p><code>java
+class Inner2 extends Inner1 {
+	// Plan A
     Inner2(Outer outer) {
         outer.super();
     }
 }
-</code></pre>
+</code></p>
 
 <p>也可以</p>
 
-<pre><code class="java">class Inner2 extends Inner1 {
-    // Plan B
+<p><code>java
+class Inner2 extends Inner1 {
+	// Plan B
     Inner2() {
         Outer.this.super();
     }
 }
-</code></pre>
+</code></p>
 
 <p><em>《Thinking in Java》</em> 推荐 <em>Plan A</em> 的写法，它更通用一些。如果 <code>Inner2</code> 不是 <code>Outer</code> 的 <em>inner class</em> ，它只能用 <em>Plan A</em> 的写法来继承 <code>Inner1</code>， 无论是否 <code>Inner1 extends Outer</code> 。</p>
 
-<pre><code class="java">public class Outer {
+<p>&#8220;`java
+public class Outer {
     class Inner1 {};
-}
+}</p>
 
-class Inner2 extends Outer.Inner1 {
-    // Outer.this doesn't work here
+<p>class Inner2 extends Outer.Inner1 {
+	// Outer.this doesn’t work here
     public Inner2(Outer outer) {
         outer.super();
     }
 }
-</code></pre>
+&#8220;`</p>
 
 <p><em>OK</em> ，是不是有点晕？晕就对了。无论何时，当你要写一个 <em>inner class</em> 的时候，问问自己，真的不可以用 <em>static nested class</em> 来代替吗？真的有必要吗？ <em>inner class</em> 还要继承 <em>enclosing class</em> ？真的真的有必要吗？</p>
 
-<p><strong>建议1：尽量避免继承内部类。</strong> <br>
+<p><strong>建议1：尽量避免继承内部类。</strong> <br />
 <strong>建议2：能用静态嵌套类解决，就不用内部类！！！！</strong></p>
 
-<h2><em>Puzzle 92</em>：另类匿名类</h2>
+<h2 id="puzzle-92"><em>Puzzle 92</em>：另类匿名类</h2>
 
-<pre><code class="java">public class Twisted {
-    private final String name;
+<p>&#8220;`java
+public class Twisted {
+    private final String name;</p>
 
-    Twisted(String name) {
-        this.name = name;
-    }
-
-    private String name() {
-        return name;
-    }
-
-    private void reproduce() {
-        new Twisted("reproduce") {
-            void printName() {
-                System.out.println(name());
-            }
-        }.printName();
-    }
-
-    public static void main(String[] args) {
-        new Twisted("main").reproduce();
-    }
+<pre><code>Twisted(String name) {
+    this.name = name;
 }
+
+private String name() {
+    return name;
+}
+
+private void reproduce() {
+    new Twisted("reproduce") {
+        void printName() {
+            System.out.println(name());
+        }
+    }.printName();
+}
+
+public static void main(String[] args) {
+    new Twisted("main").reproduce();
+} } ```
 </code></pre>
 
-<p>肤浅的分析：无法编译！因为 <code>reproduce</code> 里面的 <em>anonymous class</em> 尝试访问 <code>Twisted</code> 的 <code>private</code>方法。而 <code>private</code> 的属性应该只有    <code>Twisted</code> 可以访问。 <br></p>
+<p>肤浅的分析：无法编译！因为 <code>reproduce</code> 里面的 <em>anonymous class</em> 尝试访问 <code>Twisted</code> 的 <code>private</code>方法。而 <code>private</code> 的属性应该只有 	<code>Twisted</code> 可以访问。 <br /></p>
 
 <p><blockquote><p>Within a top-level type, all the local, inner, nested, and anonymous classes can access one another’s members without any restrictions.</p><footer><strong>JLS 6.6.1</strong></footer></blockquote></p>
 
@@ -406,13 +404,12 @@ class Inner2 extends Outer.Inner1 {
 
 <p><strong>建议：避免一个内部类继承它的外部类。</strong></p>
 
-<h1>总结</h1>
+<h1 id="section-4">总结</h1>
 
 <p>说到口都干了：能用静态嵌套类解决，就不用内部类。
 <blockquote><p>Unless you have a compelling need for an enclosing instance, prefer static member classes over nonstatic.</p><footer><strong>EJ Item 18</strong></footer></blockquote></p>
 
 <!--## 引用-->
-
 ]]></content>
   </entry>
   
@@ -421,102 +418,82 @@ class Inner2 extends Outer.Inner1 {
     <link href="http://hedleyyan.github.io/blog/2015/05/17/octopress-da-jian-ji-lu/"/>
     <updated>2015-05-17T22:29:18+08:00</updated>
     <id>http://hedleyyan.github.io/blog/2015/05/17/octopress-da-jian-ji-lu</id>
-    <content type="html"><![CDATA[<h1>关于</h1>
-
+    <content type="html"><![CDATA[<h1 id="section">关于</h1>
 <p>本文是小站搭建的流水账记录，收集了各种用到的链接地址。</p>
 
-<h1>搭建</h1>
-
+<h1 id="section-1">搭建</h1>
 <ul>
-<li>参照 <a href="http://octopress.org/docs/setup/">octopress 官方搭建手册</a>，一步一步来。到 <code>gem install bundler</code> 时候卡壳，网络不通。</li>
-<li>修改 <a href="http://ruby.taobao.org/">RubyGems 镜像</a>，连接通了。但是一直报缺少依赖包的异常，按照提示手动一个个安装完依赖包。</li>
-<li>安装完毕，修改 <code>_config.yml</code> 配置文件。</li>
+  <li>参照 <a href="http://octopress.org/docs/setup/">octopress 官方搭建手册</a>，一步一步来。到 <code>gem install bundler</code> 时候卡壳，网络不通。</li>
+  <li>修改 <a href="http://ruby.taobao.org/">RubyGems 镜像</a>，连接通了。但是一直报缺少依赖包的异常，按照提示手动一个个安装完依赖包。</li>
+  <li>安装完毕，修改 <code>_config.yml</code> 配置文件。</li>
 </ul>
-
 
 <!--more-->
 
-
-<h1>留言系统</h1>
-
+<h1 id="section-2">留言系统</h1>
 <ul>
-<li>参照<a href="http://droidyue.com/blog/2014/07/29/integrate-duoshuo-in-octopress/">这篇文章</a>添加多说评论。</li>
-<li><a href="http://shenchaofei.cn/duoshuo-comment-box-css-custom/328.html">修改多说样式</a>，样式代码添加在多说系统的管理后台的基本设置里。代码位于 <code>source/downloads/code/duoshuo.css</code>。</li>
+  <li>参照<a href="http://droidyue.com/blog/2014/07/29/integrate-duoshuo-in-octopress/">这篇文章</a>添加多说评论。</li>
+  <li><a href="http://shenchaofei.cn/duoshuo-comment-box-css-custom/328.html">修改多说样式</a>，样式代码添加在多说系统的管理后台的基本设置里。代码位于 <code>source/downloads/code/duoshuo.css</code>。</li>
 </ul>
 
-
-<h1>访问速度</h1>
-
+<h1 id="section-3">访问速度</h1>
 <p>参照<a href="http://droidyue.com/blog/2014/06/22/fix-octopress-slow-loading-speed-issue-in-china-mainland/">这篇文章</a>替换若干 <em>google</em> 源。</p>
 
-<h1><em>ST</em> 书写插件</h1>
-
+<h1 id="st-"><em>ST</em> 书写插件</h1>
 <ul>
-<li><em>Octopress</em> ： 可以在 <em>ST</em> 中快捷新建 <em>Post</em> ，快捷生成、部署。</li>
-<li><em>Octopress Snippets</em> ： <code>CMD + SHIFT + P</code> 接输入 <code>Snippet</code> ，调用语法模板。</li>
-<li><em>Markdown Extended</em> ： <code>CMD + SHIFT + P</code> 接输入 <code>Set Syntax</code> ，设为 <code>Markdown Extended</code>。代码片段彩色显示。</li>
-<li><em>Markdown Preview</em> ： 主要用到 <code>Preview in browser</code> 来进行静态预览，以及 <code>cheat sheet</code> 来查看语法。</li>
-<li><em>Monokai Neue</em> ： <code>Color Scheme</code> 修改， Markdown 颜色显示。修改 <code>Packages/Monokai Neue/Monokai-Neue.tmTheme</code> 文件，在 <code>settings -&gt; settings</code> 代码段下修改 <code>&lt;key&gt;selection&lt;/key&gt; &lt;string&gt;#00B2EE&lt;/string&gt;</code>，更改选中背景颜色。</li>
+  <li><em>Octopress</em> ： 可以在 <em>ST</em> 中快捷新建 <em>Post</em> ，快捷生成、部署。</li>
+  <li><em>Octopress Snippets</em> ： <code>CMD + SHIFT + P</code> 接输入 <code>Snippet</code> ，调用语法模板。</li>
+  <li><em>Markdown Extended</em> ： <code>CMD + SHIFT + P</code> 接输入 <code>Set Syntax</code> ，设为 <code>Markdown Extended</code>。代码片段彩色显示。</li>
+  <li><em>Markdown Preview</em> ： 主要用到 <code>Preview in browser</code> 来进行静态预览，以及 <code>cheat sheet</code> 来查看语法。</li>
+  <li><em>Monokai Neue</em> ： <code>Color Scheme</code> 修改， Markdown 颜色显示。修改 <code>Packages/Monokai Neue/Monokai-Neue.tmTheme</code> 文件，在 <code>settings -&gt; settings</code> 代码段下修改 <code>&lt;key&gt;selection&lt;/key&gt; &lt;string&gt;#00B2EE&lt;/string&gt;</code>，更改选中背景颜色。</li>
 </ul>
-
 
 <p>效果如下
 <img src="/images/Snip20150525_38.png"></p>
 
-<h1><em>TOC (Table of Contents)</em></h1>
-
+<h1 id="toc-table-of-contents"><em>TOC (Table of Contents)</em></h1>
 <p>参照<a href="http://brizzled.clapper.org/blog/2012/02/04/generating-a-table-of-contents-in-octopress/">这边文章</a>搭建 <em>TOC</em> 解决方案。遇到几个问题</p>
 
 <ul>
-<li>如果 <em>TOC</em> 的左面有 <code>blockquote</code> ， <em>TOC</em> 的 <code>link</code> 无法点击。
+  <li>如果 <em>TOC</em> 的左面有 <code>blockquote</code> ， <em>TOC</em> 的 <code>link</code> 无法点击。
+    <ul>
+      <li>在 <code>sass/custom/_screen.scss</code> 中加入代码 <code>position:relative; z-index: 99999;</code> ，将 <em>TOC</em> 的 <code>&lt;div&gt;</code> 置顶</li>
+    </ul>
+  </li>
+  <li>自动生成的锚点只对英文标题有效。
+    <ul>
+      <li>编辑 <code>source/javascripts/jquery.tableofcontents.min.js</code>	，搜索 <code>text.toLowerCase().replace</code> ，去掉 <code>.replace(/[^a-z0-9 -]/gi,'')</code> 这部分代码，这句代码过滤了中文字符。</li>
+    </ul>
+  </li>
+  <li>此方案的 <em>TOC</em> 只能生成 <code>h1 ~ h3</code> ，它的配置可以在 <code>source/javascripts/jquery.tableofcontents.min.js</code> 中修改。但是为了方便，应用此默认配置，修改标题风格。</li>
+</ul>
 
+<h1 id="section-4">风格</h1>
+<p>生成网页的风格个性化都在 <code>sass/custom</code> 中进行定义，参考了 https://github.com/bmc/brizzled ，主要对标题的字体大小进行了调整，其他一些微调待定。标题的字体颜色主要在 <code>source/_includes/custom/header.html</code> ， <code>sass/custom/_fonts.scss</code> ， <code>sass/custom/_styles.scss</code> 几个地方相应修改。其他样式对应位置<a href="http://www.360doc.com/content/12/0215/22/1016783_186940749.shtml">参考这里</a>。</p>
+
+<h1 id="section-5">其他</h1>
 <ul>
-<li>在 <code>sass/custom/_screen.scss</code> 中加入代码 <code>position:relative; z-index: 99999;</code> ，将 <em>TOC</em> 的 <code>&lt;div&gt;</code> 置顶</li>
-</ul>
-</li>
-<li>自动生成的锚点只对英文标题有效。
-
-<ul>
-<li>编辑 <code>source/javascripts/jquery.tableofcontents.min.js</code>   ，搜索 <code>text.toLowerCase().replace</code> ，去掉 <code>.replace(/[^a-z0-9 -]/gi,'')</code> 这部分代码，这句代码过滤了中文字符。</li>
-</ul>
-</li>
-<li>此方案的 <em>TOC</em> 只能生成 <code>h1 ~ h3</code> ，它的配置可以在 <code>source/javascripts/jquery.tableofcontents.min.js</code> 中修改。但是为了方便，应用此默认配置，修改标题风格。</li>
+  <li>链接在新窗口打开、列表排版、<em>404ERROR</em> 公益页面，参考<a href="http://blog.csdn.net/biaobiaoqi/article/details/9289563">这篇文章</a>。</li>
+  <li>文章分类侧边栏、导航栏设置，参考<a href="http://www.jianshu.com/p/0ac2ac1a8e45">这篇文章</a>。</li>
 </ul>
 
-
-<h1>风格</h1>
-
-<p>生成网页的风格个性化都在 <code>sass/custom</code> 中进行定义，参考了 <a href="https://github.com/bmc/brizzled">https://github.com/bmc/brizzled</a> ，主要对标题的字体大小进行了调整，其他一些微调待定。标题的字体颜色主要在 <code>source/_includes/custom/header.html</code> ， <code>sass/custom/_fonts.scss</code> ， <code>sass/custom/_styles.scss</code> 几个地方相应修改。其他样式对应位置<a href="http://www.360doc.com/content/12/0215/22/1016783_186940749.shtml">参考这里</a>。</p>
-
-<h1>其他</h1>
-
-<ul>
-<li>链接在新窗口打开、列表排版、<em>404ERROR</em> 公益页面，参考<a href="http://blog.csdn.net/biaobiaoqi/article/details/9289563">这篇文章</a>。</li>
-<li>文章分类侧边栏、导航栏设置，参考<a href="http://www.jianshu.com/p/0ac2ac1a8e45">这篇文章</a>。</li>
-</ul>
-
-
-<h2>原文链接</h2>
-
+<h2 id="section-6">原文链接</h2>
 <p>参照<a href="http://my.oschina.net/pangyi/blog/379620">这篇文章</a>，在每篇文章下面自动生成作者信息，原文信息。
-*   注意：每篇文章最后要有留白行，否者生成的原文信息会有问题。</p>
+*	注意：每篇文章最后要有留白行，否者生成的原文信息会有问题。</p>
 
-<h2>云标签</h2>
-
+<h2 id="section-7">云标签</h2>
 <ul>
-<li>参照 <a href="http://codemacro.com/2012/07/18/add-tag-to-octopress/">Tag Cloud 搭建</a>，<em>clone</em> 几个文件到本地目录。</li>
-<li>使用方法：在文件头添加标识 <code>tags: xxx</code> ，但此时无法添加多个标签。</li>
-<li><a href="http://my.oschina.net/pangyi/blog/379606">这篇文章</a>给出了解决方案，修改 <code>tags.html</code> 文件去掉 <code>limit</code> 属性，多标签写法 <code>tags: [xx1, xx2]</code> 。</li>
+  <li>参照 <a href="http://codemacro.com/2012/07/18/add-tag-to-octopress/">Tag Cloud 搭建</a>，<em>clone</em> 几个文件到本地目录。</li>
+  <li>使用方法：在文件头添加标识 <code>tags: xxx</code> ，但此时无法添加多个标签。</li>
+  <li><a href="http://my.oschina.net/pangyi/blog/379606">这篇文章</a>给出了解决方案，修改 <code>tags.html</code> 文件去掉 <code>limit</code> 属性，多标签写法 <code>tags: [xx1, xx2]</code> 。</li>
 </ul>
 
-
-<h2>回到顶部</h2>
-
+<h2 id="section-8">回到顶部</h2>
 <p>参考<a href="http://www.tuicool.com/articles/qu6ZfiV">Octopress添加回到顶部功能</a>。</p>
 
-<h2>数学公式</h2>
-
+<h2 id="section-9">数学公式</h2>
 <p>参考<a href="http://www.tuicool.com/articles/miaUR3">kramdown配置</a></p>
+
 ]]></content>
   </entry>
   
@@ -525,173 +502,173 @@ class Inner2 extends Outer.Inner1 {
     <link href="http://hedleyyan.github.io/blog/2015/05/16/a-glossary-of-name-reuse/"/>
     <updated>2015-05-16T17:07:57+08:00</updated>
     <id>http://hedleyyan.github.io/blog/2015/05/16/a-glossary-of-name-reuse</id>
-    <content type="html"><![CDATA[<h1>关于</h1>
+    <content type="html"><![CDATA[<h1 id="section">关于</h1>
 
 <p>此文大概就是《Java Puzzlers》中 <em>Classier Pazzlers</em> 一节的简单翻译和整理，粗略总结了 <em>Java</em> 有关<strong>命名重复</strong>的场景和代码示例。</p>
 
 <!--more-->
 
-
-<h1>Overriding</h1>
+<h1 id="overriding">Overriding</h1>
 
 <p><blockquote><p>An instance method overrides all accessible instance methods with the same signature in superclasses.</p><footer><strong>JLS 8.4.8.1</strong></footer></blockquote></p>
 
 <p>重写的规范定义包括：</p>
 
 <ul>
-<li>Context 包括两个类，一个子类，一个父类。</li>
-<li>载体必须是实例方法 <em>(instance methods)</em>，而非静态方法。</li>
-<li>必须是同样签名 <em>(signature)</em>，包括参数、返回类型。</li>
-<li>重写方法不能缩小可见范围。</li>
+  <li>Context 包括两个类，一个子类，一个父类。</li>
+  <li>载体必须是实例方法 <em>(instance methods)</em>，而非静态方法。</li>
+  <li>必须是同样签名 <em>(signature)</em>，包括参数、返回类型。</li>
+  <li>重写方法不能缩小可见范围。</li>
 </ul>
-
 
 <p>重写是面向对象编程的核心概念，是<strong>唯一</strong>鼓励使用的 <em>Name Reuse</em> 场景。</p>
 
-<pre><code class="java">    class Base {
+<p>&#8220;` java
+    class Base {
         protected void f() { }
-    }
+	}</p>
 
-    class Derived extends Base {
-        public void f() { } // overrrides Base.f()
-    }
+<pre><code>class Derived extends Base {
+    public void f() { } // overrrides Base.f()
+} ```
 </code></pre>
 
-<h1>Overloading</h1>
+<h1 id="overloading">Overloading</h1>
 
 <p><blockquote><p>Methods in a class overload one another if they have the same name and different signatures.</p><footer><strong>JLS 8.4.9</strong></footer></blockquote></p>
 
 <p>重载和重写是 <em>Name Reuse</em> 出现最多的场景。相对于重写，重载规范包括：</p>
 
 <ul>
-<li>Context 只有一个类。</li>
-<li>载体可以是实例方法，也可以是静态方法。</li>
-<li>拥有不同的签名。
-
-<ul>
-<li>但不能是参数相同，返回类型不同。</li>
+  <li>Context 只有一个类。</li>
+  <li>载体可以是实例方法，也可以是静态方法。</li>
+  <li>拥有不同的签名。
+    <ul>
+      <li>但不能是参数相同，返回类型不同。</li>
+    </ul>
+  </li>
 </ul>
-</li>
-</ul>
 
-
-<pre><code class="java">    class CircuitBreaker {
+<p><code>java
+    class CircuitBreaker {
         public void f(int i)    { }  // int overloading
         public void f(String s) { }  // String overloading
-    } 
-</code></pre>
+	} 
+</code></p>
 
-<h1>Hiding</h1>
+<h1 id="hiding">Hiding</h1>
 
 <p><blockquote><p>A field, static method, or member type hides all accessible fields, static methods, or member types, respectively, with the same name (or, for methods, signature) in supertypes. Hiding a member prevents it from being inherited.</p><footer><strong>JLS 8.3-8.5</strong></footer></blockquote></p>
 
 <p><em>Hiding</em> 和 <em>Overriding</em> 场景比较像，<em>Overriding</em> 的载体是实例方法，而 <em>Hiding</em> 的载体是除去实例方法以外的其他所有元素。</p>
 
 <ul>
-<li>Context 包括子类和父类。</li>
-<li>载体包括属性、静态方法、成员类。</li>
-<li>同样签名。</li>
-<li>可见范围无约束。</li>
+  <li>Context 包括子类和父类。</li>
+  <li>载体包括属性、静态方法、成员类。</li>
+  <li>同样签名。</li>
+  <li>可见范围无约束。</li>
 </ul>
 
+<p>&#8220;` java
+    class Base {
+        public String className = “Base”;
+	}</p>
 
-<pre><code class="java">    class Base {
-        public String className = "Base";
-    }
+<pre><code>class Derived extends Base {
+    private String className = "Derived";
+}
 
-    class Derived extends Base {
-        private String className = "Derived";
+public class PrivateMatter {
+    public static void main(String[] args) {
+        System.out.println(new Derived().className);
     }
-
-    public class PrivateMatter {
-        public static void main(String[] args) {
-            System.out.println(new Derived().className);
-        }
-    }
+} ```
 </code></pre>
 
 <p>️️️代码结果</p>
 
-<pre><code>PrivateMatter.java:11: className has private access in Derived
+<p><code>
+PrivateMatter.java:11: className has private access in Derived
            System.out.println(new Derived().className);
-</code></pre>
+</code></p>
 
 <p>很明显，<em>Hiding</em> 的代码是晦涩难懂的，更重要的是它破坏了 <em>Liskov</em> 替换原则。应极力避免这种 <em>Name Reuse</em> 场景。</p>
 
 <p><blockquote><p>Everything you can do with a base class, you can also do with a derived class.</p><footer><strong>Liskov Substitution Principle</strong></footer></blockquote></p>
 
-<h1><a name='shadowing'>Shadowing</a></h1>
+<h1 id="a-nameshadowingshadowinga"><a name="shadowing">Shadowing</a></h1>
 
 <p><blockquote><p>A variable, method, or type shadows all variables, methods, or types, respectively, with the same name in a textually enclosing scope.</p><footer><strong>JLS 6.3.1</strong></footer></blockquote></p>
 
 <ul>
-<li>Context 可能只有一个类，也可能包括别的函数库的类。</li>
-<li>载体包括变量、方法、类、类型声明 <em>(<T>)</em>。</li>
+  <li>Context 可能只有一个类，也可能包括别的函数库的类。</li>
+  <li>载体包括变量、方法、类、类型声明 *(<t>)*。</t></li>
 </ul>
 
-
-<pre><code class="java">    class WhoKnows {
+<p><code>java
+	class WhoKnows {
         static String sentence = "I don’t know.";
         public static void main(String[] args) {
             String sentence = "I know!";   // shadows static field
             System.out.println(sentence);  // prints local variable
         }
-    }
-</code></pre>
+	}
+</code></p>
 
-<pre><code class="java">    public class StrungOut {
+<p>&#8220;` java
+    public class StrungOut {
        public static void main(String[] args) {
-           String s = new String("Hello world");
+           String s = new String(“Hello world”);
            System.out.println(s);
        }
-    }
+    }</p>
 
-    class String {
-        private final java.lang.String s;
-        public String(java.lang.String s) {
-            this.s = s;
-        }
-        public java.lang.String toString() {
-            return s;
-        } 
-    }
+<pre><code>class String {
+    private final java.lang.String s;
+    public String(java.lang.String s) {
+        this.s = s;
+	}
+    public java.lang.String toString() {
+        return s;
+	} 
+} ```
 </code></pre>
 
 <p>代码结果</p>
 
-<pre><code>Exception in thread "main" java.lang.NoSuchMethodError: main
-</code></pre>
+<p><code>
+Exception in thread "main" java.lang.NoSuchMethodError: main
+</code></p>
 
 <p>产生 <em>Shadowing</em> 场景的 <em>Name Reuse</em> ，依最近的作用域来判定是哪个元素有效。</p>
 
-<h1>Obscuring</h1>
+<h1 id="obscuring">Obscuring</h1>
 
 <p><em>Obscuring</em> 是指在作用域中，一个变量的名字和一个类相同，直接看示例代码。</p>
 
-<pre><code class="java">public class Obscure {
+<p><code>java
+public class Obscure {
     static String System; // Obscures type java.lang.System
     public static void main(String[] args) {
         // Next line won’t compile:  System refers to static field 
         System.out.println("hello, obscure world!");
-    }
+	}
 }
-</code></pre>
+</code></p>
 
 <p><blockquote><p>If a type or a package is obscured, you cannot refer to it by its simple name except in a context where the syntax allows only a name from its namespace.</p></blockquote></p>
 
-<h1>常见陷阱</h1>
+<h1 id="section-1">常见陷阱</h1>
 
-<h1>总结</h1>
+<h1 id="section-2">总结</h1>
 
 <ol>
-<li>除了 <em>Override</em> ，尽量避免 <em>Name Reuse</em> 。</li>
-<li>遵守 <em>Java</em> 命名规则，可以避免 <em>Obscuring</em> 。</li>
-<li>避免和 <code>java.lang</code> 类库中的命名冲突。</li>
+  <li>除了 <em>Override</em> ，尽量避免 <em>Name Reuse</em> 。</li>
+  <li>遵守 <em>Java</em> 命名规则，可以避免 <em>Obscuring</em> 。</li>
+  <li>避免和 <code>java.lang</code> 类库中的命名冲突。</li>
 </ol>
 
-
 <!--链接-->
-
 ]]></content>
   </entry>
   

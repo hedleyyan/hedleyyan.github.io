@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: 规约 | Hedley]]></title>
   <link href="http://hedleyyan.github.io/tags/gui-yue/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2015-06-20T17:01:20+08:00</updated>
+  <updated>2015-06-20T17:03:29+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[dL]]></name>
@@ -18,173 +18,173 @@
     <link href="http://hedleyyan.github.io/blog/2015/05/16/a-glossary-of-name-reuse/"/>
     <updated>2015-05-16T17:07:57+08:00</updated>
     <id>http://hedleyyan.github.io/blog/2015/05/16/a-glossary-of-name-reuse</id>
-    <content type="html"><![CDATA[<h1>关于</h1>
+    <content type="html"><![CDATA[<h1 id="section">关于</h1>
 
 <p>此文大概就是《Java Puzzlers》中 <em>Classier Pazzlers</em> 一节的简单翻译和整理，粗略总结了 <em>Java</em> 有关<strong>命名重复</strong>的场景和代码示例。</p>
 
 <!--more-->
 
-
-<h1>Overriding</h1>
+<h1 id="overriding">Overriding</h1>
 
 <p><blockquote><p>An instance method overrides all accessible instance methods with the same signature in superclasses.</p><footer><strong>JLS 8.4.8.1</strong></footer></blockquote></p>
 
 <p>重写的规范定义包括：</p>
 
 <ul>
-<li>Context 包括两个类，一个子类，一个父类。</li>
-<li>载体必须是实例方法 <em>(instance methods)</em>，而非静态方法。</li>
-<li>必须是同样签名 <em>(signature)</em>，包括参数、返回类型。</li>
-<li>重写方法不能缩小可见范围。</li>
+  <li>Context 包括两个类，一个子类，一个父类。</li>
+  <li>载体必须是实例方法 <em>(instance methods)</em>，而非静态方法。</li>
+  <li>必须是同样签名 <em>(signature)</em>，包括参数、返回类型。</li>
+  <li>重写方法不能缩小可见范围。</li>
 </ul>
-
 
 <p>重写是面向对象编程的核心概念，是<strong>唯一</strong>鼓励使用的 <em>Name Reuse</em> 场景。</p>
 
-<pre><code class="java">    class Base {
+<p>&#8220;` java
+    class Base {
         protected void f() { }
-    }
+	}</p>
 
-    class Derived extends Base {
-        public void f() { } // overrrides Base.f()
-    }
+<pre><code>class Derived extends Base {
+    public void f() { } // overrrides Base.f()
+} ```
 </code></pre>
 
-<h1>Overloading</h1>
+<h1 id="overloading">Overloading</h1>
 
 <p><blockquote><p>Methods in a class overload one another if they have the same name and different signatures.</p><footer><strong>JLS 8.4.9</strong></footer></blockquote></p>
 
 <p>重载和重写是 <em>Name Reuse</em> 出现最多的场景。相对于重写，重载规范包括：</p>
 
 <ul>
-<li>Context 只有一个类。</li>
-<li>载体可以是实例方法，也可以是静态方法。</li>
-<li>拥有不同的签名。
-
-<ul>
-<li>但不能是参数相同，返回类型不同。</li>
+  <li>Context 只有一个类。</li>
+  <li>载体可以是实例方法，也可以是静态方法。</li>
+  <li>拥有不同的签名。
+    <ul>
+      <li>但不能是参数相同，返回类型不同。</li>
+    </ul>
+  </li>
 </ul>
-</li>
-</ul>
 
-
-<pre><code class="java">    class CircuitBreaker {
+<p><code>java
+    class CircuitBreaker {
         public void f(int i)    { }  // int overloading
         public void f(String s) { }  // String overloading
-    } 
-</code></pre>
+	} 
+</code></p>
 
-<h1>Hiding</h1>
+<h1 id="hiding">Hiding</h1>
 
 <p><blockquote><p>A field, static method, or member type hides all accessible fields, static methods, or member types, respectively, with the same name (or, for methods, signature) in supertypes. Hiding a member prevents it from being inherited.</p><footer><strong>JLS 8.3-8.5</strong></footer></blockquote></p>
 
 <p><em>Hiding</em> 和 <em>Overriding</em> 场景比较像，<em>Overriding</em> 的载体是实例方法，而 <em>Hiding</em> 的载体是除去实例方法以外的其他所有元素。</p>
 
 <ul>
-<li>Context 包括子类和父类。</li>
-<li>载体包括属性、静态方法、成员类。</li>
-<li>同样签名。</li>
-<li>可见范围无约束。</li>
+  <li>Context 包括子类和父类。</li>
+  <li>载体包括属性、静态方法、成员类。</li>
+  <li>同样签名。</li>
+  <li>可见范围无约束。</li>
 </ul>
 
+<p>&#8220;` java
+    class Base {
+        public String className = “Base”;
+	}</p>
 
-<pre><code class="java">    class Base {
-        public String className = "Base";
-    }
+<pre><code>class Derived extends Base {
+    private String className = "Derived";
+}
 
-    class Derived extends Base {
-        private String className = "Derived";
+public class PrivateMatter {
+    public static void main(String[] args) {
+        System.out.println(new Derived().className);
     }
-
-    public class PrivateMatter {
-        public static void main(String[] args) {
-            System.out.println(new Derived().className);
-        }
-    }
+} ```
 </code></pre>
 
 <p>️️️代码结果</p>
 
-<pre><code>PrivateMatter.java:11: className has private access in Derived
+<p><code>
+PrivateMatter.java:11: className has private access in Derived
            System.out.println(new Derived().className);
-</code></pre>
+</code></p>
 
 <p>很明显，<em>Hiding</em> 的代码是晦涩难懂的，更重要的是它破坏了 <em>Liskov</em> 替换原则。应极力避免这种 <em>Name Reuse</em> 场景。</p>
 
 <p><blockquote><p>Everything you can do with a base class, you can also do with a derived class.</p><footer><strong>Liskov Substitution Principle</strong></footer></blockquote></p>
 
-<h1><a name='shadowing'>Shadowing</a></h1>
+<h1 id="a-nameshadowingshadowinga"><a name="shadowing">Shadowing</a></h1>
 
 <p><blockquote><p>A variable, method, or type shadows all variables, methods, or types, respectively, with the same name in a textually enclosing scope.</p><footer><strong>JLS 6.3.1</strong></footer></blockquote></p>
 
 <ul>
-<li>Context 可能只有一个类，也可能包括别的函数库的类。</li>
-<li>载体包括变量、方法、类、类型声明 <em>(<T>)</em>。</li>
+  <li>Context 可能只有一个类，也可能包括别的函数库的类。</li>
+  <li>载体包括变量、方法、类、类型声明 *(<t>)*。</t></li>
 </ul>
 
-
-<pre><code class="java">    class WhoKnows {
+<p><code>java
+	class WhoKnows {
         static String sentence = "I don’t know.";
         public static void main(String[] args) {
             String sentence = "I know!";   // shadows static field
             System.out.println(sentence);  // prints local variable
         }
-    }
-</code></pre>
+	}
+</code></p>
 
-<pre><code class="java">    public class StrungOut {
+<p>&#8220;` java
+    public class StrungOut {
        public static void main(String[] args) {
-           String s = new String("Hello world");
+           String s = new String(“Hello world”);
            System.out.println(s);
        }
-    }
+    }</p>
 
-    class String {
-        private final java.lang.String s;
-        public String(java.lang.String s) {
-            this.s = s;
-        }
-        public java.lang.String toString() {
-            return s;
-        } 
-    }
+<pre><code>class String {
+    private final java.lang.String s;
+    public String(java.lang.String s) {
+        this.s = s;
+	}
+    public java.lang.String toString() {
+        return s;
+	} 
+} ```
 </code></pre>
 
 <p>代码结果</p>
 
-<pre><code>Exception in thread "main" java.lang.NoSuchMethodError: main
-</code></pre>
+<p><code>
+Exception in thread "main" java.lang.NoSuchMethodError: main
+</code></p>
 
 <p>产生 <em>Shadowing</em> 场景的 <em>Name Reuse</em> ，依最近的作用域来判定是哪个元素有效。</p>
 
-<h1>Obscuring</h1>
+<h1 id="obscuring">Obscuring</h1>
 
 <p><em>Obscuring</em> 是指在作用域中，一个变量的名字和一个类相同，直接看示例代码。</p>
 
-<pre><code class="java">public class Obscure {
+<p><code>java
+public class Obscure {
     static String System; // Obscures type java.lang.System
     public static void main(String[] args) {
         // Next line won’t compile:  System refers to static field 
         System.out.println("hello, obscure world!");
-    }
+	}
 }
-</code></pre>
+</code></p>
 
 <p><blockquote><p>If a type or a package is obscured, you cannot refer to it by its simple name except in a context where the syntax allows only a name from its namespace.</p></blockquote></p>
 
-<h1>常见陷阱</h1>
+<h1 id="section-1">常见陷阱</h1>
 
-<h1>总结</h1>
+<h1 id="section-2">总结</h1>
 
 <ol>
-<li>除了 <em>Override</em> ，尽量避免 <em>Name Reuse</em> 。</li>
-<li>遵守 <em>Java</em> 命名规则，可以避免 <em>Obscuring</em> 。</li>
-<li>避免和 <code>java.lang</code> 类库中的命名冲突。</li>
+  <li>除了 <em>Override</em> ，尽量避免 <em>Name Reuse</em> 。</li>
+  <li>遵守 <em>Java</em> 命名规则，可以避免 <em>Obscuring</em> 。</li>
+  <li>避免和 <code>java.lang</code> 类库中的命名冲突。</li>
 </ol>
 
-
 <!--链接-->
-
 ]]></content>
   </entry>
   
