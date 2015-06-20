@@ -11,7 +11,7 @@
   
   <meta name="description" content=" 404 Error Apr 21st, 2013 2:35 am Tags Java
 规约
-配置 Recent Posts 沧州市街道调查问卷 荒谬痛苦的内部类 Octopress 搭建记录 A Glossary of Name Reuse ">
+配置 Recent Posts 浮点运算 沧州市街道调查问卷 荒谬痛苦的内部类 Octopress 搭建记录 A Glossary of Name Reuse ">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -128,6 +128,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/06/20/fu-dian-yun-suan/">浮点运算</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/06/16/cang-zhou-shi-jie-dao-diao-cha-wen-juan/">沧州市街道调查问卷</a>
       </li>
     
@@ -153,7 +157,38 @@
 
     </div>
   </div>
-  <footer role="contentinfo"><p>
+  <footer role="contentinfo"><!-- mathjax config similar to math.stackexchange -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript"
+   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+<p>
   Copyright &copy; 2015 - dL -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
