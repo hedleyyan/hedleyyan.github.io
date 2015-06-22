@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 技术 | Hedley]]></title>
   <link href="http://hedleyyan.github.io/blog/categories/ji-zhu/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2015-06-22T21:07:14+08:00</updated>
+  <updated>2015-06-22T21:08:43+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[dL]]></name>
@@ -64,11 +64,15 @@
 </ul>
 
 
-<p>示例图中的数字表示解析：
-*   符号位 0 ，表示正数       <br/>
-*   指数位 <code>01111100</code> ，表示 2<sup>6</sup> + 2<sup>5</sup> + 2<sup>4</sup> + 2<sup>3</sup> + 2<sup>2</sup> - 127 = -3
-*   尾数域左侧补 1 位，表示 <code>101</code>
-*   最后值为 1 * 2<sup>-3</sup> + 1 * 2<sup>-5</sup> = 0.15625</p>
+<p>示例图中的数字表示解析：</p>
+
+<ul>
+<li>符号位 0 ，表示正数</li>
+<li>指数位 <code>01111100</code> ，表示 2<sup>6</sup> + 2<sup>5</sup> + 2<sup>4</sup> + 2<sup>3</sup> + 2<sup>2</sup> - 127 = -3</li>
+<li>尾数域左侧补 1 位，表示 <code>101</code></li>
+<li>最后值为 1 * 2<sup>-3</sup> + 1 * 2<sup>-5</sup> = 0.15625</li>
+</ul>
+
 
 <h2>疑点</h2>
 
