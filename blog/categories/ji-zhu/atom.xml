@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 技术 | Hedley]]></title>
   <link href="http://hedleyyan.github.io/blog/categories/ji-zhu/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2015-06-22T21:29:04+08:00</updated>
+  <updated>2015-06-22T21:47:41+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[dL]]></name>
@@ -78,7 +78,22 @@
 
 <h2>疑点</h2>
 
-<p>[存疑][]:</p>
+<pre><code class="java">    public static void main(String[] args) {
+        float c = 1.0009765625F;
+        System.out.println(Integer.toBinaryString(Float.floatToIntBits(c)));
+        System.out.println(c);
+        System.out.println(String.format("%.11f", c));
+    }
+</code></pre>
+
+<p>输出：</p>
+
+<pre><code>111111100000000010000000000000
+1.0009766
+1.00097656250
+</code></pre>
+
+<p>[存疑][]: #疑点</p>
 ]]></content>
   </entry>
   

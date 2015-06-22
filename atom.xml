@@ -4,7 +4,7 @@
   <title><![CDATA[Hedley]]></title>
   <link href="http://hedleyyan.github.io/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2015-06-22T21:29:04+08:00</updated>
+  <updated>2015-06-22T21:47:41+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[dL]]></name>
@@ -78,7 +78,33 @@
 
 <h2>疑点</h2>
 
-<p>[存疑][]:
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>    <span class="kt">float</span> <span class="n">c</span> <span class="o">=</span> <span class="mf">1.0009765625</span><span class="n">F</span><span class="o">;</span>
+</span><span class='line'>    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">Integer</span><span class="o">.</span><span class="na">toBinaryString</span><span class="o">(</span><span class="n">Float</span><span class="o">.</span><span class="na">floatToIntBits</span><span class="o">(</span><span class="n">c</span><span class="o">)));</span>
+</span><span class='line'>    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">c</span><span class="o">);</span>
+</span><span class='line'>    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">&quot;%.11f&quot;</span><span class="o">,</span> <span class="n">c</span><span class="o">));</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>输出：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="mi">111111100000000010000000000000</span>
+</span><span class='line'><span class="mf">1.0009766</span>
+</span><span class='line'><span class="mf">1.00097656250</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>[存疑][]: #疑点
 <br/><br/><p class='post-footer'>
             original link:
             <a href='http://hedleyyan.github.io/blog/2015/06/20/fu-dian-yun-suan/'><a href="http://hedleyyan.github.io/blog/2015/06/20/fu-dian-yun-suan/">http://hedleyyan.github.io/blog/2015/06/20/fu-dian-yun-suan/</a></a><br/>
