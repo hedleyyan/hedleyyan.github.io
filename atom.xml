@@ -4,7 +4,7 @@
   <title><![CDATA[Hedley]]></title>
   <link href="http://hedleyyan.github.io/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2015-06-22T21:55:59+08:00</updated>
+  <updated>2015-06-22T22:12:55+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[dL]]></name>
@@ -50,7 +50,7 @@
 <ul>
 <li>IEEE 要求浮点数必须是规范的，即小数点的左侧必须为1，这样腾出了一个二进制位来保存更多的尾数，即我们用 23 位尾数域表达了 24 位的尾数</li>
 <li>所以尾数域上限为 2<sup>24</sup> - 1，即 0 ~ 16777215</li>
-<li>10<sup>7</sup> &lt; 16777215 &lt; 10<sup>8</sup>，所以 <code>float</code> 可以精确到小数点后 7 位（[存疑][]）</li>
+<li>10<sup>7</sup> &lt; 16777215 &lt; 10<sup>8</sup>，所以 <code>float</code> 可以精确到小数点后 7 位（<a href="#%E7%B2%BE%E5%BA%A6">存疑</a>）</li>
 </ul>
 </li>
 </ul>
@@ -80,7 +80,7 @@
 </ul>
 
 
-<h2>疑点</h2>
+<h2>精度</h2>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -108,8 +108,9 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>[存疑][]: #疑点
-<br/><br/><p class='post-footer'>
+<p>示例中的 <code>c</code> 精确到小数点后 10 位小数，并且通过</p>
+
+<p><br/><br/><p class='post-footer'>
             original link:
             <a href='http://hedleyyan.github.io/blog/2015/06/20/fu-dian-yun-suan/'><a href="http://hedleyyan.github.io/blog/2015/06/20/fu-dian-yun-suan/">http://hedleyyan.github.io/blog/2015/06/20/fu-dian-yun-suan/</a></a><br/>
             written by <a href='http://hedleyyan.github.io'>dL</a>
