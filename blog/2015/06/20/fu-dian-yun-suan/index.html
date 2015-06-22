@@ -9,7 +9,7 @@
   <meta name="author" content="dL">
 
   
-  <meta name="description" content="关于 此文深入剖析困扰哥已久的浮点数表示和运算。 定义 Java 浮点数定义采纳 IEEE Standard 754 标准：单精度 float 32位，双精度 double 64位。本文主要以 float 为例。 最高位符号位 0 正 1 负 接 8 位指数位，并有 127 的偏移量 &hellip;">
+  <meta name="description" content="关于 此文深入剖析困扰哥已久的浮点数表示和运算。 定义 Java 浮点数定义采纳 IEEE Standard 754 标准：单精度 float 32 位，双精度 double 64 位。本文主要以 float 为例。 最高位符号位 0 正 1 负 接 8 位指数位，并有 127 的偏移量 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -116,7 +116,7 @@
 
 <h1>定义</h1>
 
-<p>Java 浮点数定义采纳 <a href="http://www.eecs.berkeley.edu/~wkahan/ieee754status/IEEE754.PDF">IEEE Standard 754</a> 标准：单精度 <code>float</code> 32位，双精度 <code>double</code> 64位。本文主要以 <code>float</code> 为例。</p>
+<p>Java 浮点数定义采纳 <a href="http://www.eecs.berkeley.edu/~wkahan/ieee754status/IEEE754.PDF">IEEE Standard 754</a> 标准：单精度 <code>float</code> 32 位，双精度 <code>double</code> 64 位。本文主要以 <code>float</code> 为例。</p>
 
 <p><img src="/images/float.png"></p>
 
@@ -139,19 +139,30 @@
 <ul>
 <li>IEEE 要求浮点数必须是规范的，即小数点的左侧必须为1，这样腾出了一个二进制位来保存更多的尾数，即我们用 23 位尾数域表达了 24 位的尾数</li>
 <li>所以尾数域上限为 2<sup>24</sup> - 1，即 0 ~ 16777215</li>
-<li>10<sup>7</sup> &lt; 16777215 &lt; 10<sup>8</sup>，所以 <code>float</code> 可以精确到小数点后 7 位</li>
+<li>10<sup>7</sup> &lt; 16777215 &lt; 10<sup>8</sup>，所以 <code>float</code> 可以精确到小数点后 7 位（[存疑][]）</li>
 </ul>
 </li>
 <li>特殊表示
 
 <ul>
-<li></li>
+<li>指数全为 0，尾数为 0 时，表示 0</li>
+<li>指数全为 1，尾数为 0 时，表示无穷大</li>
+<li>指数全为 1，尾数不为 0 时，表示 <code>NaN</code></li>
 </ul>
 </li>
 </ul>
 
 
-<p><br/><br/><p class='post-footer'>
+<p>示例图中的数字表示解析：
+    *   符号位 0 ，表示正数
+    *   指数位 <code>01111100</code> ，表示 <code>2^6 + 2^5 + 2^4 + 2^3 + 2^2 - 127 = -3</code>
+    *   尾数域左侧补 1 位，表示 <code>101</code>
+    *   最后值为 <code>1 * 2^(-3) + 1 * 2^(-5) = 0.15625</code></p>
+
+<h2>疑点</h2>
+
+<p>[存疑][]:
+<br/><br/><p class='post-footer'>
             original link:
             <a href='http://hedleyyan.github.io/blog/2015/06/20/fu-dian-yun-suan/'><a href="http://hedleyyan.github.io/blog/2015/06/20/fu-dian-yun-suan/">http://hedleyyan.github.io/blog/2015/06/20/fu-dian-yun-suan/</a></a><br/>
             written by <a href='http://hedleyyan.github.io'>dL</a>

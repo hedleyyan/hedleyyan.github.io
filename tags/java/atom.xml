@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: Java | Hedley]]></title>
   <link href="http://hedleyyan.github.io/tags/java/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2015-06-20T17:22:47+08:00</updated>
+  <updated>2015-06-22T21:05:36+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[dL]]></name>
@@ -27,7 +27,7 @@
 
 <h1>定义</h1>
 
-<p>Java 浮点数定义采纳 <a href="http://www.eecs.berkeley.edu/~wkahan/ieee754status/IEEE754.PDF">IEEE Standard 754</a> 标准：单精度 <code>float</code> 32位，双精度 <code>double</code> 64位。本文主要以 <code>float</code> 为例。</p>
+<p>Java 浮点数定义采纳 <a href="http://www.eecs.berkeley.edu/~wkahan/ieee754status/IEEE754.PDF">IEEE Standard 754</a> 标准：单精度 <code>float</code> 32 位，双精度 <code>double</code> 64 位。本文主要以 <code>float</code> 为例。</p>
 
 <p><img src="/images/float.png"></p>
 
@@ -50,17 +50,29 @@
 <ul>
 <li>IEEE 要求浮点数必须是规范的，即小数点的左侧必须为1，这样腾出了一个二进制位来保存更多的尾数，即我们用 23 位尾数域表达了 24 位的尾数</li>
 <li>所以尾数域上限为 2<sup>24</sup> - 1，即 0 ~ 16777215</li>
-<li>10<sup>7</sup> &lt; 16777215 &lt; 10<sup>8</sup>，所以 <code>float</code> 可以精确到小数点后 7 位</li>
+<li>10<sup>7</sup> &lt; 16777215 &lt; 10<sup>8</sup>，所以 <code>float</code> 可以精确到小数点后 7 位（[存疑][]）</li>
 </ul>
 </li>
 <li>特殊表示
 
 <ul>
-<li></li>
+<li>指数全为 0，尾数为 0 时，表示 0</li>
+<li>指数全为 1，尾数为 0 时，表示无穷大</li>
+<li>指数全为 1，尾数不为 0 时，表示 <code>NaN</code></li>
 </ul>
 </li>
 </ul>
 
+
+<p>示例图中的数字表示解析：
+    *   符号位 0 ，表示正数
+    *   指数位 <code>01111100</code> ，表示 <code>2^6 + 2^5 + 2^4 + 2^3 + 2^2 - 127 = -3</code>
+    *   尾数域左侧补 1 位，表示 <code>101</code>
+    *   最后值为 <code>1 * 2^(-3) + 1 * 2^(-5) = 0.15625</code></p>
+
+<h2>疑点</h2>
+
+<p>[存疑][]:</p>
 ]]></content>
   </entry>
   
