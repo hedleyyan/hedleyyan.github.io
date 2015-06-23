@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 技术 | Hedley]]></title>
   <link href="http://hedleyyan.github.io/blog/categories/ji-zhu/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2015-06-22T22:12:55+08:00</updated>
+  <updated>2015-06-23T19:58:23+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[dL]]></name>
@@ -97,7 +97,9 @@
 1.00097656250
 </code></pre>
 
-<p>示例中的 <code>c</code> 精确到小数点后 10 位小数，并且通过</p>
+<p>示例中的 <code>c</code> 精确到小数点后 10 位，可以精确的由二进制表示：1.0009765625 = 2<sup>0</sup> + 2<sup>-10</sup>。</p>
+
+<p>以上输出的第二行表示 Java 对 <code>float</code> 处理的默认精度为 7 位，但是这不表示它的存储就丢失了精度。输出的第三行加入了指定的精度，即得到了无精度损失的浮点数。所以这里得到我个人的结论： <code>float</code> 的 7 位精度是<strong>规约</strong>，而不是表示结构的限制。</p>
 ]]></content>
   </entry>
   

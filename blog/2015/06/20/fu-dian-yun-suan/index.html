@@ -197,7 +197,9 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>示例中的 <code>c</code> 精确到小数点后 10 位小数，并且通过</p>
+<p>示例中的 <code>c</code> 精确到小数点后 10 位，可以精确的由二进制表示：1.0009765625 = 2<sup>0</sup> + 2<sup>-10</sup>。</p>
+
+<p>以上输出的第二行表示 Java 对 <code>float</code> 处理的默认精度为 7 位，但是这不表示它的存储就丢失了精度。输出的第三行加入了指定的精度，即得到了无精度损失的浮点数。所以这里得到我个人的结论： <code>float</code> 的 7 位精度是<strong>规约</strong>，而不是表示结构的限制。</p>
 
 <p><br/><br/><p class='post-footer'>
             original link:
@@ -349,13 +351,6 @@ MathJax.Hub.Config({
 
 
 
-
-  <script type="text/javascript">
-  jQuery(document).ready(function() {
-    // Put a TOC right before the entry content.
-    generateTOC('.entry-content', 'Table of Contents');
-  });
-  </script>
 
 
   <script type="text/javascript" src="http://arrow.scrolltotop.com/arrow44.js"></script>
