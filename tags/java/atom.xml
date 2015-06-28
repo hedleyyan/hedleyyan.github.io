@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: Java | Hedley]]></title>
   <link href="http://hedleyyan.github.io/tags/java/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2015-06-28T18:40:26+08:00</updated>
+  <updated>2015-06-28T18:45:19+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[dL]]></name>
@@ -211,8 +211,6 @@
         // 对称性满足
     }
 </code></pre>
-
-<p><strong>建议：Beware of lossy widening primitive conversions to float and double.</strong></p>
 
 <h1>总结</h1>
 

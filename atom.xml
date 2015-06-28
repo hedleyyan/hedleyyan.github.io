@@ -4,7 +4,7 @@
   <title><![CDATA[Hedley]]></title>
   <link href="http://hedleyyan.github.io/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2015-06-28T18:40:26+08:00</updated>
+  <updated>2015-06-28T18:45:19+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[dL]]></name>
@@ -260,8 +260,6 @@
 </span><span class='line'><span class="o">}</span>
 </span></code></pre></td></tr></table></div></figure>
 
-
-<p><strong>建议：Beware of lossy widening primitive conversions to float and double.</strong></p>
 
 <h1>总结</h1>
 
