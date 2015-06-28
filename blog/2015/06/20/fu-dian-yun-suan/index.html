@@ -197,9 +197,60 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>示例中的 <code>c</code> 精确到小数点后 10 位，可以精确的由二进制表示：1.0009765625 = 2<sup>0</sup> + 2<sup>-10</sup>。对应第一行输出其二进制表示：<code>0 01111111 00000000010000000000000</code> -> 指数位：2<sup>7</sup> - 1 - 127 = 0； 尾数：1.0000000001 = 2<sup>0</sup> + 2<sup>-10</sup>。</p>
+<p>示例中的 <code>c</code> 精确到小数点后 10 位，可以精确的由二进制表示：1.0009765625 = 2<sup>0</sup> + 2<sup>-10</sup>。</p>
 
-<p>以上输出的第二行表示 Java 对 <code>float</code> 处理的默认精度为 7 位，但是这不表示它的存储就丢失了精度。输出的第三行加入了指定的精度，即得到了无精度损失的浮点数。所以这里得到我<em>个人结论</em>： <code>float</code> 的 7 位精度是<strong>规约</strong>，而不是表示结构的限制。</p>
+<ul>
+<li>第一行输出为其二进制表示，进行验证</li>
+<li><code>0 01111111 00000000010000000000000</code>
+
+<ul>
+<li>指数：2<sup>7</sup> - 1 - 127 = 0</li>
+<li>尾数：1.0000000001 = 2<sup>0</sup> + 2<sup>-10</sup></li>
+</ul>
+</li>
+</ul>
+
+
+<p>以上输出的第二行表示 Java 对 <code>float</code> 处理的默认精度为 7 位，但是这不表示它的存储就丢失了精度。输出的第三行加入了指定的精度，即得到了无精度损失的浮点数。</p>
+
+<p>所以这里得到我的<strong>个人结论</strong>： <code>float</code> 的 7 位精度是<strong>规约</strong>，而不是表示结构的限制。</p>
+
+<h2>浮点数向二进制转换</h2>
+
+<p>0.1 = 1.6/16
+= 1/16 + 0.6/1                          （1）
+= 1/16 + 1.2/32                         （2）
+= 1/16 + 1/32 + 0.2/32                  （3）
+= 1/16 + 1/32 + 1.6/2<sup>8</sup>                 （4）
+= &frac12;<sup>4</sup> + &frac12;<sup>5</sup> + &frac12;<sup>8</sup> + 0.6/2<sup>8</sup>       （5）
+= &hellip;</p>
+
+<p>第（5）步又回到了（1）一样的分子 0.6 ，所以这是一个无限循环小数</p>
+
+<p>0.1 = 0.00011001 00011001 00011001 00011001&hellip;</p>
+
+<h1>场景</h1>
+
+<h2><em>Puzzle 2</em></h2>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span> <span class="n">args</span><span class="o">[])</span> <span class="o">{</span>
+</span><span class='line'>    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="mf">2.00</span> <span class="o">-</span> <span class="mf">1.10</span><span class="o">);</span>    <span class="c1">// 0.8999999999999999</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h1>引用</h1>
+
+<ul>
+<li><a href="http://www.eecs.berkeley.edu/~wkahan/ieee754status/IEEE754.PDF">IEEE Standard 754</a></li>
+<li><a href="http://book.douban.com/subject/1328664/">Java Puzzlers</a></li>
+<li><a href="http://justjavac.iteye.com/blog/1073775">学习 Java 浮点数必看文章</a></li>
+<li><a href="http://hujiantao224.iteye.com/blog/727155">Java 浮点数表示详解</a></li>
+</ul>
+
 
 <p><br/><br/><p class='post-footer'>
             original link:
