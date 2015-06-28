@@ -4,7 +4,7 @@
   <title><![CDATA[Hedley]]></title>
   <link href="http://hedleyyan.github.io/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2015-06-28T18:45:19+08:00</updated>
+  <updated>2015-06-28T22:47:37+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[dL]]></name>
@@ -142,17 +142,17 @@
 
 <h2>二进制表示方法</h2>
 
-<p>0.1 = 1.6/16</p>
+<p>0.1 = 1.6 / 16</p>
 
-<p>= 1/16 + 0.6/1</p>
+<p>= 1 / 16 + 0.6 / 1</p>
 
-<p>= 1/16 + 1.2/32</p>
+<p>= 1 / 16 + 1.2 / 32</p>
 
-<p>= 1/16 + 1/32 + 0.2/32</p>
+<p>= 1 / 16 + 1 / 32 + 0.2 / 32</p>
 
-<p>= 1/16 + 1/32 + 1.6/(2<sup>8</sup>)</p>
+<p>= 1 / 16 + 1 / 32 + 1.6 / 2<sup>8</sup></p>
 
-<p>= 1/(2<sup>4</sup>) + 1/(2<sup>5</sup>) + 1/(2<sup>8</sup>) + 0.6/(2<sup>8</sup>)</p>
+<p>= 1 / 2<sup>4</sup> + 1 / 2<sup>5</sup> + 1 / 2<sup>8</sup> + 0.6 / 2<sup>8</sup></p>
 
 <p>= &hellip;</p>
 
@@ -999,7 +999,7 @@
 
 <h2>数学公式</h2>
 
-<p>参考<a href="http://www.tuicool.com/articles/miaUR3">kramdown配置</a></p>
+<p>参考<a href="http://www.tuicool.com/articles/miaUR3">kramdown配置</a>。</p>
 
 <p><br/><br/><p class='post-footer'>
             original link:
