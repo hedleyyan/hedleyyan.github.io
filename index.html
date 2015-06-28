@@ -148,6 +148,61 @@
 
 <p>此文深入剖析困扰哥已久的浮点数表示和运算。</p>
 
+<h1>定义</h1>
+
+<p>Java 浮点数定义采纳 <a href="http://www.eecs.berkeley.edu/~wkahan/ieee754status/IEEE754.PDF">IEEE Standard 754</a> 标准：单精度 <code>float</code> 32 位，双精度 <code>double</code> 64 位。本文主要以 <code>float</code> 为例。</p>
+
+<p><img src="/images/float.png"></p>
+
+<ul>
+<li>最高位符号位
+
+<ul>
+<li>0 正 1 负</li>
+</ul>
+</li>
+<li>接 8 位指数位，并有 127 的偏移量
+
+<ul>
+<li>所以指数范围为：0 - 127 ~ (2<sup>8</sup> - 1) - 127</li>
+<li>全 0 和全 1 保留用特殊表示，所以指数域的修正范围为 -126 ~ 127</li>
+</ul>
+</li>
+<li>剩下 23 位为尾数域
+
+<ul>
+<li>IEEE 要求浮点数必须是规范的，即小数点的左侧必须为1，这样腾出了一个二进制位来保存更多的尾数，即我们用 23 位尾数域表达了 24 位的尾数</li>
+<li>所以尾数域上限为 2<sup>24</sup> - 1，即 0 ~ 16777215</li>
+<li>10<sup>7</sup> &lt; 16777215 &lt; 10<sup>8</sup>，所以 <code>float</code> 可以精确到小数点后 7 位（<a href="#%E7%B2%BE%E5%BA%A6">存疑</a>）</li>
+</ul>
+</li>
+</ul>
+
+
+<p><img class="right" src="/images/Snip20150622_1.png" width="300" height="350"></p>
+
+<ul>
+<li>特殊表示
+
+<ul>
+<li>指数全为 0，尾数为 0 时，表示 0</li>
+<li>指数全为 1，尾数为 0 时，表示无穷大</li>
+<li>指数全为 1，尾数不为 0 时，表示 <code>NaN</code></li>
+</ul>
+</li>
+</ul>
+
+
+<p>示例图中的数字表示解析：</p>
+
+<ul>
+<li>符号位 0 ，表示正数</li>
+<li>指数位 <code>01111100</code> ，表示 2<sup>6</sup> + 2<sup>5</sup> + 2<sup>4</sup> + 2<sup>3</sup> + 2<sup>2</sup> - 127 = -3</li>
+<li>尾数域左侧补 1 位，表示 <code>101</code></li>
+<li>最后值为 1 * 2<sup>-3</sup> + 1 * 2<sup>-5</sup> = 0.15625</li>
+</ul>
+
+
 </div>
   
   
@@ -207,18 +262,12 @@
 
 <p><img src="/images/yingbindadao.jpg"></p>
 
-<h1>总结</h1>
-
-<p>简单留言就好，凭 <em>ID</em> 找幺儿本人领取辣条一包。</p>
-
-<p><br/><br/><p class='post-footer'>
-            original link:
-            <a href='http://hedleyyan.github.io/blog/2015/06/16/cang-zhou-shi-jie-dao-diao-cha-wen-juan/'><a href="http://hedleyyan.github.io/blog/2015/06/16/cang-zhou-shi-jie-dao-diao-cha-wen-juan/">http://hedleyyan.github.io/blog/2015/06/16/cang-zhou-shi-jie-dao-diao-cha-wen-juan/</a></a><br/>
-            written by <a href='http://hedleyyan.github.io'>dL</a>
-            &nbsp;posted at <a href='http://hedleyyan.github.io'><a href="http://hedleyyan.github.io">http://hedleyyan.github.io</a></a>
-            </p></p>
 </div>
   
+  
+    <footer>
+      <a rel="full-article" href="/blog/2015/06/16/cang-zhou-shi-jie-dao-diao-cha-wen-juan/">Read on &rarr;</a>
+    </footer>
   
 
 
