@@ -215,7 +215,7 @@
 
 <p>所以这里得到我的<strong>个人结论</strong>： <code>float</code> 的 7 位精度是<strong>规约</strong>，而不是表示结构的限制。</p>
 
-<h2>浮点数向二进制转换</h2>
+<h2>浮点数二进制表示方法</h2>
 
 <p>0.1 = 1.6/16</p>
 
@@ -247,6 +247,19 @@
 </span><span class='line'><span class="o">}</span>
 </span></code></pre></td></tr></table></div></figure>
 
+
+<p>这个简单的算式得到的结果不是期望的 0.9 ，而是 0.8999999999999999 。因为 1.1 不能被精确的保存为 <code>double</code> 类型，而被保存为了最接近 1.1 的值，不幸的是，这个值与 2.0 做减法运算后得到的不是最接近 0.9 的 <code>double</code> 值，而是输出的这个奇葩数。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span> <span class="n">args</span><span class="o">[])</span> <span class="o">{</span>
+</span><span class='line'>    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="k">new</span> <span class="nf">BigDecimal</span><span class="o">(</span><span class="s">&quot;2.00&quot;</span><span class="o">).</span><span class="na">subtract</span><span class="o">(</span><span class="k">new</span> <span class="nf">BigDecimal</span><span class="o">(</span><span class="s">&quot;1.10&quot;</span><span class="o">)));</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><strong>建议：需要精确表示时，用 <code>BigDecimal(String str)</code> ，永远不要用浮点数做运算。</strong></p>
 
 <h1>引用</h1>
 

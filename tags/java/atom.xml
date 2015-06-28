@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: Java | Hedley]]></title>
   <link href="http://hedleyyan.github.io/tags/java/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2015-06-28T16:58:54+08:00</updated>
+  <updated>2015-06-28T17:18:24+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[dL]]></name>
@@ -115,7 +115,7 @@
 
 <p>所以这里得到我的<strong>个人结论</strong>： <code>float</code> 的 7 位精度是<strong>规约</strong>，而不是表示结构的限制。</p>
 
-<h2>浮点数向二进制转换</h2>
+<h2>浮点数二进制表示方法</h2>
 
 <p>0.1 = 1.6/16</p>
 
@@ -143,6 +143,15 @@
         System.out.println(2.00 - 1.10);    // 0.8999999999999999
     }
 </code></pre>
+
+<p>这个简单的算式得到的结果不是期望的 0.9 ，而是 0.8999999999999999 。因为 1.1 不能被精确的保存为 <code>double</code> 类型，而被保存为了最接近 1.1 的值，不幸的是，这个值与 2.0 做减法运算后得到的不是最接近 0.9 的 <code>double</code> 值，而是输出的这个奇葩数。</p>
+
+<pre><code class="java">    public static void main(String args[]) {
+        System.out.println(new BigDecimal("2.00").subtract(new BigDecimal("1.10")));
+    }
+</code></pre>
+
+<p><strong>建议：需要精确表示时，用 <code>BigDecimal(String str)</code> ，永远不要用浮点数做运算。</strong></p>
 
 <h1>引用</h1>
 
