@@ -215,7 +215,7 @@
 
 <p>所以这里得到我的<strong>个人结论</strong>： <code>float</code> 的 7 位精度是<strong>规约</strong>，而不是表示结构的限制。</p>
 
-<h2>浮点数二进制表示方法</h2>
+<h2>二进制表示方法</h2>
 
 <p>0.1 = 1.6/16</p>
 
@@ -254,12 +254,93 @@
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 </pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span> <span class="n">args</span><span class="o">[])</span> <span class="o">{</span>
-</span><span class='line'>    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="k">new</span> <span class="nf">BigDecimal</span><span class="o">(</span><span class="s">&quot;2.00&quot;</span><span class="o">).</span><span class="na">subtract</span><span class="o">(</span><span class="k">new</span> <span class="nf">BigDecimal</span><span class="o">(</span><span class="s">&quot;1.10&quot;</span><span class="o">)));</span>
+</span><span class='line'>    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="k">new</span> <span class="nf">BigDecimal</span><span class="o">(</span><span class="s">&quot;2.00&quot;</span><span class="o">).</span><span class="na">subtract</span><span class="o">(</span><span class="k">new</span> <span class="nf">BigDecimal</span><span class="o">(</span><span class="s">&quot;1.10&quot;</span><span class="o">)));</span>   <span class="c1">// 0.90</span>
 </span><span class='line'><span class="o">}</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
 <p><strong>建议：需要精确表示时，用 <code>BigDecimal(String str)</code> ，永远不要用浮点数做运算。</strong></p>
+
+<h2><em>Puzzle 28: Looper</em></h2>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="k">while</span> <span class="o">(</span><span class="n">i</span> <span class="o">==</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>      <span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>给 <code>i</code> 一个声明，使上面的语句进入无限循环状态。。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kt">double</span> <span class="n">i</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="mf">0.0</span><span class="o">;</span>
+</span><span class='line'><span class="c1">// Better yet, you can take advantage of a constant that is provided for you by the standard libraries:</span>
+</span><span class='line'><span class="kt">double</span> <span class="n">i</span> <span class="o">=</span> <span class="n">Double</span><span class="o">.</span><span class="na">POSITIVE_INFINITY</span><span class="o">;</span>
+</span><span class='line'><span class="c1">// In fact, any sufficiently large floating-point value will do; for example:</span>
+</span><span class='line'><span class="kt">double</span> <span class="n">i</span> <span class="o">=</span> <span class="mf">1.0e40</span><span class="o">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>无穷大不用说。因为浮点数不能精确保存值，当一个数很大时，它的后继邻接数 <em>(ulp)</em> 与其差值可以大于 1 。</p>
+
+<blockquote><p>The distance between adjacent floating-point values is called an ulp, which is an acronym for unit in the last place. In release 5.0, the Math.ulp method was introduced to calculate the ulp of a float or double value.</p></blockquote>
+
+
+<p><strong>建议：不要用浮点数做循环索引。</strong></p>
+
+<h2><em>Puzzle 87: Strained Relations</em></h2>
+
+<p>数学上对于 <code>=</code> 的定义满足相等关系 <em>(equivalence relation)</em> 的三个条件</p>
+
+<ul>
+<li>自反性：x ~ x for all x.</li>
+<li>对称性：if x ~ y, then y ~ x.</li>
+<li>传递性：if x ~ y and y ~ z, then x ~ z.</li>
+</ul>
+
+
+<p>那么 <em>Java</em> 中的 <code>==</code> 呢</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+</span><span class='line'>    <span class="c1">// 自反性不满足</span>
+</span><span class='line'>    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">Double</span><span class="o">.</span><span class="na">NaN</span> <span class="o">==</span> <span class="n">Double</span><span class="o">.</span><span class="na">NaN</span><span class="o">);</span>   <span class="c1">// false</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1">// 传递性不满足</span>
+</span><span class='line'>    <span class="kt">long</span> <span class="n">x</span> <span class="o">=</span> <span class="n">Long</span><span class="o">.</span><span class="na">MAX_VALUE</span><span class="o">;</span>
+</span><span class='line'>    <span class="kt">double</span> <span class="n">y</span> <span class="o">=</span> <span class="o">(</span><span class="kt">double</span><span class="o">)</span><span class="n">Long</span><span class="o">.</span><span class="na">MAX_VALUE</span><span class="o">;</span>
+</span><span class='line'>    <span class="kt">long</span> <span class="n">z</span> <span class="o">=</span> <span class="n">Long</span><span class="o">.</span><span class="na">MAX_VALUE</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span>
+</span><span class='line'>    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">((</span><span class="n">x</span> <span class="o">==</span> <span class="n">y</span><span class="o">)</span> <span class="o">+</span> <span class="s">&quot; &quot;</span><span class="o">);</span>   <span class="c1">// Imprecise! true</span>
+</span><span class='line'>    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">((</span><span class="n">y</span> <span class="o">==</span> <span class="n">z</span><span class="o">)</span> <span class="o">+</span> <span class="s">&quot; &quot;</span><span class="o">);</span>   <span class="c1">// Imprecise! true</span>
+</span><span class='line'>    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">x</span> <span class="o">==</span> <span class="n">z</span><span class="o">);</span>         <span class="c1">// Precise    false</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1">// 对称性满足</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><strong>建议：Beware of lossy widening primitive conversions to float and double.</strong></p>
+
+<h1>总结</h1>
+
+<p>注意浮点数的精度丢失以及类型转换，相对于 <code>float</code> ，优先用 <code>double</code> 。</p>
 
 <h1>引用</h1>
 

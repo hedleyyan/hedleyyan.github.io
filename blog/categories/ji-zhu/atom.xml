@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 技术 | Hedley]]></title>
   <link href="http://hedleyyan.github.io/blog/categories/ji-zhu/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2015-06-28T17:18:24+08:00</updated>
+  <updated>2015-06-28T18:36:35+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[dL]]></name>
@@ -124,7 +124,7 @@
 
 <p>所以这里得到我的<strong>个人结论</strong>： <code>float</code> 的 7 位精度是<strong>规约</strong>，而不是表示结构的限制。</p>
 
-<h2>浮点数二进制表示方法</h2>
+<h2>二进制表示方法</h2>
 
 <p>0.1 = 1.6/16</p>
 
@@ -156,11 +156,67 @@
 <p>这个简单的算式得到的结果不是期望的 0.9 ，而是 0.8999999999999999 。因为 1.1 不能被精确的保存为 <code>double</code> 类型，而被保存为了最接近 1.1 的值，不幸的是，这个值与 2.0 做减法运算后得到的不是最接近 0.9 的 <code>double</code> 值，而是输出的这个奇葩数。</p>
 
 <pre><code class="java">    public static void main(String args[]) {
-        System.out.println(new BigDecimal("2.00").subtract(new BigDecimal("1.10")));
+        System.out.println(new BigDecimal("2.00").subtract(new BigDecimal("1.10")));    // 0.90
     }
 </code></pre>
 
 <p><strong>建议：需要精确表示时，用 <code>BigDecimal(String str)</code> ，永远不要用浮点数做运算。</strong></p>
+
+<h2><em>Puzzle 28: Looper</em></h2>
+
+<pre><code class="java">    while (i == i + 1) {
+    }
+</code></pre>
+
+<p>给 <code>i</code> 一个声明，使上面的语句进入无限循环状态。。</p>
+
+<pre><code class="java">    double i = 1.0 / 0.0;
+    // Better yet, you can take advantage of a constant that is provided for you by the standard libraries:
+    double i = Double.POSITIVE_INFINITY;
+    // In fact, any sufficiently large floating-point value will do; for example:
+    double i = 1.0e40;
+</code></pre>
+
+<p>无穷大不用说。因为浮点数不能精确保存值，当一个数很大时，它的后继邻接数 <em>(ulp)</em> 与其差值可以大于 1 。</p>
+
+<p><blockquote><p>The distance between adjacent floating-point values is called an ulp, which is an acronym for unit in the last place. In release 5.0, the Math.ulp method was introduced to calculate the ulp of a float or double value.</p></blockquote></p>
+
+<p><strong>建议：不要用浮点数做循环索引。</strong></p>
+
+<h2><em>Puzzle 87: Strained Relations</em></h2>
+
+<p>数学上对于 <code>=</code> 的定义满足相等关系 <em>(equivalence relation)</em> 的三个条件</p>
+
+<ul>
+<li>自反性：x ~ x for all x.</li>
+<li>对称性：if x ~ y, then y ~ x.</li>
+<li>传递性：if x ~ y and y ~ z, then x ~ z.</li>
+</ul>
+
+
+<p>那么 <em>Java</em> 中的 <code>==</code> 呢</p>
+
+<pre><code class="java">    public static void main(String[] args) throws Exception {
+        // 自反性不满足
+        System.out.println(Double.NaN == Double.NaN);   // false
+
+        // 传递性不满足
+        long x = Long.MAX_VALUE;
+        double y = (double)Long.MAX_VALUE;
+        long z = Long.MAX_VALUE - 1;
+        System.out.print((x == y) + " ");   // Imprecise! true
+        System.out.print((y == z) + " ");   // Imprecise! true
+        System.out.println(x == z);         // Precise    false
+
+        // 对称性满足
+    }
+</code></pre>
+
+<p><strong>建议：Beware of lossy widening primitive conversions to float and double.</strong></p>
+
+<h1>总结</h1>
+
+<p>注意浮点数的精度丢失以及类型转换，相对于 <code>float</code> ，优先用 <code>double</code> 。</p>
 
 <h1>引用</h1>
 
