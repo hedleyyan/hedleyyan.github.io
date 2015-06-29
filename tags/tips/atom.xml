@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: tips | Hedley]]></title>
   <link href="http://hedleyyan.github.io/tags/tips/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2015-06-29T14:14:32+08:00</updated>
+  <updated>2015-06-29T14:18:51+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[dL]]></name>
@@ -20,7 +20,7 @@
     <id>http://hedleyyan.github.io/blog/2015/06/29/sublime-text-guang-biao-jiao-dian-ji-zhong-dao-folders-zhuang-tai-lan</id>
     <content type="html"><![CDATA[<p>搜索了若干资料，如何让光标焦点从 Editor 移动到 FOLDERS 状态栏。偶然复现过一次，却百思不得其解。</p>
 
-<p>经过不懈尝试，终得破解大法！这下看一口气看 LOG 不要太爽！</p>
+<p>经过不懈尝试，终得破解大法！这下一口气看 LOG 不要太爽！</p>
 
 <ul>
 <li>点击 FOLDERS 中任意一个文件</li>
@@ -30,6 +30,11 @@
 
 
 <p>秘籍：左 C + [左 C + 2ms + 右 C]，很有我当年三国战记配无限风书的神韵啊！</p>
+
+<p><img src="/image/fengshu.jpg"></p>
+
+<!--more-->
+
 ]]></content>
   </entry>
   
