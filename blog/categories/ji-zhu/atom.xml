@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 技术 | Hedley]]></title>
   <link href="http://hedleyyan.github.io/blog/categories/ji-zhu/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2015-07-04T17:35:04+08:00</updated>
+  <updated>2015-07-04T22:34:17+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[dL]]></name>
@@ -219,19 +219,31 @@ public class SuspiciousSort {
 
 <pre><code class="java">    public class Multicast {
         public static void main(String[] args) {
-        System.out.println((int) (char) (byte) -1);
+            System.out.println((int) (char) (byte) -1);     // 65535
         }
     }
 </code></pre>
 
-<p>转换过程
-*   (int) -1 ➡️ (byte) -1 : 0xffff ➡️ 0xf   (narrowing)
-*   (byte) -1 ➡️ (char) -1      （widening and narrowing)
-    *   (byte) -1 ➡️ (int) - 1 : 0xf ➡️ 0xffff
-    *   (int) -1 ➡️ (char) 65535 : 0xffff ➡️ 0xff
-*   (char) 65535 ➡️ (int) 65535 : 0xff ➡️ 0xffff    (widening)</p>
+<p>转换过程</p>
 
-<h2><em>Puzzle 1: Oddity</em></h2>
+<ul>
+<li>(int) -1 ➡️ (byte) -1 : 0xffff ➡️ 0xf   <em>(narrowing)</em></li>
+<li>(byte) -1 ➡️ (char) -1      <em>(widening and narrowing)</em>
+
+<ul>
+<li>(byte) -1 ➡️ (int) - 1 : 0xf ➡️ 0xffff</li>
+<li>(int) -1 ➡️ (char) 65535 : 0xffff ➡️ 0xff</li>
+</ul>
+</li>
+<li>(char) 65535 ➡️ (int) 65535 : 0xff ➡️ 0xffff    <em>(widening)</em></li>
+</ul>
+
+
+<p><strong>秘籍：当心 <em>Narrowing Primitive Conversion</em> 的值变化。</strong></p>
+
+<h1><em>Other Tips</em></h1>
+
+<h2><em>Puzzle 1: 求余</em></h2>
 
 <p>以下是判断一个整数是否为奇数的方法，可行吗？</p>
 
@@ -250,7 +262,23 @@ public class SuspiciousSort {
     }
 </code></pre>
 
-<h2>**</h2>
+<h2><em>Puzzle 27: 移位</em></h2>
+
+<pre><code class="java">    public class Shifty {
+        public static void main(String[] args) {
+            int i = 0;
+            while (-1 &lt;&lt; i != 0)
+                i++;
+            System.out.println(i);
+        } 
+    }
+</code></pre>
+
+<p>因为 -1 的二进制表示 0xffff 有 32 位 1，所以输出应该是 32 吧？但是这是一个 <em>Infinite loop</em>。因为 -1 左移 32 位还是 -1。</p>
+
+<p><blockquote><p>Shift operators use only the five low-order bits of their right operand as the shift distance, or six bits if the left operand is a long.</p><footer><strong>JSL</strong></footer></blockquote></p>
+
+<h2><em>Puzzle 31: 组合运算符</em></h2>
 ]]></content>
   </entry>
   
