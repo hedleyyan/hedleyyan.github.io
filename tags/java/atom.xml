@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: Java | Hedley]]></title>
   <link href="http://hedleyyan.github.io/tags/java/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2015-07-04T22:34:17+08:00</updated>
+  <updated>2015-07-04T23:18:31+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[dL]]></name>
@@ -251,9 +251,34 @@ public class SuspiciousSort {
 
 <p>因为 -1 的二进制表示 0xffff 有 32 位 1，所以输出应该是 32 吧？但是这是一个 <em>Infinite loop</em>。因为 -1 左移 32 位还是 -1。</p>
 
-<p><blockquote><p>Shift operators use only the five low-order bits of their right operand as the shift distance, or six bits if the left operand is a long.</p><footer><strong>JSL</strong></footer></blockquote></p>
+<p><blockquote><p>Shift operators use only the five low-order bits of their right operand as the shift distance, or six bits if the left operand is a long.</p></blockquote></p>
 
 <h2><em>Puzzle 31: 组合运算符</em></h2>
+
+<pre><code class="java">    while (i != 0) {
+        i &gt;&gt;&gt;= 1;
+    }
+</code></pre>
+
+<p>给 <code>i</code> 一个声明，使上面的语句陷入 <em>Infinite loop</em>。</p>
+
+<p><blockquote><p>Compound assignment operators is that they can silently perform narrowing primitive conversions.</p></blockquote></p>
+
+<p>答案可以是 <code>short i = -1</code>。所有非 <code>long</code> 的整型在运算时都需要转换为 <code>int</code>，该运算的步骤拆分为</p>
+
+<ul>
+<li>(short) -1 ➡️ (int) -1 : 0xff ➡️ 0xffff</li>
+<li>-1 >>> 1 ➡️ 0x7fff</li>
+<li>(int) 2<sup>31</sup> - 1 ➡️ (short) -1 : 0x7fff ➡️ 0xff</li>
+<li><em>Infinite loop</em></li>
+</ul>
+
+
+<p>秘籍：不要对 <code>byte</code>, <code>short</code>, <code>char</code> 使用组合运算符。</p>
+
+<h1>总结</h1>
+
+<p>注意边界，注意转型，注意 <code>byte</code> <code>char</code>，注意特殊运算。</p>
 ]]></content>
   </entry>
   

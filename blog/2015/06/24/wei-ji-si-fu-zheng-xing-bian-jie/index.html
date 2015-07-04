@@ -460,10 +460,40 @@ public class LongDivision { public &hellip;">
 
 <p>因为 -1 的二进制表示 0xffff 有 32 位 1，所以输出应该是 32 吧？但是这是一个 <em>Infinite loop</em>。因为 -1 左移 32 位还是 -1。</p>
 
-<blockquote><p>Shift operators use only the five low-order bits of their right operand as the shift distance, or six bits if the left operand is a long.</p><footer><strong>JSL</strong></footer></blockquote>
+<blockquote><p>Shift operators use only the five low-order bits of their right operand as the shift distance, or six bits if the left operand is a long.</p></blockquote>
 
 
 <h2><em>Puzzle 31: 组合运算符</em></h2>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="k">while</span> <span class="o">(</span><span class="n">i</span> <span class="o">!=</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>    <span class="n">i</span> <span class="o">&gt;&gt;&gt;=</span> <span class="mi">1</span><span class="o">;</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>给 <code>i</code> 一个声明，使上面的语句陷入 <em>Infinite loop</em>。</p>
+
+<blockquote><p>Compound assignment operators is that they can silently perform narrowing primitive conversions.</p></blockquote>
+
+
+<p>答案可以是 <code>short i = -1</code>。所有非 <code>long</code> 的整型在运算时都需要转换为 <code>int</code>，该运算的步骤拆分为</p>
+
+<ul>
+<li>(short) -1 ➡️ (int) -1 : 0xff ➡️ 0xffff</li>
+<li>-1 >>> 1 ➡️ 0x7fff</li>
+<li>(int) 2<sup>31</sup> - 1 ➡️ (short) -1 : 0x7fff ➡️ 0xff</li>
+<li><em>Infinite loop</em></li>
+</ul>
+
+
+<p>秘籍：不要对 <code>byte</code>, <code>short</code>, <code>char</code> 使用组合运算符。</p>
+
+<h1>总结</h1>
+
+<p>注意边界，注意转型，注意 <code>byte</code> <code>char</code>，注意特殊运算。</p>
 
 <p><br/><br/><p class='post-footer'>
             original link:
