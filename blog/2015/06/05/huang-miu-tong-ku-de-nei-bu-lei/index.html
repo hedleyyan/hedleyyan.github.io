@@ -258,7 +258,7 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p><strong>建议：能用静态嵌套类解决，就不用内部类。</strong></p>
+<p><strong>秘籍：能用静态嵌套类解决，就不用内部类。</strong></p>
 
 <h2><em>Puzzle 89</em>：泛型</h2>
 
@@ -485,8 +485,8 @@
 
 <p>这样 <code>Node&lt;T&gt;</code> 完全与他的 <code>LinkedList&lt;E&gt;</code> 是解耦合的，想象一下你不止可以声明一个 <code>Node&lt;E&gt;</code> ，你完全可以声明 <code>Node&lt;Integer&gt;</code> 、 <code>Node&lt;String&gt;</code> ，是不是爽多了。</p>
 
-<p><strong>建议1：类 A 的成员变量，只在 A 的成员方法里改。</strong> <br>
-<strong>建议2：能用静态嵌套类解决，就不用内部类！！</strong></p>
+<p><strong>秘籍1：类 A 的成员变量，只在 A 的成员方法里改。</strong> <br>
+<strong>秘籍2：能用静态嵌套类解决，就不用内部类！！</strong></p>
 
 <h2><em>Puzzle 90</em>：嵌套继承</h2>
 
@@ -578,8 +578,8 @@
 
 <p><em>OK</em> ，是不是有点晕？晕就对了。无论何时，当你要写一个 <em>inner class</em> 的时候，问问自己，真的不可以用 <em>static nested class</em> 来代替吗？真的有必要吗？ <em>inner class</em> 还要继承 <em>enclosing class</em> ？真的真的有必要吗？</p>
 
-<p><strong>建议1：尽量避免继承内部类。</strong> <br>
-<strong>建议2：能用静态嵌套类解决，就不用内部类！！！！</strong></p>
+<p><strong>秘籍1：尽量避免继承内部类。</strong> <br>
+<strong>秘籍2：能用静态嵌套类解决，就不用内部类！！！！</strong></p>
 
 <h2><em>Puzzle 92</em>：另类匿名类</h2>
 
@@ -646,7 +646,7 @@
 
 <p><strong>私有方法无法被继承！</strong> <em>This is the key</em>！ <em>So</em> ，<code>new Twisted("reproduce")</code> 实例没有 <code>name()</code> 方法，而 <code>printName()</code> 方法会依最小作用域找到 <code>enclosing instance</code> 的 <code>name()</code> 方法并调用。</p>
 
-<p><strong>建议：避免一个内部类继承它的外部类。</strong></p>
+<p><strong>秘籍：避免一个内部类继承它的外部类。</strong></p>
 
 <h1>总结</h1>
 
@@ -756,7 +756,7 @@
       </li>
     
       <li class="post">
-        <a href="/blog/2015/06/24/wei-ji-si-fu-zheng-xing-bian-jie/">危机四伏整型边界</a>
+        <a href="/blog/2015/06/24/wei-ji-si-fu-zheng-xing-bian-jie/">危机四伏整型运算</a>
       </li>
     
       <li class="post">

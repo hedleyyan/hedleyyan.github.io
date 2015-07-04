@@ -4,7 +4,7 @@
   <title><![CDATA[Hedley]]></title>
   <link href="http://hedleyyan.github.io/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2015-06-29T14:22:07+08:00</updated>
+  <updated>2015-07-04T14:14:55+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[dL]]></name>
@@ -29,7 +29,7 @@
 </ul>
 
 
-<p>秘籍：左 C + [ 左 C + hold 2ms + 右 C ]，很有我当年三国战记配无限风书的神韵啊！</p>
+<p><strong>秘籍</strong>：左 C + [ 左 C + hold 2ms + 右 C ]，很有我当年三国战记配无限风书的神韵啊！</p>
 
 <p><img src="http://hedleyyan.github.io/images/fengshu.jpg"></p>
 
@@ -46,12 +46,257 @@
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[危机四伏整型边界]]></title>
+    <title type="html"><![CDATA[危机四伏整型运算]]></title>
     <link href="http://hedleyyan.github.io/blog/2015/06/24/wei-ji-si-fu-zheng-xing-bian-jie/"/>
     <updated>2015-06-24T09:10:09+08:00</updated>
     <id>http://hedleyyan.github.io/blog/2015/06/24/wei-ji-si-fu-zheng-xing-bian-jie</id>
-    <content type="html"><![CDATA[<!--more-->
+    <content type="html"><![CDATA[<h1>关于</h1>
 
+<p>哈？整型运算？听起来好 <em>EASY</em> 啊喂！直奔主题咯。</p>
+
+<h1>场景</h1>
+
+<h2>边界</h2>
+
+<h3><em>Puzzle 3: Long Division</em></h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">LongDivision</span> <span class="o">{</span>
+</span><span class='line'>      <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>      <span class="kd">final</span> <span class="kt">long</span> <span class="n">MICROS_PER_DAY</span> <span class="o">=</span> <span class="mi">24</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">*</span> <span class="mi">1000</span> <span class="o">*</span> <span class="mi">1000</span><span class="o">;</span>
+</span><span class='line'>      <span class="kd">final</span> <span class="kt">long</span> <span class="n">MILLIS_PER_DAY</span> <span class="o">=</span> <span class="mi">24</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">*</span> <span class="mi">1000</span><span class="o">;</span>
+</span><span class='line'>      <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">MICROS_PER_DAY</span> <span class="o">/</span> <span class="n">MILLIS_PER_DAY</span><span class="o">);</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<!--more-->
+
+
+<p><code>EASY</code> 无压力，一目了然整型越界。 <code>MICROS_PER_DAY</code> 虽然声明为 <code>long</code>，可以装下计算结果，但是计算结果本身先是以 <code>int</code> 类型进行计算，计算完成后再赋值给 <code>MICROS_PER_DAY</code> 的。很不幸，在计算的时候就溢出了。</p>
+
+<p>修改太简单，加一个类型声明后缀，大写的 <code>L</code>。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">LongDivision</span> <span class="o">{</span>
+</span><span class='line'>      <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>      <span class="kd">final</span> <span class="kt">long</span> <span class="n">MICROS_PER_DAY</span> <span class="o">=</span> <span class="mi">24</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">*</span> <span class="mi">1000</span> <span class="o">*</span> <span class="mi">1000L</span><span class="o">;</span>
+</span><span class='line'>      <span class="kd">final</span> <span class="kt">long</span> <span class="n">MILLIS_PER_DAY</span> <span class="o">=</span> <span class="mi">24</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">*</span> <span class="mi">1000L</span><span class="o">;</span>
+</span><span class='line'>      <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">MICROS_PER_DAY</span> <span class="o">/</span> <span class="n">MILLIS_PER_DAY</span><span class="o">);</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3><em>Puzzle 26: In the Loop</em></h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">InTheLoop</span> <span class="o">{</span>
+</span><span class='line'>  <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">END</span> <span class="o">=</span> <span class="n">Integer</span><span class="o">.</span><span class="na">MAX_VALUE</span><span class="o">;</span>
+</span><span class='line'>  <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">START</span> <span class="o">=</span> <span class="n">END</span> <span class="o">-</span> <span class="mi">100</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>      <span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+</span><span class='line'>      <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">START</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">END</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span>
+</span><span class='line'>          <span class="n">count</span><span class="o">++;</span>
+</span><span class='line'>          <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">count</span><span class="o">);</span>
+</span><span class='line'>      <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>如果你没有仔细的看代码，可能会认为输出 <code>100</code>；如果你仔细一点，会发现这不是 <code>for</code> 循环的惯用语法 <em>(idiom)</em>，可能会认为输出 <code>101</code>。<em>Well</em> 都不是，你会发现没有输出，代码陷入了无限循环 <em>(Infinite loop)</em>。因为所有的 <code>int</code> 值都 <code>&lt;= Integer.MAX_VALUE</code>。</p>
+
+<p>此外，将函数 <code>f(int)</code> 应用到所有的 40 亿整数的 <em>idiom</em> 是这个样子滴</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="c1">// Apply the function f to all four billion int values</span>
+</span><span class='line'><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">Integer</span><span class="o">.</span><span class="na">MIN_VALUE</span><span class="o">;</span>
+</span><span class='line'><span class="k">do</span> <span class="o">{</span>
+</span><span class='line'>    <span class="n">f</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
+</span><span class='line'><span class="o">}</span> <span class="k">while</span> <span class="o">(</span><span class="n">i</span><span class="o">++</span> <span class="o">!=</span> <span class="n">Integer</span><span class="o">.</span><span class="na">MAX_VALUE</span><span class="o">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3><em>Puzzle 33</em></h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="k">while</span> <span class="o">(</span><span class="n">i</span> <span class="o">==</span> <span class="o">-</span><span class="n">i</span> <span class="o">&amp;&amp;</span> <span class="n">i</span> <span class="o">!=</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>给 <code>i</code> 一个声明，使上面的语句陷入 <em>Infinite loop</em>。</p>
+
+<p>答案是 <code>int i = Integer.Integer.MIN_VALUE</code>。所以注意，相应的还有一个小陷阱， <code>Math.abs()</code> 可以 <code>&lt; 0</code>。</p>
+
+<h3><em>Puzzle 65: A Strange Saga of a Suspicious Sort</em></h3>
+
+<p>以下是一个将 100 个随机整数排序的代码段，短小精悍帅的很呢。但是很遗憾，输出基本都不会是众望所归的 <code>Order.DESCENDING</code>，问题出在哪呢？</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kn">import</span> <span class="nn">java.util.*</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SuspiciousSort</span> <span class="o">{</span>
+</span><span class='line'>    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>        <span class="n">Random</span> <span class="n">rnd</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">Random</span><span class="o">();</span>
+</span><span class='line'>        <span class="n">Integer</span><span class="o">[]</span> <span class="n">arr</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Integer</span><span class="o">[</span><span class="mi">100</span><span class="o">];</span>
+</span><span class='line'>        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">arr</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span>
+</span><span class='line'>            <span class="n">arr</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">rnd</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+</span><span class='line'>        <span class="n">Comparator</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">cmp</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Comparator</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;()</span> <span class="o">{</span>
+</span><span class='line'>            <span class="kd">public</span> <span class="kt">int</span> <span class="nf">compare</span><span class="o">(</span><span class="n">Integer</span> <span class="n">i1</span><span class="o">,</span> <span class="n">Integer</span> <span class="n">i2</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>                <span class="k">return</span> <span class="n">i2</span> <span class="o">-</span> <span class="n">i1</span><span class="o">;</span>
+</span><span class='line'>            <span class="o">}</span>
+</span><span class='line'>        <span class="o">};</span>
+</span><span class='line'>        <span class="n">Arrays</span><span class="o">.</span><span class="na">sort</span><span class="o">(</span><span class="n">arr</span><span class="o">,</span> <span class="n">cmp</span><span class="o">);</span>
+</span><span class='line'>        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">order</span><span class="o">(</span><span class="n">arr</span><span class="o">));</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="kd">enum</span> <span class="n">Order</span> <span class="o">{</span>
+</span><span class='line'>        <span class="n">ASCENDING</span><span class="o">,</span> <span class="n">DESCENDING</span><span class="o">,</span> <span class="n">CONSTANT</span><span class="o">,</span> <span class="n">UNORDERED</span>
+</span><span class='line'>    <span class="o">};</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="kd">static</span> <span class="n">Order</span> <span class="nf">order</span><span class="o">(</span><span class="n">Integer</span><span class="o">[]</span> <span class="n">a</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>        <span class="kt">boolean</span> <span class="n">ascending</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+</span><span class='line'>        <span class="kt">boolean</span> <span class="n">descending</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+</span><span class='line'>        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">a</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+</span><span class='line'>            <span class="n">ascending</span> <span class="o">|=</span> <span class="o">(</span><span class="n">a</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">&gt;</span> <span class="n">a</span><span class="o">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="o">]);</span>
+</span><span class='line'>            <span class="n">descending</span> <span class="o">|=</span> <span class="o">(</span><span class="n">a</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">&lt;</span> <span class="n">a</span><span class="o">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="o">]);</span>
+</span><span class='line'>        <span class="o">}</span>
+</span><span class='line'>        <span class="k">if</span> <span class="o">(</span><span class="n">ascending</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">descending</span><span class="o">)</span>
+</span><span class='line'>            <span class="k">return</span> <span class="n">Order</span><span class="o">.</span><span class="na">ASCENDING</span><span class="o">;</span>
+</span><span class='line'>        <span class="k">if</span> <span class="o">(</span><span class="n">descending</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">ascending</span><span class="o">)</span>
+</span><span class='line'>            <span class="k">return</span> <span class="n">Order</span><span class="o">.</span><span class="na">DESCENDING</span><span class="o">;</span>
+</span><span class='line'>        <span class="k">if</span> <span class="o">(!</span><span class="n">ascending</span><span class="o">)</span>
+</span><span class='line'>            <span class="k">return</span> <span class="n">Order</span><span class="o">.</span><span class="na">CONSTANT</span><span class="o">;</span>  <span class="c1">// All elements equal</span>
+</span><span class='line'>        <span class="k">return</span> <span class="n">Order</span><span class="o">.</span><span class="na">UNORDERED</span><span class="o">;</span>     <span class="c1">// Array is not sorted</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>问题出在 <code>Comparator&lt;Integer&gt; cmp</code> 上，虽然它的实现是喜闻乐见的 <em>idiom</em>。考虑以下的代码段</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Overflow</span> <span class="o">{</span>
+</span><span class='line'>    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>        <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="o">-</span><span class="mi">2000000000</span><span class="o">;</span>
+</span><span class='line'>        <span class="kt">int</span> <span class="n">z</span> <span class="o">=</span> <span class="mi">2000000000</span><span class="o">;</span>
+</span><span class='line'>        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">z</span><span class="o">);</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>x &lt; y</code>，并不一定代表 <code>x - y &lt; 0</code>。在用 <code>Comparator.compare()</code> 的 <em>idiom</em> 时候，请确认边界问题。</p>
+
+<p>修改代码很简单，用现成的类库方法 <code>Collections.reverseOrder()</code> 提供逆序排列子。<code>Arrays.sort(arr, Collections.reverseOrder());</code></p>
+
+<h2><em>Puzzle 1: Oddity</em></h2>
+
+<p>以下是判断一个整数是否为奇数的方法，可行吗？</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">isOdd</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>   <span class="k">return</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">1</span><span class="o">;</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><em>One Quarter</em> 的情况下不可行：当 <code>i</code> 为负奇数时， <code>i % 2 == -1</code>。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">isOdd</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>   <span class="c1">// esay fix</span>
+</span><span class='line'>   <span class="k">return</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">!=</span> <span class="mi">0</span><span class="o">;</span>
+</span><span class='line'>   <span class="c1">// for performance-critical</span>
+</span><span class='line'>   <span class="k">return</span> <span class="n">i</span> <span class="o">&amp;</span> <span class="mi">1</span> <span class="o">==</span> <span class="mi">0</span><span class="o">;</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>**</h2>
 
 <p><br/><br/><p class='post-footer'>
             original link:
@@ -219,13 +464,15 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p><strong>建议：需要精确表示时，用 <code>BigDecimal(String str)</code> ，永远不要用浮点数做运算。</strong></p>
+<p><strong>秘籍</strong>：需要精确表示时，用 <code>BigDecimal(String str)</code> ，永远不要用浮点数做运算。</p>
 
 <h2><em>Puzzle 28: Looper</em></h2>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
+<span class='line-number'>3</span>
 </pre></td><td class='code'><pre><code class='java'><span class='line'><span class="k">while</span> <span class="o">(</span><span class="n">i</span> <span class="o">==</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>
 </span><span class='line'>      <span class="o">}</span>
 </span></code></pre></td></tr></table></div></figure>
 
@@ -250,7 +497,7 @@
 <blockquote><p>The distance between adjacent floating-point values is called an ulp, which is an acronym for unit in the last place. In release 5.0, the Math.ulp method was introduced to calculate the ulp of a float or double value.</p></blockquote>
 
 
-<p><strong>建议：不要用浮点数做循环索引。</strong></p>
+<p><strong>秘籍：不要用浮点数做循环索引。</strong></p>
 
 <h2><em>Puzzle 87: Strained Relations</em></h2>
 
@@ -523,7 +770,7 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p><strong>建议：能用静态嵌套类解决，就不用内部类。</strong></p>
+<p><strong>秘籍：能用静态嵌套类解决，就不用内部类。</strong></p>
 
 <h2><em>Puzzle 89</em>：泛型</h2>
 
@@ -750,8 +997,8 @@
 
 <p>这样 <code>Node&lt;T&gt;</code> 完全与他的 <code>LinkedList&lt;E&gt;</code> 是解耦合的，想象一下你不止可以声明一个 <code>Node&lt;E&gt;</code> ，你完全可以声明 <code>Node&lt;Integer&gt;</code> 、 <code>Node&lt;String&gt;</code> ，是不是爽多了。</p>
 
-<p><strong>建议1：类 A 的成员变量，只在 A 的成员方法里改。</strong> <br>
-<strong>建议2：能用静态嵌套类解决，就不用内部类！！</strong></p>
+<p><strong>秘籍1：类 A 的成员变量，只在 A 的成员方法里改。</strong> <br>
+<strong>秘籍2：能用静态嵌套类解决，就不用内部类！！</strong></p>
 
 <h2><em>Puzzle 90</em>：嵌套继承</h2>
 
@@ -843,8 +1090,8 @@
 
 <p><em>OK</em> ，是不是有点晕？晕就对了。无论何时，当你要写一个 <em>inner class</em> 的时候，问问自己，真的不可以用 <em>static nested class</em> 来代替吗？真的有必要吗？ <em>inner class</em> 还要继承 <em>enclosing class</em> ？真的真的有必要吗？</p>
 
-<p><strong>建议1：尽量避免继承内部类。</strong> <br>
-<strong>建议2：能用静态嵌套类解决，就不用内部类！！！！</strong></p>
+<p><strong>秘籍1：尽量避免继承内部类。</strong> <br>
+<strong>秘籍2：能用静态嵌套类解决，就不用内部类！！！！</strong></p>
 
 <h2><em>Puzzle 92</em>：另类匿名类</h2>
 
@@ -911,7 +1158,7 @@
 
 <p><strong>私有方法无法被继承！</strong> <em>This is the key</em>！ <em>So</em> ，<code>new Twisted("reproduce")</code> 实例没有 <code>name()</code> 方法，而 <code>printName()</code> 方法会依最小作用域找到 <code>enclosing instance</code> 的 <code>name()</code> 方法并调用。</p>
 
-<p><strong>建议：避免一个内部类继承它的外部类。</strong></p>
+<p><strong>秘籍：避免一个内部类继承它的外部类。</strong></p>
 
 <h1>总结</h1>
 
