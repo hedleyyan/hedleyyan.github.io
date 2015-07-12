@@ -4,7 +4,7 @@
   <title><![CDATA[Hedley]]></title>
   <link href="http://hedleyyan.github.io/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2015-07-12T19:01:45+08:00</updated>
+  <updated>2015-07-12T23:19:51+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[dL]]></name>
@@ -40,7 +40,7 @@
 
 <h2>Inversion of Control</h2>
 
-<p><em>Frameworks</em> 就是挖好了一堆坑，让用户自己往里面填萝卜，填肥料。不同的肥料怎么找对应的萝卜 <em>Frameworks</em> 来接手，这个过程就是<strong>控制反转</strong>（<a href="https://en.wikipedia.org/wiki/Inversion_of_control">Inversion of Control</a>）啦。</p>
+<p>打个比方：<em>Frameworks</em> 就是挖好了一堆坑，让你往里面填萝卜，填肥料。不同的肥料怎么找对应的萝卜 <em>Frameworks</em> 来接手，这个过程就是<strong>控制反转</strong>（<a href="https://en.wikipedia.org/wiki/Inversion_of_control">Inversion of Control</a>）啦。</p>
 
 <blockquote><p>Don&#8217;t call us, we&#8217;ll call you.</p><footer><strong>Hollywood principle</strong></footer></blockquote>
 
@@ -51,13 +51,102 @@
 
 <p><em>So</em>，<em>Frameworks</em> 的基础是 <em>IoC</em>，而 <em>IoC</em> 的基础又是 <em>Dependency injection</em>。不要被这个高大上的名词唬到，其实它（主要）就是 <code>set</code> 方法而已。</p>
 
-<h2>callback frameworks</h2>
+<h2>Callback frameworks</h2>
 
 <p>如果说 <em>IoC</em> 的精髓一句话概括为：<em>Don&rsquo;t call us, we&rsquo;ll call you.</em></p>
 
 <p>那么<strong>回调</strong>（<a href="http://www.codeweblog.com/%E6%B5%85%E6%9E%90java-callback-%E5%9B%9E%E8%B0%83%E6%A8%A1%E5%BC%8F/">callback</a>）的一句话概括就是：<em>If you call me, i will call back.</em></p>
 
-<p><em>callback frameworks</em> 其实并不是一种具体的 <em>framework</em>，而是代表<strong>一类</strong> <em>framework</em>。</p>
+<p><em>callback frameworks</em> 其实并不是一种具体的 <em>framework</em>，而是代表<strong>一类</strong> <em>framework</em>。比如大多数的 <em>GUI frameworks</em>，比如 <em>SAX (Streaming XML) XML parsers</em>。</p>
+
+<h3><a name="callback_code">Demo code</a></h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Context</span> <span class="kd">implements</span> <span class="n">A</span><span class="o">.</span><span class="na">Callback</span> <span class="o">{</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="kd">private</span> <span class="n">A</span> <span class="n">a</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">begin</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;begin ...&quot;</span><span class="o">);</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">end</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;end ...&quot;</span><span class="o">);</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="kd">public</span> <span class="nf">Context</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>        <span class="k">this</span><span class="o">.</span><span class="na">a</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">A</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">doSomething</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>        <span class="k">this</span><span class="o">.</span><span class="na">a</span><span class="o">.</span><span class="na">doIt</span><span class="o">();</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span> <span class="n">args</span><span class="o">[])</span> <span class="o">{</span>
+</span><span class='line'>        <span class="k">new</span> <span class="nf">Context</span><span class="o">().</span><span class="na">doSomething</span><span class="o">();</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">A</span> <span class="o">{</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="kd">private</span> <span class="kd">final</span> <span class="n">Callback</span> <span class="n">callback</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">interface</span> <span class="nc">Callback</span> <span class="o">{</span>
+</span><span class='line'>        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">begin</span><span class="o">();</span>
+</span><span class='line'>        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">end</span><span class="o">();</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>    <span class="kd">public</span> <span class="nf">A</span><span class="o">(</span><span class="n">Callback</span> <span class="n">callback</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>        <span class="k">this</span><span class="o">.</span><span class="na">callback</span> <span class="o">=</span> <span class="n">callback</span><span class="o">;</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">doIt</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>        <span class="n">callback</span><span class="o">.</span><span class="na">begin</span><span class="o">();</span>
+</span><span class='line'>        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;do something ...&quot;</span><span class="o">);</span>
+</span><span class='line'>        <span class="n">callback</span><span class="o">.</span><span class="na">end</span><span class="o">();</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
 
 <h2>Spring</h2>
 
@@ -65,10 +154,217 @@
 
 <p>网上介绍的文章一箩筐，比如这两篇，<a href="http://programmers.stackexchange.com/questions/92393/what-does-the-spring-framework-do-should-i-use-it-why-or-why-not?rq=1">戳这里</a>，<a href="http://blog.csdn.net/taijianyu/article/details/2338311/">戳这里</a>。可以简单的看一下，主要是加深对 <em>Dependency injection</em> 的理解。</p>
 
+<h1>Pattern</h1>
+
+<h2>Decorator pattern</h2>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">Favor</span> <span class="n">composition</span> <span class="n">over</span> <span class="n">inheritance</span><span class="o">.</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>装饰者模式是<em>继承可实例化的类</em>的替代解决方案，<a href="https://books.google.com.hk/books?id=ka2VUBqHiWkC&amp;pg=PA85&amp;dq=The+disadvantage+of+wrapper+classes&amp;hl=en&amp;sa=X&amp;ved=0CB0Q6AEwAGoVChMI5L-T5PnPxgIVCQuOCh1joQq6#v=onepage&amp;q=The%20disadvantage%20of%20wrapper%20classes&amp;f=false">Effective Java, Item 16</a> 一节的主题正是 <em>Favor composition over inheritance</em>。B 继承可实例化的类 A 有很多问题，比如</p>
+
+<ul>
+<li>B 依赖于 A 的实现细节，如果 A 的后续版本中更新了实现细节，可能会破坏 B</li>
+<li>A 在后续版本中可能会加入新的方法，不满足 B 的 check</li>
+<li>A 的后续版本中加入了新方法 m，不巧 B 提前声明了 m</li>
+<li>B 不可能实现一个满意的 <code>equals</code> 方法（<a href="https://books.google.com.hk/books?id=ka2VUBqHiWkC&amp;pg=PA40&amp;dq=While+there+is+no+satisfactory+way+to+extend+an+instantiable+class+and+add+a+value+component&amp;hl=en&amp;sa=X&amp;ved=0CB0Q6AEwAGoVChMI08nF6OrVxgIVhe9yCh28bQWD#v=onepage&amp;q=While%20there%20is%20no%20satisfactory%20way%20to%20extend%20an%20instantiable%20class%20and%20add%20a%20value%20component&amp;f=false">Effective Java, Item 8</a>）</li>
+</ul>
+
+
+<h3>Demo code</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="c1">// Wrapper class - uses composition in place of inheritance</span>
+</span><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">InstrumentedSet</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="kd">extends</span> <span class="n">ForwardingSet</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="o">{</span>
+</span><span class='line'>    <span class="kd">private</span> <span class="kt">int</span> <span class="n">addCount</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="kd">public</span> <span class="nf">InstrumentedSet</span><span class="o">(</span><span class="n">Set</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="n">s</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>        <span class="kd">super</span><span class="o">(</span><span class="n">s</span><span class="o">);</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nd">@Override</span>
+</span><span class='line'>    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">add</span><span class="o">(</span><span class="n">E</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>        <span class="n">addCount</span><span class="o">++;</span>
+</span><span class='line'>        <span class="k">return</span> <span class="kd">super</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">e</span><span class="o">);</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nd">@Override</span>
+</span><span class='line'>    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">addAll</span><span class="o">(</span><span class="n">Collection</span><span class="o">&lt;?</span> <span class="kd">extends</span> <span class="n">E</span><span class="o">&gt;</span> <span class="n">c</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>        <span class="n">addCount</span> <span class="o">+=</span> <span class="n">c</span><span class="o">.</span><span class="na">size</span><span class="o">();</span>
+</span><span class='line'>        <span class="k">return</span> <span class="kd">super</span><span class="o">.</span><span class="na">addAll</span><span class="o">(</span><span class="n">c</span><span class="o">);</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">getAddCount</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>        <span class="k">return</span> <span class="n">addCount</span><span class="o">;</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// Reusable forwarding class</span>
+</span><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ForwardingSet</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="kd">implements</span> <span class="n">Set</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="o">{</span>
+</span><span class='line'>    <span class="kd">private</span> <span class="kd">final</span> <span class="n">Set</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="n">s</span><span class="o">;</span>
+</span><span class='line'>    <span class="kd">public</span> <span class="nf">ForwardingSet</span><span class="o">(</span><span class="n">Set</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="n">s</span><span class="o">)</span>         <span class="o">{</span> <span class="k">this</span><span class="o">.</span><span class="na">s</span> <span class="o">=</span> <span class="n">s</span><span class="o">;</span>                <span class="o">}</span>
+</span><span class='line'>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">clear</span><span class="o">()</span>                 <span class="o">{</span> <span class="n">s</span><span class="o">.</span><span class="na">clear</span><span class="o">();</span>               <span class="o">}</span>
+</span><span class='line'>    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">contains</span><span class="o">(</span><span class="n">Object</span> <span class="n">o</span><span class="o">)</span>   <span class="o">{</span> <span class="k">return</span> <span class="n">s</span><span class="o">.</span><span class="na">contains</span><span class="o">(</span><span class="n">o</span><span class="o">);</span>    <span class="o">}</span>
+</span><span class='line'>    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isEmpty</span><span class="o">()</span>            <span class="o">{</span> <span class="k">return</span> <span class="n">s</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">();</span>      <span class="o">}</span>
+</span><span class='line'>    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">size</span><span class="o">()</span>                   <span class="o">{</span> <span class="k">return</span> <span class="n">s</span><span class="o">.</span><span class="na">size</span><span class="o">();</span>         <span class="o">}</span>
+</span><span class='line'>    <span class="kd">public</span> <span class="n">Iterator</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="nf">iterator</span><span class="o">()</span>       <span class="o">{</span> <span class="k">return</span> <span class="n">s</span><span class="o">.</span><span class="na">iterator</span><span class="o">();</span>     <span class="o">}</span>
+</span><span class='line'>    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">add</span><span class="o">(</span><span class="n">E</span> <span class="n">e</span><span class="o">)</span>             <span class="o">{</span> <span class="k">return</span> <span class="n">s</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">e</span><span class="o">);</span>         <span class="o">}</span>
+</span><span class='line'>    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">remove</span><span class="o">(</span><span class="n">Object</span> <span class="n">o</span><span class="o">)</span>     <span class="o">{</span> <span class="k">return</span> <span class="n">s</span><span class="o">.</span><span class="na">remove</span><span class="o">(</span><span class="n">o</span><span class="o">);</span>      <span class="o">}</span>
+</span><span class='line'>    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">containsAll</span><span class="o">(</span><span class="n">Collection</span><span class="o">&lt;?&gt;</span> <span class="n">c</span><span class="o">)</span>
+</span><span class='line'>                                        <span class="o">{</span> <span class="k">return</span> <span class="n">s</span><span class="o">.</span><span class="na">containsAll</span><span class="o">(</span><span class="n">c</span><span class="o">);</span> <span class="o">}</span>
+</span><span class='line'>    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">addAll</span><span class="o">(</span><span class="n">Collection</span><span class="o">&lt;?</span> <span class="kd">extends</span> <span class="n">E</span><span class="o">&gt;</span> <span class="n">c</span><span class="o">)</span>
+</span><span class='line'>                                        <span class="o">{</span> <span class="k">return</span> <span class="n">s</span><span class="o">.</span><span class="na">addAll</span><span class="o">(</span><span class="n">c</span><span class="o">);</span>      <span class="o">}</span>
+</span><span class='line'>    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">removeAll</span><span class="o">(</span><span class="n">Collection</span><span class="o">&lt;?&gt;</span> <span class="n">c</span><span class="o">)</span>
+</span><span class='line'>                                        <span class="o">{</span> <span class="k">return</span> <span class="n">s</span><span class="o">.</span><span class="na">removeAll</span><span class="o">(</span><span class="n">c</span><span class="o">);</span>   <span class="o">}</span>
+</span><span class='line'>    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">retainAll</span><span class="o">(</span><span class="n">Collection</span><span class="o">&lt;?&gt;</span> <span class="n">c</span><span class="o">)</span>
+</span><span class='line'>                                        <span class="o">{</span> <span class="k">return</span> <span class="n">s</span><span class="o">.</span><span class="na">retainAll</span><span class="o">(</span><span class="n">c</span><span class="o">);</span>   <span class="o">}</span>
+</span><span class='line'>    <span class="kd">public</span> <span class="n">Object</span><span class="o">[]</span> <span class="nf">toArray</span><span class="o">()</span>           <span class="o">{</span> <span class="k">return</span> <span class="n">s</span><span class="o">.</span><span class="na">toArray</span><span class="o">();</span>      <span class="o">}</span>
+</span><span class='line'>    <span class="kd">public</span> <span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">T</span><span class="o">[]</span> <span class="nf">toArray</span><span class="o">(</span><span class="n">T</span><span class="o">[]</span> <span class="n">a</span><span class="o">)</span>       <span class="o">{</span> <span class="k">return</span> <span class="n">s</span><span class="o">.</span><span class="na">toArray</span><span class="o">(</span><span class="n">a</span><span class="o">);</span>     <span class="o">}</span>
+</span><span class='line'>    <span class="nd">@Override</span> <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">equals</span><span class="o">(</span><span class="n">Object</span> <span class="n">o</span><span class="o">)</span>
+</span><span class='line'>                                        <span class="o">{</span> <span class="k">return</span> <span class="n">s</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">o</span><span class="o">);</span>      <span class="o">}</span>
+</span><span class='line'>    <span class="nd">@Override</span> <span class="kd">public</span> <span class="kt">int</span> <span class="nf">hashCode</span><span class="o">()</span>     <span class="o">{</span> <span class="k">return</span> <span class="n">s</span><span class="o">.</span><span class="na">hashCode</span><span class="o">();</span>     <span class="o">}</span>
+</span><span class='line'>    <span class="nd">@Override</span> <span class="kd">public</span> <span class="n">String</span> <span class="nf">toString</span><span class="o">()</span>  <span class="o">{</span> <span class="k">return</span> <span class="n">s</span><span class="o">.</span><span class="na">toString</span><span class="o">();</span>     <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h1>再谈引出</h1>
+
+<p><em>Wrapper classes are not suited for use in callback frameworks</em>，在了解了相关的各种基本概念后，现在可以给出示例代码了。结合之前介绍的 <em>[callback framework demo code][#callback_code]</em> 进行说明，给 <code>Context</code> 一个 <em>Wrapper class</em>，观察效果。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ContextB</span> <span class="kd">implements</span> <span class="n">Callback</span> <span class="o">{</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">Callback</span> <span class="n">real</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="kd">public</span> <span class="nf">ContextB</span><span class="o">(</span><span class="n">Callback</span> <span class="n">real</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>        <span class="k">this</span><span class="o">.</span><span class="na">real</span> <span class="o">=</span> <span class="n">real</span><span class="o">;</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nd">@Override</span>
+</span><span class='line'>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">begin</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;B begin ...&quot;</span><span class="o">);</span>
+</span><span class='line'>        <span class="n">real</span><span class="o">.</span><span class="na">begin</span><span class="o">();</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nd">@Override</span>
+</span><span class='line'>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">end</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;B end ...&quot;</span><span class="o">);</span>
+</span><span class='line'>        <span class="n">real</span><span class="o">.</span><span class="na">end</span><span class="o">();</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">ex</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;B ex ...&quot;</span><span class="o">);</span>
+</span><span class='line'>        <span class="n">real</span><span class="o">.</span><span class="na">ex</span><span class="o">();</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span> <span class="n">args</span><span class="o">[])</span> <span class="o">{</span>
+</span><span class='line'>        <span class="n">Callback</span> <span class="n">real</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">Context</span><span class="o">();</span>
+</span><span class='line'>        <span class="k">new</span> <span class="nf">ContextB</span><span class="o">(</span><span class="n">real</span><span class="o">).</span><span class="na">ex</span><span class="o">();</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>观察输出</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">B</span> <span class="n">ex</span> <span class="o">...</span>
+</span><span class='line'><span class="n">begin</span> <span class="o">...</span>
+</span><span class='line'><span class="k">do</span> <span class="n">something</span> <span class="o">...</span>
+</span><span class='line'><span class="n">end</span> <span class="o">...</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
 <h1>扩展阅读</h1>
 
 <ul>
 <li><a href="https://books.google.com.hk/books?id=ka2VUBqHiWkC&amp;pg=PA85&amp;dq=The+disadvantage+of+wrapper+classes&amp;hl=en&amp;sa=X&amp;ved=0CB0Q6AEwAGoVChMI5L-T5PnPxgIVCQuOCh1joQq6#v=onepage&amp;q=The%20disadvantage%20of%20wrapper%20classes&amp;f=false">Effective Java, Item 16</a></li>
+<li><a href="https://books.google.com.hk/books?id=ka2VUBqHiWkC&amp;pg=PA40&amp;dq=While+there+is+no+satisfactory+way+to+extend+an+instantiable+class+and+add+a+value+component&amp;hl=en&amp;sa=X&amp;ved=0CB0Q6AEwAGoVChMI08nF6OrVxgIVhe9yCh28bQWD#v=onepage&amp;q=While%20there%20is%20no%20satisfactory%20way%20to%20extend%20an%20instantiable%20class%20and%20add%20a%20value%20component&amp;f=false">Effective Java, Item 8</a></li>
 <li><a href="http://programmers.stackexchange.com/questions/117628/why-are-wrapper-classes-not-suited-for-use-in-callback-frameworks">Why are wrapper classes not suited for use in callback frameworks</a></li>
 <li><a href="https://www.dre.vanderbilt.edu/~schmidt/PDF/patterns-intro4.pdf">Introduction to Patterns and Frameworks</a></li>
 <li><a href="http://stackoverflow.com/questions/320142/design-patterns-vs-frameworks">Design patterns vs Frameworks</a></li>

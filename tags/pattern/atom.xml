@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: Pattern | Hedley]]></title>
   <link href="http://hedleyyan.github.io/tags/pattern/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2015-07-12T19:01:45+08:00</updated>
+  <updated>2015-07-12T23:19:51+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[dL]]></name>
@@ -38,7 +38,7 @@
 
 <h2>Inversion of Control</h2>
 
-<p><em>Frameworks</em> 就是挖好了一堆坑，让用户自己往里面填萝卜，填肥料。不同的肥料怎么找对应的萝卜 <em>Frameworks</em> 来接手，这个过程就是<strong>控制反转</strong>（<a href="https://en.wikipedia.org/wiki/Inversion_of_control">Inversion of Control</a>）啦。</p>
+<p>打个比方：<em>Frameworks</em> 就是挖好了一堆坑，让你往里面填萝卜，填肥料。不同的肥料怎么找对应的萝卜 <em>Frameworks</em> 来接手，这个过程就是<strong>控制反转</strong>（<a href="https://en.wikipedia.org/wiki/Inversion_of_control">Inversion of Control</a>）啦。</p>
 
 <p><blockquote><p>Don&rsquo;t call us, we&rsquo;ll call you.</p><footer><strong>Hollywood principle</strong></footer></blockquote></p>
 
@@ -48,13 +48,59 @@
 
 <p><em>So</em>，<em>Frameworks</em> 的基础是 <em>IoC</em>，而 <em>IoC</em> 的基础又是 <em>Dependency injection</em>。不要被这个高大上的名词唬到，其实它（主要）就是 <code>set</code> 方法而已。</p>
 
-<h2>callback frameworks</h2>
+<h2>Callback frameworks</h2>
 
 <p>如果说 <em>IoC</em> 的精髓一句话概括为：<em>Don&rsquo;t call us, we&rsquo;ll call you.</em></p>
 
 <p>那么<strong>回调</strong>（<a href="http://www.codeweblog.com/%E6%B5%85%E6%9E%90java-callback-%E5%9B%9E%E8%B0%83%E6%A8%A1%E5%BC%8F/">callback</a>）的一句话概括就是：<em>If you call me, i will call back.</em></p>
 
-<p><em>callback frameworks</em> 其实并不是一种具体的 <em>framework</em>，而是代表<strong>一类</strong> <em>framework</em>。</p>
+<p><em>callback frameworks</em> 其实并不是一种具体的 <em>framework</em>，而是代表<strong>一类</strong> <em>framework</em>。比如大多数的 <em>GUI frameworks</em>，比如 <em>SAX (Streaming XML) XML parsers</em>。</p>
+
+<h3><a name="callback_code">Demo code</a></h3>
+
+<pre><code class="java">public class Context implements A.Callback {
+
+    private A a;
+
+    public void begin() {
+        System.out.println("begin ...");
+    }
+
+    public void end() {
+        System.out.println("end ...");
+    }
+
+    public Context() {
+        this.a = new A(this);
+    }
+
+    public void doSomething() {
+        this.a.doIt();
+    }
+
+    public static void main(String args[]) {
+        new Context().doSomething();
+    }
+}
+
+public class A {
+
+    private final Callback callback;
+
+    public static interface Callback {
+        public void begin();
+        public void end();
+    }
+    public A(Callback callback) {
+        this.callback = callback;
+    }
+    public void doIt() {
+        callback.begin();
+        System.out.println("do something ...");
+        callback.end();
+    }
+}
+</code></pre>
 
 <h2>Spring</h2>
 
@@ -62,10 +108,127 @@
 
 <p>网上介绍的文章一箩筐，比如这两篇，<a href="http://programmers.stackexchange.com/questions/92393/what-does-the-spring-framework-do-should-i-use-it-why-or-why-not?rq=1">戳这里</a>，<a href="http://blog.csdn.net/taijianyu/article/details/2338311/">戳这里</a>。可以简单的看一下，主要是加深对 <em>Dependency injection</em> 的理解。</p>
 
+<h1>Pattern</h1>
+
+<h2>Decorator pattern</h2>
+
+<pre><code class="java">Favor composition over inheritance.
+</code></pre>
+
+<p>装饰者模式是<em>继承可实例化的类</em>的替代解决方案，<a href="https://books.google.com.hk/books?id=ka2VUBqHiWkC&amp;pg=PA85&amp;dq=The+disadvantage+of+wrapper+classes&amp;hl=en&amp;sa=X&amp;ved=0CB0Q6AEwAGoVChMI5L-T5PnPxgIVCQuOCh1joQq6#v=onepage&amp;q=The%20disadvantage%20of%20wrapper%20classes&amp;f=false">Effective Java, Item 16</a> 一节的主题正是 <em>Favor composition over inheritance</em>。B 继承可实例化的类 A 有很多问题，比如</p>
+
+<ul>
+<li>B 依赖于 A 的实现细节，如果 A 的后续版本中更新了实现细节，可能会破坏 B</li>
+<li>A 在后续版本中可能会加入新的方法，不满足 B 的 check</li>
+<li>A 的后续版本中加入了新方法 m，不巧 B 提前声明了 m</li>
+<li>B 不可能实现一个满意的 <code>equals</code> 方法（<a href="https://books.google.com.hk/books?id=ka2VUBqHiWkC&amp;pg=PA40&amp;dq=While+there+is+no+satisfactory+way+to+extend+an+instantiable+class+and+add+a+value+component&amp;hl=en&amp;sa=X&amp;ved=0CB0Q6AEwAGoVChMI08nF6OrVxgIVhe9yCh28bQWD#v=onepage&amp;q=While%20there%20is%20no%20satisfactory%20way%20to%20extend%20an%20instantiable%20class%20and%20add%20a%20value%20component&amp;f=false">Effective Java, Item 8</a>）</li>
+</ul>
+
+
+<h3>Demo code</h3>
+
+<pre><code class="java">// Wrapper class - uses composition in place of inheritance
+public class InstrumentedSet&lt;E&gt; extends ForwardingSet&lt;E&gt; {
+    private int addCount = 0;
+
+    public InstrumentedSet(Set&lt;E&gt; s) {
+        super(s);
+    }
+
+    @Override
+    public boolean add(E e) {
+        addCount++;
+        return super.add(e);
+    }
+
+    @Override
+    public boolean addAll(Collection&lt;? extends E&gt; c) {
+        addCount += c.size();
+        return super.addAll(c);
+    }
+
+    public int getAddCount() {
+        return addCount;
+    }
+}
+
+// Reusable forwarding class
+public class ForwardingSet&lt;E&gt; implements Set&lt;E&gt; {
+    private final Set&lt;E&gt; s;
+    public ForwardingSet(Set&lt;E&gt; s)      { this.s = s;              }
+    public void clear()                 { s.clear();               }
+    public boolean contains(Object o)   { return s.contains(o);    }
+    public boolean isEmpty()            { return s.isEmpty();      }
+    public int size()                   { return s.size();         }
+    public Iterator&lt;E&gt; iterator()       { return s.iterator();     }
+    public boolean add(E e)             { return s.add(e);         }
+    public boolean remove(Object o)     { return s.remove(o);      }
+    public boolean containsAll(Collection&lt;?&gt; c) 
+                                        { return s.containsAll(c); }
+    public boolean addAll(Collection&lt;? extends E&gt; c)
+                                        { return s.addAll(c);      }
+    public boolean removeAll(Collection&lt;?&gt; c)
+                                        { return s.removeAll(c);   }
+    public boolean retainAll(Collection&lt;?&gt; c)
+                                        { return s.retainAll(c);   }
+    public Object[] toArray()           { return s.toArray();      }
+    public &lt;T&gt; T[] toArray(T[] a)       { return s.toArray(a);     }
+    @Override public boolean equals(Object o)
+                                        { return s.equals(o);      }
+    @Override public int hashCode()     { return s.hashCode();     }
+    @Override public String toString()  { return s.toString();     }
+}
+</code></pre>
+
+<h1>再谈引出</h1>
+
+<p><em>Wrapper classes are not suited for use in callback frameworks</em>，在了解了相关的各种基本概念后，现在可以给出示例代码了。结合之前介绍的 <em>[callback framework demo code][#callback_code]</em> 进行说明，给 <code>Context</code> 一个 <em>Wrapper class</em>，观察效果。</p>
+
+<pre><code class="java">public class ContextB implements Callback {
+
+    Callback real;
+
+    public ContextB(Callback real) {
+        this.real = real;
+    }
+
+    @Override
+    public void begin() {
+        System.out.println("B begin ...");
+        real.begin();
+    }
+
+    @Override
+    public void end() {
+        System.out.println("B end ...");
+        real.end();
+    }
+
+    public void ex() {
+        System.out.println("B ex ...");
+        real.ex();
+    }
+
+    public static void main(String args[]) {
+        Callback real = new Context();
+        new ContextB(real).ex();
+    }
+}
+</code></pre>
+
+<p>观察输出</p>
+
+<pre><code class="java">B ex ...
+begin ...
+do something ...
+end ...
+</code></pre>
+
 <h1>扩展阅读</h1>
 
 <ul>
 <li><a href="https://books.google.com.hk/books?id=ka2VUBqHiWkC&amp;pg=PA85&amp;dq=The+disadvantage+of+wrapper+classes&amp;hl=en&amp;sa=X&amp;ved=0CB0Q6AEwAGoVChMI5L-T5PnPxgIVCQuOCh1joQq6#v=onepage&amp;q=The%20disadvantage%20of%20wrapper%20classes&amp;f=false">Effective Java, Item 16</a></li>
+<li><a href="https://books.google.com.hk/books?id=ka2VUBqHiWkC&amp;pg=PA40&amp;dq=While+there+is+no+satisfactory+way+to+extend+an+instantiable+class+and+add+a+value+component&amp;hl=en&amp;sa=X&amp;ved=0CB0Q6AEwAGoVChMI08nF6OrVxgIVhe9yCh28bQWD#v=onepage&amp;q=While%20there%20is%20no%20satisfactory%20way%20to%20extend%20an%20instantiable%20class%20and%20add%20a%20value%20component&amp;f=false">Effective Java, Item 8</a></li>
 <li><a href="http://programmers.stackexchange.com/questions/117628/why-are-wrapper-classes-not-suited-for-use-in-callback-frameworks">Why are wrapper classes not suited for use in callback frameworks</a></li>
 <li><a href="https://www.dre.vanderbilt.edu/~schmidt/PDF/patterns-intro4.pdf">Introduction to Patterns and Frameworks</a></li>
 <li><a href="http://stackoverflow.com/questions/320142/design-patterns-vs-frameworks">Design patterns vs Frameworks</a></li>
