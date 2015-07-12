@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag: Pattern | Hedley]]></title>
+  <link href="http://hedleyyan.github.io/tags/pattern/atom.xml" rel="self"/>
+  <link href="http://hedleyyan.github.io/"/>
+  <updated>2015-07-12T19:01:45+08:00</updated>
+  <id>http://hedleyyan.github.io/</id>
+  <author>
+    <name><![CDATA[dL]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[不负责瞎说说 Patterns 与 Frameworks]]></title>
+    <link href="http://hedleyyan.github.io/blog/2015/07/10/zhuang-shi-zhe-mo-shi-decorate-pattern-yu-hui-diao-ji-zhi-callback-framework/"/>
+    <updated>2015-07-10T17:11:00+08:00</updated>
+    <id>http://hedleyyan.github.io/blog/2015/07/10/zhuang-shi-zhe-mo-shi-decorate-pattern-yu-hui-diao-ji-zhi-callback-framework</id>
+    <content type="html"><![CDATA[<h1>引出</h1>
+
+<p><a href="https://books.google.com.hk/books?id=ka2VUBqHiWkC&amp;pg=PA85&amp;dq=The+disadvantage+of+wrapper+classes&amp;hl=en&amp;sa=X&amp;ved=0CB0Q6AEwAGoVChMI5L-T5PnPxgIVCQuOCh1joQq6#v=onepage&amp;q=The%20disadvantage%20of%20wrapper%20classes&amp;f=false">Effective Java, Item 16</a> 中说 <em>Wrapper classes are not suited for use in callback frameworks</em>，想不明白，一顿 Google 依旧看个似懂非懂。我想把这些凌乱的线索都整理出来，抽抽剪剪排列组合一下，也许就看的透彻点了呢。</p>
+
+<p>关于 <em>Wrapper class</em> 的引出问题，个人认为比较<a href="http://programmers.stackexchange.com/questions/117628/why-are-wrapper-classes-not-suited-for-use-in-callback-frameworks">炫酷的解答</a>。</p>
+
+<p><blockquote><p>Because a wrapped object doesn&rsquo;t know of its wrapper, it passes a reference to itself(this) and callbacks elude the wrapper. This is known as the SELF problem [Lieberman86]. This leads to subtle bugs, like the wrapper missing the event. Or the wrapper and wrapped object both registering for the same events - leading to duplicate processing and potential concurrency issues as well. If you don&rsquo;t know (don&rsquo;t have the source code) where callbacks are registered, it may be impossible to work around this problem.</p></blockquote></p>
+
+<h1>Panttern? Framework?</h1>
+
+<p>引出中的 <em>Wrapper class</em> 是 <em>Decorator pattern</em> 的引出概念，<em>callback frameworks</em> 是一种 <em>framework</em>。从翻译上看，<em>pattern</em> 译为 <strong>模式</strong>，<em>framework</em> 译为 <strong>框架</strong>。那么这个 <em>pattern</em> 与 <em>framework</em> 有毛的区别呢？</p>
+
+<p><a href="https://www.dre.vanderbilt.edu/~schmidt/PDF/patterns-intro4.pdf">Introduction to Patterns and Frameworks</a> 和 <a href="http://stackoverflow.com/questions/320142/design-patterns-vs-frameworks">Design patterns vs Frameworks</a> 对这个问题都有比较系统的分析，各位看官可以细细品看一下。一言以蔽之，<em>pattern</em> 是解决某个具体问题的方案，<em>framework</em> 是一套系统架构可重用的组件（通常包括若干个 <em>pattern</em>），他们经常共同为软件系统的可重用性、可扩展性提供支持。</p>
+
+<p><blockquote><p>Patterns support reuse of software architecture and design: Patterns capture the static and dynamic structures and<br/>collaborations of successful solutions to problems that arise when building applications in a particular domain.<br/>Frameworks support reuse of detailed design and code: A framework is an integrated set of components that collaborate<br/>to provide a reusable architecture for a family of related applications.</p></blockquote></p>
+
+<h1>Framework</h1>
+
+<h2>Inversion of Control</h2>
+
+<p><em>Frameworks</em> 就是挖好了一堆坑，让用户自己往里面填萝卜，填肥料。不同的肥料怎么找对应的萝卜 <em>Frameworks</em> 来接手，这个过程就是<strong>控制反转</strong>（<a href="https://en.wikipedia.org/wiki/Inversion_of_control">Inversion of Control</a>）啦。</p>
+
+<p><blockquote><p>Don&rsquo;t call us, we&rsquo;ll call you.</p><footer><strong>Hollywood principle</strong></footer></blockquote></p>
+
+<h3>Dependency injection</h3>
+
+<p>从代码上看，<em>IoC</em> 的实现主要包括<strong>依赖注入</strong>（<a href="https://en.wikipedia.org/wiki/Dependency_injection">Dependency injection</a>），以及其他的一些 <em>Patterns</em>。所以准确的来说，<em>Dependency injection</em> 是实现 <em>IoC</em> 的一种途径，但是现在很多的技术鸡汤文都把它们划上了等于号，这里了解一下概念即可，无伤大雅。</p>
+
+<p><em>So</em>，<em>Frameworks</em> 的基础是 <em>IoC</em>，而 <em>IoC</em> 的基础又是 <em>Dependency injection</em>。不要被这个高大上的名词唬到，其实它（主要）就是 <code>set</code> 方法而已。</p>
+
+<h2>callback frameworks</h2>
+
+<p>如果说 <em>IoC</em> 的精髓一句话概括为：<em>Don&rsquo;t call us, we&rsquo;ll call you.</em></p>
+
+<p>那么<strong>回调</strong>（<a href="http://www.codeweblog.com/%E6%B5%85%E6%9E%90java-callback-%E5%9B%9E%E8%B0%83%E6%A8%A1%E5%BC%8F/">callback</a>）的一句话概括就是：<em>If you call me, i will call back.</em></p>
+
+<p><em>callback frameworks</em> 其实并不是一种具体的 <em>framework</em>，而是代表<strong>一类</strong> <em>framework</em>。</p>
+
+<h2>Spring</h2>
+
+<p>如果要找一种具体的 <em>framework</em>，最典型的当然非 <em>Spring</em> 莫属。</p>
+
+<p>网上介绍的文章一箩筐，比如这两篇，<a href="http://programmers.stackexchange.com/questions/92393/what-does-the-spring-framework-do-should-i-use-it-why-or-why-not?rq=1">戳这里</a>，<a href="http://blog.csdn.net/taijianyu/article/details/2338311/">戳这里</a>。可以简单的看一下，主要是加深对 <em>Dependency injection</em> 的理解。</p>
+
+<h1>扩展阅读</h1>
+
+<ul>
+<li><a href="https://books.google.com.hk/books?id=ka2VUBqHiWkC&amp;pg=PA85&amp;dq=The+disadvantage+of+wrapper+classes&amp;hl=en&amp;sa=X&amp;ved=0CB0Q6AEwAGoVChMI5L-T5PnPxgIVCQuOCh1joQq6#v=onepage&amp;q=The%20disadvantage%20of%20wrapper%20classes&amp;f=false">Effective Java, Item 16</a></li>
+<li><a href="http://programmers.stackexchange.com/questions/117628/why-are-wrapper-classes-not-suited-for-use-in-callback-frameworks">Why are wrapper classes not suited for use in callback frameworks</a></li>
+<li><a href="https://www.dre.vanderbilt.edu/~schmidt/PDF/patterns-intro4.pdf">Introduction to Patterns and Frameworks</a></li>
+<li><a href="http://stackoverflow.com/questions/320142/design-patterns-vs-frameworks">Design patterns vs Frameworks</a></li>
+<li><a href="http://www.codeweblog.com/%E6%B5%85%E6%9E%90java-callback-%E5%9B%9E%E8%B0%83%E6%A8%A1%E5%BC%8F/">浅析 Java Callback 回调模式</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Inversion_of_control">Inversion of Control 维基百科</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Dependency_injection">Dependency injection 维基百科</a></li>
+<li><a href="http://programmers.stackexchange.com/questions/92393/what-does-the-spring-framework-do-should-i-use-it-why-or-why-not?rq=1">What is dependency injection</a></li>
+<li><a href="http://blog.csdn.net/taijianyu/article/details/2338311/">什么是依赖注入</a></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+</feed>
