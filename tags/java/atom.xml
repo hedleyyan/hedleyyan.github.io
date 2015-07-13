@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: Java | Hedley]]></title>
   <link href="http://hedleyyan.github.io/tags/java/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2015-07-13T09:32:58+08:00</updated>
+  <updated>2015-07-13T09:39:47+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[dL]]></name>
@@ -35,7 +35,7 @@
 
 <p><a href="https://www.dre.vanderbilt.edu/~schmidt/PDF/patterns-intro4.pdf">Introduction to Patterns and Frameworks</a> 和 <a href="http://stackoverflow.com/questions/320142/design-patterns-vs-frameworks">Design patterns vs Frameworks</a> 对这个问题都有比较系统的分析，各位看官可以细细品看一下。一言以蔽之，<em>pattern</em> 是解决某个具体问题的方案，<em>framework</em> 是一套系统架构可重用的组件（通常包括若干个 <em>pattern</em>），他们经常共同为软件系统的可重用性、可扩展性提供支持。</p>
 
-<p><blockquote><p>Patterns support reuse of software architecture and design: Patterns capture the static and dynamic structures and<br/>collaborations of successful solutions to problems that arise when building applications in a particular domain.<br/>Frameworks support reuse of detailed design and code: A framework is an integrated set of components that collaborate<br/>to provide a reusable architecture for a family of related applications.</p></blockquote></p>
+<p><blockquote><p>Patterns support reuse of software architecture and design: Patterns capture the static and dynamic structures and collaborations of successful solutions to problems that arise when building applications in a particular domain.<br/>Frameworks support reuse of detailed design and code: A framework is an integrated set of components that collaborate to provide a reusable architecture for a family of related applications.</p></blockquote></p>
 
 <h1>Framework</h1>
 
@@ -115,8 +115,7 @@ public class A {
 
 <h2>Decorator pattern</h2>
 
-<pre><code class="java">Favor composition over inheritance.
-</code></pre>
+<p><blockquote><p>Favor composition over inheritance. Inheritance propagates any flaws in the superclass’s API, while composition lets you design a new API that hides these flaws.</p></blockquote></p>
 
 <p>装饰者模式是<em>继承可实例化的类</em>的替代解决方案，<a href="https://books.google.com.hk/books?id=ka2VUBqHiWkC&amp;pg=PA85&amp;dq=The+disadvantage+of+wrapper+classes&amp;hl=en&amp;sa=X&amp;ved=0CB0Q6AEwAGoVChMI5L-T5PnPxgIVCQuOCh1joQq6#v=onepage&amp;q=The%20disadvantage%20of%20wrapper%20classes&amp;f=false">Effective Java, Item 16</a> 一节的主题正是 <em>Favor composition over inheritance</em>。B 继承可实例化的类 A 有很多问题，比如</p>
 
@@ -185,7 +184,7 @@ public class ForwardingSet&lt;E&gt; implements Set&lt;E&gt; {
 
 <h1>再谈引出</h1>
 
-<p><em>Wrapper classes are not suited for use in callback frameworks</em>，在了解了相关的各种基本概念后，现在可以给出示例代码了。结合之前介绍的 <em>[callback framework demo code][#callback_code]</em> 进行说明，给 <code>Context</code> 一个 <em>Wrapper class</em>，观察效果。</p>
+<p><em>Wrapper classes are not suited for use in callback frameworks</em>，在了解了相关的各种基本概念后，现在可以给出示例代码了。结合之前介绍的 <a href="#callback_code">callback framework demo code</a> 进行说明，给 <code>Context</code> 一个 <em>Wrapper class</em>，观察效果。</p>
 
 <pre><code class="java">public class ContextB implements Callback {
 
