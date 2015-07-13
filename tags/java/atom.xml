@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: Java | Hedley]]></title>
   <link href="http://hedleyyan.github.io/tags/java/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2015-07-13T10:00:19+08:00</updated>
+  <updated>2015-07-13T14:45:11+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[dL]]></name>
@@ -218,7 +218,7 @@ public class ForwardingSet&lt;E&gt; implements Set&lt;E&gt; {
 }
 </code></pre>
 
-<p>观察输出</p>
+<p>观察输出，有豁然开朗的感觉吗？有请点赞~</p>
 
 <pre><code class="java">B ex ...
 begin ...
