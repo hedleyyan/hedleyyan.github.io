@@ -116,7 +116,7 @@
 
 <p>关于 <em>Wrapper class</em> 的引出问题，个人认为比较<a href="http://programmers.stackexchange.com/questions/117628/why-are-wrapper-classes-not-suited-for-use-in-callback-frameworks">炫酷的解答</a>。</p>
 
-<blockquote><p>Because a wrapped object doesn&#8217;t know of its wrapper, it passes a reference to itself(this) and callbacks elude the wrapper. This is known as the SELF problem [Lieberman86]. This leads to subtle bugs, like the wrapper missing the event. Or the wrapper and wrapped object both registering for the same events - leading to duplicate processing and potential concurrency issues as well. If you don&#8217;t know (don&#8217;t have the source code) where callbacks are registered, it may be impossible to work around this problem.</p></blockquote>
+<blockquote><p>Because a wrapped object doesn&#8217;t know of its wrapper, it passes a reference to itself(this) and callbacks elude the wrapper. This is known as the SELF problem [[Lieberman86][]]. This leads to subtle bugs, like the wrapper missing the event. Or the wrapper and wrapped object both registering for the same events - leading to duplicate processing and potential concurrency issues as well. If you don&#8217;t know (don&#8217;t have the source code) where callbacks are registered, it may be impossible to work around this problem.</p></blockquote>
 
 
 <h1>Panttern? Framework?</h1>

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 技术 | Hedley]]></title>
   <link href="http://hedleyyan.github.io/blog/categories/ji-zhu/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2015-07-13T14:45:11+08:00</updated>
+  <updated>2015-07-14T10:20:45+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[dL]]></name>
@@ -24,7 +24,7 @@
 
 <p>关于 <em>Wrapper class</em> 的引出问题，个人认为比较<a href="http://programmers.stackexchange.com/questions/117628/why-are-wrapper-classes-not-suited-for-use-in-callback-frameworks">炫酷的解答</a>。</p>
 
-<p><blockquote><p>Because a wrapped object doesn&rsquo;t know of its wrapper, it passes a reference to itself(this) and callbacks elude the wrapper. This is known as the SELF problem [Lieberman86]. This leads to subtle bugs, like the wrapper missing the event. Or the wrapper and wrapped object both registering for the same events - leading to duplicate processing and potential concurrency issues as well. If you don&rsquo;t know (don&rsquo;t have the source code) where callbacks are registered, it may be impossible to work around this problem.</p></blockquote></p>
+<p><blockquote><p>Because a wrapped object doesn&rsquo;t know of its wrapper, it passes a reference to itself(this) and callbacks elude the wrapper. This is known as the SELF problem [<a href="https://static.aminer.org/pdf/PDF/000/522/451/using_prototypical_objects_to_implement_shared_behavior_in_object_oriented.pdf">Lieberman86</a>]. This leads to subtle bugs, like the wrapper missing the event. Or the wrapper and wrapped object both registering for the same events - leading to duplicate processing and potential concurrency issues as well. If you don&rsquo;t know (don&rsquo;t have the source code) where callbacks are registered, it may be impossible to work around this problem.</p></blockquote></p>
 
 <h1>Panttern? Framework?</h1>
 
@@ -239,6 +239,7 @@ end ...
 <li><a href="https://en.wikipedia.org/wiki/Dependency_injection">Dependency injection 维基百科</a></li>
 <li><a href="http://programmers.stackexchange.com/questions/92393/what-does-the-spring-framework-do-should-i-use-it-why-or-why-not?rq=1">What is dependency injection</a></li>
 <li><a href="http://blog.csdn.net/taijianyu/article/details/2338311/">什么是依赖注入</a></li>
+<li><a href="https://static.aminer.org/pdf/PDF/000/522/451/using_prototypical_objects_to_implement_shared_behavior_in_object_oriented.pdf">Using Prototypical Objects to Implement Shared Behavior in Object Oriented Systems</a></li>
 </ul>
 
 ]]></content>
