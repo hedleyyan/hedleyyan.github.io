@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: Pattern | Hedley]]></title>
   <link href="http://hedleyyan.github.io/tags/pattern/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2015-07-14T10:21:54+08:00</updated>
+  <updated>2015-07-18T12:42:33+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[dL]]></name>
@@ -24,7 +24,7 @@
 
 <p>关于 <em>Wrapper class</em> 的引出问题，个人认为比较<a href="http://programmers.stackexchange.com/questions/117628/why-are-wrapper-classes-not-suited-for-use-in-callback-frameworks">炫酷的解答</a>。</p>
 
-<p><blockquote><p>Because a wrapped object doesn&rsquo;t know of its wrapper, it passes a reference to itself(this) and callbacks elude the wrapper. This is known as the SELF problem (<a href="https://static.aminer.org/pdf/PDF/000/522/451/using_prototypical_objects_to_implement_shared_behavior_in_object_oriented.pdf">Lieberman86</a>). This leads to subtle bugs, like the wrapper missing the event. Or the wrapper and wrapped object both registering for the same events - leading to duplicate processing and potential concurrency issues as well. If you don&rsquo;t know (don&rsquo;t have the source code) where callbacks are registered, it may be impossible to work around this problem.</p></blockquote></p>
+<p><blockquote><p>Because a wrapped object doesn&rsquo;t know of its wrapper, it passes a reference to itself(this) and callbacks elude the wrapper. This is known as the SELF problem <a href="https://static.aminer.org/pdf/PDF/000/522/451/using_prototypical_objects_to_implement_shared_behavior_in_object_oriented.pdf">Lieberman86</a>. This leads to subtle bugs, like the wrapper missing the event. Or the wrapper and wrapped object both registering for the same events - leading to duplicate processing and potential concurrency issues as well. If you don&rsquo;t know (don&rsquo;t have the source code) where callbacks are registered, it may be impossible to work around this problem.</p></blockquote></p>
 
 <h1>Panttern? Framework?</h1>
 
