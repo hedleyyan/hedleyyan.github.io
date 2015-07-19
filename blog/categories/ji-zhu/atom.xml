@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 技术 | Hedley]]></title>
   <link href="http://hedleyyan.github.io/blog/categories/ji-zhu/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2015-07-19T18:33:29+08:00</updated>
+  <updated>2015-07-19T23:30:02+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[dL]]></name>
@@ -20,9 +20,9 @@
     <id>http://hedleyyan.github.io/blog/2015/07/18/fu-ze-ren-zai-tan-callback-yu-delegation</id>
     <content type="html"><![CDATA[<h1>引出</h1>
 
-<p>话接上回<a href="/2015/07/10/zhuang-shi-zhe-mo-shi-decorate-pattern-yu-hui-diao-ji-zhi-callback-framework/">不负责瞎说说 Patterns 与 Frameworks</a>，还谈引出问题：<em>Wrapper classes are not suited for use in callback frameworks</em>。虽然最后给出了一个可以验证的 <em>Demo Code</em>，但是个中缘由仍影影绰绰，真相仿佛隔着一层薄纱在向我招手。心急难耐，遂从引出 <em>SELF problem</em> 的论文出发，顺藤摸瓜按图索骥，也许是我的真心打动了上天，也许是我太帅，幸得 <a href="http://blog.csdn.net/yqj2065">yqj2065</a> 老师指点，才把真相抱了个满怀。</p>
+<p>话接上回<a href="/blog/2015/07/10/zhuang-shi-zhe-mo-shi-decorate-pattern-yu-hui-diao-ji-zhi-callback-framework/">不负责瞎说说 Patterns 与 Frameworks</a>，还谈引出问题：<em>Wrapper classes are not suited for use in callback frameworks</em>。虽然最后给出了一个可以验证的 <em>Demo Code</em>，但是个中缘由仍影影绰绰，真相仿佛隔着一层薄纱在向我招手。心急难耐，遂从引出 <em>SELF problem</em> 的论文出发，顺藤摸瓜按图索骥，也许是我的真心打动了上天，也许是我太帅，幸得 <a href="http://blog.csdn.net/yqj2065">yqj2065</a> 老师指点，才把真相抱了个满怀。</p>
 
-<p>幸福来的太快，虚幻又不真实，也许我看到的只是背影，又或许我看到的是庐山真面，放空思绪，容我一点点回忆。不知道待我从求知路上走的更远，回头再看今天的&#8217;负责任&#8217;是不是够炫酷呢。</p>
+<p>幸福来的太快，虚幻又不真实，也许我看到的只是背影，又或许我看到的是庐山真面，放空思绪，容我一点点回忆。不知道待我从求知路上走的更远，回头再看今天的“负责任”是不是够炫酷呢。</p>
 
 <p>先甩大招上结论</p>
 
@@ -38,7 +38,7 @@
 
 <h1>线索</h1>
 
-<p>写完上次的”不负责任“，感觉不爽，因为 <em>SELF problem</em> 论文（<a href="https://static.aminer.org/pdf/PDF/000/522/451/using_prototypical_objects_to_implement_shared_behavior_in_object_oriented.pdf">Using Prototypical Objects to Implement Shared Behavior in Object Oriented Systems</a>）里还有理解不了的点，<em>Wrapper classes are not suited for use in callback frameworks</em> 这个问题感觉理解的还可以，但是相应的，论文里提到的 <em>delegation</em> 为什么就 OK 呢？论文里说的这个 <em>delegation</em> 又是如何实现的呢？</p>
+<p>写完上次的“不负责任”，感觉不爽，因为 <em>SELF problem</em> 论文（<a href="https://static.aminer.org/pdf/PDF/000/522/451/using_prototypical_objects_to_implement_shared_behavior_in_object_oriented.pdf">Using Prototypical Objects to Implement Shared Behavior in Object Oriented Systems</a>）里还有理解不了的点，<em>Wrapper classes are not suited for use in callback frameworks</em> 这个问题感觉理解的还可以，但是相应的，论文里提到的 <em>delegation</em> 为什么就 OK 呢？论文里说的这个 <em>delegation</em> 又是如何实现的呢？</p>
 
 <p>顺着论文里提到的 <em>delegation appearing several in Lisp-based object oriented systems..</em> 调查了一下 <em>Lisp</em> 语言的背景。</p>
 
@@ -46,19 +46,31 @@
 
 <p>了解了 <em>Java8 lambda</em> 的机制，并查到了较可信的<a href="http://stackoverflow.com/questions/44912/java-delegates#comment13546516_44916">证据</a>说 <em>Java8 lambda</em> 不是 <em>delegation</em>，并且以后 <em>Java</em> 都不会支持 <em>delegation</em>。</p>
 
-<p>但是上面的信息中提到 C# 是实现了 <em>delegate</em> 的。然后了解了 C# 的 <em>delegate</em>、<em>event</em> 关键字，写点些代码来验证我的[想法][#想法]。</p>
+<p>但是上面的信息中提到 C# 是实现了 <em>delegate</em> 的。然后了解了 C# 的 <em>delegate</em>、<em>event</em> 关键字，写点些代码来验证我的<a href="#%E6%83%B3%E6%B3%95">想法</a>。</p>
 
 <p>但是很不幸，没有验证成功。我发现 C# 的 <em>delegate</em> 其实和 <em>Java8 lambda</em> 是一样的原理，不过是一种更方便、灵活的语法。</p>
 
 <p>所以又回头开始理 <em>SELF problem</em> 论文，到底是哪里不一致。开始怀疑 C# 的 <em>delegate</em> 和论文里说的 <em>delegation</em> 不是一个频道。</p>
 
-<p>太帅了，找到了证据。</p>
+<p>太帅了，又找到了证据。</p>
 
 <p>但是更帅的是，我搞懂了 <em>Callback</em>。</p>
 
 <h1>真· <em>Callback</em></h1>
 
-<p>上回说</p>
+<p>上回给 <em>callback</em> 下的一句话定义：<em>If you call me, i will call back.</em> Well，丢掉忘掉扔到垃圾桶。灵感来自<a href="http://blog.csdn.net/yqj2065/article/details/39481255">这里</a>，诚如我下面的留言：拨云见日醍醐灌顶，痛快！</p>
+
+<p>首先， <em>callback</em> 是名词，不是动词，不是场景，它就是一个方法，是回调函数的简称。</p>
+
+<p>其次， <em>callback</em> 是强调一个上下文的，有一个分层的概念在。</p>
+
+<p>了解了这两点之后，理解起来简直是爽，一张类图搞定。</p>
+
+<p><img src="/images/Snip20150719_6.png"></p>
+
+<p><blockquote><p>一个回调函数 / 方法（简称回调 / <em>callback</em>）是上层模块实现的，将被下层模块（反过来）执行的方法。</p></blockquote></p>
+
+<p>可见所谓 <em>framework</em>，根本就是建立在 <em>callback</em> 的基础上的。我们要想做填空题，那么 <em>framework</em> 封装的细节是如何调用我们的代码的呢？ <em>callback</em>！</p>
 
 <h1><em>Delegation</em></h1>
 
@@ -73,6 +85,17 @@
 <h2>真· <em>Delegation</em></h2>
 
 <h1>乱入 <em>delegate</em> 的 <em>Patterns</em></h1>
+
+<h1>扩展阅读</h1>
+
+<p><a href="https://static.aminer.org/pdf/PDF/000/522/451/using_prototypical_objects_to_implement_shared_behavior_in_object_oriented.pdf">Using Prototypical Objects to Implement Shared Behavior in Object Oriented Systems</a>
+<a href="http://stackoverflow.com/questions/44912/java-delegates#comment13546516_44916">Java Delegates?</a>
+<a href="http://stackoverflow.com/questions/20311779/is-there-delegate-in-java-8-jdk8/30925223#30925223">Is there delegate in Java 8 (JDK8)?</a>
+<a href="http://stackoverflow.com/questions/1746332/delegates-and-callbacks">C# does not implement delegates</a>
+<a href="http://www.saturnflyer.com/blog/jim/2012/07/06/the-gang-of-four-is-wrong-and-you-dont-understand-delegation/">The Gang Of Four Is Wrong And You Don&rsquo;t Understand Delegation</a>
+<a href="http://blog.csdn.net/yqj2065/article/details/39481255">《编程导论（Java）·9.3.1Java回调》1</a>
+<a href="http://blog.csdn.net/yqj2065/article/details/31441221">《编程导论（Java）·9.3.1Java回调》2</a>
+<a href="http://www.onjava.com/pub/a/onjava/2003/05/21/delegates.html">A Java Programmer Looks at C# Delegates</a></p>
 ]]></content>
   </entry>
   
