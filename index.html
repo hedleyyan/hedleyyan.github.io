@@ -9,7 +9,7 @@
   <meta name="author" content="dL">
 
   
-  <meta name="description" content="引出 Effective Java, Item 16 中说 Wrapper classes are not suited for use in callback frameworks，想不明白，一顿 Google 依旧看个似懂非懂。我想把这些凌乱的线索都整理出来，抽抽剪剪排列组合一下， &hellip;">
+  <meta name="description" content="引出 话接上回不负责瞎说说 Patterns 与 Frameworks，还谈引出问题：Wrapper classes are not suited for use in callback frameworks。虽然最后给出了一个可以验证的 Demo Code，但是个中缘由仍影影绰绰， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -88,6 +88,53 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/07/18/fu-ze-ren-zai-tan-callback-yu-delegation/">负责任再谈 Callback 与 Delegation</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-07-18T15:03:11+08:00'><span class='date'><span class='date-month'>Jul</span> <span class='date-day'>18</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>3:03 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1>引出</h1>
+
+<p>话接上回<a href="/2015/07/10/zhuang-shi-zhe-mo-shi-decorate-pattern-yu-hui-diao-ji-zhi-callback-framework/">不负责瞎说说 Patterns 与 Frameworks</a>，还谈引出问题：<em>Wrapper classes are not suited for use in callback frameworks</em>。虽然最后给出了一个可以验证的 <em>Demo Code</em>，但是个中缘由仍影影绰绰，真相仿佛隔着一层薄纱在向我招手。心急难耐，遂从引出 <em>SELF problem</em> 的论文出发，顺藤摸瓜按图索骥，也许是我的真心打动了上天，也许是我太帅，幸得 <a href="http://blog.csdn.net/yqj2065">yqj2065</a> 老师指点，才把真相抱了个满怀。</p>
+
+<p>幸福来的太快，虚幻又不真实，也许我看到的只是背影，又或许我看到的是庐山真面，放空思绪，容我一点点回忆。不知道待我从求知路上走的更远，回头再看今天的&#8217;负责任&#8217;是不是够炫酷呢。</p>
+
+<p>先甩大招上结论</p>
+
+<ul>
+<li>Java 不支持 <em>delegation</em></li>
+<li>C# 的 <em>delegate</em> 不是真正的 <em>delegate</em></li>
+<li><a name="想法"><em>delegation</em> ：我只需要你的原型方法，但我不要依赖于你 </a></li>
+</ul>
+
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2015/07/18/fu-ze-ren-zai-tan-callback-yu-delegation/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -525,17 +572,22 @@
     <section>
   <h1>Tags</h1>
   <ul class="tag-cloud">
-    <a style="font-size: 180%" href="/tags/java/">Java</a>
-<a style="font-size: 70%" href="/tags/pattern/">Pattern</a>
+    <a style="font-size: 113%" href="/tags/framework/">Framework</a>
+<a style="font-size: 180%" href="/tags/java/">Java</a>
+<a style="font-size: 113%" href="/tags/pattern/">Pattern</a>
 <a style="font-size: 70%" href="/tags/tips/">tips</a>
 <a style="font-size: 70%" href="/tags/gui-yue/">规约</a>
-<a style="font-size: 117%" href="/tags/pei-zhi/">配置</a>
+<a style="font-size: 113%" href="/tags/pei-zhi/">配置</a>
 
   </ul>
 </section>
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/07/18/fu-ze-ren-zai-tan-callback-yu-delegation/">负责任再谈 Callback 与 Delegation</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2015/07/10/zhuang-shi-zhe-mo-shi-decorate-pattern-yu-hui-diao-ji-zhi-callback-framework/">不负责瞎说说 Patterns 与 Frameworks</a>
@@ -551,10 +603,6 @@
     
       <li class="post">
         <a href="/blog/2015/06/20/fu-dian-yun-suan/">扑朔迷离浮点运算</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/06/16/cang-zhou-shi-jie-dao-diao-cha-wen-juan/">沧州市街道调查问卷</a>
       </li>
     
   </ul>

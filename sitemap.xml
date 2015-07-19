@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://hedleyyan.github.io/blog/2015/07/18/fu-ze-ren-zai-tan-callback-yu-delegation/</loc>
+    <lastmod>2015-07-18T15:03:11+08:00</lastmod>
+  </url>
+  <url>
     <loc>http://hedleyyan.github.io/blog/2015/07/10/zhuang-shi-zhe-mo-shi-decorate-pattern-yu-hui-diao-ji-zhi-callback-framework/</loc>
     <lastmod>2015-07-10T17:11:00+08:00</lastmod>
   </url>
@@ -67,5 +71,8 @@
   </url>
   <url>
     <loc>http://hedleyyan.github.io/tags/pattern/</loc>
+  </url>
+  <url>
+    <loc>http://hedleyyan.github.io/tags/framework/</loc>
   </url>
 </urlset>

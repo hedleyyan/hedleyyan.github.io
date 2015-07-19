@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: Java | Hedley]]></title>
   <link href="http://hedleyyan.github.io/tags/java/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2015-07-18T12:42:33+08:00</updated>
+  <updated>2015-07-19T18:33:29+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[dL]]></name>
@@ -12,6 +12,69 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[负责任再谈 Callback 与 Delegation]]></title>
+    <link href="http://hedleyyan.github.io/blog/2015/07/18/fu-ze-ren-zai-tan-callback-yu-delegation/"/>
+    <updated>2015-07-18T15:03:11+08:00</updated>
+    <id>http://hedleyyan.github.io/blog/2015/07/18/fu-ze-ren-zai-tan-callback-yu-delegation</id>
+    <content type="html"><![CDATA[<h1>引出</h1>
+
+<p>话接上回<a href="/2015/07/10/zhuang-shi-zhe-mo-shi-decorate-pattern-yu-hui-diao-ji-zhi-callback-framework/">不负责瞎说说 Patterns 与 Frameworks</a>，还谈引出问题：<em>Wrapper classes are not suited for use in callback frameworks</em>。虽然最后给出了一个可以验证的 <em>Demo Code</em>，但是个中缘由仍影影绰绰，真相仿佛隔着一层薄纱在向我招手。心急难耐，遂从引出 <em>SELF problem</em> 的论文出发，顺藤摸瓜按图索骥，也许是我的真心打动了上天，也许是我太帅，幸得 <a href="http://blog.csdn.net/yqj2065">yqj2065</a> 老师指点，才把真相抱了个满怀。</p>
+
+<p>幸福来的太快，虚幻又不真实，也许我看到的只是背影，又或许我看到的是庐山真面，放空思绪，容我一点点回忆。不知道待我从求知路上走的更远，回头再看今天的&#8217;负责任&#8217;是不是够炫酷呢。</p>
+
+<p>先甩大招上结论</p>
+
+<ul>
+<li>Java 不支持 <em>delegation</em></li>
+<li>C# 的 <em>delegate</em> 不是真正的 <em>delegate</em></li>
+<li><a name="想法"><em>delegation</em> ：我只需要你的原型方法，但我不要依赖于你 </a></li>
+</ul>
+
+
+<!--more-->
+
+
+<h1>线索</h1>
+
+<p>写完上次的”不负责任“，感觉不爽，因为 <em>SELF problem</em> 论文（<a href="https://static.aminer.org/pdf/PDF/000/522/451/using_prototypical_objects_to_implement_shared_behavior_in_object_oriented.pdf">Using Prototypical Objects to Implement Shared Behavior in Object Oriented Systems</a>）里还有理解不了的点，<em>Wrapper classes are not suited for use in callback frameworks</em> 这个问题感觉理解的还可以，但是相应的，论文里提到的 <em>delegation</em> 为什么就 OK 呢？论文里说的这个 <em>delegation</em> 又是如何实现的呢？</p>
+
+<p>顺着论文里提到的 <em>delegation appearing several in Lisp-based object oriented systems..</em> 调查了一下 <em>Lisp</em> 语言的背景。</p>
+
+<p>看到了 <em>Lisp</em> 的语法以后，忽感和 <em>Java8 lambda</em> 表达式长的很像。于是再查 <em>Java8 lambda</em> 是不是就是我困惑的那个 <em>delegation</em>。</p>
+
+<p>了解了 <em>Java8 lambda</em> 的机制，并查到了较可信的<a href="http://stackoverflow.com/questions/44912/java-delegates#comment13546516_44916">证据</a>说 <em>Java8 lambda</em> 不是 <em>delegation</em>，并且以后 <em>Java</em> 都不会支持 <em>delegation</em>。</p>
+
+<p>但是上面的信息中提到 C# 是实现了 <em>delegate</em> 的。然后了解了 C# 的 <em>delegate</em>、<em>event</em> 关键字，写点些代码来验证我的[想法][#想法]。</p>
+
+<p>但是很不幸，没有验证成功。我发现 C# 的 <em>delegate</em> 其实和 <em>Java8 lambda</em> 是一样的原理，不过是一种更方便、灵活的语法。</p>
+
+<p>所以又回头开始理 <em>SELF problem</em> 论文，到底是哪里不一致。开始怀疑 C# 的 <em>delegate</em> 和论文里说的 <em>delegation</em> 不是一个频道。</p>
+
+<p>太帅了，找到了证据。</p>
+
+<p>但是更帅的是，我搞懂了 <em>Callback</em>。</p>
+
+<h1>真· <em>Callback</em></h1>
+
+<p>上回说</p>
+
+<h1><em>Delegation</em></h1>
+
+<h2>伪· <em>Delegation</em></h2>
+
+<h3>C# <em>delegate</em></h3>
+
+<h3>Java8 lambda 表达式</h3>
+
+<p><blockquote><p>It is unlikely that the Java programming language will ever include this construct. Sun already carefully considered adopting it in 1996, to the extent of building and discarding working prototypes. Our conclusion was that bound method references are unnecessary and detrimental to the language. This decision was made in consultation with Borland International, who had previous experience with bound method references in Delphi Object Pascal.</p></p><p><p>We believe bound method references are unnecessary because another design alternative, inner classes, provides equal or superior functionality. In particular, inner classes fully support the requirements of user-interface event handling, and have been used to implement a user-interface API at least as comprehensive as the Windows Foundation Classes.</p></p><p><p>We believe bound method references are harmful because they detract from the simplicity of the Java programming language and the pervasively object-oriented character of the APIs. Bound method references also introduce irregularity into the language syntax and scoping rules. Finally, they dilute the investment in VM technologies because VMs are required to handle additional and disparate types of references and method linkage efficiently.</p></blockquote></p>
+
+<h2>真· <em>Delegation</em></h2>
+
+<h1>乱入 <em>delegate</em> 的 <em>Patterns</em></h1>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[不负责瞎说说 Patterns 与 Frameworks]]></title>
@@ -1069,181 +1132,6 @@ class Inner2 extends Outer.Inner1 {
 <blockquote><p>Unless you have a compelling need for an enclosing instance, prefer static member classes over nonstatic.</p><footer><strong>EJ Item 18</strong></footer></blockquote></p>
 
 <!--## 引用-->
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[A Glossary of Name Reuse]]></title>
-    <link href="http://hedleyyan.github.io/blog/2015/05/16/a-glossary-of-name-reuse/"/>
-    <updated>2015-05-16T17:07:57+08:00</updated>
-    <id>http://hedleyyan.github.io/blog/2015/05/16/a-glossary-of-name-reuse</id>
-    <content type="html"><![CDATA[<h1>关于</h1>
-
-<p>此文大概就是《Java Puzzlers》中 <em>Classier Pazzlers</em> 一节的简单翻译和整理，粗略总结了 <em>Java</em> 有关<strong>命名重复</strong>的场景和代码示例。</p>
-
-<!--more-->
-
-
-<h1>Overriding</h1>
-
-<p><blockquote><p>An instance method overrides all accessible instance methods with the same signature in superclasses.</p><footer><strong>JLS 8.4.8.1</strong></footer></blockquote></p>
-
-<p>重写的规范定义包括：</p>
-
-<ul>
-<li>Context 包括两个类，一个子类，一个父类。</li>
-<li>载体必须是实例方法 <em>(instance methods)</em>，而非静态方法。</li>
-<li>必须是同样签名 <em>(signature)</em>，包括参数、返回类型。</li>
-<li>重写方法不能缩小可见范围。</li>
-</ul>
-
-
-<p>重写是面向对象编程的核心概念，是<strong>唯一</strong>鼓励使用的 <em>Name Reuse</em> 场景。</p>
-
-<pre><code class="java">    class Base {
-        protected void f() { }
-    }
-
-    class Derived extends Base {
-        public void f() { } // overrrides Base.f()
-    }
-</code></pre>
-
-<h1>Overloading</h1>
-
-<p><blockquote><p>Methods in a class overload one another if they have the same name and different signatures.</p><footer><strong>JLS 8.4.9</strong></footer></blockquote></p>
-
-<p>重载和重写是 <em>Name Reuse</em> 出现最多的场景。相对于重写，重载规范包括：</p>
-
-<ul>
-<li>Context 只有一个类。</li>
-<li>载体可以是实例方法，也可以是静态方法。</li>
-<li>拥有不同的签名。
-
-<ul>
-<li>但不能是参数相同，返回类型不同。</li>
-</ul>
-</li>
-</ul>
-
-
-<pre><code class="java">    class CircuitBreaker {
-        public void f(int i)    { }  // int overloading
-        public void f(String s) { }  // String overloading
-    } 
-</code></pre>
-
-<h1>Hiding</h1>
-
-<p><blockquote><p>A field, static method, or member type hides all accessible fields, static methods, or member types, respectively, with the same name (or, for methods, signature) in supertypes. Hiding a member prevents it from being inherited.</p><footer><strong>JLS 8.3-8.5</strong></footer></blockquote></p>
-
-<p><em>Hiding</em> 和 <em>Overriding</em> 场景比较像，<em>Overriding</em> 的载体是实例方法，而 <em>Hiding</em> 的载体是除去实例方法以外的其他所有元素。</p>
-
-<ul>
-<li>Context 包括子类和父类。</li>
-<li>载体包括属性、静态方法、成员类。</li>
-<li>同样签名。</li>
-<li>可见范围无约束。</li>
-</ul>
-
-
-<pre><code class="java">    class Base {
-        public String className = "Base";
-    }
-
-    class Derived extends Base {
-        private String className = "Derived";
-    }
-
-    public class PrivateMatter {
-        public static void main(String[] args) {
-            System.out.println(new Derived().className);
-        }
-    }
-</code></pre>
-
-<p>️️️代码结果</p>
-
-<pre><code>PrivateMatter.java:11: className has private access in Derived
-           System.out.println(new Derived().className);
-</code></pre>
-
-<p>很明显，<em>Hiding</em> 的代码是晦涩难懂的，更重要的是它破坏了 <em>Liskov</em> 替换原则。应极力避免这种 <em>Name Reuse</em> 场景。</p>
-
-<p><blockquote><p>Everything you can do with a base class, you can also do with a derived class.</p><footer><strong>Liskov Substitution Principle</strong></footer></blockquote></p>
-
-<h1><a name='shadowing'>Shadowing</a></h1>
-
-<p><blockquote><p>A variable, method, or type shadows all variables, methods, or types, respectively, with the same name in a textually enclosing scope.</p><footer><strong>JLS 6.3.1</strong></footer></blockquote></p>
-
-<ul>
-<li>Context 可能只有一个类，也可能包括别的函数库的类。</li>
-<li>载体包括变量、方法、类、类型声明 <em>(<T>)</em>。</li>
-</ul>
-
-
-<pre><code class="java">    class WhoKnows {
-        static String sentence = "I don’t know.";
-        public static void main(String[] args) {
-            String sentence = "I know!";   // shadows static field
-            System.out.println(sentence);  // prints local variable
-        }
-    }
-</code></pre>
-
-<pre><code class="java">    public class StrungOut {
-       public static void main(String[] args) {
-           String s = new String("Hello world");
-           System.out.println(s);
-       }
-    }
-
-    class String {
-        private final java.lang.String s;
-        public String(java.lang.String s) {
-            this.s = s;
-        }
-        public java.lang.String toString() {
-            return s;
-        } 
-    }
-</code></pre>
-
-<p>代码结果</p>
-
-<pre><code>Exception in thread "main" java.lang.NoSuchMethodError: main
-</code></pre>
-
-<p>产生 <em>Shadowing</em> 场景的 <em>Name Reuse</em> ，依最近的作用域来判定是哪个元素有效。</p>
-
-<h1>Obscuring</h1>
-
-<p><em>Obscuring</em> 是指在作用域中，一个变量的名字和一个类相同，直接看示例代码。</p>
-
-<pre><code class="java">public class Obscure {
-    static String System; // Obscures type java.lang.System
-    public static void main(String[] args) {
-        // Next line won’t compile:  System refers to static field 
-        System.out.println("hello, obscure world!");
-    }
-}
-</code></pre>
-
-<p><blockquote><p>If a type or a package is obscured, you cannot refer to it by its simple name except in a context where the syntax allows only a name from its namespace.</p></blockquote></p>
-
-<h1>常见陷阱</h1>
-
-<h1>总结</h1>
-
-<ol>
-<li>除了 <em>Override</em> ，尽量避免 <em>Name Reuse</em> 。</li>
-<li>遵守 <em>Java</em> 命名规则，可以避免 <em>Obscuring</em> 。</li>
-<li>避免和 <code>java.lang</code> 类库中的命名冲突。</li>
-</ol>
-
-
-<!--链接-->
 
 ]]></content>
   </entry>
