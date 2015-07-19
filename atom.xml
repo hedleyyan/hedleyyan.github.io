@@ -4,7 +4,7 @@
   <title><![CDATA[Hedley]]></title>
   <link href="http://hedleyyan.github.io/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2015-07-19T23:40:26+08:00</updated>
+  <updated>2015-07-19T23:42:30+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[dL]]></name>
@@ -58,6 +58,8 @@
 
 <h1>真· <em>Callback</em></h1>
 
+<p><img class="right" src="http://hedleyyan.github.io/images/Snip20150719_6.png" width="400" height="300"></p>
+
 <p>上回给 <em>callback</em> 下的一句话定义：<em>If you call me, i will call back.</em>  Well，丢掉忘掉扔到垃圾桶。灵感来自<a href="http://blog.csdn.net/yqj2065/article/details/39481255">这里</a>，诚如我下面的留言：拨云见日醍醐灌顶，痛快！</p>
 
 <p>首先， <em>callback</em> 是名词，不是动词，不是场景，它就是一个方法，是回调函数的简称。</p>
@@ -65,8 +67,6 @@
 <p>其次， <em>callback</em> 是强调一个上下文的，有一个分层的概念在。</p>
 
 <p>了解了这两点之后，理解起来简直是爽，一张类图搞定。</p>
-
-<p><img class="right" src="http://hedleyyan.github.io/images/Snip20150719_6.png" width="400" height="300"></p>
 
 <blockquote><p>一个回调函数 / 方法（简称回调 / callback）是上层模块实现的，将被下层模块（反过来）执行的方法。</p></blockquote>
 
