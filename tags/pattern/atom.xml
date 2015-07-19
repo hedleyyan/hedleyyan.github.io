@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: Pattern | Hedley]]></title>
   <link href="http://hedleyyan.github.io/tags/pattern/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2015-07-19T23:33:16+08:00</updated>
+  <updated>2015-07-19T23:40:26+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[dL]]></name>
@@ -46,9 +46,9 @@
 
 <p>了解了 <em>Java8 lambda</em> 的机制，并查到了较可信的<a href="http://stackoverflow.com/questions/44912/java-delegates#comment13546516_44916">证据</a>说 <em>Java8 lambda</em> 不是 <em>delegation</em>，并且以后 <em>Java</em> 都不会支持 <em>delegation</em>。</p>
 
-<p>但是上面的信息中提到 C# 是实现了 <em>delegate</em> 的。然后了解了 C# 的 <em>delegate</em>、<em>event</em> 关键字，写点些代码来验证我的<a href="#%E6%83%B3%E6%B3%95">想法</a>。</p>
+<p>但是上面的信息中提到 C# 是实现了 <em>delegate</em> 的。然后了解了 C# 的 <em>delegate</em>、<em>event</em> 关键字，写了些代码来验证我的<a href="#%E6%83%B3%E6%B3%95">想法</a>。</p>
 
-<p>但是很不幸，没有验证成功。我发现 C# 的 <em>delegate</em> 其实和 <em>Java8 lambda</em> 是一样的原理，不过是一种更方便、灵活的语法。</p>
+<p>但是很不幸，没有验证成功。我发现 C# 的 <em>delegate</em> 其实和 <em>Java8 lambda</em> 是一样的原理，不过是一种更方便的语法加上更灵活的实现12。</p>
 
 <p>所以又回头开始理 <em>SELF problem</em> 论文，到底是哪里不一致。开始怀疑 C# 的 <em>delegate</em> 和论文里说的 <em>delegation</em> 不是一个频道。</p>
 
@@ -58,7 +58,7 @@
 
 <h1>真· <em>Callback</em></h1>
 
-<p>上回给 <em>callback</em> 下的一句话定义：<em>If you call me, i will call back.</em> Well，丢掉忘掉扔到垃圾桶。灵感来自<a href="http://blog.csdn.net/yqj2065/article/details/39481255">这里</a>，诚如我下面的留言：拨云见日醍醐灌顶，痛快！</p>
+<p>上回给 <em>callback</em> 下的一句话定义：<em>If you call me, i will call back.</em>  Well，丢掉忘掉扔到垃圾桶。灵感来自<a href="http://blog.csdn.net/yqj2065/article/details/39481255">这里</a>，诚如我下面的留言：拨云见日醍醐灌顶，痛快！</p>
 
 <p>首先， <em>callback</em> 是名词，不是动词，不是场景，它就是一个方法，是回调函数的简称。</p>
 
@@ -66,9 +66,9 @@
 
 <p>了解了这两点之后，理解起来简直是爽，一张类图搞定。</p>
 
-<p><img src="/images/Snip20150719_6.png"></p>
+<p><img class="right" src="/images/Snip20150719_6.png" width="400" height="300"></p>
 
-<p><blockquote><p>一个回调函数 / 方法（简称回调 / <em>callback</em>）是上层模块实现的，将被下层模块（反过来）执行的方法。</p></blockquote></p>
+<p><blockquote><p>一个回调函数 / 方法（简称回调 / callback）是上层模块实现的，将被下层模块（反过来）执行的方法。</p></blockquote></p>
 
 <p>可见所谓 <em>framework</em>，根本就是建立在 <em>callback</em> 的基础上的。我们要想做填空题，那么 <em>framework</em> 封装的细节是如何调用我们的代码的呢？ <em>callback</em>！</p>
 
