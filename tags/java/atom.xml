@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: Java | Hedley]]></title>
   <link href="http://hedleyyan.github.io/tags/java/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2015-07-19T23:43:30+08:00</updated>
+  <updated>2015-07-19T23:45:17+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[dL]]></name>
@@ -67,6 +67,8 @@
 <p>其次， <em>callback</em> 是强调一个上下文的，有一个分层的概念在。</p>
 
 <p>了解了这两点之后，理解起来简直是爽，一张类图搞定。</p>
+
+<p><br></p>
 
 <p><blockquote><p>一个回调函数 / 方法（简称回调 / callback）是上层模块实现的，将被下层模块（反过来）执行的方法。</p></blockquote></p>
 
