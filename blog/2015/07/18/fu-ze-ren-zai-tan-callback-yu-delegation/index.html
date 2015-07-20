@@ -137,7 +137,7 @@
 
 <p>但是上面的信息中提到 C# 是实现了 <em>delegate</em> 的。然后了解了 C# 的 <em>delegate</em>、<em>event</em> 关键字，写了些代码来验证我的<a href="#%E6%83%B3%E6%B3%95">想法</a>。</p>
 
-<p>但是很不幸，没有验证成功。我发现 C# 的 <em>delegate</em> 其实和 <em>Java8 lambda</em> 是一样的原理，不过是一种更方便的语法加上更灵活的实现12。</p>
+<p>但是很不幸，没有验证成功。我发现 C# 的 <em>delegate</em> 其实和 <em>Java8 lambda</em> 是一样的原理，不过是一种更方便的语法加上更灵活的实现。</p>
 
 <p>所以又回头开始理 <em>SELF problem</em> 论文，到底是哪里不一致。开始怀疑 C# 的 <em>delegate</em> 和论文里说的 <em>delegation</em> 不是一个频道。</p>
 
@@ -153,16 +153,14 @@
 
 <p>首先， <em>callback</em> 是名词，不是动词，不是场景，它就是一个方法，是回调函数的简称。</p>
 
-<p>其次， <em>callback</em> 是强调一个上下文的，有一个分层的概念在。</p>
+<p>其次， <em>callback</em> 强调上下文，有一个分层的概念在。如果是同一层中的调用，就变成了普通的依赖关系，多态的概念。 <em>callback</em> 是特殊场景的多态应用。</p>
 
 <p>了解了这两点之后，理解起来简直是爽，一张类图搞定。</p>
-
-<p><br></p>
 
 <blockquote><p>一个回调函数 / 方法（简称回调 / callback）是上层模块实现的，将被下层模块（反过来）执行的方法。</p></blockquote>
 
 
-<p>可见所谓 <em>framework</em>，根本就是建立在 <em>callback</em> 的基础上的。我们要想做填空题，那么 <em>framework</em> 封装的细节是如何调用我们的代码的呢？ <em>callback</em>！</p>
+<p>可见所谓 <em>framework</em>，根本就是建立在 <em>callback</em> 的基础上的。我们要想做填空题，那么 <em>framework</em> 封装的细节是如何调用我们的代码的呢？ <em>callback</em>！<em><a href="/blog/2015/07/10/zhuang-shi-zhe-mo-shi-decorate-pattern-yu-hui-diao-ji-zhi-callback-framework/#inversion-of-control">Hollywood principle</a></em> 强调的正是 <em>callback</em> 的使用情景：你（上层 <em>Client</em>）不需要来询问我（底层 <em>Server</em>）事件是不是发生了，发生了我会通知你（通过 <em>callback</em>）。</p>
 
 <h1><em>Delegation</em></h1>
 
