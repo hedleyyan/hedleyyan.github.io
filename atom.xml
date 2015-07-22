@@ -4,7 +4,7 @@
   <title><![CDATA[Hedley]]></title>
   <link href="http://hedleyyan.github.io/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2015-07-22T21:22:38+08:00</updated>
+  <updated>2015-07-22T22:50:29+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[dL]]></name>
@@ -78,11 +78,11 @@
 <blockquote><p>Worse still, almost every reference you’ll find for &#8220;delegation&#8221; shows you examples of just object collaboration with message forwarding. They are examples of plain old method calls and not delegation.</p></blockquote>
 
 
-<p><a href="http://www.saturnflyer.com/blog/jim/2012/07/06/the-gang-of-four-is-wrong-and-you-dont-understand-delegation/">The Gang Of Four Is Wrong And You Don&rsquo;t Understand Delegation</a> 是最让我感动的线索，之前各种凭空猜想的 <em>delegation</em> 到底是何实现终于可以尘埃落定。基本上所有的伪 <em>delegation</em> 都是 <em>composite</em> 加 <em>message forward</em>，包括 Java，包括 C# 和 C++。 <em>delegation</em> 不可能通过 <em>Design Pattern</em> 得到实现。</p>
+<p><a href="http://www.saturnflyer.com/blog/jim/2012/07/06/the-gang-of-four-is-wrong-and-you-dont-understand-delegation/">The Gang Of Four Is Wrong And You Don&rsquo;t Understand Delegation</a> 是最让我感动的<a href="#%E6%9C%80%E5%B8%85%E8%AF%81%E6%8D%AE">线索</a>，之前各种凭空猜想的 <em>delegation</em> 到底是何实现终于可以尘埃落定。基本上所有的伪 <em>delegation</em> 都是 <em>composite</em> 加 <em>message forward</em>，包括 Java，包括 C# 和 C++。 <em>delegation</em> 不可能通过 <em>Design Pattern</em> 得到实现。</p>
 
 <h2>C# <em>delegate</em></h2>
 
-<p><a href="http://www.akadia.com/services/dotnet_delegates_and_events.html#The%20Second%20Change%20Event%20Example">Delegates and Events in C# / .NET</a> 例子很棒，简简单单说明白了 C# 中的 delegate 和 event 的原理，然后你会发现它和 Java 的各种充满 <em>Listeners</em> / <em>Handlers</em> 的代码意思大同小异。</p>
+<p><a href="http://www.akadia.com/services/dotnet_delegates_and_events.html#The%20Second%20Change%20Event%20Example">Delegates and Events in C# / .NET</a> 例子很棒，简简单单说明白了 C# 中的 delegate 和 event 的原理，然后你会发现它和 Java 的各种充满 <em>Listeners</em> / <em>Handlers</em> 的代码意思大同小异。例子中的代码完全可以用 Java 实现。</p>
 
 <figure class='code'><figcaption><span> (DelegationTest.java)</span> <a href='http://hedleyyan.github.io/downloads/code/DelegationTest.java'>download</a></figcaption>
 <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -280,12 +280,16 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>以上即是用 Java 代码实现的 C# 中的 delegate 示例。</p>
+<p>但是 C# 的 delegate 机制比 Java 的更灵活，因为 delegate 可以被“委托”多个不同方法，而这些方法只需要有相同的 <code>signature</code> 和返回值，并不需要是同一个接口的声明，所以一个类中的多个方法都可以“委托”它。Java 并没有这种原生支持，<a href="http://www.onjava.com/pub/a/onjava/2003/05/21/delegates.html">A Java Programmer Looks at C# Delegates</a> 有如何用 Java 模拟 C# delegate 的实现，有兴趣的可以看看，那是相当费劲。</p>
 
-<h2>Java8 <em>lambda</em> 表达式</h2>
+<h2><em>Java8 lambda</em> 表达式</h2>
 
 <blockquote><p>It is unlikely that the Java programming language will ever include this construct. Sun already carefully considered adopting it in 1996, to the extent of building and discarding working prototypes. Our conclusion was that bound method references are unnecessary and detrimental to the language. This decision was made in consultation with Borland International, who had previous experience with bound method references in Delphi Object Pascal.</p><p>We believe bound method references are unnecessary because another design alternative, inner classes, provides equal or superior functionality. In particular, inner classes fully support the requirements of user-interface event handling, and have been used to implement a user-interface API at least as comprehensive as the Windows Foundation Classes.</p><p>We believe bound method references are harmful because they detract from the simplicity of the Java programming language and the pervasively object-oriented character of the APIs. Bound method references also introduce irregularity into the language syntax and scoping rules. Finally, they dilute the investment in VM technologies because VMs are required to handle additional and disparate types of references and method linkage efficiently.</p></blockquote>
 
+
+<p>Java 官方很早就声明了其不会支持 <em>delegate</em>（这里指 C# 的 <em>delegate</em>）。Sun 相信可以通过内部类实现需要的功能，函数引用会破坏 Java 的 <em>simplicity</em>。本人对 Java 的简单特性表示粉赞👍。</p>
+
+<p><em>Java8 lambda</em> 的出现解决了内部类的臃肿写法，语法更清凉，口感更酸爽，内部循环可充分利用多处理器等等。但其本质上就是一个匿名方法，并不是 <em>method reference</em>，不赘述更多细节。</p>
 
 <h3><em>Monad</em></h3>
 
@@ -294,7 +298,9 @@
 <blockquote><p>Delegation removes the distinction between classes and instances. Any object can serve as a prototype. To create an object that shares knowledge with a prototype, you construct an extension object, which has a list containing its prototypes which may be shared with other objects, and personal behavior idiosyncratic to the object itself. When an extension object receives a message, it first attempts to respond to the message using the behavior stored in its personal part. If the object&#8217;s personal characteristics are not relevant for answering the message, the object forwards the message on to the prototypes to see if one can respond to the message. This process of forwarding is called delegating the message.</p><footer><strong>Lieberman86</strong></footer></blockquote>
 
 
-<p><em>delegation</em> 和 <em>message forward</em> 区别的唯一标准就是<strong>最终执行的方法 M 内是否可以引用到最初发起请求的对象 O</strong>，更简单粗暴一点：<strong>M 内的 this(or whatever) 关键字是不是指代 O</strong>。</p>
+<p><em>delegation</em> 和 <em>message forward</em> 区别的唯一标准就是<strong>最终执行的方法 M 内是否可以引用到最初发起请求的对象 O</strong>，更简单粗暴一点：<strong>M 内的 <code>this</code> 是不是指代 O</strong>。</p>
+
+<p><em>delegation</em> 是建立在 <em>prototype object</em> 的基础上的，以 <em>class</em> 为基础的 <em>inheritance system</em> 不能实现 <em>delegation</em>。</p>
 
 <h1>乱入 <em>delegate</em> 的 <em>Patterns</em></h1>
 
@@ -311,7 +317,7 @@
 <li><a href="http://blog.csdn.net/yqj2065/article/details/39481255">《编程导论（Java）·9.3.1Java回调》1</a></li>
 <li><a href="http://blog.csdn.net/yqj2065/article/details/31441221">《编程导论（Java）·9.3.1Java回调》2</a></li>
 <li><a href="http://www.onjava.com/pub/a/onjava/2003/05/21/delegates.html">A Java Programmer Looks at C# Delegates</a></li>
-<li>[C#网络编程 14.2.2.4][]</li>
+<li><a href="http://www.akadia.com/services/dotnet_delegates_and_events.html#The%20Second%20Change%20Event%20Example">Delegates and Events in C# / .NET</a></li>
 </ul>
 
 
