@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 技术 | Hedley]]></title>
   <link href="http://hedleyyan.github.io/blog/categories/ji-zhu/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2015-07-20T12:07:47+08:00</updated>
+  <updated>2015-07-22T21:22:38+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[dL]]></name>
@@ -44,7 +44,7 @@
 
 <p>看到了 <em>Lisp</em> 的语法以后，忽感和 <em>Java8 lambda</em> 表达式长的很像。于是再查 <em>Java8 lambda</em> 是不是就是我困惑的那个 <em>delegation</em>。</p>
 
-<p>了解了 <em>Java8 lambda</em> 的机制，并查到了较可信的<a href="http://stackoverflow.com/questions/44912/java-delegates#comment13546516_44916">证据</a>说 <em>Java8 lambda</em> 不是 <em>delegation</em>，并且以后 <em>Java</em> 都不会支持 <em>delegation</em>。</p>
+<p>了解了 <em>Java8 lambda</em> 的机制，并查到了较可信的<a href="http://stackoverflow.com/questions/44912/java-delegates#comment13546516_44916">证据</a>说 <em>Java8 lambda</em> 不是 <em>delegation</em>，并且以后 Java 都不会支持 <em>delegation</em>。</p>
 
 <p>但是上面的信息中提到 C# 是实现了 <em>delegate</em> 的。然后了解了 C# 的 <em>delegate</em>、<em>event</em> 关键字，写了些代码来验证我的<a href="#%E6%83%B3%E6%B3%95">想法</a>。</p>
 
@@ -52,7 +52,7 @@
 
 <p>所以又回头开始理 <em>SELF problem</em> 论文，到底是哪里不一致。开始怀疑 C# 的 <em>delegate</em> 和论文里说的 <em>delegation</em> 不是一个频道。</p>
 
-<p>太帅了，又找到了证据。</p>
+<p><a name"最帅证据">太帅了，又找到了证据。</a></p>
 
 <p>但是更帅的是，我搞懂了 <em>Callback</em>。</p>
 
@@ -72,21 +72,228 @@
 
 <p>可见所谓 <em>framework</em>，根本就是建立在 <em>callback</em> 的基础上的。我们要想做填空题，那么 <em>framework</em> 封装的细节是如何调用我们的代码的呢？ <em>callback</em>！<em><a href="/blog/2015/07/10/zhuang-shi-zhe-mo-shi-decorate-pattern-yu-hui-diao-ji-zhi-callback-framework/#inversion-of-control">Hollywood principle</a></em> 强调的正是 <em>callback</em> 的使用情景：你（上层 <em>Client</em>）不需要来询问我（底层 <em>Server</em>）事件是不是发生了，发生了我会通知你（通过 <em>callback</em>）。</p>
 
-<h1><em>Delegation</em></h1>
+<h1>伪· <em>Delegation</em></h1>
 
-<h2>伪· <em>Delegation</em></h2>
+<p><blockquote><p>Worse still, almost every reference you’ll find for &ldquo;delegation&rdquo; shows you examples of just object collaboration with message forwarding. They are examples of plain old method calls and not delegation.</p></blockquote></p>
 
-<h3>C# <em>delegate</em></h3>
+<p><a href="http://www.saturnflyer.com/blog/jim/2012/07/06/the-gang-of-four-is-wrong-and-you-dont-understand-delegation/">The Gang Of Four Is Wrong And You Don&rsquo;t Understand Delegation</a> 是最让我感动的线索，之前各种凭空猜想的 <em>delegation</em> 到底是何实现终于可以尘埃落定。基本上所有的伪 <em>delegation</em> 都是 <em>composite</em> 加 <em>message forward</em>，包括 Java，包括 C# 和 C++。 <em>delegation</em> 不可能通过 <em>Design Pattern</em> 得到实现。</p>
 
-<h3>Java8 lambda 表达式</h3>
+<h2>C# <em>delegate</em></h2>
+
+<p><a href="http://www.akadia.com/services/dotnet_delegates_and_events.html#The%20Second%20Change%20Event%20Example">Delegates and Events in C# / .NET</a> 例子很棒，简简单单说明白了 C# 中的 delegate 和 event 的原理，然后你会发现它和 Java 的各种充满 <em>Listeners</em> / <em>Handlers</em> 的代码意思大同小异。</p>
+
+<p><figure class='code'><figcaption><span> (DelegationTest.java)</span> <a href='/downloads/code/DelegationTest.java'>download</a></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+<span class='line-number'>70</span>
+<span class='line-number'>71</span>
+<span class='line-number'>72</span>
+<span class='line-number'>73</span>
+<span class='line-number'>74</span>
+<span class='line-number'>75</span>
+<span class='line-number'>76</span>
+<span class='line-number'>77</span>
+<span class='line-number'>78</span>
+<span class='line-number'>79</span>
+<span class='line-number'>80</span>
+<span class='line-number'>81</span>
+<span class='line-number'>82</span>
+<span class='line-number'>83</span>
+<span class='line-number'>84</span>
+<span class='line-number'>85</span>
+<span class='line-number'>86</span>
+<span class='line-number'>87</span>
+<span class='line-number'>88</span>
+<span class='line-number'>89</span>
+<span class='line-number'>90</span>
+<span class='line-number'>91</span>
+<span class='line-number'>92</span>
+<span class='line-number'>93</span>
+<span class='line-number'>94</span>
+<span class='line-number'>95</span>
+<span class='line-number'>96</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">class</span> <span class="nc">Clock</span> <span class="o">{</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="kd">private</span> <span class="kt">int</span> <span class="n">_hour</span><span class="o">,</span> <span class="n">_minute</span><span class="o">,</span> <span class="n">_second</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="kd">private</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">SecondChangeHandler</span><span class="o">&gt;</span> <span class="n">listeners</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">SecondChangeHandler</span><span class="o">&gt;();</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">InterruptedException</span> <span class="o">{</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="k">while</span> <span class="o">(</span><span class="kc">true</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>
+</span><span class='line'>            <span class="n">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="mi">1000</span><span class="o">);</span>
+</span><span class='line'>
+</span><span class='line'>            <span class="n">Calendar</span> <span class="n">now</span> <span class="o">=</span> <span class="n">Calendar</span><span class="o">.</span><span class="na">getInstance</span><span class="o">();</span>
+</span><span class='line'>            <span class="kt">int</span> <span class="n">hour</span> <span class="o">=</span> <span class="n">now</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">Calendar</span><span class="o">.</span><span class="na">HOUR_OF_DAY</span><span class="o">);</span>
+</span><span class='line'>            <span class="kt">int</span> <span class="n">minute</span> <span class="o">=</span> <span class="n">now</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">Calendar</span><span class="o">.</span><span class="na">MINUTE</span><span class="o">);</span>
+</span><span class='line'>            <span class="kt">int</span> <span class="n">second</span> <span class="o">=</span> <span class="n">now</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">Calendar</span><span class="o">.</span><span class="na">SECOND</span><span class="o">);</span>
+</span><span class='line'>
+</span><span class='line'>            <span class="k">if</span> <span class="o">(</span><span class="n">second</span> <span class="o">!=</span> <span class="n">_second</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>                <span class="n">TimeInfoEventArgs</span> <span class="n">args</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">TimeInfoEventArgs</span><span class="o">(</span><span class="n">hour</span><span class="o">,</span> <span class="n">minute</span><span class="o">,</span> <span class="n">second</span><span class="o">);</span>
+</span><span class='line'>                <span class="n">onSecondChange</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="n">args</span><span class="o">);</span>
+</span><span class='line'>            <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>            <span class="c1">// update the time</span>
+</span><span class='line'>            <span class="n">_hour</span> <span class="o">=</span> <span class="n">hour</span><span class="o">;</span>
+</span><span class='line'>            <span class="n">_minute</span> <span class="o">=</span> <span class="n">minute</span><span class="o">;</span>
+</span><span class='line'>            <span class="n">_second</span> <span class="o">=</span> <span class="n">second</span><span class="o">;</span>
+</span><span class='line'>        <span class="o">}</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">register</span><span class="o">(</span><span class="n">SecondChangeHandler</span> <span class="n">listener</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>        <span class="k">this</span><span class="o">.</span><span class="na">listeners</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">listener</span><span class="o">);</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onSecondChange</span><span class="o">(</span><span class="n">Object</span> <span class="n">clock</span><span class="o">,</span> <span class="n">TimeInfoEventArgs</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>        <span class="k">for</span> <span class="o">(</span><span class="n">SecondChangeHandler</span> <span class="n">listener</span> <span class="o">:</span> <span class="n">listeners</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>            <span class="n">listener</span><span class="o">.</span><span class="na">handle</span><span class="o">(</span><span class="n">clock</span><span class="o">,</span> <span class="n">args</span><span class="o">);</span>
+</span><span class='line'>        <span class="o">}</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kd">class</span> <span class="nc">TimeInfoEventArgs</span> <span class="o">{</span>
+</span><span class='line'>        <span class="kd">private</span> <span class="kt">int</span> <span class="n">hour</span><span class="o">,</span> <span class="n">minute</span><span class="o">,</span> <span class="n">second</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="kd">public</span> <span class="nf">TimeInfoEventArgs</span><span class="o">(</span><span class="kt">int</span> <span class="n">hour</span><span class="o">,</span> <span class="kt">int</span> <span class="n">minute</span><span class="o">,</span> <span class="kt">int</span> <span class="n">second</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>            <span class="k">this</span><span class="o">.</span><span class="na">hour</span> <span class="o">=</span> <span class="n">hour</span><span class="o">;</span>
+</span><span class='line'>            <span class="k">this</span><span class="o">.</span><span class="na">minute</span> <span class="o">=</span> <span class="n">minute</span><span class="o">;</span>
+</span><span class='line'>            <span class="k">this</span><span class="o">.</span><span class="na">second</span> <span class="o">=</span> <span class="n">second</span><span class="o">;</span>
+</span><span class='line'>        <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="kd">public</span> <span class="kt">int</span> <span class="nf">getHour</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>            <span class="k">return</span> <span class="n">hour</span><span class="o">;</span>
+</span><span class='line'>        <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="kd">public</span> <span class="kt">int</span> <span class="nf">getMinute</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>            <span class="k">return</span> <span class="n">minute</span><span class="o">;</span>
+</span><span class='line'>        <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="kd">public</span> <span class="kt">int</span> <span class="nf">getSecond</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>            <span class="k">return</span> <span class="n">second</span><span class="o">;</span>
+</span><span class='line'>        <span class="o">}</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="kd">interface</span> <span class="nc">SecondChangeHandler</span> <span class="o">{</span>
+</span><span class='line'>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">handle</span><span class="o">(</span><span class="n">Object</span> <span class="n">sender</span><span class="o">,</span> <span class="n">TimeInfoEventArgs</span> <span class="n">args</span><span class="o">);</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">class</span> <span class="nc">DisplayClock</span> <span class="kd">implements</span> <span class="n">SecondChangeHandler</span> <span class="o">{</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nd">@Override</span>
+</span><span class='line'>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">handle</span><span class="o">(</span><span class="n">Object</span> <span class="n">sender</span><span class="o">,</span> <span class="n">TimeInfoEventArgs</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">&quot;Current Time: %d:%d:%d&quot;</span><span class="o">,</span> <span class="n">args</span><span class="o">.</span><span class="na">getHour</span><span class="o">(),</span> <span class="n">args</span><span class="o">.</span><span class="na">getMinute</span><span class="o">(),</span> <span class="n">args</span><span class="o">.</span><span class="na">getSecond</span><span class="o">()));</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">class</span> <span class="nc">LogClock</span> <span class="kd">implements</span> <span class="n">SecondChangeHandler</span> <span class="o">{</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nd">@Override</span>
+</span><span class='line'>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">handle</span><span class="o">(</span><span class="n">Object</span> <span class="n">sender</span><span class="o">,</span> <span class="n">TimeInfoEventArgs</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">&quot;Logging to file: %d:%d:%d&quot;</span><span class="o">,</span> <span class="n">args</span><span class="o">.</span><span class="na">getHour</span><span class="o">(),</span> <span class="n">args</span><span class="o">.</span><span class="na">getMinute</span><span class="o">(),</span> <span class="n">args</span><span class="o">.</span><span class="na">getSecond</span><span class="o">()));</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">DelegationTest</span> <span class="o">{</span>
+</span><span class='line'>    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">InterruptedException</span> <span class="o">{</span>
+</span><span class='line'>        <span class="n">Clock</span> <span class="n">c</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">Clock</span><span class="o">();</span>
+</span><span class='line'>        <span class="n">SecondChangeHandler</span> <span class="n">dh</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">DisplayClock</span><span class="o">();</span>
+</span><span class='line'>        <span class="n">SecondChangeHandler</span> <span class="n">lh</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">LogClock</span><span class="o">();</span>
+</span><span class='line'>        <span class="n">c</span><span class="o">.</span><span class="na">register</span><span class="o">(</span><span class="n">dh</span><span class="o">);</span>
+</span><span class='line'>        <span class="n">c</span><span class="o">.</span><span class="na">register</span><span class="o">(</span><span class="n">lh</span><span class="o">);</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">c</span><span class="o">.</span><span class="na">run</span><span class="o">();</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>以上即是用 Java 代码实现的 C# 中的 delegate 示例。</p>
+
+<h2>Java8 <em>lambda</em> 表达式</h2>
 
 <p><blockquote><p>It is unlikely that the Java programming language will ever include this construct. Sun already carefully considered adopting it in 1996, to the extent of building and discarding working prototypes. Our conclusion was that bound method references are unnecessary and detrimental to the language. This decision was made in consultation with Borland International, who had previous experience with bound method references in Delphi Object Pascal.</p></p><p><p>We believe bound method references are unnecessary because another design alternative, inner classes, provides equal or superior functionality. In particular, inner classes fully support the requirements of user-interface event handling, and have been used to implement a user-interface API at least as comprehensive as the Windows Foundation Classes.</p></p><p><p>We believe bound method references are harmful because they detract from the simplicity of the Java programming language and the pervasively object-oriented character of the APIs. Bound method references also introduce irregularity into the language syntax and scoping rules. Finally, they dilute the investment in VM technologies because VMs are required to handle additional and disparate types of references and method linkage efficiently.</p></blockquote></p>
 
-<h2>真· <em>Delegation</em></h2>
+<h3><em>Monad</em></h3>
+
+<h1>真· <em>Delegation</em></h1>
+
+<p><blockquote><p>Delegation removes the distinction between classes and instances. Any object can serve as a prototype. To create an object that shares knowledge with a prototype, you construct an extension object, which has a list containing its prototypes which may be shared with other objects, and personal behavior idiosyncratic to the object itself. When an extension object receives a message, it first attempts to respond to the message using the behavior stored in its personal part. If the object&rsquo;s personal characteristics are not relevant for answering the message, the object forwards the message on to the prototypes to see if one can respond to the message. This process of forwarding is called delegating the message.</p><footer><strong>Lieberman86</strong></footer></blockquote></p>
+
+<p><em>delegation</em> 和 <em>message forward</em> 区别的唯一标准就是<strong>最终执行的方法 M 内是否可以引用到最初发起请求的对象 O</strong>，更简单粗暴一点：<strong>M 内的 this(or whatever) 关键字是不是指代 O</strong>。</p>
 
 <h1>乱入 <em>delegate</em> 的 <em>Patterns</em></h1>
 
-<h1>SELF problem</h1>
+<h1><em>SELF problem</em></h1>
 
 <h1>扩展阅读</h1>
 
@@ -99,6 +306,7 @@
 <li><a href="http://blog.csdn.net/yqj2065/article/details/39481255">《编程导论（Java）·9.3.1Java回调》1</a></li>
 <li><a href="http://blog.csdn.net/yqj2065/article/details/31441221">《编程导论（Java）·9.3.1Java回调》2</a></li>
 <li><a href="http://www.onjava.com/pub/a/onjava/2003/05/21/delegates.html">A Java Programmer Looks at C# Delegates</a></li>
+<li>[C#网络编程 14.2.2.4][]</li>
 </ul>
 
 ]]></content>
