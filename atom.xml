@@ -4,7 +4,7 @@
   <title><![CDATA[Hedley]]></title>
   <link href="http://hedleyyan.github.io/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2015-07-23T19:00:48+08:00</updated>
+  <updated>2015-07-23T22:02:12+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[dL]]></name>
@@ -296,9 +296,9 @@
 <blockquote><p>In functional programming, a monad is a structure that represents computations defined as sequences of steps: a type with a monad structure defines what it means to chain operations, or nest functions of that type together.</p></blockquote>
 
 
-<p><em>Monad</em> 本是函数编程语言中的高级特性，<em>Java8 lambda</em> 的出现却让人不由自主的把他们联想到一起。在我看来通过 <em>Java8 lambda</em> 可以实现一种初级的、简单的 <em>Monad</em>。<a href="http://adit.io/posts/2013-04-17-functors,_applicatives,_and_monads_in_pictures.html">这篇棒棒的引出教程</a>完美诠释了什么叫一张图胜过千言万语，虽然我没往细里看 <em>Monad</em>，但这篇文章里的图借来理解 <em>Java8 lambda</em> 的内部循环还是极好的。</p>
+<p><em>Monad</em> 本是函数编程语言中的高级特性，<em>Java8 lambda</em> 的出现却让人不由自主的把他们联想到一起。<a href="http://adit.io/posts/2013-04-17-functors,_applicatives,_and_monads_in_pictures.html">这篇棒棒的引出教程</a>完美诠释了什么叫一张图胜过千言万语，虽然我没往细里看 <em>Monad</em>，但这篇文章里的图借来理解 <em>Java8 lambda</em> 的内部循环也是极好的。</p>
 
-<p>看来 Java8 引入的一个新包装类 <em>Optional</em> 和这个 <em>Monad</em> 也是有莫大的关系，<a href="http://www.jdon.com/idea/java8-monad.html&lt;br/>&lt;br/>&lt;p&#8221;>戳这里</a>。</p>
+<p>通过 <em>Java8 lambda</em> 也可以实现初级的 <em>Monad</em>，脑洞略大暂不做细表。</p>
 
 <h1>真· <em>Delegation</em></h1>
 
@@ -331,18 +331,18 @@
 <li><a href="http://stackoverflow.com/questions/44965/what-is-a-monad">What is a monad?</a></li>
 <li><a href="http://adit.io/posts/2013-04-17-functors,_applicatives,_and_monads_in_pictures.html">Functors, Applicatives, And Monads In Pictures</a></li>
 <li><a href="http://blog.sigfpe.com/2006/08/you-could-have-invented-monads-and.html">You Could Have Invented Monads! (And Maybe You Already Have.)</a></li>
-<li><p><a href="http://www.jdon.com/idea/java8-monad.html&lt;br/>&lt;br/>&lt;p&#8221;>Java8 的 Monad</a></p>
-
-<pre><code>original link:
-&lt;a href='http://hedleyyan.github.io/blog/2015/07/18/fu-ze-ren-zai-tan-callback-yu-delegation/'&gt;http://hedleyyan.github.io/blog/2015/07/18/fu-ze-ren-zai-tan-callback-yu-delegation/&lt;/a&gt;&lt;br/&gt;
-written by &lt;a href='http://hedleyyan.github.io'&gt;dL&lt;/a&gt;
-&amp;nbsp;posted at &lt;a href='http://hedleyyan.github.io'&gt;http://hedleyyan.github.io&lt;/a&gt;
-&lt;/p&gt;
-</code></pre></li>
+<li><a href="http://www.jdon.com/idea/java8-monad.html">Java8 的 Monad</a></li>
 </ul>
 </li>
 </ul>
 
+
+<p><br/><br/><p class='post-footer'>
+            original link:
+            <a href='http://hedleyyan.github.io/blog/2015/07/18/fu-ze-ren-zai-tan-callback-yu-delegation/'><a href="http://hedleyyan.github.io/blog/2015/07/18/fu-ze-ren-zai-tan-callback-yu-delegation/">http://hedleyyan.github.io/blog/2015/07/18/fu-ze-ren-zai-tan-callback-yu-delegation/</a></a><br/>
+            written by <a href='http://hedleyyan.github.io'>dL</a>
+            &nbsp;posted at <a href='http://hedleyyan.github.io'><a href="http://hedleyyan.github.io">http://hedleyyan.github.io</a></a>
+            </p></p>
 ]]></content>
   </entry>
   
