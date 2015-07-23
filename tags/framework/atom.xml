@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: Framework | Hedley]]></title>
   <link href="http://hedleyyan.github.io/tags/framework/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2015-07-23T22:58:03+08:00</updated>
+  <updated>2015-07-23T23:13:42+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[dL]]></name>
@@ -294,9 +294,7 @@
 <p><em>Monad</em> 本是函数编程语言中的高级特性，<em>Java8 lambda</em> 的出现却让人不由自主的把他们联想到一起。<a href="http://adit.io/posts/2013-04-17-functors,_applicatives,_and_monads_in_pictures.html">这篇棒棒的引出教程</a>完美诠释了什么叫一张图胜过千言万语，虽然我没往细里看 <em>Monad</em>，但这篇文章里的图借来理解 <em>Java8 lambda</em> 的内部循环也是极好的。</p>
 
 <p><img src="/images/monad/fmap_just.png">
-<img src="/images/monad/fmap_function.png">
-<img src="/images/monad/monad_chain.png">
-<img src="/images/monad/fmap_list.png"></p>
+<img src="/images/monad/monad_chain.png"></p>
 
 <p>通过 <em>Java8 lambda</em> 也可以实现初级的 <em>Monad</em>，脑洞略大暂不做细表。</p>
 
@@ -308,7 +306,7 @@
 
 <p><em>delegation</em> 和 <em>message forward</em> 区别的唯一标准就是<strong>最终执行的方法 M 内是否可以引用到最初发起请求的对象 O</strong>，更简单粗暴一点：<strong>M 内的 <code>this</code> 是不是指代 O</strong>。[<em>SELF problem</em>]</p>
 
-<h2>Javascript</h2>
+<h2><em>Javascript</em></h2>
 
 <p>了解的语言少是短板，如果早了解了 <em>Javascript</em> 的大概机制和语法，少绕多大一圈子啊。</p>
 
