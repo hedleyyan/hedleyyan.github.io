@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 技术 | Hedley]]></title>
   <link href="http://hedleyyan.github.io/blog/categories/ji-zhu/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2015-07-23T22:09:54+08:00</updated>
+  <updated>2015-07-23T22:58:03+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[dL]]></name>
@@ -308,7 +308,32 @@
 
 <p><em>delegation</em> 和 <em>message forward</em> 区别的唯一标准就是<strong>最终执行的方法 M 内是否可以引用到最初发起请求的对象 O</strong>，更简单粗暴一点：<strong>M 内的 <code>this</code> 是不是指代 O</strong>。[<em>SELF problem</em>]</p>
 
+<h2>Javascript</h2>
+
+<p>了解的语言少是短板，如果早了解了 <em>Javascript</em> 的大概机制和语法，少绕多大一圈子啊。</p>
+
+<pre><code class="javascript">function Container(){};
+Container.prototype = new Object();
+Container.prototype.announce = function(){ alert("these are my things: " + this.things) };
+
+function Bucket(things){this.things = things};
+Bucket.prototype = new Container();
+
+bucket = new Bucket("planes, trains, and automobiles")
+bucket.announce() // alerts "these are my things: planes, trains, and automobiles"
+</code></pre>
+
 <h1>乱入 <em>delegate</em> 的 <em>Patterns</em></h1>
+
+<p>由于 GoF 在设计模式中大范围杀伤式的使用了 <em>delegation</em> 一词，各种 <em>pattern</em> 中的各种 <em>delegate</em> 乱入满天飞一直流传至今。<em>Again</em>， 它们都是 <em>message forward</em> 和 <em>composite</em> 的结合体。</p>
+
+<h2><em>Decorator Pattern</em> 和 <em>Proxy Pattern</em></h2>
+
+<p>装饰者模式和代理模式的类图看上去没什么差，他们的区别在目的。</p>
+
+<h3>动态代理</h3>
+
+<h1>哲学释义</h1>
 
 <h1>扩展阅读</h1>
 
@@ -322,10 +347,9 @@
 <li><a href="http://blog.csdn.net/yqj2065/article/details/31441221">《编程导论（Java）·9.3.1Java回调》2</a></li>
 <li><a href="http://www.onjava.com/pub/a/onjava/2003/05/21/delegates.html">A Java Programmer Looks at C# Delegates</a></li>
 <li><a href="http://www.akadia.com/services/dotnet_delegates_and_events.html#The%20Second%20Change%20Event%20Example">Delegates and Events in C# / .NET</a></li>
-<li><em>Monad</em>
+<li><a href="http://stackoverflow.com/questions/44965/what-is-a-monad">What is a monad?</a>
 
 <ul>
-<li><a href="http://stackoverflow.com/questions/44965/what-is-a-monad">What is a monad?</a></li>
 <li><a href="http://adit.io/posts/2013-04-17-functors,_applicatives,_and_monads_in_pictures.html">Functors, Applicatives, And Monads In Pictures</a></li>
 <li><a href="http://blog.sigfpe.com/2006/08/you-could-have-invented-monads-and.html">You Could Have Invented Monads! (And Maybe You Already Have.)</a></li>
 <li><a href="http://www.jdon.com/idea/java8-monad.html">Java8 的 Monad</a></li>
