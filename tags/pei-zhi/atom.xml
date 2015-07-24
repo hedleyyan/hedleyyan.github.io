@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: 配置 | Hedley]]></title>
   <link href="http://hedleyyan.github.io/tags/pei-zhi/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2015-07-23T23:13:42+08:00</updated>
+  <updated>2015-07-24T17:36:51+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[dL]]></name>
@@ -56,9 +56,6 @@
 </ul>
 
 
-<!--more-->
-
-
 <h1>留言系统</h1>
 
 <ul>
@@ -70,6 +67,9 @@
 <h1>访问速度</h1>
 
 <p>参照<a href="http://droidyue.com/blog/2014/06/22/fix-octopress-slow-loading-speed-issue-in-china-mainland/">这篇文章</a>替换若干 <em>google</em> 源。</p>
+
+<!--more-->
+
 
 <h1><em>ST</em> 书写插件</h1>
 

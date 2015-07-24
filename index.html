@@ -514,6 +514,18 @@
 </ul>
 
 
+<h1>留言系统</h1>
+
+<ul>
+<li>参照<a href="http://droidyue.com/blog/2014/07/29/integrate-duoshuo-in-octopress/">这篇文章</a>添加多说评论。</li>
+<li><a href="http://shenchaofei.cn/duoshuo-comment-box-css-custom/328.html">修改多说样式</a>，样式代码添加在多说系统的管理后台的基本设置里。代码位于 <code>source/downloads/code/duoshuo.css</code>。</li>
+</ul>
+
+
+<h1>访问速度</h1>
+
+<p>参照<a href="http://droidyue.com/blog/2014/06/22/fix-octopress-slow-loading-speed-issue-in-china-mainland/">这篇文章</a>替换若干 <em>google</em> 源。</p>
+
 </div>
   
   
@@ -549,6 +561,42 @@
   <div class="entry-content"><h1>关于</h1>
 
 <p>此文大概就是《Java Puzzlers》中 <em>Classier Pazzlers</em> 一节的简单翻译和整理，粗略总结了 <em>Java</em> 有关<strong>命名重复</strong>的场景和代码示例。</p>
+
+<h1>Overriding</h1>
+
+<blockquote><p>An instance method overrides all accessible instance methods with the same signature in superclasses.</p><footer><strong>JLS 8.4.8.1</strong></footer></blockquote>
+
+
+<p>重写的规范定义包括：</p>
+
+<ul>
+<li>Context 包括两个类，一个子类，一个父类。</li>
+<li>载体必须是实例方法 <em>(instance methods)</em>，而非静态方法。</li>
+<li>必须是同样签名 <em>(signature)</em> 和返回类型。</li>
+<li>重写方法不能缩小可见范围。</li>
+</ul>
+
+
+<p>重写是面向对象编程的核心概念，是<strong>唯一</strong>鼓励使用的 <em>Name Reuse</em> 场景。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">class</span> <span class="nc">Base</span> <span class="o">{</span>
+</span><span class='line'>    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">f</span><span class="o">()</span> <span class="o">{</span> <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">class</span> <span class="nc">Derived</span> <span class="kd">extends</span> <span class="n">Base</span> <span class="o">{</span>
+</span><span class='line'>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">f</span><span class="o">()</span> <span class="o">{</span> <span class="o">}</span> <span class="c1">// overrrides Base.f()</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
 
 </div>
   

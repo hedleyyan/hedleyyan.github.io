@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: 规约 | Hedley]]></title>
   <link href="http://hedleyyan.github.io/tags/gui-yue/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2015-07-23T23:13:42+08:00</updated>
+  <updated>2015-07-24T17:36:51+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[dL]]></name>
@@ -22,9 +22,6 @@
 
 <p>此文大概就是《Java Puzzlers》中 <em>Classier Pazzlers</em> 一节的简单翻译和整理，粗略总结了 <em>Java</em> 有关<strong>命名重复</strong>的场景和代码示例。</p>
 
-<!--more-->
-
-
 <h1>Overriding</h1>
 
 <p><blockquote><p>An instance method overrides all accessible instance methods with the same signature in superclasses.</p><footer><strong>JLS 8.4.8.1</strong></footer></blockquote></p>
@@ -34,7 +31,7 @@
 <ul>
 <li>Context 包括两个类，一个子类，一个父类。</li>
 <li>载体必须是实例方法 <em>(instance methods)</em>，而非静态方法。</li>
-<li>必须是同样签名 <em>(signature)</em>，包括参数、返回类型。</li>
+<li>必须是同样签名 <em>(signature)</em> 和返回类型。</li>
 <li>重写方法不能缩小可见范围。</li>
 </ul>
 
@@ -50,6 +47,9 @@
     }
 </code></pre>
 
+<!--more-->
+
+
 <h1>Overloading</h1>
 
 <p><blockquote><p>Methods in a class overload one another if they have the same name and different signatures.</p><footer><strong>JLS 8.4.9</strong></footer></blockquote></p>
@@ -59,12 +59,7 @@
 <ul>
 <li>Context 只有一个类。</li>
 <li>载体可以是实例方法，也可以是静态方法。</li>
-<li>拥有不同的签名。
-
-<ul>
-<li>但不能是参数相同，返回类型不同。</li>
-</ul>
-</li>
+<li>拥有不同的签名。</li>
 </ul>
 
 
