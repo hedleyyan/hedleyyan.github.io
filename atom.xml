@@ -4,10 +4,10 @@
   <title><![CDATA[Hedley]]></title>
   <link href="http://hedleyyan.github.io/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2015-07-26T17:27:02+08:00</updated>
+  <updated>2015-07-26T18:35:14+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
-    <name><![CDATA[dL]]></name>
+    <name><![CDATA[hedley]]></name>
     
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
@@ -52,7 +52,7 @@
 
 <p>所以又回头开始理 <em>SELF problem</em> 论文，到底是哪里不一致。开始怀疑 C# 的 <em>delegate</em> 和论文里说的 <em>delegation</em> 不是一个频道。</p>
 
-<p><a name"最帅证据">太帅了，又找到了证据。</a></p>
+<p>太帅了，又找到了证据。</p>
 
 <p>但是更帅的是，我搞懂了 <em>Callback</em>。</p>
 
@@ -78,7 +78,7 @@
 <blockquote><p>Worse still, almost every reference you’ll find for &#8220;delegation&#8221; shows you examples of just object collaboration with message forwarding. They are examples of plain old method calls and not delegation.</p></blockquote>
 
 
-<p><a href="http://www.saturnflyer.com/blog/jim/2012/07/06/the-gang-of-four-is-wrong-and-you-dont-understand-delegation/">The Gang Of Four Is Wrong And You Don&rsquo;t Understand Delegation</a> 是最让我感动的<a href="#%E6%9C%80%E5%B8%85%E8%AF%81%E6%8D%AE">线索</a>，之前各种凭空猜想的 <em>delegation</em> 到底是何实现终于可以尘埃落定。基本上所有的伪 <em>delegation</em> 都是 <em>composite</em> 加 <em>message forward</em>，包括 Java，包括 C# 和 C++。 <em>delegation</em> 不可能通过 <em>Design Pattern</em> 得到实现。</p>
+<p><a href="http://www.saturnflyer.com/blog/jim/2012/07/06/the-gang-of-four-is-wrong-and-you-dont-understand-delegation/">The Gang Of Four Is Wrong And You Don&rsquo;t Understand Delegation</a> 是最让我感动的线索，之前各种凭空猜想的 <em>delegation</em> 到底是何实现终于可以尘埃落定。基本上所有的伪 <em>delegation</em> 都是 <em>composite</em> 加 <em>message forward</em>，包括 Java，包括 C# 和 C++。 <em>delegation</em> 不可能通过 <em>Design Pattern</em> 得到实现。</p>
 
 <h2>C# <em>delegate</em></h2>
 
@@ -391,7 +391,7 @@
 <p><br/><br/><p class='post-footer'>
             original link:
             <a href='http://hedleyyan.github.io/blog/2015/07/18/fu-ze-ren-zai-tan-callback-yu-delegation/'><a href="http://hedleyyan.github.io/blog/2015/07/18/fu-ze-ren-zai-tan-callback-yu-delegation/">http://hedleyyan.github.io/blog/2015/07/18/fu-ze-ren-zai-tan-callback-yu-delegation/</a></a><br/>
-            written by <a href='http://hedleyyan.github.io'>dL</a>
+            written by <a href='http://hedleyyan.github.io'>hedley</a>
             &nbsp;posted at <a href='http://hedleyyan.github.io'><a href="http://hedleyyan.github.io">http://hedleyyan.github.io</a></a>
             </p></p>
 ]]></content>
@@ -765,7 +765,7 @@
 <p><br/><br/><p class='post-footer'>
             original link:
             <a href='http://hedleyyan.github.io/blog/2015/07/10/zhuang-shi-zhe-mo-shi-decorate-pattern-yu-hui-diao-ji-zhi-callback-framework/'><a href="http://hedleyyan.github.io/blog/2015/07/10/zhuang-shi-zhe-mo-shi-decorate-pattern-yu-hui-diao-ji-zhi-callback-framework/">http://hedleyyan.github.io/blog/2015/07/10/zhuang-shi-zhe-mo-shi-decorate-pattern-yu-hui-diao-ji-zhi-callback-framework/</a></a><br/>
-            written by <a href='http://hedleyyan.github.io'>dL</a>
+            written by <a href='http://hedleyyan.github.io'>hedley</a>
             &nbsp;posted at <a href='http://hedleyyan.github.io'><a href="http://hedleyyan.github.io">http://hedleyyan.github.io</a></a>
             </p></p>
 ]]></content>
@@ -797,7 +797,7 @@
 <p><br/><br/><p class='post-footer'>
             original link:
             <a href='http://hedleyyan.github.io/blog/2015/06/29/sublime-text-guang-biao-jiao-dian-ji-zhong-dao-folders-zhuang-tai-lan/'><a href="http://hedleyyan.github.io/blog/2015/06/29/sublime-text-guang-biao-jiao-dian-ji-zhong-dao-folders-zhuang-tai-lan/">http://hedleyyan.github.io/blog/2015/06/29/sublime-text-guang-biao-jiao-dian-ji-zhong-dao-folders-zhuang-tai-lan/</a></a><br/>
-            written by <a href='http://hedleyyan.github.io'>dL</a>
+            written by <a href='http://hedleyyan.github.io'>hedley</a>
             &nbsp;posted at <a href='http://hedleyyan.github.io'><a href="http://hedleyyan.github.io">http://hedleyyan.github.io</a></a>
             </p></p>
 ]]></content>
@@ -1192,7 +1192,7 @@
 <p><br/><br/><p class='post-footer'>
             original link:
             <a href='http://hedleyyan.github.io/blog/2015/06/24/wei-ji-si-fu-zheng-xing-bian-jie/'><a href="http://hedleyyan.github.io/blog/2015/06/24/wei-ji-si-fu-zheng-xing-bian-jie/">http://hedleyyan.github.io/blog/2015/06/24/wei-ji-si-fu-zheng-xing-bian-jie/</a></a><br/>
-            written by <a href='http://hedleyyan.github.io'>dL</a>
+            written by <a href='http://hedleyyan.github.io'>hedley</a>
             &nbsp;posted at <a href='http://hedleyyan.github.io'><a href="http://hedleyyan.github.io">http://hedleyyan.github.io</a></a>
             </p></p>
 ]]></content>
@@ -1451,7 +1451,7 @@
 <p><br/><br/><p class='post-footer'>
             original link:
             <a href='http://hedleyyan.github.io/blog/2015/06/20/fu-dian-yun-suan/'><a href="http://hedleyyan.github.io/blog/2015/06/20/fu-dian-yun-suan/">http://hedleyyan.github.io/blog/2015/06/20/fu-dian-yun-suan/</a></a><br/>
-            written by <a href='http://hedleyyan.github.io'>dL</a>
+            written by <a href='http://hedleyyan.github.io'>hedley</a>
             &nbsp;posted at <a href='http://hedleyyan.github.io'><a href="http://hedleyyan.github.io">http://hedleyyan.github.io</a></a>
             </p></p>
 ]]></content>
@@ -1499,7 +1499,7 @@
 <p><br/><br/><p class='post-footer'>
             original link:
             <a href='http://hedleyyan.github.io/blog/2015/06/16/cang-zhou-shi-jie-dao-diao-cha-wen-juan/'><a href="http://hedleyyan.github.io/blog/2015/06/16/cang-zhou-shi-jie-dao-diao-cha-wen-juan/">http://hedleyyan.github.io/blog/2015/06/16/cang-zhou-shi-jie-dao-diao-cha-wen-juan/</a></a><br/>
-            written by <a href='http://hedleyyan.github.io'>dL</a>
+            written by <a href='http://hedleyyan.github.io'>hedley</a>
             &nbsp;posted at <a href='http://hedleyyan.github.io'><a href="http://hedleyyan.github.io">http://hedleyyan.github.io</a></a>
             </p></p>
 ]]></content>
@@ -2066,7 +2066,7 @@
 <p><br/><br/><p class='post-footer'>
             original link:
             <a href='http://hedleyyan.github.io/blog/2015/06/05/huang-miu-tong-ku-de-nei-bu-lei/'><a href="http://hedleyyan.github.io/blog/2015/06/05/huang-miu-tong-ku-de-nei-bu-lei/">http://hedleyyan.github.io/blog/2015/06/05/huang-miu-tong-ku-de-nei-bu-lei/</a></a><br/>
-            written by <a href='http://hedleyyan.github.io'>dL</a>
+            written by <a href='http://hedleyyan.github.io'>hedley</a>
             &nbsp;posted at <a href='http://hedleyyan.github.io'><a href="http://hedleyyan.github.io">http://hedleyyan.github.io</a></a>
             </p></p>
 ]]></content>
@@ -2084,17 +2084,17 @@
 <h1>搭建</h1>
 
 <ul>
-<li>参照 <a href="http://octopress.org/docs/setup/">octopress 官方搭建手册</a>，一步一步来。到 <code>gem install bundler</code> 时候卡壳，网络不通。</li>
-<li>修改 <a href="http://ruby.taobao.org/">RubyGems 镜像</a>，连接通了。但是一直报缺少依赖包的异常，按照提示手动一个个安装完依赖包。</li>
-<li>安装完毕，修改 <code>_config.yml</code> 配置文件。</li>
+<li>参照 <a href="http://octopress.org/docs/setup/">octopress 官方搭建手册</a>，一步一步来。到 <code>gem install bundler</code> 时候卡壳，网络不通</li>
+<li>修改 <a href="http://ruby.taobao.org/">RubyGems 镜像</a>，连接通了。但是一直报缺少依赖包的异常，按照提示手动一个个安装完依赖包</li>
+<li>安装完毕，修改 <code>_config.yml</code> 配置文件</li>
 </ul>
 
 
 <h1>留言系统</h1>
 
 <ul>
-<li>参照<a href="http://droidyue.com/blog/2014/07/29/integrate-duoshuo-in-octopress/">这篇文章</a>添加多说评论。</li>
-<li><a href="http://shenchaofei.cn/duoshuo-comment-box-css-custom/328.html">修改多说样式</a>，样式代码添加在多说系统的管理后台的基本设置里。代码位于 <code>source/downloads/code/duoshuo.css</code>。</li>
+<li>参照<a href="http://droidyue.com/blog/2014/07/29/integrate-duoshuo-in-octopress/">这篇文章</a>添加多说评论</li>
+<li><a href="http://shenchaofei.cn/duoshuo-comment-box-css-custom/328.html">修改多说样式</a>，样式代码添加在多说系统的管理后台的基本设置里。代码位于 <code>source/downloads/code/duoshuo.css</code></li>
 </ul>
 
 
@@ -2108,11 +2108,11 @@
 <h1><em>ST</em> 书写插件</h1>
 
 <ul>
-<li><em>Octopress</em> ： 可以在 <em>ST</em> 中快捷新建 <em>Post</em> ，快捷生成、部署。</li>
-<li><em>Octopress Snippets</em> ： <code>CMD + SHIFT + P</code> 接输入 <code>Snippet</code> ，调用语法模板。</li>
-<li><em>Markdown Extended</em> ： <code>CMD + SHIFT + P</code> 接输入 <code>Set Syntax</code> ，设为 <code>Markdown Extended</code>。代码片段彩色显示。</li>
-<li><em>Markdown Preview</em> ： 主要用到 <code>Preview in browser</code> 来进行静态预览，以及 <code>cheat sheet</code> 来查看语法。</li>
-<li><em>Monokai Neue</em> ： <code>Color Scheme</code> 修改， Markdown 颜色显示。修改 <code>Packages/Monokai Neue/Monokai-Neue.tmTheme</code> 文件，在 <code>settings -&gt; settings</code> 代码段下修改 <code>&lt;key&gt;selection&lt;/key&gt; &lt;string&gt;#00B2EE&lt;/string&gt;</code>，更改选中背景颜色。</li>
+<li><em>Octopress</em> ： 可以在 <em>ST</em> 中快捷新建 <em>Post</em> ，快捷生成、部署</li>
+<li><em>Octopress Snippets</em> ： <code>CMD + SHIFT + P</code> 接输入 <code>Snippet</code> ，调用语法模板</li>
+<li><em>Markdown Extended</em> ： <code>CMD + SHIFT + P</code> 接输入 <code>Set Syntax</code> ，设为 <code>Markdown Extended</code>。代码片段彩色显示</li>
+<li><em>Markdown Preview</em> ： 主要用到 <code>Preview in browser</code> 来进行静态预览，以及 <code>cheat sheet</code> 来查看语法</li>
+<li><em>Monokai Neue</em> ： <code>Color Scheme</code> 修改， Markdown 颜色显示。修改 <code>Packages/Monokai Neue/Monokai-Neue.tmTheme</code> 文件，在 <code>settings -&gt; settings</code> 代码段下修改 <code>&lt;key&gt;selection&lt;/key&gt; &lt;string&gt;#00B2EE&lt;/string&gt;</code>，更改选中背景颜色</li>
 </ul>
 
 
@@ -2124,19 +2124,19 @@
 <p>参照<a href="http://brizzled.clapper.org/blog/2012/02/04/generating-a-table-of-contents-in-octopress/">这边文章</a>搭建 <em>TOC</em> 解决方案。遇到几个问题</p>
 
 <ul>
-<li>如果 <em>TOC</em> 的左面有 <code>blockquote</code> ， <em>TOC</em> 的 <code>link</code> 无法点击。
+<li>如果 <em>TOC</em> 的左面有 <code>blockquote</code> ， <em>TOC</em> 的 <code>link</code> 无法点击
 
 <ul>
 <li>在 <code>sass/custom/_screen.scss</code> 中加入代码 <code>position:relative; z-index: 99999;</code> ，将 <em>TOC</em> 的 <code>&lt;div&gt;</code> 置顶</li>
 </ul>
 </li>
-<li>自动生成的锚点只对英文标题有效。
+<li>自动生成的锚点只对英文标题有效
 
 <ul>
-<li>编辑 <code>source/javascripts/jquery.tableofcontents.min.js</code>   ，搜索 <code>text.toLowerCase().replace</code> ，去掉 <code>.replace(/[^a-z0-9 -]/gi,'')</code> 这部分代码，这句代码过滤了中文字符。</li>
+<li>编辑 <code>source/javascripts/jquery.tableofcontents.min.js</code>   ，搜索 <code>text.toLowerCase().replace</code> ，去掉 <code>.replace(/[^a-z0-9 -]/gi,'')</code> 这部分代码，这句代码过滤了中文字符</li>
 </ul>
 </li>
-<li>此方案的 <em>TOC</em> 只能生成 <code>h1 ~ h3</code> ，它的配置可以在 <code>source/javascripts/jquery.tableofcontents.min.js</code> 中修改。但是为了方便，应用此默认配置，修改标题风格。</li>
+<li>此方案的 <em>TOC</em> 只能生成 <code>h1 ~ h3</code> ，它的配置可以在 <code>source/javascripts/jquery.tableofcontents.min.js</code> 中修改。但是为了方便，应用此默认配置，修改标题风格</li>
 </ul>
 
 
@@ -2147,8 +2147,9 @@
 <h1>其他</h1>
 
 <ul>
-<li>链接在新窗口打开、列表排版、<em>404ERROR</em> 公益页面，参考<a href="http://blog.csdn.net/biaobiaoqi/article/details/9289563">这篇文章</a>。</li>
-<li>文章分类侧边栏、导航栏设置，参考<a href="http://www.jianshu.com/p/0ac2ac1a8e45">这篇文章</a>。</li>
+<li>链接在新窗口打开、列表排版、<em>404ERROR</em> 公益页面，参考<a href="http://blog.csdn.net/biaobiaoqi/article/details/9289563">这篇文章</a></li>
+<li>文章分类侧边栏、导航栏设置，参考<a href="http://www.jianshu.com/p/0ac2ac1a8e45">这篇文章</a></li>
+<li><a href="http://shengmingzhiqing.com/blog/octopress-lean-modification-4.html/#fontawesome&lt;br/>&lt;br/>&lt;p&#8221;>其他配置</a>很全，重点参考</li>
 </ul>
 
 
@@ -2164,9 +2165,9 @@
 <h2>云标签</h2>
 
 <ul>
-<li>参照 <a href="http://codemacro.com/2012/07/18/add-tag-to-octopress/">Tag Cloud 搭建</a>，<em>clone</em> 几个文件到本地目录。</li>
-<li>使用方法：在文件头添加标识 <code>tags: xxx</code> ，但此时无法添加多个标签。</li>
-<li><a href="http://my.oschina.net/pangyi/blog/379606">这篇文章</a>给出了解决方案，修改 <code>tags.html</code> 文件去掉 <code>limit</code> 属性，多标签写法 <code>tags: [xx1, xx2]</code> 。</li>
+<li>参照 <a href="http://codemacro.com/2012/07/18/add-tag-to-octopress/">Tag Cloud 搭建</a>，<em>clone</em> 几个文件到本地目录</li>
+<li>使用方法：在文件头添加标识 <code>tags: xxx</code> ，但此时无法添加多个标签</li>
+<li><a href="http://my.oschina.net/pangyi/blog/379606">这篇文章</a>给出了解决方案，修改 <code>tags.html</code> 文件去掉 <code>limit</code> 属性，多标签写法 <code>tags: [xx1, xx2]</code></li>
 </ul>
 
 
@@ -2178,12 +2179,12 @@
 
 <p>参考<a href="http://www.tuicool.com/articles/miaUR3">kramdown配置</a>。</p>
 
-<p><br/><br/><p class='post-footer'>
-            original link:
-            <a href='http://hedleyyan.github.io/blog/2015/05/17/octopress-da-jian-ji-lu/'><a href="http://hedleyyan.github.io/blog/2015/05/17/octopress-da-jian-ji-lu/">http://hedleyyan.github.io/blog/2015/05/17/octopress-da-jian-ji-lu/</a></a><br/>
-            written by <a href='http://hedleyyan.github.io'>dL</a>
-            &nbsp;posted at <a href='http://hedleyyan.github.io'><a href="http://hedleyyan.github.io">http://hedleyyan.github.io</a></a>
-            </p></p>
+<pre><code>        original link:
+        &lt;a href='http://hedleyyan.github.io/blog/2015/05/17/octopress-da-jian-ji-lu/'&gt;http://hedleyyan.github.io/blog/2015/05/17/octopress-da-jian-ji-lu/&lt;/a&gt;&lt;br/&gt;
+        written by &lt;a href='http://hedleyyan.github.io'&gt;hedley&lt;/a&gt;
+        &amp;nbsp;posted at &lt;a href='http://hedleyyan.github.io'&gt;http://hedleyyan.github.io&lt;/a&gt;
+        &lt;/p&gt;
+</code></pre>
 ]]></content>
   </entry>
   
@@ -2435,7 +2436,7 @@
 <p><br/><br/><p class='post-footer'>
             original link:
             <a href='http://hedleyyan.github.io/blog/2015/05/16/a-glossary-of-name-reuse/'><a href="http://hedleyyan.github.io/blog/2015/05/16/a-glossary-of-name-reuse/">http://hedleyyan.github.io/blog/2015/05/16/a-glossary-of-name-reuse/</a></a><br/>
-            written by <a href='http://hedleyyan.github.io'>dL</a>
+            written by <a href='http://hedleyyan.github.io'>hedley</a>
             &nbsp;posted at <a href='http://hedleyyan.github.io'><a href="http://hedleyyan.github.io">http://hedleyyan.github.io</a></a>
             </p></p>
 ]]></content>

@@ -4,10 +4,10 @@
   <title><![CDATA[Tag: Pattern | Hedley]]></title>
   <link href="http://hedleyyan.github.io/tags/pattern/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2015-07-26T17:27:02+08:00</updated>
+  <updated>2015-07-26T18:35:14+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
-    <name><![CDATA[dL]]></name>
+    <name><![CDATA[hedley]]></name>
     
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
@@ -52,7 +52,7 @@
 
 <p>所以又回头开始理 <em>SELF problem</em> 论文，到底是哪里不一致。开始怀疑 C# 的 <em>delegate</em> 和论文里说的 <em>delegation</em> 不是一个频道。</p>
 
-<p><a name"最帅证据">太帅了，又找到了证据。</a></p>
+<p>太帅了，又找到了证据。</p>
 
 <p>但是更帅的是，我搞懂了 <em>Callback</em>。</p>
 
@@ -76,7 +76,7 @@
 
 <p><blockquote><p>Worse still, almost every reference you’ll find for &ldquo;delegation&rdquo; shows you examples of just object collaboration with message forwarding. They are examples of plain old method calls and not delegation.</p></blockquote></p>
 
-<p><a href="http://www.saturnflyer.com/blog/jim/2012/07/06/the-gang-of-four-is-wrong-and-you-dont-understand-delegation/">The Gang Of Four Is Wrong And You Don&rsquo;t Understand Delegation</a> 是最让我感动的<a href="#%E6%9C%80%E5%B8%85%E8%AF%81%E6%8D%AE">线索</a>，之前各种凭空猜想的 <em>delegation</em> 到底是何实现终于可以尘埃落定。基本上所有的伪 <em>delegation</em> 都是 <em>composite</em> 加 <em>message forward</em>，包括 Java，包括 C# 和 C++。 <em>delegation</em> 不可能通过 <em>Design Pattern</em> 得到实现。</p>
+<p><a href="http://www.saturnflyer.com/blog/jim/2012/07/06/the-gang-of-four-is-wrong-and-you-dont-understand-delegation/">The Gang Of Four Is Wrong And You Don&rsquo;t Understand Delegation</a> 是最让我感动的线索，之前各种凭空猜想的 <em>delegation</em> 到底是何实现终于可以尘埃落定。基本上所有的伪 <em>delegation</em> 都是 <em>composite</em> 加 <em>message forward</em>，包括 Java，包括 C# 和 C++。 <em>delegation</em> 不可能通过 <em>Design Pattern</em> 得到实现。</p>
 
 <h2>C# <em>delegate</em></h2>
 
