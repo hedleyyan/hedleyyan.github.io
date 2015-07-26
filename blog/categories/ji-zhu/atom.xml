@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 技术 | Hedley]]></title>
   <link href="http://hedleyyan.github.io/blog/categories/ji-zhu/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2015-07-26T18:35:14+08:00</updated>
+  <updated>2015-07-26T19:08:51+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[hedley]]></name>
@@ -913,6 +913,9 @@ public class SuspiciousSort {
 
 <p><img src="/images/float.png"></p>
 
+<!--more-->
+
+
 <ul>
 <li>最高位符号位
 
@@ -960,9 +963,6 @@ public class SuspiciousSort {
 <li>尾数域左侧补 1 位，表示 <code>101</code></li>
 <li>最后值为 1 * 2<sup>-3</sup> + 1 * 2<sup>-5</sup> = 0.15625</li>
 </ul>
-
-
-<!--more-->
 
 
 <h2><a name="精度">精度</a></h2>
