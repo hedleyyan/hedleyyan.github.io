@@ -442,7 +442,7 @@
 
 <h3><em>Dynamic Proxy</em></h3>
 
-<p>设想一个被代理的对象很很多方法，那么它的代理类看上去可能就很像上回提到的<a href="/blog/2015/07/10/zhuang-shi-zhe-mo-shi-decorate-pattern-yu-hui-diao-ji-zhi-callback-framework/#forward">这段代码</a>。而我们想要实现的一个代理其权限判断很集中，那么是不是把这段集中的权限控制的代码剥离出来，感觉世界会更美好呢。</p>
+<p>设想一个被代理的对象有很多方法，那么它的代理类看上去可能就很像上回提到的<a href="/blog/2015/07/10/zhuang-shi-zhe-mo-shi-decorate-pattern-yu-hui-diao-ji-zhi-callback-framework/#forward">这段代码</a>。而我们想要实现的一个代理其权限判断很集中，那么是不是把这段集中的权限控制的代码剥离出来，感觉世界会更美好呢。</p>
 
 <p><code>java.lang.reflect</code> 包下的 <code>InvocationHandler</code> 和 <code>Proxy</code> 类对动态代理提供支持，我们只需要提供一个 <code>InvocationHandler</code> 的实例来处理集中的权限控制逻辑就好。</p>
 
@@ -450,7 +450,7 @@
 
 <p>引用一段百度的委托和代理的区别作为总结，想来学会写代码考个律师应该也不是太难的事。</p>
 
-<blockquote><p>所谓代理，就是指一方授予他方代理权，他方依代理权与第三方进行法律行为，其行为后果由一方承担的一种民事法律制度。委托是一方将一定的事务委诸于另一方实施的法律制度。</p><p>委托和代理的区别在于：第一，委托规范的是委托人和受托人双方之间的关系;而代理规范的是本人、代理人和第三人的关系。第二，代理关系中代理人代理的对象是进行意思表示和接受意思表示的行为；而委托中受托人代为实施的行为可以是法律行为，也可以是事实行为。第三，代理包括对内和对外两种关系，对内是代理人和被代理人之间的关系，而对外是代理人和第三人之间的关系；而委托只是委托人和受托人之间的关系。</p></blockquote>
+<blockquote><p>所谓代理，就是指一方授予他方代理权，他方依代理权与第三方进行法律行为，其行为后果由一方承担的一种民事法律制度。委托是一方将一定的事务委诸于另一方实施的法律制度。</p><p>委托和代理的区别在于：第一，委托规范的是委托人和受托人双方之间的关系；而代理规范的是本人、代理人和第三人的关系。第二，代理关系中代理人代理的对象是进行意思表示和接受意思表示的行为；而委托中受托人代为实施的行为可以是法律行为，也可以是事实行为。第三，代理包括对内和对外两种关系，对内是代理人和被代理人之间的关系，而对外是代理人和第三人之间的关系；而委托只是委托人和受托人之间的关系。</p></blockquote>
 
 
 <h1>扩展阅读</h1>
@@ -553,45 +553,10 @@
 <aside class="sidebar">
   
     <section>
-  <h1>Tags</h1>
-  <ul class="tag-cloud">
-    <a style="font-size: 113%" href="/tags/framework/">Framework</a>
-<a style="font-size: 180%" href="/tags/java/">Java</a>
-<a style="font-size: 113%" href="/tags/pattern/">Pattern</a>
-<a style="font-size: 70%" href="/tags/tips/">tips</a>
-<a style="font-size: 70%" href="/tags/gui-yue/">规约</a>
-<a style="font-size: 113%" href="/tags/pei-zhi/">配置</a>
+<h1>Recent Comments</h1>
+<ul class="ds-recent-comments" data-num-items="10" data-show-avatars="0" data-show-time="0" data-show-title="0" data-show-admin="0" data-excerpt-length="18"></ul>
 
-  </ul>
 </section>
-<section>
-  <h1>Recent Posts</h1>
-  <ul id="recent_posts">
-    
-      <li class="post">
-        <a href="/blog/2015/07/18/fu-ze-ren-zai-tan-callback-yu-delegation/">负责任再谈 Callback 与 Delegation</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/07/10/zhuang-shi-zhe-mo-shi-decorate-pattern-yu-hui-diao-ji-zhi-callback-framework/">不负责瞎说说 Patterns 与 Frameworks</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/06/29/sublime-text-guang-biao-jiao-dian-ji-zhong-dao-folders-zhuang-tai-lan/">Sublime Text 光标焦点集中到 FOLDERS 状态栏</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/06/24/wei-ji-si-fu-zheng-xing-bian-jie/">危机四伏整型运算</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/06/20/fu-dian-yun-suan/">扑朔迷离浮点运算</a>
-      </li>
-    
-  </ul>
-</section>
-
-
   
 </aside>
 
