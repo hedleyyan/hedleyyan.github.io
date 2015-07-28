@@ -1,6 +1,8 @@
 <hgroup>
-  <h1><a href="{{ root_url }}/">{{ site.title }}</a></h1>
-  {% if site.subtitle %}
-    <h2>{{ site.subtitle }}</h2>
-  {% endif %}
+  <div class="header">
+    <h1 class="blog-title"><a href="{{ root_url }}/">{{ site.title }}</a></h1>
+    {% if site.subtitle %}
+      <h2 class="blog-subtitle">{{ site.subtitle }}</h2>
+    {% endif %}
+  </div>
 </hgroup>

@@ -1,2 +1,111 @@
 // This File is imported last, and will override other styles in the cascade
 // Add styles here to make changes without digging in too much
+.post-footer{margin-top:10px;padding:5px;background:none repeat scroll 0pt 0pt #eee;font-size:90%;color:gray}
+@import "mixins";
+
+// This File is imported last, and will override other styles in the cascade
+// Add styles here to make changes without digging in too much
+
+@import "fonts";
+
+$article_title_color: #49976b;
+// $article_title_font: '微软雅黑' 'Microsoft Yahei'!important;
+$article_title_font:  "Verdana", sans-serif;
+$blog_title_font: 'Lucida Handwriting';
+
+
+ol {
+    li {
+        margin-left: 2em !important;
+    }
+}
+
+ul {
+    li {
+        margin-left: 2em !important;
+    }
+}
+
+p {
+   margin-top: $paragraph_margin_top;
+   margin-bottom: $paragraph_margin_bottom;
+}
+
+// blockquote {
+//     font-size: 100%;
+// }
+
+h1.entry-title {
+    font-family: $article_title_font;
+    color: $article_title_color;
+    font-size: 150%;
+}
+
+// h2标底下面有一条虚线，去掉
+article {
+    h2 {
+        background: none !important;
+    }
+}
+
+// h1~h5字体大小调整
+div.entry-content {
+    ul, ol {
+        margin-bottom: 1em !important;
+    }
+
+    h1 {
+        font-size: 175%;
+        margin-bottom: 0.5em;
+    }
+
+    h2 {
+        font-size: 150%;
+    }
+
+    h3 {
+        font-size: 125%;
+    }
+
+    h4 {
+        font-size: 110%;
+    }
+
+    h5 {
+        font-size: 110%;
+        font-style: italic;
+    }
+}
+
+div.update {
+    border-radius: 5px 5px 5px 5px;
+    border: 1px solid gray;
+    padding: 5px;
+}
+
+#content .blog-index {
+    a[rel=full-article] {
+        // Change the "read more" link, slightly, from the default.
+        border: 1px solid #aaaaaa !important;
+    }
+}
+
+div#blog-archives {
+    h1 {
+        color: $article_title_color;
+        font-family: $article_title_font;
+    }
+}
+
+h1.blog-title {
+    a {
+//        color: $title-color !important;
+        font-family: $blog_title_font;
+    }
+}
+
+h2.blog-subtitle {
+    font-family: $blog_title_font;
+    margin-left: 100px;
+    font-size: 80%;
+}

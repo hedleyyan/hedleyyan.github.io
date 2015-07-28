@@ -1,0 +1,95 @@
+#ds-reset .ds-avatar img,#ds-reset .ds-avatar img:hover{   
+    -webkit-animation-fill-mode: both;   
+    -moz-animation-fill-mode: both;   
+    -ms-animation-fill-mode: both;   
+    -o-animation-fill-mode: both;   
+    animation-fill-mode: both;   
+    -webkit-animation-duration: 0s;   
+    -moz-animation-duration: 0s;   
+    -ms-animation-duration: 0s;   
+    -o-animation-duration: 0s;   
+    animation-duration: 0s;   
+    -webkit-animation-duration: 0.7s;   
+    -moz-animation-duration: 0.7s;   
+    -ms-animation-duration: 0.7s;   
+    -o-animation-duration: 0.7s;   
+    animation-duration: 0.7s;   
+}   
+  
+@-webkit-keyframes swing {   
+    20%, 40%, 60%, 80%, 100% { -webkit-transform-origin: top center; }   
+    20% { -webkit-transform: rotate(15deg); }      
+    40% { -webkit-transform: rotate(-10deg); }   
+    60% { -webkit-transform: rotate(5deg); }       
+    80% { -webkit-transform: rotate(-5deg); }      
+    100% { -webkit-transform: rotate(0deg); }   
+}   
+  
+@-moz-keyframes swing {   
+    20% { -moz-transform: rotate(15deg); }     
+    40% { -moz-transform: rotate(-10deg); }   
+    60% { -moz-transform: rotate(5deg); }      
+    80% { -moz-transform: rotate(-5deg); }     
+    100% { -moz-transform: rotate(0deg); }   
+}   
+  
+@-o-keyframes swing {   
+    20% { -o-transform: rotate(15deg); }       
+    40% { -o-transform: rotate(-10deg); }   
+    60% { -o-transform: rotate(5deg); }    
+    80% { -o-transform: rotate(-5deg); }       
+    100% { -o-transform: rotate(0deg); }   
+}   
+  
+@keyframes swing {   
+    20% { transform: rotate(15deg); }      
+    40% { transform: rotate(-10deg); }   
+    60% { transform: rotate(5deg); }       
+    80% { transform: rotate(-5deg); }      
+    100% { transform: rotate(0deg); }   
+}   
+  
+#ds-reset .ds-avatar img:hover{   
+    -webkit-transform-origin: top center;   
+    -moz-transform-origin: top center;   
+    -o-transform-origin: top center;   
+    transform-origin: top center;   
+    -webkit-animation-name: swing;   
+    -moz-animation-name: swing;   
+    -o-animation-name: swing;   
+    animation-name: swing;   
+}   
+
+/*评论背景的边角默认是直角，如果想改成圆角*/
+#ds-thread{ border-radius: 5px;}
+
+/*定义评论框内字体和颜色*/
+#ds-thread #ds-reset .ds-textarea-wrapper textarea, #ds-thread #ds-reset .ds-textarea-wrapper .ds-hidden-text {font-family: ‘微软雅黑’ ‘Microsoft Yahei’!important;font-size:12px;letter-spacing:1px;}
+/*修改评论正文的字体颜色*/
+#ds-thread #ds-reset .ds-comment-body p {color: #030303;font-family: ‘微软雅黑’ ‘Microsoft Yahei’!important;font-size:14px;letter-spacing:1px;}
+/*定义发布按钮字体，以及渐变色背景*/
+#ds-thread #ds-reset .ds-post-button{font-family: ‘微软雅黑’‘Microsoft Yahei’!important;font-weight: bold;font-size:12px;1:none !important;color:#49976b !important;}
+
+/*隐藏评论右上方 最热 最新排序按钮*/
+#ds-thread #ds-reset .ds-sort {display:none;}
+/*隐藏底部多说版权*/
+#ds-thread #ds-reset .ds-powered-by{display:none;}
+/*将评论框底部的分享到微博QQ空间什么的隐藏起来*/
+.ds-sync{display:none !important;}
+/*隐藏评论左上方 评论总数背景色及边框 和一些设置*/
+#ds-thread #ds-reset li.ds-tab a.ds-current{background:none;border:none;font-size: 22px;font-weight: 400;color: #999;font-family: ‘微软雅黑’‘Microsoft Yahei’!important;letter-spacing:1px;}
+
+
+/*定义高亮字体颜色*/
+#ds-reset .ds-highlight{color:#49976b !important;font-family: ‘微软雅黑’ ‘Microsoft Yahei’!important;}
+/*定义评论框内其他高亮颜色*/
+#ds-thread #ds-reset #ds-bubble a{color: #49976b !important;font-family: ‘微软雅黑’ ‘Microsoft Yahei’!important;}
+/*定义评论框内其他高亮颜色*/
+#ds-thread #ds-reset #ds-bubble {color: #49976b !important;font-family: ‘微软雅黑’ ‘Microsoft Yahei’!important;}
+/*定义评论框内其他高亮颜色*/
+#ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a{color: #49976b !important;font-family: ‘微软雅黑’ ‘Microsoft Yahei’!important;}
+/*定义评论框内其他高亮颜色*/
+#ds-thread #ds-reset a.ds-comment-context:hover{color: #49976b !important;font-family: ‘微软雅黑’ ‘Microsoft Yahei’!important;}
+/*定义评论框内其他高亮颜色*/
+#ds-thread #ds-reset a.ds-comment-context{color: #49976b !important;font-family: ‘微软雅黑’ ‘Microsoft Yahei’!important;}
+
