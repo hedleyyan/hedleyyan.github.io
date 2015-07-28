@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: 配置 | Hedley]]></title>
   <link href="http://hedleyyan.github.io/tags/pei-zhi/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2015-07-28T15:00:37+08:00</updated>
+  <updated>2015-07-28T17:01:28+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[hedley]]></name>
@@ -43,9 +43,7 @@
     <link href="http://hedleyyan.github.io/blog/2015/05/17/octopress-da-jian-ji-lu/"/>
     <updated>2015-05-17T22:29:18+08:00</updated>
     <id>http://hedleyyan.github.io/blog/2015/05/17/octopress-da-jian-ji-lu</id>
-    <content type="html"><![CDATA[<h1>关于</h1>
-
-<p>本文是小站搭建的流水账记录，收集了各种用到的链接地址。</p>
+    <content type="html"><![CDATA[<p>本文是小站搭建的流水账记录，收集了各种用到的链接地址。</p>
 
 <h1>搭建</h1>
 
@@ -87,7 +85,7 @@
 
 <h1><em>TOC (Table of Contents)</em></h1>
 
-<p>参照<a href="http://brizzled.clapper.org/blog/2012/02/04/generating-a-table-of-contents-in-octopress/">这边文章</a>搭建 <em>TOC</em> 解决方案。遇到几个问题</p>
+<p>参照<a href="http://brizzled.clapper.org/blog/2012/02/04/generating-a-table-of-contents-in-octopress/">这篇文章</a>搭建 <em>TOC</em> 解决方案。遇到几个问题</p>
 
 <ul>
 <li>如果 <em>TOC</em> 的左面有 <code>blockquote</code> ， <em>TOC</em> 的 <code>link</code> 无法点击

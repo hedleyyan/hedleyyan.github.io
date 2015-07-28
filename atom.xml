@@ -4,7 +4,7 @@
   <title><![CDATA[Hedley]]></title>
   <link href="http://hedleyyan.github.io/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2015-07-28T15:00:37+08:00</updated>
+  <updated>2015-07-28T17:01:28+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[hedley]]></name>
@@ -808,9 +808,7 @@
     <link href="http://hedleyyan.github.io/blog/2015/06/24/wei-ji-si-fu-zheng-xing-bian-jie/"/>
     <updated>2015-06-24T09:10:09+08:00</updated>
     <id>http://hedleyyan.github.io/blog/2015/06/24/wei-ji-si-fu-zheng-xing-bian-jie</id>
-    <content type="html"><![CDATA[<h1>关于</h1>
-
-<p>哈？整型运算？听起来好 <em>EASY</em> 啊喂！直奔主题咯。</p>
+    <content type="html"><![CDATA[<p>哈？整型运算？听起来好 <em>EASY</em> 啊喂！直奔主题咯。</p>
 
 <h1>边界陷阱</h1>
 
@@ -1203,9 +1201,7 @@
     <link href="http://hedleyyan.github.io/blog/2015/06/20/fu-dian-yun-suan/"/>
     <updated>2015-06-20T09:44:10+08:00</updated>
     <id>http://hedleyyan.github.io/blog/2015/06/20/fu-dian-yun-suan</id>
-    <content type="html"><![CDATA[<h1>关于</h1>
-
-<p>此文深入剖析困扰哥已久的浮点数表示和运算。</p>
+    <content type="html"><![CDATA[<p>此文深入剖析困扰哥已久的浮点数表示和运算。</p>
 
 <h1>定义</h1>
 
@@ -1462,9 +1458,7 @@
     <link href="http://hedleyyan.github.io/blog/2015/06/16/cang-zhou-shi-jie-dao-diao-cha-wen-juan/"/>
     <updated>2015-06-16T17:22:13+08:00</updated>
     <id>http://hedleyyan.github.io/blog/2015/06/16/cang-zhou-shi-jie-dao-diao-cha-wen-juan</id>
-    <content type="html"><![CDATA[<h1>关于</h1>
-
-<p>该调查问卷短的很，请大家友情帮助孙慧一同学，多多帮忙啦！感谢！</p>
+    <content type="html"><![CDATA[<p>该调查问卷短的很，请大家友情帮助孙慧一同学，多多帮忙啦！感谢！</p>
 
 <h2>请您按照重要程度给沧州市区的干道排一排序，筛选出前十名</h2>
 
@@ -2077,9 +2071,7 @@
     <link href="http://hedleyyan.github.io/blog/2015/05/17/octopress-da-jian-ji-lu/"/>
     <updated>2015-05-17T22:29:18+08:00</updated>
     <id>http://hedleyyan.github.io/blog/2015/05/17/octopress-da-jian-ji-lu</id>
-    <content type="html"><![CDATA[<h1>关于</h1>
-
-<p>本文是小站搭建的流水账记录，收集了各种用到的链接地址。</p>
+    <content type="html"><![CDATA[<p>本文是小站搭建的流水账记录，收集了各种用到的链接地址。</p>
 
 <h1>搭建</h1>
 
@@ -2121,7 +2113,7 @@
 
 <h1><em>TOC (Table of Contents)</em></h1>
 
-<p>参照<a href="http://brizzled.clapper.org/blog/2012/02/04/generating-a-table-of-contents-in-octopress/">这边文章</a>搭建 <em>TOC</em> 解决方案。遇到几个问题</p>
+<p>参照<a href="http://brizzled.clapper.org/blog/2012/02/04/generating-a-table-of-contents-in-octopress/">这篇文章</a>搭建 <em>TOC</em> 解决方案。遇到几个问题</p>
 
 <ul>
 <li>如果 <em>TOC</em> 的左面有 <code>blockquote</code> ， <em>TOC</em> 的 <code>link</code> 无法点击
@@ -2193,9 +2185,7 @@
     <link href="http://hedleyyan.github.io/blog/2015/05/16/a-glossary-of-name-reuse/"/>
     <updated>2015-05-16T17:07:57+08:00</updated>
     <id>http://hedleyyan.github.io/blog/2015/05/16/a-glossary-of-name-reuse</id>
-    <content type="html"><![CDATA[<h1>关于</h1>
-
-<p>此文大概就是《Java Puzzlers》中 <em>Classier Pazzlers</em> 一节的简单翻译和整理，粗略总结了 <em>Java</em> 有关<strong>命名重复</strong>的场景和代码示例。</p>
+    <content type="html"><![CDATA[<p>此文大概就是《Java Puzzlers》中 <em>Classier Pazzlers</em> 一节的简单翻译和整理，粗略总结了 <em>Java</em> 有关<strong>命名重复</strong>的场景和代码示例。</p>
 
 <h1>Overriding</h1>
 
