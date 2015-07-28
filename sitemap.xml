@@ -49,6 +49,15 @@
     <loc>http://hedleyyan.github.io/page2/</loc>
   </url>
   <url>
+    <loc>http://hedleyyan.github.io/blog/categories/ji-zhu/</loc>
+  </url>
+  <url>
+    <loc>http://hedleyyan.github.io/blog/categories/diao-cha/</loc>
+  </url>
+  <url>
+    <loc>http://hedleyyan.github.io/blog/categories/sublime-text/</loc>
+  </url>
+  <url>
     <loc>http://hedleyyan.github.io/tags/java/</loc>
   </url>
   <url>
@@ -65,14 +74,5 @@
   </url>
   <url>
     <loc>http://hedleyyan.github.io/tags/framework/</loc>
-  </url>
-  <url>
-    <loc>http://hedleyyan.github.io/blog/categories/ji-zhu/</loc>
-  </url>
-  <url>
-    <loc>http://hedleyyan.github.io/blog/categories/diao-cha/</loc>
-  </url>
-  <url>
-    <loc>http://hedleyyan.github.io/blog/categories/sublime-text/</loc>
   </url>
 </urlset>
