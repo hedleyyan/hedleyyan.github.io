@@ -59,8 +59,16 @@
 <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 
 <!--bigfoot-->
+<style>@import url(&#8220;/stylesheets/bigfoot-default.css&#8221;);</style>
 <script src="/javascripts/bigfoot.js" type="text/javascript"></script>
-<script src="/javascripts/bigfoot.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+  $.bigfoot({ 
+    actionOriginalFN: "hide", 
+    activateOnHover: "true",
+    deleteOnUnhover: "true",
+    hoverDelay: "500"
+  });
+</script>
   
 
 </head>
