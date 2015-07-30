@@ -4,7 +4,7 @@
   <title><![CDATA[Hedley]]></title>
   <link href="http://hedleyyan.github.io/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2015-07-30T22:23:08+08:00</updated>
+  <updated>2015-07-30T22:38:34+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[hedley]]></name>
@@ -387,13 +387,6 @@
 </li>
 </ul>
 
-
-<p><br/><br/><p class='post-footer'>
-            original link:
-            <a href='http://hedleyyan.github.io/blog/2015/07/18/fu-ze-ren-zai-tan-callback-yu-delegation/'><a href="http://hedleyyan.github.io/blog/2015/07/18/fu-ze-ren-zai-tan-callback-yu-delegation/">http://hedleyyan.github.io/blog/2015/07/18/fu-ze-ren-zai-tan-callback-yu-delegation/</a></a><br/>
-            written by <a href='http://hedleyyan.github.io'>hedley</a>
-            &nbsp;posted at <a href='http://hedleyyan.github.io'><a href="http://hedleyyan.github.io">http://hedleyyan.github.io</a></a>
-            </p></p>
 ]]></content>
   </entry>
   
@@ -440,7 +433,7 @@
 
 <h2>Callback frameworks</h2>
 
-<p>如果说 <em>IoC</em> 的精髓一句话概括为：<em>Don&rsquo;t call us, we&rsquo;ll call you.</em><a href="This">^1</a></p>
+<p>如果说 <em>IoC</em> 的精髓一句话概括为：<em>Don&rsquo;t call us, we&rsquo;ll call you.</em><sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup></p>
 
 <p>那么<strong>回调</strong>（<a href="http://www.codeweblog.com/%E6%B5%85%E6%9E%90java-callback-%E5%9B%9E%E8%B0%83%E6%A8%A1%E5%BC%8F/">callback</a>）的一句话概括就是：<em>If you call me, i will call back.</em></p>
 
@@ -761,13 +754,14 @@
 <li><a href="https://static.aminer.org/pdf/PDF/000/522/451/using_prototypical_objects_to_implement_shared_behavior_in_object_oriented.pdf">Using Prototypical Objects to Implement Shared Behavior in Object Oriented Systems</a></li>
 </ul>
 
+<div class="footnotes">
+<hr/>
+<ol>
+<li id="fn:1">
+<p>This is bullshit, 请看负责任系列<a href="#fnref:1" rev="footnote">&#8617;</a></p></li>
+</ol>
+</div>
 
-<p><br/><br/><p class='post-footer'>
-            original link:
-            <a href='http://hedleyyan.github.io/blog/2015/07/10/zhuang-shi-zhe-mo-shi-decorate-pattern-yu-hui-diao-ji-zhi-callback-framework/'><a href="http://hedleyyan.github.io/blog/2015/07/10/zhuang-shi-zhe-mo-shi-decorate-pattern-yu-hui-diao-ji-zhi-callback-framework/">http://hedleyyan.github.io/blog/2015/07/10/zhuang-shi-zhe-mo-shi-decorate-pattern-yu-hui-diao-ji-zhi-callback-framework/</a></a><br/>
-            written by <a href='http://hedleyyan.github.io'>hedley</a>
-            &nbsp;posted at <a href='http://hedleyyan.github.io'><a href="http://hedleyyan.github.io">http://hedleyyan.github.io</a></a>
-            </p></p>
 ]]></content>
   </entry>
   
@@ -793,13 +787,6 @@
 
 <!--more-->
 
-
-<p><br/><br/><p class='post-footer'>
-            original link:
-            <a href='http://hedleyyan.github.io/blog/2015/06/29/sublime-text-guang-biao-jiao-dian-ji-zhong-dao-folders-zhuang-tai-lan/'><a href="http://hedleyyan.github.io/blog/2015/06/29/sublime-text-guang-biao-jiao-dian-ji-zhong-dao-folders-zhuang-tai-lan/">http://hedleyyan.github.io/blog/2015/06/29/sublime-text-guang-biao-jiao-dian-ji-zhong-dao-folders-zhuang-tai-lan/</a></a><br/>
-            written by <a href='http://hedleyyan.github.io'>hedley</a>
-            &nbsp;posted at <a href='http://hedleyyan.github.io'><a href="http://hedleyyan.github.io">http://hedleyyan.github.io</a></a>
-            </p></p>
 ]]></content>
   </entry>
   
@@ -1186,13 +1173,6 @@
 <h1>总结</h1>
 
 <p>注意边界，注意转型，注意 <code>byte</code> <code>char</code>，注意特殊运算。</p>
-
-<p><br/><br/><p class='post-footer'>
-            original link:
-            <a href='http://hedleyyan.github.io/blog/2015/06/24/wei-ji-si-fu-zheng-xing-bian-jie/'><a href="http://hedleyyan.github.io/blog/2015/06/24/wei-ji-si-fu-zheng-xing-bian-jie/">http://hedleyyan.github.io/blog/2015/06/24/wei-ji-si-fu-zheng-xing-bian-jie/</a></a><br/>
-            written by <a href='http://hedleyyan.github.io'>hedley</a>
-            &nbsp;posted at <a href='http://hedleyyan.github.io'><a href="http://hedleyyan.github.io">http://hedleyyan.github.io</a></a>
-            </p></p>
 ]]></content>
   </entry>
   
@@ -1443,13 +1423,6 @@
 <li><a href="http://hujiantao224.iteye.com/blog/727155">Java 浮点数表示详解</a></li>
 </ul>
 
-
-<p><br/><br/><p class='post-footer'>
-            original link:
-            <a href='http://hedleyyan.github.io/blog/2015/06/20/fu-dian-yun-suan/'><a href="http://hedleyyan.github.io/blog/2015/06/20/fu-dian-yun-suan/">http://hedleyyan.github.io/blog/2015/06/20/fu-dian-yun-suan/</a></a><br/>
-            written by <a href='http://hedleyyan.github.io'>hedley</a>
-            &nbsp;posted at <a href='http://hedleyyan.github.io'><a href="http://hedleyyan.github.io">http://hedleyyan.github.io</a></a>
-            </p></p>
 ]]></content>
   </entry>
   
@@ -1489,13 +1462,6 @@
 <h1>总结</h1>
 
 <p>简单留言就好，凭 <em>ID</em> 找幺儿本人领取辣条一包。</p>
-
-<p><br/><br/><p class='post-footer'>
-            original link:
-            <a href='http://hedleyyan.github.io/blog/2015/06/16/cang-zhou-shi-jie-dao-diao-cha-wen-juan/'><a href="http://hedleyyan.github.io/blog/2015/06/16/cang-zhou-shi-jie-dao-diao-cha-wen-juan/">http://hedleyyan.github.io/blog/2015/06/16/cang-zhou-shi-jie-dao-diao-cha-wen-juan/</a></a><br/>
-            written by <a href='http://hedleyyan.github.io'>hedley</a>
-            &nbsp;posted at <a href='http://hedleyyan.github.io'><a href="http://hedleyyan.github.io">http://hedleyyan.github.io</a></a>
-            </p></p>
 ]]></content>
   </entry>
   
@@ -2056,13 +2022,6 @@
 
 <!--## 引用-->
 
-
-<p><br/><br/><p class='post-footer'>
-            original link:
-            <a href='http://hedleyyan.github.io/blog/2015/06/05/huang-miu-tong-ku-de-nei-bu-lei/'><a href="http://hedleyyan.github.io/blog/2015/06/05/huang-miu-tong-ku-de-nei-bu-lei/">http://hedleyyan.github.io/blog/2015/06/05/huang-miu-tong-ku-de-nei-bu-lei/</a></a><br/>
-            written by <a href='http://hedleyyan.github.io'>hedley</a>
-            &nbsp;posted at <a href='http://hedleyyan.github.io'><a href="http://hedleyyan.github.io">http://hedleyyan.github.io</a></a>
-            </p></p>
 ]]></content>
   </entry>
   
@@ -2170,13 +2129,6 @@
 <h2>数学公式</h2>
 
 <p>参考<a href="http://www.tuicool.com/articles/miaUR3">kramdown配置</a>。</p>
-
-<p><br/><br/><p class='post-footer'>
-            original link:
-            <a href='http://hedleyyan.github.io/blog/2015/05/17/octopress-da-jian-ji-lu/'><a href="http://hedleyyan.github.io/blog/2015/05/17/octopress-da-jian-ji-lu/">http://hedleyyan.github.io/blog/2015/05/17/octopress-da-jian-ji-lu/</a></a><br/>
-            written by <a href='http://hedleyyan.github.io'>hedley</a>
-            &nbsp;posted at <a href='http://hedleyyan.github.io'><a href="http://hedleyyan.github.io">http://hedleyyan.github.io</a></a>
-            </p></p>
 ]]></content>
   </entry>
   
@@ -2422,13 +2374,6 @@
 
 <!--链接-->
 
-
-<p><br/><br/><p class='post-footer'>
-            original link:
-            <a href='http://hedleyyan.github.io/blog/2015/05/16/a-glossary-of-name-reuse/'><a href="http://hedleyyan.github.io/blog/2015/05/16/a-glossary-of-name-reuse/">http://hedleyyan.github.io/blog/2015/05/16/a-glossary-of-name-reuse/</a></a><br/>
-            written by <a href='http://hedleyyan.github.io'>hedley</a>
-            &nbsp;posted at <a href='http://hedleyyan.github.io'><a href="http://hedleyyan.github.io">http://hedleyyan.github.io</a></a>
-            </p></p>
 ]]></content>
   </entry>
   
