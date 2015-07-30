@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Octopress | Hedley]]></title>
+  <link href="http://hedleyyan.github.io/blog/categories/octopress/atom.xml" rel="self"/>
+  <link href="http://hedleyyan.github.io/"/>
+  <updated>2015-07-30T16:44:14+08:00</updated>
+  <id>http://hedleyyan.github.io/</id>
+  <author>
+    <name><![CDATA[hedley]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Octopress 搭建记录]]></title>
+    <link href="http://hedleyyan.github.io/blog/2015/05/17/octopress-da-jian-ji-lu/"/>
+    <updated>2015-05-17T22:29:18+08:00</updated>
+    <id>http://hedleyyan.github.io/blog/2015/05/17/octopress-da-jian-ji-lu</id>
+    <content type="html"><![CDATA[<p>本文是小站搭建的流水账记录，收集了各种用到的链接地址。</p>
+
+<h1>搭建</h1>
+
+<ul>
+<li>参照 <a href="http://octopress.org/docs/setup/">octopress 官方搭建手册</a>，一步一步来。到 <code>gem install bundler</code> 时候卡壳，网络不通</li>
+<li>修改 <a href="http://ruby.taobao.org/">RubyGems 镜像</a>，连接通了。但是一直报缺少依赖包的异常，按照提示手动一个个安装完依赖包</li>
+<li>安装完毕，修改 <code>_config.yml</code> 配置文件</li>
+</ul>
+
+
+<h1>留言系统</h1>
+
+<ul>
+<li>参照<a href="http://droidyue.com/blog/2014/07/29/integrate-duoshuo-in-octopress/">这篇文章</a>添加多说评论</li>
+<li><a href="http://shenchaofei.cn/duoshuo-comment-box-css-custom/328.html">修改多说样式</a>，样式代码添加在多说系统的管理后台的基本设置里。代码位于 <code>source/downloads/code/duoshuo.css</code></li>
+</ul>
+
+
+<h1>访问速度</h1>
+
+<p>参照<a href="http://droidyue.com/blog/2014/06/22/fix-octopress-slow-loading-speed-issue-in-china-mainland/">这篇文章</a>替换若干 <em>google</em> 源。</p>
+
+<!--more-->
+
+
+<h1><em>ST</em> 书写插件</h1>
+
+<ul>
+<li><em>Octopress</em> ： 可以在 <em>ST</em> 中快捷新建 <em>Post</em> ，快捷生成、部署</li>
+<li><em>Octopress Snippets</em> ： <code>CMD + SHIFT + P</code> 接输入 <code>Snippet</code> ，调用语法模板</li>
+<li><em>Markdown Extended</em> ： <code>CMD + SHIFT + P</code> 接输入 <code>Set Syntax</code> ，设为 <code>Markdown Extended</code>。代码片段彩色显示</li>
+<li><em>Markdown Preview</em> ： 主要用到 <code>Preview in browser</code> 来进行静态预览，以及 <code>cheat sheet</code> 来查看语法</li>
+<li><em>Monokai Neue</em> ： <code>Color Scheme</code> 修改， Markdown 颜色显示。修改 <code>Packages/Monokai Neue/Monokai-Neue.tmTheme</code> 文件，在 <code>settings -&gt; settings</code> 代码段下修改 <code>&lt;key&gt;selection&lt;/key&gt; &lt;string&gt;#00B2EE&lt;/string&gt;</code>，更改选中背景颜色</li>
+</ul>
+
+
+<p>效果如下
+<img src="/images/Snip20150525_38.png"></p>
+
+<h1><em>TOC (Table of Contents)</em></h1>
+
+<p>参照<a href="http://brizzled.clapper.org/blog/2012/02/04/generating-a-table-of-contents-in-octopress/">这篇文章</a>搭建 <em>TOC</em> 解决方案。遇到几个问题</p>
+
+<ul>
+<li>如果 <em>TOC</em> 的左面有 <code>blockquote</code> ， <em>TOC</em> 的 <code>link</code> 无法点击
+
+<ul>
+<li>在 <code>sass/custom/_screen.scss</code> 中加入代码 <code>position:relative; z-index: 99999;</code> ，将 <em>TOC</em> 的 <code>&lt;div&gt;</code> 置顶</li>
+</ul>
+</li>
+<li>自动生成的锚点只对英文标题有效
+
+<ul>
+<li>编辑 <code>source/javascripts/jquery.tableofcontents.min.js</code>   ，搜索 <code>text.toLowerCase().replace</code> ，去掉 <code>.replace(/[^a-z0-9 -]/gi,'')</code> 这部分代码，这句代码过滤了中文字符</li>
+</ul>
+</li>
+<li>此方案的 <em>TOC</em> 只能生成 <code>h1 ~ h3</code> ，它的配置可以在 <code>source/javascripts/jquery.tableofcontents.min.js</code> 中修改。但是为了方便，应用此默认配置，修改标题风格</li>
+</ul>
+
+
+<h1>风格</h1>
+
+<p>生成网页的风格个性化都在 <code>sass/custom</code> 中进行定义，参考了 <a href="https://github.com/bmc/brizzled">https://github.com/bmc/brizzled</a> ，主要对标题的字体大小进行了调整，其他一些微调待定。标题的字体颜色主要在 <code>source/_includes/custom/header.html</code> ， <code>sass/custom/_fonts.scss</code> ， <code>sass/custom/_styles.scss</code> 几个地方相应修改。其他样式对应位置<a href="http://www.360doc.com/content/12/0215/22/1016783_186940749.shtml">参考这里</a>。</p>
+
+<h1>其他</h1>
+
+<ul>
+<li>链接在新窗口打开、列表排版、<em>404ERROR</em> 公益页面，参考<a href="http://blog.csdn.net/biaobiaoqi/article/details/9289563">这篇文章</a></li>
+<li>文章分类侧边栏、导航栏设置，参考<a href="http://www.jianshu.com/p/0ac2ac1a8e45">这篇文章</a></li>
+<li><a href="http://shengmingzhiqing.com/blog/octopress-lean-modification-4.html/#fontawesome">其他配置</a>很全，重点参考</li>
+</ul>
+
+
+<h2>原文链接</h2>
+
+<p>参照<a href="http://my.oschina.net/pangyi/blog/379620">这篇文章</a>，在每篇文章下面自动生成作者信息，原文信息。</p>
+
+<ul>
+<li>注意：每篇文章最后要有留白行，否者生成的原文信息会有问题。</li>
+</ul>
+
+
+<h2>云标签</h2>
+
+<ul>
+<li>参照 <a href="http://codemacro.com/2012/07/18/add-tag-to-octopress/">Tag Cloud 搭建</a>，<em>clone</em> 几个文件到本地目录</li>
+<li>使用方法：在文件头添加标识 <code>tags: xxx</code> ，但此时无法添加多个标签</li>
+<li><a href="http://my.oschina.net/pangyi/blog/379606">这篇文章</a>给出了解决方案，修改 <code>tags.html</code> 文件去掉 <code>limit</code> 属性，多标签写法 <code>tags: [xx1, xx2]</code></li>
+</ul>
+
+
+<h2>回到顶部</h2>
+
+<p>参考<a href="http://www.tuicool.com/articles/qu6ZfiV">Octopress添加回到顶部功能</a>。</p>
+
+<h2>数学公式</h2>
+
+<p>参考<a href="http://www.tuicool.com/articles/miaUR3">kramdown配置</a>。</p>
+]]></content>
+  </entry>
+  
+</feed>

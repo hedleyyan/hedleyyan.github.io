@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Float | Hedley]]></title>
+  <link href="http://hedleyyan.github.io/blog/categories/float/atom.xml" rel="self"/>
+  <link href="http://hedleyyan.github.io/"/>
+  <updated>2015-07-30T16:44:14+08:00</updated>
+  <id>http://hedleyyan.github.io/</id>
+  <author>
+    <name><![CDATA[hedley]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[扑朔迷离浮点运算]]></title>
+    <link href="http://hedleyyan.github.io/blog/2015/06/20/fu-dian-yun-suan/"/>
+    <updated>2015-06-20T09:44:10+08:00</updated>
+    <id>http://hedleyyan.github.io/blog/2015/06/20/fu-dian-yun-suan</id>
+    <content type="html"><![CDATA[<p>此文深入剖析困扰哥已久的浮点数表示和运算。</p>
+
+<h1>定义</h1>
+
+<p>Java 浮点数定义采纳 <a href="http://www.eecs.berkeley.edu/~wkahan/ieee754status/IEEE754.PDF">IEEE Standard 754</a> 标准：单精度 <code>float</code> 32 位，双精度 <code>double</code> 64 位。本文主要以 <code>float</code> 为例。</p>
+
+<p><img src="/images/float.png"></p>
+
+<!--more-->
+
+
+<ul>
+<li>最高位符号位
+
+<ul>
+<li>0 正 1 负</li>
+</ul>
+</li>
+<li>接 8 位指数位，并有 127 的偏移量
+
+<ul>
+<li>所以指数范围为：0 - 127 ~ (2<sup>8</sup> - 1) - 127</li>
+<li>全 0 和全 1 保留用特殊表示，所以指数域的修正范围为 -126 ~ 127</li>
+</ul>
+</li>
+<li>剩下 23 位为尾数域
+
+<ul>
+<li>IEEE 要求浮点数必须是规范的，即小数点的左侧必须为1，这样腾出了一个二进制位来保存更多的尾数，即我们用 23 位尾数域表达了 24 位的尾数</li>
+<li>所以尾数域上限为 2<sup>24</sup> - 1，即 0 ~ 16777215</li>
+<li>10<sup>7</sup> &lt; 16777215 &lt; 10<sup>8</sup>，所以 <code>float</code> 可以精确到小数点后 7 位（<a href="#%E7%B2%BE%E5%BA%A6">存疑</a>）</li>
+</ul>
+</li>
+</ul>
+
+
+<p><img class="right" src="/images/Snip20150622_1.png" width="300" height="350"></p>
+
+<ul>
+<li>特殊表示
+
+<ul>
+<li>指数全为 0，尾数为 0 时，表示 0</li>
+<li>指数全为 1，尾数为 0 时，表示无穷大</li>
+<li>指数全为 1，尾数不为 0 时，表示 <code>NaN</code></li>
+</ul>
+</li>
+</ul>
+
+
+<p>示例图中的数字表示解析：</p>
+
+<ul>
+<li>符号位 0 ，表示正数</li>
+<li>指数位 <code>01111100</code> ，表示 2<sup>6</sup> + 2<sup>5</sup> + 2<sup>4</sup> + 2<sup>3</sup> + 2<sup>2</sup> - 127 = -3</li>
+<li>尾数域左侧补 1 位，表示 <code>101</code></li>
+<li>最后值为 1 * 2<sup>-3</sup> + 1 * 2<sup>-5</sup> = 0.15625</li>
+</ul>
+
+
+<h2><a name="精度">精度</a></h2>
+
+<pre><code class="java">    public static void main(String[] args) {
+        float c = 1.0009765625F;
+        System.out.println(Integer.toBinaryString(Float.floatToIntBits(c)));
+        System.out.println(c);
+        System.out.println(String.format("%.11f", c));
+    }
+</code></pre>
+
+<p>输出：</p>
+
+<pre><code>111111100000000010000000000000
+1.0009766
+1.00097656250
+</code></pre>
+
+<p>示例中的 <code>c</code> 精确到小数点后 10 位，可以精确的由二进制表示：1.0009765625 = 2<sup>0</sup> + 2<sup>-10</sup>。</p>
+
+<ul>
+<li>第一行输出为其二进制表示，进行验证</li>
+<li><code>0 01111111 00000000010000000000000</code>
+
+<ul>
+<li>指数：2<sup>7</sup> - 1 - 127 = 0</li>
+<li>尾数：1.0000000001 = 2<sup>0</sup> + 2<sup>-10</sup></li>
+</ul>
+</li>
+</ul>
+
+
+<p>以上输出的第二行表示 Java 对 <code>float</code> 处理的默认精度为 7 位，但是这不表示它的存储就丢失了精度。输出的第三行加入了指定的精度，即得到了无精度损失的浮点数。</p>
+
+<p>所以这里得到我的<strong>个人结论</strong>： <code>float</code> 的 7 位精度是<strong>规约</strong>，而不是表示结构的限制。</p>
+
+<h2>二进制表示方法</h2>
+
+<p>0.1 = 1.6 / 16</p>
+
+<p>= 1 / 16 + 0.6 / 1</p>
+
+<p>= 1 / 16 + 1.2 / 32</p>
+
+<p>= 1 / 16 + 1 / 32 + 0.2 / 32</p>
+
+<p>= 1 / 16 + 1 / 32 + 1.6 / 2<sup>8</sup></p>
+
+<p>= 1 / 2<sup>4</sup> + 1 / 2<sup>5</sup> + 1 / 2<sup>8</sup> + 0.6 / 2<sup>8</sup></p>
+
+<p>= &hellip;</p>
+
+<p>第 6 步又回到了第 2 步一样的分子 0.6 ，所以这是一个无限循环小数</p>
+
+<p>0.1 = 0.00011001 00011001 00011001 00011001&hellip;</p>
+
+<h1>场景</h1>
+
+<h2><em>Puzzle 2</em></h2>
+
+<pre><code class="java">    public static void main(String args[]) {
+        System.out.println(2.00 - 1.10);    // 0.8999999999999999
+    }
+</code></pre>
+
+<p>这个简单的算式得到的结果不是期望的 0.9 ，而是 0.8999999999999999 。因为 1.1 不能被精确的保存为 <code>double</code> 类型，而被保存为了最接近 1.1 的值，不幸的是，这个值与 2.0 做减法运算后得到的不是最接近 0.9 的 <code>double</code> 值，而是输出的这个奇葩数。</p>
+
+<pre><code class="java">    public static void main(String args[]) {
+        System.out.println(new BigDecimal("2.00").subtract(new BigDecimal("1.10")));    // 0.90
+    }
+</code></pre>
+
+<p><strong>秘籍</strong>：需要精确表示时，用 <code>BigDecimal(String str)</code> ，永远不要用浮点数做运算。</p>
+
+<h2><em>Puzzle 28: Looper</em></h2>
+
+<pre><code class="java">    while (i == i + 1) {
+
+    }
+</code></pre>
+
+<p>给 <code>i</code> 一个声明，使上面的语句进入无限循环状态。。</p>
+
+<pre><code class="java">    double i = 1.0 / 0.0;
+    // Better yet, you can take advantage of a constant that is provided for you by the standard libraries:
+    double i = Double.POSITIVE_INFINITY;
+    // In fact, any sufficiently large floating-point value will do; for example:
+    double i = 1.0e40;
+</code></pre>
+
+<p>无穷大不用说。因为浮点数不能精确保存值，当一个数很大时，它的后继邻接数 <em>(ulp)</em> 与其差值可以大于 1 。</p>
+
+<p><blockquote><p>The distance between adjacent floating-point values is called an ulp, which is an acronym for unit in the last place. In release 5.0, the Math.ulp method was introduced to calculate the ulp of a float or double value.</p></blockquote></p>
+
+<p><strong>秘籍：不要用浮点数做循环索引。</strong></p>
+
+<h2><em>Puzzle 87: Strained Relations</em></h2>
+
+<p>数学上对于 <code>=</code> 的定义满足相等关系 <em>(equivalence relation)</em> 的三个条件</p>
+
+<ul>
+<li>自反性：x ~ x for all x.</li>
+<li>对称性：if x ~ y, then y ~ x.</li>
+<li>传递性：if x ~ y and y ~ z, then x ~ z.</li>
+</ul>
+
+
+<p>那么 <em>Java</em> 中的 <code>==</code> 呢</p>
+
+<pre><code class="java">    public static void main(String[] args) throws Exception {
+        // 自反性不满足
+        System.out.println(Double.NaN == Double.NaN);   // false
+
+        // 传递性不满足
+        long x = Long.MAX_VALUE;
+        double y = (double)Long.MAX_VALUE;
+        long z = Long.MAX_VALUE - 1;
+        System.out.print((x == y) + " ");   // Imprecise! true
+        System.out.print((y == z) + " ");   // Imprecise! true
+        System.out.println(x == z);         // Precise    false
+
+        // 对称性满足
+    }
+</code></pre>
+
+<h1>总结</h1>
+
+<p>注意浮点数的精度丢失以及类型转换，相对于 <code>float</code> ，优先用 <code>double</code> 。</p>
+
+<h1>引用</h1>
+
+<ul>
+<li><a href="http://www.eecs.berkeley.edu/~wkahan/ieee754status/IEEE754.PDF">IEEE Standard 754</a></li>
+<li><a href="http://book.douban.com/subject/1328664/">Java Puzzlers</a></li>
+<li><a href="http://justjavac.iteye.com/blog/1073775">学习 Java 浮点数必看文章</a></li>
+<li><a href="http://hujiantao224.iteye.com/blog/727155">Java 浮点数表示详解</a></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+</feed>
