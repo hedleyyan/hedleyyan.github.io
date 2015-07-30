@@ -29,6 +29,7 @@ Bingo！ 秘籍：左 C + [ &hellip;">
   <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
   <script src="/javascripts/octopress.js" type="text/javascript"></script>
   <!--bigfoot-->
+<script src="/javascripts/jquery-1.9.1.min.js" type="text/javascript"></script>
 <script src="/javascripts/bigfoot.js" type="text/javascript"></script>
 <script type="text/javascript">
     $.bigfoot();
@@ -40,19 +41,18 @@ Bingo！ 秘籍：左 C + [ &hellip;">
 
 <!--点击博客内链接，在新窗口中打开-->
 <script type="text/javascript">
-	function addBlankTargetForLinks () {
-	  $('a[href^="http"]').each(function(){
-	      $(this).attr('target', '_blank');
-	  });
-	}
+  function addBlankTargetForLinks () {
+    $('a[href^="http"]').each(function(){
+        $(this).attr('target', '_blank');
+    });
+  }
 
-	$(document).bind('DOMNodeInserted', function(event) {
-	  addBlankTargetForLinks();
-	});
+  $(document).bind('DOMNodeInserted', function(event) {
+    addBlankTargetForLinks();
+  });
 </script>
 
 <!--TOC-->
-<script src="/javascripts/jquery-1.9.1.min.js" type="text/javascript"></script>
 <script src="/javascripts/jquery.tableofcontents.min.js" type="text/javascript"></script>
 <script type="text/javascript">
   // Revert jQuery's '$' alias, to avoid clashes with ender.js. NOTE: Use
