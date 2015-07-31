@@ -28,19 +28,15 @@
   <script src="/javascripts/octopress.js" type="text/javascript"></script>
   <!--bigfoot-->
 <script src="/javascripts/jquery-1.9.1.min.js" type="text/javascript"></script>
-
-<!--bigfoot
 <script src="/javascripts/bigfoot.js" type="text/javascript"></script>
 <script type="text/javascript">
   $.bigfoot({ 
-    actionOriginalFN: "hide", 
+    actionOriginalFN: "delete",
     activateOnHover: "true",
     deleteOnUnhover: "true",
-    hoverDelay: "500",
-    actionOriginalFN    : "delete"
+    hoverDelay: "500"
   });
 </script>
-&#8211;>
 
 <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="http://fonts.useso.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
@@ -71,11 +67,6 @@
 <!--Font awesome-->
 <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 
-
-<script src="/javascripts/bigfoot.js" type="text/javascript"></script>
-<script type="text/javascript">
-  $.bigfoot();
-</script>
   
 
 </head>
@@ -139,7 +130,7 @@
 
 <p>还需要 <code>jquery</code> 模块支持，我用的是 <code>jquery-1.9.1.min.js</code>。你可以通过 <code>command</code> + <code>alt</code> + <code>i</code> 组合键打开开发人员工具<sup id="fnref:3"><a href="#fn:3" rel="footnote">3</a></sup>，通过 <code>Source</code> ▶ <code>javascripts</code> ▶️ <code>jquery-1.9.1.min.js</code> ▶️ 右键 ▶️ <code>Save</code> 来获取<sup id="fnref:4"><a href="#fn:4" rel="footnote">4</a></sup>。</p>
 
-<p><img src="/images/findJS.png" width="750" height="500"></p>
+<p><img src="/images/bigfoot/findJS.png" width="750" height="500"></p>
 
 <h2>加载</h2>
 
@@ -193,9 +184,38 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<h2>加工</h2>
+<h2>可能的问题</h2>
 
-<p>到这里如果没有意外应该就是妥妥的了，不幸的是我是意外制造机。</p>
+<p>到这里如果没有意外应该就是妥妥的了，不幸的是我正是意外制造机。折腾了半天发现没有卵用，还是默认的 <em>octopress footnotes</em> 的效果，打开控制台发现有一行诡异的错误输出</p>
+
+<p><img src="/images/bigfoot/bigfoot_exception.png" width="750" height="500"></p>
+
+<p>这是闹啥嘞，明明就是从官网 copy 下来的啊。找了两个使用了 bigfoot 的网页<sup id="fnref:5"><a href="#fn:5" rel="footnote">5</a></sup>看其源代码，根本就是一样的嘛为毛我这报错？</p>
+
+<p>开始以为是和页脚自动生成原文链接那有冲突，卸了还是一样报错。几番折腾，发现了破解大法：<strong>把 bigfoot.js 的注册写在 head.html 的开头</strong>。为什么会这样我不知道，如果好心的你知道可能的原因就偷偷告诉我吧！</p>
+
+<p>移魂大法以后不报错了，显示也妥，只是在页尾还是有冗余的注脚信息。参照 <a href="http://www.bigfootjs.com/#options">options</a> 给我们的 bigfoot 加一些修饰</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>  <span class="nx">$</span><span class="p">.</span><span class="nx">bigfoot</span><span class="p">({</span>
+</span><span class='line'>    <span class="nx">actionOriginalFN</span><span class="o">:</span> <span class="s2">&quot;delete&quot;</span><span class="p">,</span>
+</span><span class='line'>    <span class="nx">activateOnHover</span><span class="o">:</span> <span class="s2">&quot;true&quot;</span><span class="p">,</span>
+</span><span class='line'>    <span class="nx">deleteOnUnhover</span><span class="o">:</span> <span class="s2">&quot;true&quot;</span><span class="p">,</span>
+</span><span class='line'>    <span class="nx">hoverDelay</span><span class="o">:</span> <span class="s2">&quot;500&quot;</span>
+</span><span class='line'>  <span class="p">});</span>
+</span><span class='line'><span class="nt">&lt;/script&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>大功告成，撒花 🌺🌺</p>
 
 <p><br/><br/><p class='post-footer'>
             original link:
@@ -214,6 +234,8 @@
 <p>For MAC, Windows 平台的快捷键是 F12<a href="#fnref:3" rev="footnote">&#8617;</a></p></li>
 <li id="fn:4">
 <p>我是前端小白，我期待你也是，不许笑<a href="#fnref:4" rev="footnote">&#8617;</a></p></li>
+<li id="fn:5">
+<p>http://blog.honekamp.net/blog/2013/12/23/bigfoot-on-the-main-page/<a href="#fnref:5" rev="footnote">&#8617;</a></p></li>
 </ol>
 </div>
 
