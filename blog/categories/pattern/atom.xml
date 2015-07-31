@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Pattern | Hedley]]></title>
   <link href="http://hedleyyan.github.io/blog/categories/pattern/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2015-07-31T09:29:42+08:00</updated>
+  <updated>2015-07-31T09:33:01+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[hedley]]></name>
@@ -53,9 +53,9 @@
 
 <h2>Callback frameworks</h2>
 
-<p>如果说 <em>IoC</em> 的精髓一句话概括为：<em>Don&rsquo;t call us, we&rsquo;ll call you.</em><sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup></p>
+<p>如果说 <em>IoC</em> 的精髓一句话概括为：<em>Don&rsquo;t call us, we&rsquo;ll call you.</em></p>
 
-<p>那么<strong>回调</strong>（<a href="http://www.codeweblog.com/%E6%B5%85%E6%9E%90java-callback-%E5%9B%9E%E8%B0%83%E6%A8%A1%E5%BC%8F/">callback</a>）的一句话概括就是：<em>If you call me, i will call back.</em></p>
+<p>那么<strong>回调</strong>（<a href="http://www.codeweblog.com/%E6%B5%85%E6%9E%90java-callback-%E5%9B%9E%E8%B0%83%E6%A8%A1%E5%BC%8F/">callback</a>）的一句话概括就是：<em>If you call me, i will call back.</em><sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup></p>
 
 <p><em>callback frameworks</em> 其实并不是一种具体的 <em>framework</em>，而是代表<strong>一类</strong> <em>framework</em>。比如大多数的 <em>GUI frameworks</em>，比如 <em>SAX (Streaming XML) XML parsers</em>。</p>
 
@@ -246,7 +246,7 @@ end ...
 <hr/>
 <ol>
 <li id="fn:1">
-<p>This is bullshit, 请看负责任系列<a href="#fnref:1" rev="footnote">&#8617;</a></p></li>
+<p>This is bullshit. 请看负责任那篇<a href="#fnref:1" rev="footnote">&#8617;</a></p></li>
 </ol>
 </div>
 
