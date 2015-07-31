@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Inner Class | Hedley]]></title>
   <link href="http://hedleyyan.github.io/blog/categories/inner-class/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2015-07-31T12:56:19+08:00</updated>
+  <updated>2015-07-31T15:27:33+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[hedley]]></name>
@@ -22,7 +22,9 @@
 
 <p>此文简单总结嵌套类 <em>(Nested Class)</em> 的使用场景与一般建议：能使用<strong>静态嵌套类</strong> <em>(Static Nested Class)</em> 的时候就不用<strong>内部类</strong> <em>(Inner Class)</em>。</p>
 
-<p><blockquote><p>A nested class is any class whose declaration occurs within the body of another class or interface. A top level class is a class that is not a nested class.</p></blockquote></p>
+<p>{% blockquote %}
+A nested class is any class whose declaration occurs within the body of another class or interface. A top level class is a class that is not a nested class.
+{% endblockquote %}</p>
 
 <!--more-->
 
@@ -74,7 +76,9 @@
 
 <p>所以，局部嵌套类和匿名嵌套类肯定是内部类，成员嵌套类则分为静态嵌套类和内部类。</p>
 
-<p><blockquote><p>An inner class is a nested class that is not explicitly or implicitly declared static. Inner classes may not declare static initializers or member interfaces.</p></blockquote></p>
+<p>{% blockquote %}
+An inner class is a nested class that is not explicitly or implicitly declared static. Inner classes may not declare static initializers or member interfaces.
+{% endblockquote %}</p>
 
 <pre><code class="java">// 嵌套类实例代码，略
 </code></pre>
@@ -111,9 +115,13 @@
 
 <p><em>OK</em> ，看来 <em>inner class</em> 持有 <em>enclosing class</em> 的一个实例变量 <em>(immediately enclosing instance)</em> 是真的！编译器没那么牛逼每次都可以悄悄替你做了所有的事，至少在使用反射初始化时， <em>enclosing class</em> 的 <em>instance</em> 不会传进来。</p>
 
-<p><blockquote><p>The constructor of a non-static nested class is compiled such that it has as its first parameter an additional implicit parameter representing the immediately enclosing instance.</p><footer><strong>JLS 13.1</strong></footer></blockquote></p>
+<p>{% blockquote JLS 13.1 %}
+The constructor of a non-static nested class is compiled such that it has as its first parameter an additional implicit parameter representing the immediately enclosing instance.
+{% endblockquote %}</p>
 
-<p><blockquote><p>This parameter is passed implicitly when you invoke the constructor from any point in the code where the compiler can find an appropriate enclosing instance. But this applies only when you invoke the constructor normally: nonreflectively.</p></blockquote></p>
+<p>{% blockquote %}
+This parameter is passed implicitly when you invoke the constructor from any point in the code where the compiler can find an appropriate enclosing instance. But this applies only when you invoke the constructor normally: nonreflectively.
+{% endblockquote %}</p>
 
 <p>用含参的构造方法测试一下：</p>
 
@@ -189,7 +197,9 @@
 ...
 </code></pre>
 
-<p><blockquote><p>An inner class of a generic class has access to the type parameters of its outer class.</p></blockquote></p>
+<p>{% blockquote %}
+An inner class of a generic class has access to the type parameters of its outer class.
+{% endblockquote %}</p>
 
 <p><em>So</em>，<em>inner class</em> 可以访问 <em>enclosing class</em> 的各种属性，包括 <em>type parameter</em> 。</p>
 
@@ -224,7 +234,9 @@
 
 <p>但是这不是一个漂亮的修正。它的功能完全可以通过 <em>static nested class</em> 实现；并且 <em>inner class</em> 的构造方法里修改了 <em>enclosing class</em> 的属性 <code>head</code> ，<strong>这不是好的实践</strong>。</p>
 
-<p><blockquote><p>Change instance fields of a class only in its own instance methods.</p></blockquote></p>
+<p>{% blockquote %}
+Change instance fields of a class only in its own instance methods.
+{% endblockquote %}</p>
 
 <p>更帅的解决方法当然是用 <em>static nested class</em> 实现 <code>Node</code> ，并且把对 <em>enclosing class</em> 的属性修改抽离出来。</p>
 
@@ -273,7 +285,9 @@
     ...
 </code></pre>
 
-<p><blockquote><p>The instantiation of an inner class, requires an enclosing instance to be supplied to the constructor. Normally, it is supplied implicitly, but it can also be supplied explicitly with a superclass constructor invocation of the form expression.super(args).</p><footer><strong>JLS 8.8.7</strong></footer></blockquote></p>
+<p>{% blockquote JLS 8.8.7 %}
+The instantiation of an inner class, requires an enclosing instance to be supplied to the constructor. Normally, it is supplied implicitly, but it can also be supplied explicitly with a superclass constructor invocation of the form expression.super(args).
+{% endblockquote %}</p>
 
 <p>原来 <em>inner class</em> 可以显示调用 <em>enclosing instance</em> ，编译器帮不了还得自己来。和<a href="#puzzle-80">反射</a>很像嘛</p>
 
@@ -343,13 +357,17 @@ class Inner2 extends Outer.Inner1 {
 
 <p>肤浅的分析：无法编译！因为 <code>reproduce</code> 里面的 <em>anonymous class</em> 尝试访问 <code>Twisted</code> 的 <code>private</code>方法。而 <code>private</code> 的属性应该只有    <code>Twisted</code> 可以访问。 <br></p>
 
-<p><blockquote><p>Within a top-level type, all the local, inner, nested, and anonymous classes can access one another’s members without any restrictions.</p><footer><strong>JLS 6.6.1</strong></footer></blockquote></p>
+<p>{% blockquote JLS 6.6.1 %}
+Within a top-level type, all the local, inner, nested, and anonymous classes can access one another’s members without any restrictions.
+{% endblockquote %}</p>
 
 <p>其实 <em>nested class</em> 和 <em>enclosing class</em> 就是一家子， <em>enclosing class</em> 的所有成员变量都可以被 <em>nested class</em> 无限制访问。</p>
 
 <p>知道了这个振奋人心的消息后，你的答案可能是：输出 <code>reproduce</code> 。显而易见，我使用了 <code>reproduce</code> 作为参数传入构造函数产生实例 <code>new Twisted("reproduce")</code> ，调用 <code>printName()</code> 方法，再调用 <code>name()</code> 方法，输出。但很遗憾，它的输出是 <code>main</code> 。</p>
 
-<p><blockquote><p>Private members are never inherited.</p><footer><strong>JLS 8.2</strong></footer></blockquote></p>
+<p>{% blockquote JLS 8.2 %}
+Private members are never inherited.
+{% endblockquote %}</p>
 
 <p><strong>私有方法无法被继承！</strong> <em>This is the key</em>！ <em>So</em> ，<code>new Twisted("reproduce")</code> 实例没有 <code>name()</code> 方法，而 <code>printName()</code> 方法会依最小作用域找到 <code>enclosing instance</code> 的 <code>name()</code> 方法并调用。</p>
 
@@ -358,7 +376,9 @@ class Inner2 extends Outer.Inner1 {
 <h1>总结</h1>
 
 <p>说到口都干了：能用静态嵌套类解决，就不用内部类。
-<blockquote><p>Unless you have a compelling need for an enclosing instance, prefer static member classes over nonstatic.</p><footer><strong>EJ Item 18</strong></footer></blockquote></p>
+{% blockquote EJ Item 18 %}
+Unless you have a compelling need for an enclosing instance, prefer static member classes over nonstatic.
+{% endblockquote %}</p>
 
 <!--## 引用-->
 

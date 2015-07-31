@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Int | Hedley]]></title>
   <link href="http://hedleyyan.github.io/blog/categories/int/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2015-07-31T12:56:19+08:00</updated>
+  <updated>2015-07-31T15:27:33+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[hedley]]></name>
@@ -146,7 +146,9 @@ public class SuspiciousSort {
 
 <p>修改代码很简单，用现成的类库方法 <code>Collections.reverseOrder()</code> 提供逆序排列子。</p>
 
-<p><blockquote><p>Do not use a subtraction-based comparator unless you are sure that the difference between values will never be greater than Integer.MAX_VALUE.</p></blockquote></p>
+<p>{% blockquote %}
+Do not use a subtraction-based comparator unless you are sure that the difference between values will never be greater than Integer.MAX_VALUE.
+{% endblockquote %}</p>
 
 <h1>类型转换</h1>
 
@@ -249,7 +251,9 @@ public class SuspiciousSort {
 
 <p>因为 -1 的二进制表示 0xffff 有 32 位 1，所以输出应该是 32 吧？但是这是一个 <em>Infinite loop</em>。因为 -1 左移 32 位还是 -1。</p>
 
-<p><blockquote><p>Shift operators use only the five low-order bits of their right operand as the shift distance, or six bits if the left operand is a long.</p></blockquote></p>
+<p>{% blockquote %}
+Shift operators use only the five low-order bits of their right operand as the shift distance, or six bits if the left operand is a long.
+{% endblockquote %}</p>
 
 <h2><em>Puzzle 31: 组合运算符</em></h2>
 
@@ -260,7 +264,9 @@ public class SuspiciousSort {
 
 <p>给 <code>i</code> 一个声明，使上面的语句陷入 <em>Infinite loop</em>。</p>
 
-<p><blockquote><p>Compound assignment operators is that they can silently perform narrowing primitive conversions.</p></blockquote></p>
+<p>{% blockquote %}
+Compound assignment operators is that they can silently perform narrowing primitive conversions.
+{% endblockquote %}</p>
 
 <p>答案可以是 <code>short i = -1</code>。所有非 <code>long</code> 的整型在运算时都需要转换为 <code>int</code>，该运算的步骤拆分为</p>
 

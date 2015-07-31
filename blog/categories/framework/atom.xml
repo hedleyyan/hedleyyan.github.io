@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Framework | Hedley]]></title>
   <link href="http://hedleyyan.github.io/blog/categories/framework/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2015-07-31T12:56:19+08:00</updated>
+  <updated>2015-07-31T15:27:33+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[hedley]]></name>
@@ -24,7 +24,9 @@
 
 <p>关于 <em>Wrapper class</em> 的引出问题，个人认为比较<a href="http://programmers.stackexchange.com/questions/117628/why-are-wrapper-classes-not-suited-for-use-in-callback-frameworks">炫酷的解答</a>。</p>
 
-<p><blockquote><p>Because a wrapped object doesn&rsquo;t know of its wrapper, it passes a reference to itself(this) and callbacks elude the wrapper. This is known as the SELF problem <a href="https://static.aminer.org/pdf/PDF/000/522/451/using_prototypical_objects_to_implement_shared_behavior_in_object_oriented.pdf">Lieberman86</a>. This leads to subtle bugs, like the wrapper missing the event. Or the wrapper and wrapped object both registering for the same events - leading to duplicate processing and potential concurrency issues as well. If you don&rsquo;t know (don&rsquo;t have the source code) where callbacks are registered, it may be impossible to work around this problem.</p></blockquote></p>
+<p>{% blockquote %}
+Because a wrapped object doesn&rsquo;t know of its wrapper, it passes a reference to itself(this) and callbacks elude the wrapper. This is known as the SELF problem <a href="https://static.aminer.org/pdf/PDF/000/522/451/using_prototypical_objects_to_implement_shared_behavior_in_object_oriented.pdf">Lieberman86</a>. This leads to subtle bugs, like the wrapper missing the event. Or the wrapper and wrapped object both registering for the same events - leading to duplicate processing and potential concurrency issues as well. If you don&rsquo;t know (don&rsquo;t have the source code) where callbacks are registered, it may be impossible to work around this problem.
+{% endblockquote %}</p>
 
 <h1>Panttern? Framework?</h1>
 
@@ -35,7 +37,10 @@
 
 <p><a href="https://www.dre.vanderbilt.edu/~schmidt/PDF/patterns-intro4.pdf">Introduction to Patterns and Frameworks</a> 和 <a href="http://stackoverflow.com/questions/320142/design-patterns-vs-frameworks">Design patterns vs Frameworks</a> 对这个问题都有比较系统的分析，各位看官可以细细品看一下。一言以蔽之，<em>pattern</em> 是解决某个具体问题的方案，<em>framework</em> 是一套系统架构可重用的组件（通常包括若干个 <em>pattern</em>），他们经常共同为软件系统的可重用性、可扩展性提供支持。</p>
 
-<p><blockquote><p>Patterns support reuse of software architecture and design: Patterns capture the static and dynamic structures and collaborations of successful solutions to problems that arise when building applications in a particular domain.<br/>Frameworks support reuse of detailed design and code: A framework is an integrated set of components that collaborate to provide a reusable architecture for a family of related applications.</p></blockquote></p>
+<p>{% blockquote %}
+Patterns support reuse of software architecture and design: Patterns capture the static and dynamic structures and collaborations of successful solutions to problems that arise when building applications in a particular domain.
+Frameworks support reuse of detailed design and code: A framework is an integrated set of components that collaborate to provide a reusable architecture for a family of related applications.
+{% endblockquote %}</p>
 
 <h1>Framework</h1>
 
@@ -43,7 +48,9 @@
 
 <p>打个比方：<em>Frameworks</em> 就是挖好了一堆坑，让你往里面填萝卜，填肥料。不同的肥料怎么找对应的萝卜 <em>Frameworks</em> 来接手，这个过程就是<strong>控制反转</strong>（<a href="https://en.wikipedia.org/wiki/Inversion_of_control">Inversion of Control</a>）啦。</p>
 
-<p><blockquote><p>Don&rsquo;t call us, we&rsquo;ll call you.</p><footer><strong>Hollywood principle</strong></footer></blockquote></p>
+<p>{% blockquote Hollywood principle %}
+Don&rsquo;t call us, we&rsquo;ll call you.
+{% endblockquote %}</p>
 
 <h3>Dependency injection</h3>
 
@@ -115,7 +122,9 @@ public class A {
 
 <h2>Decorator pattern</h2>
 
-<p><blockquote><p>Favor composition over inheritance. Inheritance propagates any flaws in the superclass’s API, while composition lets you design a new API that hides these flaws.</p></blockquote></p>
+<p>{% blockquote %}
+Favor composition over inheritance. Inheritance propagates any flaws in the superclass’s API, while composition lets you design a new API that hides these flaws.
+{% endblockquote %}</p>
 
 <p>装饰者模式是<em>继承可实例化的类</em>的替代解决方案，<a href="https://books.google.com.hk/books?id=ka2VUBqHiWkC&amp;pg=PA85&amp;dq=The+disadvantage+of+wrapper+classes&amp;hl=en&amp;sa=X&amp;ved=0CB0Q6AEwAGoVChMI5L-T5PnPxgIVCQuOCh1joQq6#v=onepage&amp;q=The%20disadvantage%20of%20wrapper%20classes&amp;f=false">Effective Java, Item 16</a> 一节的主题正是 <em>Favor composition over inheritance</em>。B 继承可实例化的类 A 有很多问题，比如</p>
 
