@@ -159,14 +159,107 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
+<h2>footnotes</h2>
 
+<p>保证你的 <em>octopress</em> 注脚插件已注册，<code>_config.yml</code> 默认是注册的，<em>kramdown</em> 也可以</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='scss'><span class='line'><span class="na">markdown</span><span class="o">:</span> <span class="n">rdiscount</span>
+</span><span class='line'><span class="n">rdiscount</span><span class="o">:</span>
+</span><span class='line'>  <span class="n">extensions</span><span class="o">:</span>
+</span><span class='line'>    <span class="o">-</span> <span class="n">footnotes</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>然后语法是这样</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='scss'><span class='line'><span class="na">对于一个不懂前端技术的人，能实现</span><span class="err"> </span><span class="na">bigfoot.js</span><span class="err"> </span><span class="na">动态注脚实在是太刺激了</span><span class="err">[</span><span class="na">^1]。</span>
+</span><span class='line'><span class="na">......</span>
+</span><span class='line'>
+</span><span class='line'><span class="err">[</span><span class="na">^1]</span><span class="o">:</span> <span class="err">效果赞炸</span>   
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>可能的问题</h2>
+
+<h3>什么都做了但没卵用</h3>
+
+<p>到这里如果没有意外应该就是妥妥的了，不幸的是我正是意外制造机。折腾了半天发现没有卵用，还是默认的 <em>octopress footnotes</em> 的效果，打开控制台发现有一行诡异的错误输出</p>
+
+<p><img src="/images/bigfoot/bigfoot_exception.png" width="750" height="500"></p>
+
+<p>这是闹啥嘞，明明就是从官网 copy 下来的啊。找了两个使用了 bigfoot 的网页<sup id="fnref:5"><a href="#fn:5" rel="footnote">5</a></sup>看其源代码，根本就是一样的嘛为毛我这报错？</p>
+
+<p>开始以为是和页脚自动生成原文链接那有冲突，卸了还是一样报错。几番折腾，发现了破解大法：<strong>把 bigfoot.js 的注册写在 head.html 的开头</strong>。为什么会这样我不知道，如果好心的你知道可能的原因就偷偷告诉我吧！</p>
+
+<p>移魂大法以后不报错了，显示也妥，只是在页尾还是有冗余的注脚信息。参照 <a href="http://www.bigfootjs.com/#options">options</a> 给我们的 bigfoot 加一些修饰</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>  <span class="nx">$</span><span class="p">.</span><span class="nx">bigfoot</span><span class="p">({</span>
+</span><span class='line'>    <span class="nx">actionOriginalFN</span><span class="o">:</span> <span class="s2">&quot;delete&quot;</span><span class="p">,</span>
+</span><span class='line'>    <span class="nx">activateOnHover</span><span class="o">:</span> <span class="s2">&quot;true&quot;</span><span class="p">,</span>
+</span><span class='line'>    <span class="nx">deleteOnUnhover</span><span class="o">:</span> <span class="s2">&quot;true&quot;</span><span class="p">,</span>
+</span><span class='line'>    <span class="nx">hoverDelay</span><span class="o">:</span> <span class="s2">&quot;500&quot;</span>
+</span><span class='line'>  <span class="p">});</span>
+</span><span class='line'><span class="nt">&lt;/script&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>首页不显示效果</h3>
+
+<p>如果 <em>Post</em> 里用了 <code>&lt;!--more--&gt;</code> 分页，那么显示在首页的注脚是没有效果的</p>
+
+<p><img src="/images/bigfoot/compare_1.png" width="500" height="250" title="首页" ></p>
+
+<p><font size="24px" color="red"><em>VS</em></font></p>
+
+<p><img src="/images/bigfoot/compare_2.png" width="500" height="250" title="Post" ></p>
+
+<p>这个没想到简单的解决办法<sup id="fnref:6"><a href="#fn:6" rel="footnote">6</a></sup>，要么分页前不包括注脚，要么不分页。</p>
+
+<p>大功告成，撒花 🌺🌺</p>
+
+<p><br/><br/><p class='post-footer'>
+            original link:
+            <a href='http://hedleyyan.github.io/blog/2015/07/31/bigfoot-dot-js-zhu-jiao-shi-xian/'><a href="http://hedleyyan.github.io/blog/2015/07/31/bigfoot-dot-js-zhu-jiao-shi-xian/">http://hedleyyan.github.io/blog/2015/07/31/bigfoot-dot-js-zhu-jiao-shi-xian/</a></a><br/>
+            written by <a href='http://hedleyyan.github.io'>hedley</a>
+            &nbsp;posted at <a href='http://hedleyyan.github.io'><a href="http://hedleyyan.github.io">http://hedleyyan.github.io</a></a>
+            </p></p>
+<div class="footnotes">
+<hr/>
+<ol>
+<li id="fn:1">
+<p>效果赞炸<a href="#fnref:1" rev="footnote">&#8617;</a></p></li>
+<li id="fn:2">
+<p>但能实现才是最牛逼的    <a href="#fnref:2" rev="footnote">&#8617;</a></p></li>
+<li id="fn:3">
+<p>For MAC, Windows 平台的快捷键是 F12<a href="#fnref:3" rev="footnote">&#8617;</a></p></li>
+<li id="fn:4">
+<p>我是前端小白，我期待你也是，不许笑<a href="#fnref:4" rev="footnote">&#8617;</a></p></li>
+<li id="fn:5">
+<p>http://blog.honekamp.net/blog/2013/12/23/bigfoot-on-the-main-page/<a href="#fnref:5" rev="footnote">&#8617;</a></p></li>
+<li id="fn:6">
+<p>80/20, leave it alone&hellip;<a href="#fnref:6" rev="footnote">&#8617;</a></p></li>
+</ol>
+</div>
 
 </div>
   
-  
-    <footer>
-      <a rel="full-article" href="/blog/2015/07/31/bigfoot-dot-js-zhu-jiao-shi-xian/">Read on &rarr;</a>
-    </footer>
   
 
 
