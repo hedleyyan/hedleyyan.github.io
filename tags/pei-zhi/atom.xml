@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: 配置 | Hedley]]></title>
   <link href="http://hedleyyan.github.io/tags/pei-zhi/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2015-07-31T09:33:01+08:00</updated>
+  <updated>2015-07-31T10:46:03+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[hedley]]></name>
@@ -12,6 +12,63 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[bigfoot.js 注脚实现]]></title>
+    <link href="http://hedleyyan.github.io/blog/2015/07/31/bigfoot-dot-js-zhu-jiao-shi-xian/"/>
+    <updated>2015-07-31T09:41:35+08:00</updated>
+    <id>http://hedleyyan.github.io/blog/2015/07/31/bigfoot-dot-js-zhu-jiao-shi-xian</id>
+    <content type="html"><![CDATA[<p>对于一个不懂前端技术的人，能实现 bigfoot.js 动态注脚实在是太刺激了<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>。</p>
+
+<p>其实<a href="http://www.bigfootjs.com/">官网</a>上说的已经够多，但前端白痴如我，还是绕了好多弯子，捉急<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup>。</p>
+
+<h2>下载</h2>
+
+<p>下载 <a href="http://www.bigfootjs.com/download/bigfoot.zip">bigfoot.js 源码</a>，解压缩后其中的 <code>bigfoot.js</code> 和 <code>bigfoot-default.scss</code> 有用，其他可删。</p>
+
+<p>还需要 <code>jquery</code> 模块支持，我用的是 <code>jquery-1.9.1.min.js</code>。你可以通过 <code>command</code> + <code>alt</code> + <code>i</code> 组合键打开开发人员工具<sup id="fnref:3"><a href="#fn:3" rel="footnote">3</a></sup>，通过 <code>Source</code> ▶ <code>javascripts</code> ▶️ <code>jquery-1.9.1.min.js</code> ▶️ 右键 ▶️ <code>Save</code> 来获取<sup id="fnref:4"><a href="#fn:4" rel="footnote">4</a></sup>。</p>
+
+<p><img src="/images/findJS.png" width="750" height="500"></p>
+
+<h2>加载</h2>
+
+<p><code>bigfoot.js</code> 拖到 <code>source/javascripts</code> 文件夹，然后编辑 <code>source/_includes/custom/head.html</code>。添加以下代码</p>
+
+<p>&#8220;`html</p>
+
+<script src="/javascripts/jquery-1.9.1.min.js" type="text/javascript"></script>
+
+
+<script src="/javascripts/bigfoot.js" type="text/javascript"></script>
+
+
+<script type="text/javascript">
+  $.bigfoot();
+</script>
+
+
+<pre><code>
+`bigfoot-default.scss` 拖到 `sass/custom`，在 `sass/custom/_styles.scss` 中注册。一行代码
+</code></pre>
+
+<p>@import &ldquo;bigfoot-default.scss&rdquo;;
+&#8220;`</p>
+<div class="footnotes">
+<hr/>
+<ol>
+<li id="fn:1">
+<p>效果赞炸<a href="#fnref:1" rev="footnote">&#8617;</a></p></li>
+<li id="fn:2">
+<p>但能实现才是最牛逼的    <a href="#fnref:2" rev="footnote">&#8617;</a></p></li>
+<li id="fn:3">
+<p>For MAC, Windows 平台的快捷键是 F12<a href="#fnref:3" rev="footnote">&#8617;</a></p></li>
+<li id="fn:4">
+<p>我是前端小白，我期待你也是，不许笑<a href="#fnref:4" rev="footnote">&#8617;</a></p></li>
+</ol>
+</div>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Sublime Text 光标焦点集中到 FOLDERS 状态栏]]></title>

@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://hedleyyan.github.io/blog/2015/07/31/bigfoot-dot-js-zhu-jiao-shi-xian/</loc>
+    <lastmod>2015-07-31T09:41:35+08:00</lastmod>
+  </url>
+  <url>
     <loc>http://hedleyyan.github.io/blog/2015/07/18/fu-ze-ren-zai-tan-callback-yu-delegation/</loc>
     <lastmod>2015-07-18T15:03:11+08:00</lastmod>
   </url>
@@ -70,9 +74,6 @@
     <loc>http://hedleyyan.github.io/blog/categories/ji-zhu/</loc>
   </url>
   <url>
-    <loc>http://hedleyyan.github.io/blog/categories/java/</loc>
-  </url>
-  <url>
     <loc>http://hedleyyan.github.io/blog/categories/octopress/</loc>
   </url>
   <url>
@@ -91,15 +92,6 @@
     <loc>http://hedleyyan.github.io/blog/categories/int/</loc>
   </url>
   <url>
-    <loc>http://hedleyyan.github.io/blog/categories/char/</loc>
-  </url>
-  <url>
-    <loc>http://hedleyyan.github.io/blog/categories/byte/</loc>
-  </url>
-  <url>
-    <loc>http://hedleyyan.github.io/blog/categories/long/</loc>
-  </url>
-  <url>
     <loc>http://hedleyyan.github.io/blog/categories/sublime-text/</loc>
   </url>
   <url>
@@ -112,18 +104,9 @@
     <loc>http://hedleyyan.github.io/blog/categories/callback/</loc>
   </url>
   <url>
-    <loc>http://hedleyyan.github.io/blog/categories/message-forward/</loc>
-  </url>
-  <url>
-    <loc>http://hedleyyan.github.io/blog/categories/patter/</loc>
-  </url>
-  <url>
     <loc>http://hedleyyan.github.io/blog/categories/delegation/</loc>
   </url>
   <url>
     <loc>http://hedleyyan.github.io/blog/categories/proxy/</loc>
-  </url>
-  <url>
-    <loc>http://hedleyyan.github.io/blog/categories/dynamic-proxy/</loc>
   </url>
 </urlset>
