@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Octopress | Hedley]]></title>
   <link href="http://hedleyyan.github.io/blog/categories/octopress/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2015-07-31T11:48:39+08:00</updated>
+  <updated>2015-07-31T11:51:50+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[hedley]]></name>
@@ -51,6 +51,9 @@
 
 <p>@import &ldquo;bigfoot-default.scss&rdquo;;
 &#8220;`</p>
+
+<!--more-->
+
 
 <h2>footnotes</h2>
 

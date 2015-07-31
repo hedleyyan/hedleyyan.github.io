@@ -4,7 +4,7 @@
   <title><![CDATA[Hedley]]></title>
   <link href="http://hedleyyan.github.io/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2015-07-31T11:48:39+08:00</updated>
+  <updated>2015-07-31T11:51:50+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[hedley]]></name>
@@ -50,6 +50,11 @@
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='scss'><span class='line'><span class="k">@import</span> <span class="s2">&quot;bigfoot-default.scss&quot;</span><span class="p">;</span>
 </span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<!--more-->
 
 
 <h2>footnotes</h2>
