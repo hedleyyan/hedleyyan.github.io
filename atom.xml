@@ -4,7 +4,7 @@
   <title><![CDATA[Hedley]]></title>
   <link href="http://hedleyyan.github.io/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2015-07-31T10:46:03+08:00</updated>
+  <updated>2015-07-31T11:25:00+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[hedley]]></name>
@@ -18,9 +18,7 @@
     <link href="http://hedleyyan.github.io/blog/2015/07/31/bigfoot-dot-js-zhu-jiao-shi-xian/"/>
     <updated>2015-07-31T09:41:35+08:00</updated>
     <id>http://hedleyyan.github.io/blog/2015/07/31/bigfoot-dot-js-zhu-jiao-shi-xian</id>
-    <content type="html"><![CDATA[<p>对于一个不懂前端技术的人，能实现 bigfoot.js 动态注脚实在是太刺激了<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>。</p>
-
-<p>其实<a href="http://www.bigfootjs.com/">官网</a>上说的已经够多，但前端白痴如我，还是绕了好多弯子，捉急<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup>。</p>
+    <content type="html"><![CDATA[<p>对于一个不懂前端技术的人，能实现 bigfoot.js 动态注脚实在是太刺激了<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>。其实<a href="http://www.bigfootjs.com/">官网</a>上说的已经够多，但前端白痴如我，还是绕了好多弯子，捉急<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup>。</p>
 
 <h2>下载</h2>
 
@@ -53,6 +51,38 @@
 </pre></td><td class='code'><pre><code class='scss'><span class='line'><span class="k">@import</span> <span class="s2">&quot;bigfoot-default.scss&quot;</span><span class="p">;</span>
 </span></code></pre></td></tr></table></div></figure>
 
+
+<h2>footnotes</h2>
+
+<p>保证你的 <em>octopress</em> 注脚插件已注册，<code>_config.yml</code> 默认是注册的，<em>kramdown</em> 也可以</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='scss'><span class='line'><span class="na">markdown</span><span class="o">:</span> <span class="n">rdiscount</span>
+</span><span class='line'><span class="n">rdiscount</span><span class="o">:</span>
+</span><span class='line'>  <span class="n">extensions</span><span class="o">:</span>
+</span><span class='line'>    <span class="o">-</span> <span class="n">footnotes</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>然后语法是这样</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='scss'><span class='line'><span class="na">对于一个不懂前端技术的人，能实现</span><span class="err"> </span><span class="na">bigfoot.js</span><span class="err"> </span><span class="na">动态注脚实在是太刺激了</span><span class="err">[</span><span class="na">^1]。</span>
+</span><span class='line'><span class="na">......</span>
+</span><span class='line'>
+</span><span class='line'><span class="err">[</span><span class="na">^1]</span><span class="o">:</span> <span class="err">效果赞炸</span>   
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>加工</h2>
+
+<p>到这里如果没有意外应该就是妥妥的了，不幸的是我是意外制造机。</p>
 
 <p><br/><br/><p class='post-footer'>
             original link:
