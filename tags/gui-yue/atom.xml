@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: 规约 | Hedley]]></title>
   <link href="http://hedleyyan.github.io/tags/gui-yue/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2015-07-31T17:22:37+08:00</updated>
+  <updated>2015-08-02T12:22:29+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[hedley]]></name>
@@ -22,9 +22,7 @@
 
 <h1>Overriding</h1>
 
-<p>{% blockquote JLS 8.4.8.1%}
-An instance method overrides all accessible instance methods with the same signature in superclasses.
-{% endblockquote %}</p>
+<p><blockquote><p>An instance method overrides all accessible instance methods with the same signature in superclasses.</p><footer><strong>JLS 8.4.8.1</strong></footer></blockquote></p>
 
 <p>重写的规范定义包括：</p>
 
@@ -52,9 +50,7 @@ An instance method overrides all accessible instance methods with the same signa
 
 <h1>Overloading</h1>
 
-<p>{% blockquote JLS 8.4.9%}
-Methods in a class overload one another if they have the same name and different signatures.
-{% endblockquote %}</p>
+<p><blockquote><p>Methods in a class overload one another if they have the same name and different signatures.</p><footer><strong>JLS 8.4.9</strong></footer></blockquote></p>
 
 <p>重载和重写是 <em>Name Reuse</em> 出现最多的场景。相对于重写，重载规范包括：</p>
 
@@ -73,9 +69,7 @@ Methods in a class overload one another if they have the same name and different
 
 <h1>Hiding</h1>
 
-<p>{% blockquote JLS 8.3-8.5%}
-A field, static method, or member type hides all accessible fields, static methods, or member types, respectively, with the same name (or, for methods, signature) in supertypes. Hiding a member prevents it from being inherited.
-{% endblockquote %}</p>
+<p><blockquote><p>A field, static method, or member type hides all accessible fields, static methods, or member types, respectively, with the same name (or, for methods, signature) in supertypes. Hiding a member prevents it from being inherited.</p><footer><strong>JLS 8.3-8.5</strong></footer></blockquote></p>
 
 <p><em>Hiding</em> 和 <em>Overriding</em> 场景比较像，<em>Overriding</em> 的载体是实例方法，而 <em>Hiding</em> 的载体是除去实例方法以外的其他所有元素。</p>
 
@@ -110,15 +104,11 @@ A field, static method, or member type hides all accessible fields, static metho
 
 <p>很明显，<em>Hiding</em> 的代码是晦涩难懂的，更重要的是它破坏了 <em>Liskov</em> 替换原则。应极力避免这种 <em>Name Reuse</em> 场景。</p>
 
-<p>{% blockquote Liskov Substitution Principle%}
-Everything you can do with a base class, you can also do with a derived class.
-{% endblockquote %}</p>
+<p><blockquote><p>Everything you can do with a base class, you can also do with a derived class.</p><footer><strong>Liskov Substitution Principle</strong></footer></blockquote></p>
 
 <h1><a name='shadowing'>Shadowing</a></h1>
 
-<p>{% blockquote JLS 6.3.1%}
-A variable, method, or type shadows all variables, methods, or types, respectively, with the same name in a textually enclosing scope.
-{% endblockquote %}</p>
+<p><blockquote><p>A variable, method, or type shadows all variables, methods, or types, respectively, with the same name in a textually enclosing scope.</p><footer><strong>JLS 6.3.1</strong></footer></blockquote></p>
 
 <ul>
 <li>Context 可能只有一个类，也可能包括别的函数库的类。</li>
@@ -173,9 +163,7 @@ A variable, method, or type shadows all variables, methods, or types, respective
 }
 </code></pre>
 
-<p>{% blockquote %}
-If a type or a package is obscured, you cannot refer to it by its simple name except in a context where the syntax allows only a name from its namespace.
-{% endblockquote %}</p>
+<p><blockquote><p>If a type or a package is obscured, you cannot refer to it by its simple name except in a context where the syntax allows only a name from its namespace.</p></blockquote></p>
 
 <h1>常见陷阱</h1>
 

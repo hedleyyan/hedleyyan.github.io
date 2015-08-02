@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Float | Hedley]]></title>
   <link href="http://hedleyyan.github.io/blog/categories/float/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2015-07-31T17:22:37+08:00</updated>
+  <updated>2015-08-02T12:22:29+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[hedley]]></name>
@@ -24,7 +24,7 @@
 
 <p>Java 浮点数定义采纳 <a href="http://www.eecs.berkeley.edu/~wkahan/ieee754status/IEEE754.PDF">IEEE Standard 754</a> 标准：单精度 <code>float</code> 32 位，双精度 <code>double</code> 64 位。本文主要以 <code>float</code> 为例。</p>
 
-<p>{% img /images/float.png %}</p>
+<p><img src="/images/float.png"></p>
 
 <!--more-->
 
@@ -54,7 +54,7 @@
 </ul>
 
 
-<p>{% img right /images/Snip20150622_1.png 300 350 %}</p>
+<p><img class="right" src="/images/Snip20150622_1.png" width="300" height="350"></p>
 
 <ul>
 <li>特殊表示
@@ -169,9 +169,7 @@
 
 <p>无穷大不用说。因为浮点数不能精确保存值，当一个数很大时，它的后继邻接数 <em>(ulp)</em> 与其差值可以大于 1 。</p>
 
-<p>{% blockquote %}
-The distance between adjacent floating-point values is called an ulp, which is an acronym for unit in the last place. In release 5.0, the Math.ulp method was introduced to calculate the ulp of a float or double value.
-{% endblockquote %}</p>
+<p><blockquote><p>The distance between adjacent floating-point values is called an ulp, which is an acronym for unit in the last place. In release 5.0, the Math.ulp method was introduced to calculate the ulp of a float or double value.</p></blockquote></p>
 
 <p><strong>秘籍：不要用浮点数做循环索引。</strong></p>
 

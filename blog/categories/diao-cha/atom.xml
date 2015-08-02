@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 调查 | Hedley]]></title>
   <link href="http://hedleyyan.github.io/blog/categories/diao-cha/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2015-07-31T17:22:37+08:00</updated>
+  <updated>2015-08-02T12:22:29+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[hedley]]></name>
@@ -41,7 +41,7 @@
 
 <h2>您认为现阶段哪几条道路设计比较优秀，您觉得哪些地方做的好</h2>
 
-<p>{% img /images/yingbindadao.jpg %}</p>
+<p><img src="/images/yingbindadao.jpg"></p>
 
 <!--more-->
 

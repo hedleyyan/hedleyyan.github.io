@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Octopress | Hedley]]></title>
   <link href="http://hedleyyan.github.io/blog/categories/octopress/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2015-07-31T17:22:37+08:00</updated>
+  <updated>2015-08-02T12:22:29+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[hedley]]></name>
@@ -26,7 +26,7 @@
 
 <p>还需要 <code>jquery</code> 模块支持，我用的是 <code>jquery-1.9.1.min.js</code>。你可以通过 <code>command</code> + <code>alt</code> + <code>i</code> 组合键打开开发人员工具<sup id="fnref:3"><a href="#fn:3" rel="footnote">3</a></sup>，通过 <code>Source</code> ▶ <code>javascripts</code> ▶️ <code>jquery-1.9.1.min.js</code> ▶️ 右键 ▶️ <code>Save</code> 来获取<sup id="fnref:4"><a href="#fn:4" rel="footnote">4</a></sup>。</p>
 
-<p>{% img /images/bigfoot/findJS.png 750 500 %}</p>
+<p><img src="/images/bigfoot/findJS.png" width="750" height="500"></p>
 
 <h2>加载</h2>
 
@@ -34,10 +34,10 @@
 
 <p>&#8220;`html</p>
 
-<script src="{{ root_url }}/javascripts/jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="/javascripts/jquery-1.9.1.min.js" type="text/javascript"></script>
 
 
-<script src="{{ root_url }}/javascripts/bigfoot.js" type="text/javascript"></script>
+<script src="/javascripts/bigfoot.js" type="text/javascript"></script>
 
 
 <script type="text/javascript">
@@ -64,7 +64,7 @@ rdiscount:
 
 <p>然后语法是这样</p>
 
-<pre><code class="markdown">对于一个不懂前端技术的人，能实现 bigfoot.js 动态注脚实在是太刺激了[^1]。
+<pre><code>对于一个不懂前端技术的人，能实现 bigfoot.js 动态注脚实在是太刺激了[^1]。
 ......
 </code></pre>
 
@@ -77,7 +77,7 @@ rdiscount:
 <pre><code>Uncaught TypeError: $.bigfoot is not a function
 </code></pre>
 
-<p>{% img /images/bigfoot/bigfoot_exception.png 750 500 %}</p>
+<p><img src="/images/bigfoot/bigfoot_exception.png" width="750" height="500"></p>
 
 <p>这是闹啥嘞，明明就是从官网 copy 下来的啊。找了两个使用了 bigfoot 的网页<sup id="fnref:5"><a href="#fn:5" rel="footnote">5</a></sup>看其源代码，根本就是一样的嘛为毛我这报错？</p>
 
@@ -103,11 +103,11 @@ rdiscount:
 
 <p>如果 <em>Post</em> 里用了 <code>&lt;!--more--&gt;</code> 分页，那么显示在首页的注脚是没有效果的</p>
 
-<p>{% img /images/bigfoot/compare_1.png 500 250 首页 %}</p>
+<p><img src="/images/bigfoot/compare_1.png" width="500" height="250" title="首页" ></p>
 
 <p><font size="24px" color="red"><em>VS</em></font></p>
 
-<p>{% img /images/bigfoot/compare_2.png 500 250 Post %}</p>
+<p><img src="/images/bigfoot/compare_2.png" width="500" height="250" title="Post" ></p>
 
 <p>这个没想到简单的解决办法<sup id="fnref:6"><a href="#fn:6" rel="footnote">6</a></sup>，要么分页前部分不包括注脚，要么不分页。</p>
 
@@ -176,7 +176,7 @@ rdiscount:
 
 
 <p>效果如下
-{% img /images/Snip20150525_38.png %}</p>
+<img src="/images/Snip20150525_38.png"></p>
 
 <h1><em>TOC (Table of Contents)</em></h1>
 
