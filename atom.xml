@@ -4,7 +4,7 @@
   <title><![CDATA[Hedley]]></title>
   <link href="http://hedleyyan.github.io/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2015-08-02T13:10:36+08:00</updated>
+  <updated>2015-08-05T22:13:55+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[hedley]]></name>
@@ -14,7 +14,7 @@
 
   
   <entry>
-    <title type="html"><![CDATA[五分钟在 Octopress 上实现 bigfoot.js 注脚]]></title>
+    <title type="html"><![CDATA[bigfoot.js 注脚之 Octopress 篇]]></title>
     <link href="http://hedleyyan.github.io/blog/2015/07/31/bigfoot-dot-js-zhu-jiao-shi-xian/"/>
     <updated>2015-07-31T09:41:35+08:00</updated>
     <id>http://hedleyyan.github.io/blog/2015/07/31/bigfoot-dot-js-zhu-jiao-shi-xian</id>
