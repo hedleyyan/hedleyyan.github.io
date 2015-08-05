@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: Java | Hedley]]></title>
   <link href="http://hedleyyan.github.io/tags/java/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2015-08-05T22:13:55+08:00</updated>
+  <updated>2015-08-05T23:40:29+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[hedley]]></name>
@@ -12,6 +12,29 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[MySQL5.5 以下版本通过 Java 转义实现 Emoji 存取]]></title>
+    <link href="http://hedleyyan.github.io/blog/2015/08/05/mysql5-dot-5-yi-xia-ban-ben-tong-guo-java-zhuan-yi-shi-xian-emoji-cun-qu/"/>
+    <updated>2015-08-05T22:41:19+08:00</updated>
+    <id>http://hedleyyan.github.io/blog/2015/08/05/mysql5-dot-5-yi-xia-ban-ben-tong-guo-java-zhuan-yi-shi-xian-emoji-cun-qu</id>
+    <content type="html"><![CDATA[<p>我不输出好文，我只是好文的搬运工。<a href="http://cenalulu.github.io/linux/character-encoding">十分钟搞清字符集和字符编码</a>带你走进 <em>Unicode</em> 和 <em>UTF-8</em> 的前世今生。总而言之，<em>Unicode</em> 是标准，<em>UTF-8</em> 是实现。</p>
+
+<p>通常 MySQL 的默认字符集都会配置为 <em>UTF-8</em>，只支持单字符不超过 3 bytes 的存储<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>。常见的 <em><a href="https://en.wikipedia.org/wiki/Emoji">Emoji</a></em> 的 <em>Unicode</em> 编码位于 <code>\u1F601 - \u1F64F</code> 区间，以 <code>\u1F300</code> 举例，它的二进制表示为 <code>11111001100000000</code><sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup>，共有 17 位，无法用三字节的 <em>UTF-8</em> 编码表示<sup id="fnref:3"><a href="#fn:3" rel="footnote">3</a></sup>。</p>
+<div class="footnotes">
+<hr/>
+<ol>
+<li id="fn:1">
+<p>MySQL5.5 版本以后有对 <em>4 bytes</em> 单字符的原生支持，字符集配置成 <em>utf8mb4</em><a href="#fnref:1" rev="footnote">&#8617;</a></p></li>
+<li id="fn:2">
+<p>Java 实现为 <code>Integer.toBinaryString(Integer.valueOf("1F300",16))</code><a href="#fnref:2" rev="footnote">&#8617;</a></p></li>
+<li id="fn:3">
+<p>请看十分钟系列的实现细节，三字节的 <em>UTF-8</em> 编码上限是 16 位『4 + 6 + 6』，<code>11111 001100 000000</code> 对应的 <em>UTF-8</em> 编码为 <code>11110000 10011111 10001100 10000000</code>，即<strong>\xF0</strong>&hellip;，MySQL 经常会冒出这种异常<a href="#fnref:3" rev="footnote">&#8617;</a></p></li>
+</ol>
+</div>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[负责任再谈 Callback 与 Delegation]]></title>
@@ -1080,358 +1103,6 @@ public class SuspiciousSort {
 <li><a href="http://justjavac.iteye.com/blog/1073775">学习 Java 浮点数必看文章</a></li>
 <li><a href="http://hujiantao224.iteye.com/blog/727155">Java 浮点数表示详解</a></li>
 </ul>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[荒谬痛苦的内部类]]></title>
-    <link href="http://hedleyyan.github.io/blog/2015/06/05/huang-miu-tong-ku-de-nei-bu-lei/"/>
-    <updated>2015-06-05T11:25:38+08:00</updated>
-    <id>http://hedleyyan.github.io/blog/2015/06/05/huang-miu-tong-ku-de-nei-bu-lei</id>
-    <content type="html"><![CDATA[<h1><a name="about">关于</a></h1>
-
-<p>此文简单总结嵌套类 <em>(Nested Class)</em> 的使用场景与一般建议：能使用<strong>静态嵌套类</strong> <em>(Static Nested Class)</em> 的时候就不用<strong>内部类</strong> <em>(Inner Class)</em>。</p>
-
-<p><blockquote><p>A nested class is any class whose declaration occurs within the body of another class or interface. A top level class is a class that is not a nested class.</p></blockquote></p>
-
-<!--more-->
-
-
-<h1>分类定义</h1>
-
-<h2>按位置</h2>
-
-<ul>
-<li>成员嵌套类 <em>(Member Nested Class)</em> ：作为外部类 <em>(Enclosing Class)</em> <strong>成员</strong>定义，成员嵌套类有 <em>Enclosing Class</em> 的属性。
-
-<ul>
-<li>可以使用 <code>public</code>、 <code>private</code> 等访问控制符，也可以用 <code>static</code>、 <code>final</code> 关键字</li>
-</ul>
-</li>
-<li>局部嵌套类 <em>(Local Nested Class)</em> ：局部嵌套类定义在 <em>Enclosing Class</em> 的方法里面，局部嵌套类有 <em>Enclosing Class</em> 的属性和外部方法 <em>(Enclosing Method)</em> 的属性。
-
-<ul>
-<li>可以使用 <code>final</code> 关键字，不能使用访问控制符</li>
-<li>局部类不能在外部进行创建，只能在方法调用的时候进行创建</li>
-<li><em>Enclosing Method</em> 可以是静态方法，可以是实例方法，也可以是构造器方法或者静态初始化语句块</li>
-<li>在 <code>static</code> 上下文定义的局部类，没有指向父类实例变量的引用</li>
-</ul>
-</li>
-<li>匿名嵌套类 <em>(Anonymous Nested Class)</em> ：匿名嵌套类没有显示的定义一个类，直接通过 <code>new</code> 的方法创建类的实例。
-
-<ul>
-<li>不使用任何关键字和访问控制符</li>
-</ul>
-</li>
-</ul>
-
-
-<h2>按功能</h2>
-
-<p>大多数情况下，嵌套类都按功能分为：</p>
-
-<ul>
-<li>静态嵌套类 <em>(Static Nested Class)</em> ：<code>static</code> 修饰的<strong>成员嵌套类</strong>。</li>
-<li>内部类 <em>(Inner Class)</em> ：静态嵌套类之外所有的嵌套类的总称。
-
-<ul>
-<li>内部类不能定义为 <code>static</code>，不能有 <code>static</code> 方法和 <code>static</code> 初始化语句块</li>
-<li>可以有 <code>static final</code> 常量属性，但不推荐这么用（放外部类就 <em>OK</em> ，为什么用在这？）</li>
-</ul>
-</li>
-</ul>
-
-
-<p>所以，局部嵌套类和匿名嵌套类肯定是内部类，成员嵌套类则分为静态嵌套类和内部类。</p>
-
-<p><blockquote><p>An inner class is a nested class that is not explicitly or implicitly declared static. Inner classes may not declare static initializers or member interfaces.</p></blockquote></p>
-
-<pre><code class="java">// 嵌套类实例代码，略
-</code></pre>
-
-<h1>痛苦场景</h1>
-
-<h2><em>Puzzle 80</em>：反射</h2>
-
-<pre><code class="java">public class Outer {
-    public static void main(String[] args) throws Exception {
-        new Outer().greetWorld();
-    }
-
-    private void greetWorld() throws Exception {
-        System.out.println(Inner.class.newInstance());
-    }
-
-    public class Inner {
-        public String toString() {
-            return "Hello world";
-        }
-    }
-}
-</code></pre>
-
-<p>代码看上去就是一个花样 <em>Hello world</em>，但是当你执行时，<em>Bazinga</em>！</p>
-
-<pre><code>Exception in thread "main" java.lang.InstantiationException: test.Outer$Inner
-    at java.lang.Class.newInstance0(Class.java:342)
-    at java.lang.Class.newInstance(Class.java:310)
-    at test.Outer.greetWorld(Outer.java:10)
-    at test.Outer.main(Outer.java:6)
-</code></pre>
-
-<p><em>OK</em> ，看来 <em>inner class</em> 持有 <em>enclosing class</em> 的一个实例变量 <em>(immediately enclosing instance)</em> 是真的！编译器没那么牛逼每次都可以悄悄替你做了所有的事，至少在使用反射初始化时， <em>enclosing class</em> 的 <em>instance</em> 不会传进来。</p>
-
-<p><blockquote><p>The constructor of a non-static nested class is compiled such that it has as its first parameter an additional implicit parameter representing the immediately enclosing instance.</p><footer><strong>JLS 13.1</strong></footer></blockquote></p>
-
-<p><blockquote><p>This parameter is passed implicitly when you invoke the constructor from any point in the code where the compiler can find an appropriate enclosing instance. But this applies only when you invoke the constructor normally: nonreflectively.</p></blockquote></p>
-
-<p>用含参的构造方法测试一下：</p>
-
-<pre><code class="java">private void greetWorld() throws Exception {
-       Constructor c = Inner.class.getConstructor(Outer.class);
-       System.out.println(c.newInstance(Outer.this));
-}
-</code></pre>
-
-<p><em>bingo</em> ！观察一下，这个场景中为什么要使用 <em>inner class</em> 呢，明明 <em>static nested class</em> 就可以嘛！ <em>so</em> 更帅的解决办法是：</p>
-
-<pre><code class="java">public static class Inner { ... }
-</code></pre>
-
-<p><strong>秘籍：能用静态嵌套类解决，就不用内部类。</strong></p>
-
-<h2><em>Puzzle 89</em>：泛型</h2>
-
-<pre><code class="java">public class LinkedList&lt;E&gt; {
-    private Node&lt;E&gt; head = null;
-
-    private class Node&lt;E&gt; {
-        E value;
-
-        Node&lt;E&gt; next;
-
-        // Node constructor links the node as a new head
-        Node(E value) {
-            this.value = value;
-            this.next = head;
-            head = this;
-        }
-    }
-
-    public void add(E e) {
-        new Node&lt;E&gt;(e);     // Link node as new head
-    }
-
-    public void dump() {
-        for (Node&lt;E&gt; n = head; n != null; n = n.next)
-            System.out.print(n.value + " ");
-    }
-
-    public static void main(String[] args) {
-        LinkedList&lt;String&gt; list = new LinkedList&lt;String&gt;();
-        list.add("world");
-        list.add("Hello");
-        list.dump();
-    }
-}
-</code></pre>
-
-<p>代码看上去就是另一个花样 <em>Hello world</em>，但是当你执行时，<em>Double Bazinga</em> ！</p>
-
-<pre><code>Exception in thread "main" java.lang.Error: Unresolved compilation problems: 
-    Type mismatch: cannot convert from LinkedList&lt;E&gt;.Node&lt;E&gt; to LinkedList&lt;E&gt;.Node&lt;E&gt;
-    Type mismatch: cannot convert from LinkedList&lt;E&gt;.Node&lt;E&gt; to LinkedList&lt;E&gt;.Node&lt;E&gt;
-
-    at test.LinkedList$Node.&lt;init&gt;(LinkedList.java:15)
-    at test.LinkedList.add(LinkedList.java:21)
-    at test.LinkedList.main(LinkedList.java:32)
-</code></pre>
-
-<p><code>LinkedList&lt;E&gt;.Node&lt;E&gt;</code> 和 <code>LinkedList&lt;E&gt;.Node&lt;E&gt;</code> 类型不符？？？</p>
-
-<p>原因是前面的 <code>Node&lt;E&gt;</code> 与后面的 <code>Node&lt;E&gt;</code> 虽然看上去一模一样，但它们压根就不是一个类型。具体点说，因为这段代码有两个 <code>&lt;E&gt;</code> 类型声明 <em>(type parameter)</em>，第一个是 <code>LinkedList</code> 的 <code>&lt;E&gt;</code> ，第二个是 <code>LinkedList.Node</code> 的 <code>&lt;E&gt;</code> 。后面的 <em><a href="http://hedleyyan.github.io/blog/2015/05/16/a-glossary-of-name-reuse/#shadowing">Shadow</a></em> 了前面的。</p>
-
-<p>如果这里把 <em>inner class</em> 的声明换一个 <em>type parameter</em> <code>Node&lt;T&gt;</code> ，可以看到更多一点的细节：</p>
-
-<pre><code>...
-    Type mismatch: cannot convert from LinkedList&lt;E&gt;.Node&lt;E&gt; to LinkedList&lt;E&gt;.Node&lt;T&gt;
-    Type mismatch: cannot convert from LinkedList&lt;E&gt;.Node&lt;T&gt; to LinkedList&lt;E&gt;.Node&lt;E&gt;
-...
-</code></pre>
-
-<p><blockquote><p>An inner class of a generic class has access to the type parameters of its outer class.</p></blockquote></p>
-
-<p><em>So</em>，<em>inner class</em> 可以访问 <em>enclosing class</em> 的各种属性，包括 <em>type parameter</em> 。</p>
-
-<p>这段代码的初衷本来就是 <code>Node</code> 持有和 <code>LinkedList</code> 一样的  <em>type parameter</em> ，所以我们可以这样修正：</p>
-
-<pre><code class="java">public class LinkedList&lt;E&gt; {
-    private Node head = null;
-
-    private class Node {
-        E value;
-
-        Node next;
-
-        // Node constructor links the node as a new head
-        Node(E value) {
-            this.value = value;
-            this.next = head;
-            head = this;
-        }
-    }
-
-    public void add(E e) {
-        new Node(e);        // Link node as new head
-    }
-
-    public void dump() {
-        for (Node n = head; n != null; n = n.next)
-            System.out.print(n.value + " ");
-    }
-}
-</code></pre>
-
-<p>但是这不是一个漂亮的修正。它的功能完全可以通过 <em>static nested class</em> 实现；并且 <em>inner class</em> 的构造方法里修改了 <em>enclosing class</em> 的属性 <code>head</code> ，<strong>这不是好的实践</strong>。</p>
-
-<p><blockquote><p>Change instance fields of a class only in its own instance methods.</p></blockquote></p>
-
-<p>更帅的解决方法当然是用 <em>static nested class</em> 实现 <code>Node</code> ，并且把对 <em>enclosing class</em> 的属性修改抽离出来。</p>
-
-<pre><code class="java">class LinkedList&lt;E&gt; {
-    private Node&lt;E&gt; head = null;
-
-    private static class Node&lt;T&gt; {
-        T value;
-
-        Node&lt;T&gt; next;
-
-        Node(T value, Node&lt;T&gt; next) {
-            this.value = value;
-            this.next = next;
-        }
-    }
-
-    public void add(E e) {
-        head = new Node&lt;E&gt;(e, head);
-    }
-
-    public void dump() {
-        for (Node&lt;E&gt; n = head; n != null; n = n.next)
-            System.out.print(n.value + " ");
-    }
-}
-</code></pre>
-
-<p>这样 <code>Node&lt;T&gt;</code> 完全与他的 <code>LinkedList&lt;E&gt;</code> 是解耦合的，想象一下你不止可以声明一个 <code>Node&lt;E&gt;</code> ，你完全可以声明 <code>Node&lt;Integer&gt;</code> 、 <code>Node&lt;String&gt;</code> ，是不是爽多了。</p>
-
-<p><strong>秘籍1：类 A 的成员变量，只在 A 的成员方法里改。</strong> <br>
-<strong>秘籍2：能用静态嵌套类解决，就不用内部类！！</strong></p>
-
-<h2><em>Puzzle 90</em>：嵌套继承</h2>
-
-<pre><code class="java">public class Outer {
-       class Inner1 extends Outer {}
-       class Inner2 extends Inner1 {}
-}
-</code></pre>
-
-<p>为什么这么简单的代码就是不给编译过呢？搞咩？不过这次的错误提示好像有点帮助。。</p>
-
-<pre><code>    No enclosing instance of type Outer is available due to some intermediate constructor invocation.
-    at test.Outer$Inner2.&lt;init&gt;(Outer.java:8)
-    ...
-</code></pre>
-
-<p><blockquote><p>The instantiation of an inner class, requires an enclosing instance to be supplied to the constructor. Normally, it is supplied implicitly, but it can also be supplied explicitly with a superclass constructor invocation of the form expression.super(args).</p><footer><strong>JLS 8.8.7</strong></footer></blockquote></p>
-
-<p>原来 <em>inner class</em> 可以显示调用 <em>enclosing instance</em> ，编译器帮不了还得自己来。和<a href="#puzzle-80">反射</a>很像嘛</p>
-
-<pre><code class="java">class Inner2 extends Inner1 {
-    // Plan A
-    Inner2(Outer outer) {
-        outer.super();
-    }
-}
-</code></pre>
-
-<p>也可以</p>
-
-<pre><code class="java">class Inner2 extends Inner1 {
-    // Plan B
-    Inner2() {
-        Outer.this.super();
-    }
-}
-</code></pre>
-
-<p><em>《Thinking in Java》</em> 推荐 <em>Plan A</em> 的写法，它更通用一些。如果 <code>Inner2</code> 不是 <code>Outer</code> 的 <em>inner class</em> ，它只能用 <em>Plan A</em> 的写法来继承 <code>Inner1</code>， 无论是否 <code>Inner1 extends Outer</code> 。</p>
-
-<pre><code class="java">public class Outer {
-    class Inner1 {};
-}
-
-class Inner2 extends Outer.Inner1 {
-    // Outer.this doesn't work here
-    public Inner2(Outer outer) {
-        outer.super();
-    }
-}
-</code></pre>
-
-<p><em>OK</em> ，是不是有点晕？晕就对了。无论何时，当你要写一个 <em>inner class</em> 的时候，问问自己，真的不可以用 <em>static nested class</em> 来代替吗？真的有必要吗？ <em>inner class</em> 还要继承 <em>enclosing class</em> ？真的真的有必要吗？</p>
-
-<p><strong>秘籍1：尽量避免继承内部类。</strong> <br>
-<strong>秘籍2：能用静态嵌套类解决，就不用内部类！！！！</strong></p>
-
-<h2><em>Puzzle 92</em>：另类匿名类</h2>
-
-<pre><code class="java">public class Twisted {
-    private final String name;
-
-    Twisted(String name) {
-        this.name = name;
-    }
-
-    private String name() {
-        return name;
-    }
-
-    private void reproduce() {
-        new Twisted("reproduce") {
-            void printName() {
-                System.out.println(name());
-            }
-        }.printName();
-    }
-
-    public static void main(String[] args) {
-        new Twisted("main").reproduce();
-    }
-}
-</code></pre>
-
-<p>肤浅的分析：无法编译！因为 <code>reproduce</code> 里面的 <em>anonymous class</em> 尝试访问 <code>Twisted</code> 的 <code>private</code>方法。而 <code>private</code> 的属性应该只有    <code>Twisted</code> 可以访问。 <br></p>
-
-<p><blockquote><p>Within a top-level type, all the local, inner, nested, and anonymous classes can access one another’s members without any restrictions.</p><footer><strong>JLS 6.6.1</strong></footer></blockquote></p>
-
-<p>其实 <em>nested class</em> 和 <em>enclosing class</em> 就是一家子， <em>enclosing class</em> 的所有成员变量都可以被 <em>nested class</em> 无限制访问。</p>
-
-<p>知道了这个振奋人心的消息后，你的答案可能是：输出 <code>reproduce</code> 。显而易见，我使用了 <code>reproduce</code> 作为参数传入构造函数产生实例 <code>new Twisted("reproduce")</code> ，调用 <code>printName()</code> 方法，再调用 <code>name()</code> 方法，输出。但很遗憾，它的输出是 <code>main</code> 。</p>
-
-<p><blockquote><p>Private members are never inherited.</p><footer><strong>JLS 8.2</strong></footer></blockquote></p>
-
-<p><strong>私有方法无法被继承！</strong> <em>This is the key</em>！ <em>So</em> ，<code>new Twisted("reproduce")</code> 实例没有 <code>name()</code> 方法，而 <code>printName()</code> 方法会依最小作用域找到 <code>enclosing instance</code> 的 <code>name()</code> 方法并调用。</p>
-
-<p><strong>秘籍：避免一个内部类继承它的外部类。</strong></p>
-
-<h1>总结</h1>
-
-<p>说到口都干了：能用静态嵌套类解决，就不用内部类。
-<blockquote><p>Unless you have a compelling need for an enclosing instance, prefer static member classes over nonstatic.</p><footer><strong>EJ Item 18</strong></footer></blockquote></p>
-
-<!--## 引用-->
 
 ]]></content>
   </entry>

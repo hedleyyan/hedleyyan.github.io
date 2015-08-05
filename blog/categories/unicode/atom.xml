@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Tag: tips | Hedley]]></title>
-  <link href="http://hedleyyan.github.io/tags/tips/atom.xml" rel="self"/>
+  <title><![CDATA[Category: Unicode | Hedley]]></title>
+  <link href="http://hedleyyan.github.io/blog/categories/unicode/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
   <updated>2015-08-05T23:40:29+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
@@ -32,31 +32,6 @@
 <p>请看十分钟系列的实现细节，三字节的 <em>UTF-8</em> 编码上限是 16 位『4 + 6 + 6』，<code>11111 001100 000000</code> 对应的 <em>UTF-8</em> 编码为 <code>11110000 10011111 10001100 10000000</code>，即<strong>\xF0</strong>&hellip;，MySQL 经常会冒出这种异常<a href="#fnref:3" rev="footnote">&#8617;</a></p></li>
 </ol>
 </div>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Sublime Text 光标焦点集中到 FOLDERS 状态栏]]></title>
-    <link href="http://hedleyyan.github.io/blog/2015/06/29/sublime-text-guang-biao-jiao-dian-ji-zhong-dao-folders-zhuang-tai-lan/"/>
-    <updated>2015-06-29T14:03:36+08:00</updated>
-    <id>http://hedleyyan.github.io/blog/2015/06/29/sublime-text-guang-biao-jiao-dian-ji-zhong-dao-folders-zhuang-tai-lan</id>
-    <content type="html"><![CDATA[<p>搜索了若干资料，如何让光标焦点从 Editor 移动到 FOLDERS 状态栏。偶然复现过一次，却百思不得其解。</p>
-
-<p>经过不懈尝试，终得破解大法！这下一口气看 LOG 不要太爽！</p>
-
-<ul>
-<li>点击 FOLDERS 中任意一个文件</li>
-<li>再次左键点击这个文件，不要松开，紧接着点击右键</li>
-<li>Bingo！</li>
-</ul>
-
-
-<p><strong>秘籍</strong>：左 C + [ 左 C + hold 2ms + 右 C ]，很有我当年三国战记配无限风书的神韵啊！</p>
-
-<p><img src="/images/fengshu.jpg"></p>
-
-<!--more-->
 
 ]]></content>
   </entry>
