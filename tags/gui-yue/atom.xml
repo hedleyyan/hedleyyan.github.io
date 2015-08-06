@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: 规约 | Hedley]]></title>
   <link href="http://hedleyyan.github.io/tags/gui-yue/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2015-08-06T14:04:44+08:00</updated>
+  <updated>2015-08-06T22:03:56+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[hedley]]></name>
@@ -29,17 +29,17 @@
 
 <h2>Java 过招 <em>Emoji</em></h2>
 
-<p>Java 存储字符的单元是 <code>char</code>，那么问题来了，16 位的 <code>char</code> 如何 handle 17 位的 <em>code point</em> 呢？</p>
+<p>Java 存储字符的单元是 <code>char</code>，那么问题来了，16 位的 <code>char</code> 如何 handle 17 位的 <em>Unicode</em> 呢？</p>
 
 <p><img src="/images/doughnut.png"></p>
 
-<p>喜闻乐见，Java 的单个 <code>char</code> 确实无法 handle 🌀。那么 ⚡ 为什么可以通过编译？相信聪明如你，一定可以查到 ⚡ 的 <em>code point</em> 是 <code>\u26A1</code>，Tada ~~ 所以 ⚡ 插入数据库中也是妥妥的。</p>
+<p>喜闻乐见，Java 的单个 <code>char</code> 确实无法 handle 🌀。那么 ⚡ 为什么可以通过编译？相信聪明如你，一定可以查到 ⚡ 的 <em>Unicode</em> 是 <code>\u26A1</code>，Tada ~~ 所以 ⚡ 插入数据库中也是妥妥的。</p>
 
 <p>速入 <a href="http://www.czyborra.com/utf/#Java">Java&rsquo;s Unicode Notation</a> 科普一下 Java 对 <em>Unicode</em> 的支持实现，配合<a href="http://chenbochiuan.vip.blog.163.com/blog/static/172332969201072784730795/">通俗易懂版</a>更赞<sup id="fnref:3"><a href="#fn:3" rel="footnote">3</a></sup>。原来 Java 存储单个字符的最小单元并不一定是单个 <code>char</code>，而是根据 <em>code point</em> 的范围确定。如果字符 <code>c</code> 的 <em>code point</em> 二进制表示不超过 16 位那么单个 <code>char</code> 可直接表示<sup id="fnref:4"><a href="#fn:4" rel="footnote">4</a></sup>；否则要进行以下处理，以 🌀 举例</p>
 
 <ul>
-<li>得到其 <em>code point</em> <code>\u1F300</code> 的二进制表示 <code>0001 11110011 00000000</code>，其高 10 位与低 10 位拆开备用</li>
-<li>高位偏移量 W1:<code>0xD7C0</code> 与低位偏移量 W2:<code>0xDC00</code> 分别与其高低 10 位相加处理，得到 <code>\uD83C</code> 与 <code>\uDF00</code><sup id="fnref:5"><a href="#fn:5" rel="footnote">5</a></sup></li>
+<li>把 <code>\u1F300</code> 的二进制表示 <code>0001 11110011 00000000</code>，其高 10 位与低 10 位拆开备用</li>
+<li>高位偏移量 W1 : <code>0xD7C0</code> 与低位偏移量 W2 : <code>0xDC00</code> 分别与其高低 10 位相加处理，得到 <code>\uD83C</code> 与 <code>\uDF00</code><sup id="fnref:5"><a href="#fn:5" rel="footnote">5</a></sup></li>
 <li>两个字符拼接 <code>\uD83C\uDF00</code> 得到 🌀</li>
 </ul>
 
@@ -113,10 +113,21 @@
 </span><span class='line'><span class="o">}</span>
 </span></code></pre></td></tr></table></div></figure></p>
 
-<p> 0001111100  1100000000</p>
+<h2>合体</h2>
 
-<p>1101 1000 0111 1100
-1101 1111 0000 0000</p>
+<p>Client 发送 <em>Emoji</em> 到后台，Java 却无法通过 JDBC 将其存储到 MySQL。如果我们遵循某个特定的转换规则，存储前转义一次，读取时再逆转义一次，那不就妥妥妥的了。你当然可以自己写，但是懒逼如我，更倾向于找<a href="https://github.com/vdurmont/emoji-java/">现货</a>。</p>
+
+<h2>引用</h2>
+
+<ul>
+<li><a href="http://cenalulu.github.io/linux/character-encoding">十分钟搞清字符集和字符编码</a></li>
+<li><a href="http://www.czyborra.com/utf/#Java">Java&rsquo;s Unicode Notation</a></li>
+<li><a href="http://stackoverflow.com/questions/2220366/get-unicode-value-of-a-character">Get unicode value of a character</a></li>
+<li><a href="http://stackoverflow.com/questions/6617491/how-to-convert-a-string-representation-of-unicode-hex-0x20000-to-the-int-code">Get character of a unicode value</a></li>
+<li><a href="http://code.iamcal.com/php/emoji/">Full Emoji Catalog</a></li>
+<li><a href="https://github.com/vdurmont/emoji-java/">emoji-java</a></li>
+</ul>
+
 <div class="footnotes">
 <hr/>
 <ol>
@@ -125,11 +136,11 @@
 <li id="fn:2">
 <p>请看十分钟系列的实现细节，三字节的 <em>UTF-8</em> 编码上限是 16 位『4 + 6 + 6』，<code>11111 001100 000000</code> 对应的 <em>UTF-8</em> 编码为 <code>11110000 10011111 10001100 10000000</code>，即 <strong>\xF0</strong>&hellip;，MySQL 经常会冒出这种异常<a href="#fnref:2" rev="footnote">&#8617;</a></p></li>
 <li id="fn:3">
-<p>勘误，通俗版中所说的 W1:<code>0xD800</code> 不对，应是 <code>0xD7C0</code>，已在评论中反映给原作者<a href="#fnref:3" rev="footnote">&#8617;</a></p></li>
+<p>勘误，通俗版中所说的 W1 : <code>0xD800</code> 不对，应是 <code>0xD7C0</code>，已在评论中反映给原作者<a href="#fnref:3" rev="footnote">&#8617;</a></p></li>
 <li id="fn:4">
 <p>比如『⚡』<a href="#fnref:4" rev="footnote">&#8617;</a></p></li>
 <li id="fn:5">
-<p><em>Unicode</em> 预留了替代区域 <code>\uD800 -- \uDFFF</code>[^6] 作为辅助，此区间的单个字符没有实际表示意义<a href="#fnref:5" rev="footnote">&#8617;</a></p></li>
+<p><em>Unicode</em> 预留了替代区域 <code>\uD800 -- \uDFFF</code> 作为辅助，此区间的单个字符没有实际表示意义<a href="#fnref:5" rev="footnote">&#8617;</a></p></li>
 </ol>
 </div>
 
