@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Unicode | Hedley]]></title>
   <link href="http://hedleyyan.github.io/blog/categories/unicode/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2015-08-06T10:06:12+08:00</updated>
+  <updated>2015-08-06T14:04:44+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[hedley]]></name>
@@ -20,20 +20,103 @@
     <id>http://hedleyyan.github.io/blog/2015/08/05/mysql5-dot-5-yi-xia-ban-ben-tong-guo-java-zhuan-yi-shi-xian-emoji-cun-qu</id>
     <content type="html"><![CDATA[<p>我不输出好文，我只是好文的搬运工。<a href="http://cenalulu.github.io/linux/character-encoding">十分钟搞清字符集和字符编码</a>带你走进 <em>Unicode</em> 和 <em>UTF-8</em> 的前世今生。总而言之，<em>Unicode</em> 是标准，<em>UTF-8</em> 是实现。</p>
 
-<h2>MySQL 篇</h2>
+<h2>MySQL 过招 <em>Emoji</em></h2>
 
-<p>通常 MySQL 的默认字符集都会配置为 <em>UTF-8</em>，只支持单字符不超过 3 bytes 的存储<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>。常见的 <em><a href="https://en.wikipedia.org/wiki/Emoji">Emoji</a></em> 的 <em>Unicode</em> 编码位于 <code>\u1F601--\u1F64F</code> 区间，以 <code>\u1F300</code> 『🌀』举例，它的二进制有 17 位，无法用三字节的 <em>UTF-8</em> 编码表示<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup>。如果通过 JDBC 将此字符尝试插入 MySQL 记录中，会得到以下异常</p>
+<p>通常 MySQL 的默认字符集都会配置为 <em>UTF-8</em>，只支持单字符不超过 3 bytes 的存储<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>。常见的 <em><a href="https://en.wikipedia.org/wiki/Emoji">Emoji</a></em> 的 <em>Unicode</em> 编码值 <em>code point</em> 位于 <code>\u1F601 -- \u1F64F</code> 区间，以 <code>\u1F300</code> 『🌀』举例，它的二进制有 17 位，无法用三字节的 <em>UTF-8</em> 编码表示<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup>。如果通过 JDBC 将此字符尝试插入 MySQL 记录中，会得到以下异常</p>
 
 <pre><code>java.lang.RuntimeException: java.sql.SQLException: Incorrect string value: '\xF0\x9F\x8C\x80' for column 'message' at row 1 
 </code></pre>
 
-<h2>Java 篇</h2>
+<h2>Java 过招 <em>Emoji</em></h2>
 
-<p>Java 存储字符的单元是 <code>char</code>，那么问题来了，16 位的 <code>char</code> 如何 handle 17 位的 <em>Unicode</em> 呢？</p>
+<p>Java 存储字符的单元是 <code>char</code>，那么问题来了，16 位的 <code>char</code> 如何 handle 17 位的 <em>code point</em> 呢？</p>
 
 <p><img src="/images/doughnut.png"></p>
 
-<p>Java 的单个 <code>char</code> 无法 handle 🌀，喜闻乐见。那么 ⚡ 为什么可以通过编译，相信聪明如你，一定可以查到 ⚡ 的 <em>Unicode</em> 是 <code>\u26A1</code>，Tada</p>
+<p>喜闻乐见，Java 的单个 <code>char</code> 确实无法 handle 🌀。那么 ⚡ 为什么可以通过编译？相信聪明如你，一定可以查到 ⚡ 的 <em>code point</em> 是 <code>\u26A1</code>，Tada ~~ 所以 ⚡ 插入数据库中也是妥妥的。</p>
+
+<p>速入 <a href="http://www.czyborra.com/utf/#Java">Java&rsquo;s Unicode Notation</a> 科普一下 Java 对 <em>Unicode</em> 的支持实现，配合<a href="http://chenbochiuan.vip.blog.163.com/blog/static/172332969201072784730795/">通俗易懂版</a>更赞<sup id="fnref:3"><a href="#fn:3" rel="footnote">3</a></sup>。原来 Java 存储单个字符的最小单元并不一定是单个 <code>char</code>，而是根据 <em>code point</em> 的范围确定。如果字符 <code>c</code> 的 <em>code point</em> 二进制表示不超过 16 位那么单个 <code>char</code> 可直接表示<sup id="fnref:4"><a href="#fn:4" rel="footnote">4</a></sup>；否则要进行以下处理，以 🌀 举例</p>
+
+<ul>
+<li>得到其 <em>code point</em> <code>\u1F300</code> 的二进制表示 <code>0001 11110011 00000000</code>，其高 10 位与低 10 位拆开备用</li>
+<li>高位偏移量 W1:<code>0xD7C0</code> 与低位偏移量 W2:<code>0xDC00</code> 分别与其高低 10 位相加处理，得到 <code>\uD83C</code> 与 <code>\uDF00</code><sup id="fnref:5"><a href="#fn:5" rel="footnote">5</a></sup></li>
+<li>两个字符拼接 <code>\uD83C\uDF00</code> 得到 🌀</li>
+</ul>
+
+
+<p><figure class='code'><figcaption><span> (EmojiCharacter.java)</span> <a href='/downloads/code/EmojiCharacter.java'>download</a></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kn">package</span> <span class="n">unicode</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">EmojiCharacter</span> <span class="o">{</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1">// high offset</span>
+</span><span class='line'>    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">W1</span> <span class="o">=</span> <span class="n">Integer</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="s">&quot;D7C0&quot;</span><span class="o">,</span><span class="mi">16</span><span class="o">);</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1">// low offset</span>
+</span><span class='line'>    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">W2</span> <span class="o">=</span> <span class="n">Integer</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="s">&quot;DC00&quot;</span><span class="o">,</span><span class="mi">16</span><span class="o">);</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>        <span class="c1">// 🌀的二进制字符串表示</span>
+</span><span class='line'>        <span class="n">String</span> <span class="n">doughnutBinary</span> <span class="o">=</span> <span class="n">Integer</span><span class="o">.</span><span class="na">toBinaryString</span><span class="o">(</span><span class="n">Integer</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="s">&quot;1F300&quot;</span><span class="o">,</span><span class="mi">16</span><span class="o">));</span>
+</span><span class='line'>        <span class="c1">// 拆成高低 10 位表示</span>
+</span><span class='line'>        <span class="n">String</span> <span class="n">highSetsBinary</span> <span class="o">=</span> <span class="n">doughnutBinary</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="n">doughnutBinary</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">-</span> <span class="mi">10</span><span class="o">);</span>
+</span><span class='line'>        <span class="n">String</span> <span class="n">lowSetsBinary</span> <span class="o">=</span> <span class="n">doughnutBinary</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="n">doughnutBinary</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">-</span> <span class="mi">10</span><span class="o">,</span> <span class="n">doughnutBinary</span><span class="o">.</span><span class="na">length</span><span class="o">());</span>
+</span><span class='line'>        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">highSetsBinary</span><span class="o">);</span>     <span class="c1">//    1111100</span>
+</span><span class='line'>        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">lowSetsBinary</span><span class="o">);</span>      <span class="c1">//    1100000000</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="c1">// 分别与偏移量相加，得到两个编码值</span>
+</span><span class='line'>        <span class="n">String</span> <span class="n">highSetsHexFixed</span> <span class="o">=</span> <span class="n">Integer</span><span class="o">.</span><span class="na">toHexString</span><span class="o">(</span><span class="n">W1</span> <span class="o">+</span> <span class="n">Integer</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">highSetsBinary</span><span class="o">,</span> <span class="mi">2</span><span class="o">));</span>
+</span><span class='line'>        <span class="n">String</span> <span class="n">lowSetsHexFixed</span> <span class="o">=</span> <span class="n">Integer</span><span class="o">.</span><span class="na">toHexString</span><span class="o">(</span><span class="n">W2</span> <span class="o">+</span> <span class="n">Integer</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">lowSetsBinary</span><span class="o">,</span> <span class="mi">2</span><span class="o">));</span>
+</span><span class='line'>        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">highSetsHexFixed</span><span class="o">);</span>   <span class="c1">//    d83c</span>
+</span><span class='line'>        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">lowSetsHexFixed</span><span class="o">);</span>    <span class="c1">//    df00</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="c1">// 拼接这两个编码值，还原字符表示</span>
+</span><span class='line'>        <span class="kt">char</span> <span class="n">highChar</span> <span class="o">=</span> <span class="o">(</span><span class="kt">char</span><span class="o">)</span><span class="n">Integer</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">highSetsHexFixed</span><span class="o">,</span> <span class="mi">16</span><span class="o">).</span><span class="na">intValue</span><span class="o">();</span>
+</span><span class='line'>        <span class="kt">char</span> <span class="n">lowChar</span> <span class="o">=</span> <span class="o">(</span><span class="kt">char</span><span class="o">)</span><span class="n">Integer</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">lowSetsHexFixed</span><span class="o">,</span> <span class="mi">16</span><span class="o">).</span><span class="na">intValue</span><span class="o">();</span>
+</span><span class='line'>        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">highChar</span><span class="o">);</span>           <span class="c1">//    ?     </span>
+</span><span class='line'>        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">lowChar</span><span class="o">);</span>            <span class="c1">//    ?</span>
+</span><span class='line'>        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">highChar</span> <span class="o">+</span> <span class="s">&quot;&quot;</span> <span class="o">+</span> <span class="n">lowChar</span><span class="o">);</span>    <span class="c1">//    🌀</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p> 0001111100  1100000000</p>
+
+<p>1101 1000 0111 1100
+1101 1111 0000 0000</p>
 <div class="footnotes">
 <hr/>
 <ol>
@@ -41,6 +124,12 @@
 <p>MySQL5.5 版本以后有对 <em>4 bytes</em> 单字符的原生支持，字符集配置为 <em>utf8mb4</em><a href="#fnref:1" rev="footnote">&#8617;</a></p></li>
 <li id="fn:2">
 <p>请看十分钟系列的实现细节，三字节的 <em>UTF-8</em> 编码上限是 16 位『4 + 6 + 6』，<code>11111 001100 000000</code> 对应的 <em>UTF-8</em> 编码为 <code>11110000 10011111 10001100 10000000</code>，即 <strong>\xF0</strong>&hellip;，MySQL 经常会冒出这种异常<a href="#fnref:2" rev="footnote">&#8617;</a></p></li>
+<li id="fn:3">
+<p>勘误，通俗版中所说的 W1:<code>0xD800</code> 不对，应是 <code>0xD7C0</code>，已在评论中反映给原作者<a href="#fnref:3" rev="footnote">&#8617;</a></p></li>
+<li id="fn:4">
+<p>比如『⚡』<a href="#fnref:4" rev="footnote">&#8617;</a></p></li>
+<li id="fn:5">
+<p><em>Unicode</em> 预留了替代区域 <code>\uD800 -- \uDFFF</code>[^6] 作为辅助，此区间的单个字符没有实际表示意义<a href="#fnref:5" rev="footnote">&#8617;</a></p></li>
 </ol>
 </div>
 
