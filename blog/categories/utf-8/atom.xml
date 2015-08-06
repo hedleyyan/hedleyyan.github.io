@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Utf-8 | Hedley]]></title>
   <link href="http://hedleyyan.github.io/blog/categories/utf-8/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2015-08-05T23:40:29+08:00</updated>
+  <updated>2015-08-06T10:06:12+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[hedley]]></name>
@@ -20,16 +20,27 @@
     <id>http://hedleyyan.github.io/blog/2015/08/05/mysql5-dot-5-yi-xia-ban-ben-tong-guo-java-zhuan-yi-shi-xian-emoji-cun-qu</id>
     <content type="html"><![CDATA[<p>我不输出好文，我只是好文的搬运工。<a href="http://cenalulu.github.io/linux/character-encoding">十分钟搞清字符集和字符编码</a>带你走进 <em>Unicode</em> 和 <em>UTF-8</em> 的前世今生。总而言之，<em>Unicode</em> 是标准，<em>UTF-8</em> 是实现。</p>
 
-<p>通常 MySQL 的默认字符集都会配置为 <em>UTF-8</em>，只支持单字符不超过 3 bytes 的存储<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>。常见的 <em><a href="https://en.wikipedia.org/wiki/Emoji">Emoji</a></em> 的 <em>Unicode</em> 编码位于 <code>\u1F601 - \u1F64F</code> 区间，以 <code>\u1F300</code> 举例，它的二进制表示为 <code>11111001100000000</code><sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup>，共有 17 位，无法用三字节的 <em>UTF-8</em> 编码表示<sup id="fnref:3"><a href="#fn:3" rel="footnote">3</a></sup>。</p>
+<h2>MySQL 篇</h2>
+
+<p>通常 MySQL 的默认字符集都会配置为 <em>UTF-8</em>，只支持单字符不超过 3 bytes 的存储<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>。常见的 <em><a href="https://en.wikipedia.org/wiki/Emoji">Emoji</a></em> 的 <em>Unicode</em> 编码位于 <code>\u1F601--\u1F64F</code> 区间，以 <code>\u1F300</code> 『🌀』举例，它的二进制有 17 位，无法用三字节的 <em>UTF-8</em> 编码表示<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup>。如果通过 JDBC 将此字符尝试插入 MySQL 记录中，会得到以下异常</p>
+
+<pre><code>java.lang.RuntimeException: java.sql.SQLException: Incorrect string value: '\xF0\x9F\x8C\x80' for column 'message' at row 1 
+</code></pre>
+
+<h2>Java 篇</h2>
+
+<p>Java 存储字符的单元是 <code>char</code>，那么问题来了，16 位的 <code>char</code> 如何 handle 17 位的 <em>Unicode</em> 呢？</p>
+
+<p><img src="/images/doughnut.png"></p>
+
+<p>Java 的单个 <code>char</code> 无法 handle 🌀，喜闻乐见。那么 ⚡ 为什么可以通过编译，相信聪明如你，一定可以查到 ⚡ 的 <em>Unicode</em> 是 <code>\u26A1</code>，Tada</p>
 <div class="footnotes">
 <hr/>
 <ol>
 <li id="fn:1">
-<p>MySQL5.5 版本以后有对 <em>4 bytes</em> 单字符的原生支持，字符集配置成 <em>utf8mb4</em><a href="#fnref:1" rev="footnote">&#8617;</a></p></li>
+<p>MySQL5.5 版本以后有对 <em>4 bytes</em> 单字符的原生支持，字符集配置为 <em>utf8mb4</em><a href="#fnref:1" rev="footnote">&#8617;</a></p></li>
 <li id="fn:2">
-<p>Java 实现为 <code>Integer.toBinaryString(Integer.valueOf("1F300",16))</code><a href="#fnref:2" rev="footnote">&#8617;</a></p></li>
-<li id="fn:3">
-<p>请看十分钟系列的实现细节，三字节的 <em>UTF-8</em> 编码上限是 16 位『4 + 6 + 6』，<code>11111 001100 000000</code> 对应的 <em>UTF-8</em> 编码为 <code>11110000 10011111 10001100 10000000</code>，即<strong>\xF0</strong>&hellip;，MySQL 经常会冒出这种异常<a href="#fnref:3" rev="footnote">&#8617;</a></p></li>
+<p>请看十分钟系列的实现细节，三字节的 <em>UTF-8</em> 编码上限是 16 位『4 + 6 + 6』，<code>11111 001100 000000</code> 对应的 <em>UTF-8</em> 编码为 <code>11110000 10011111 10001100 10000000</code>，即 <strong>\xF0</strong>&hellip;，MySQL 经常会冒出这种异常<a href="#fnref:2" rev="footnote">&#8617;</a></p></li>
 </ol>
 </div>
 

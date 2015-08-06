@@ -57,27 +57,6 @@
     <loc>http://hedleyyan.github.io/page2/</loc>
   </url>
   <url>
-    <loc>http://hedleyyan.github.io/tags/java/</loc>
-  </url>
-  <url>
-    <loc>http://hedleyyan.github.io/tags/gui-yue/</loc>
-  </url>
-  <url>
-    <loc>http://hedleyyan.github.io/tags/pei-zhi/</loc>
-  </url>
-  <url>
-    <loc>http://hedleyyan.github.io/tags/tips/</loc>
-  </url>
-  <url>
-    <loc>http://hedleyyan.github.io/tags/pattern/</loc>
-  </url>
-  <url>
-    <loc>http://hedleyyan.github.io/tags/framework/</loc>
-  </url>
-  <url>
-    <loc>http://hedleyyan.github.io/tags/mysql/</loc>
-  </url>
-  <url>
     <loc>http://hedleyyan.github.io/blog/categories/ji-chu/</loc>
   </url>
   <url>
@@ -121,5 +100,26 @@
   </url>
   <url>
     <loc>http://hedleyyan.github.io/blog/categories/utf-8/</loc>
+  </url>
+  <url>
+    <loc>http://hedleyyan.github.io/tags/java/</loc>
+  </url>
+  <url>
+    <loc>http://hedleyyan.github.io/tags/gui-yue/</loc>
+  </url>
+  <url>
+    <loc>http://hedleyyan.github.io/tags/pei-zhi/</loc>
+  </url>
+  <url>
+    <loc>http://hedleyyan.github.io/tags/tips/</loc>
+  </url>
+  <url>
+    <loc>http://hedleyyan.github.io/tags/pattern/</loc>
+  </url>
+  <url>
+    <loc>http://hedleyyan.github.io/tags/framework/</loc>
+  </url>
+  <url>
+    <loc>http://hedleyyan.github.io/tags/mysql/</loc>
   </url>
 </urlset>
