@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: Java | Hedley]]></title>
   <link href="http://hedleyyan.github.io/tags/java/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2015-08-19T21:28:10+08:00</updated>
+  <updated>2015-08-19T22:09:45+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[hedley]]></name>
@@ -18,7 +18,7 @@
     <link href="http://hedleyyan.github.io/blog/2015/08/18/prototype-pattern/"/>
     <updated>2015-08-18T14:53:29+08:00</updated>
     <id>http://hedleyyan.github.io/blog/2015/08/18/prototype-pattern</id>
-    <content type="html"><![CDATA[<p>看到  <a href="https://books.google.com.hk/books?id=FqfKFl4Bm7UC&amp;printsec=frontcover&amp;dq=software+architecture+design+patterns+in+java&amp;hl=en&amp;sa=X&amp;ved=0CB0Q6AEwAGoVChMIktPB556yxwIVhBcsCh3h_wwt#v=onepage&amp;q&amp;f=false">Software Architecture Design Patterns in Java</a> 的 <em>CREATIONAL PATTERNS: Prototype</em><sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup> 章节，忽感一阵恍惚。之前写<a href="/blog/2015/07/18/fu-ze-ren-zai-tan-callback-yu-delegation/">负责任再谈 Callback 与 Delegation</a> 时提到了 <strong>Java 不支持 Delegation</strong>，但是这篇设计模式却好像写如何在 Java 中实现 <em>Delegation</em>。此中涉及了 <code>Object.clone()</code> 方法、<code>Cloneable</code> 接口，真真一团乱麻。</p>
+    <content type="html"><![CDATA[<p>看到  <a href="https://books.google.com.hk/books?id=FqfKFl4Bm7UC&amp;printsec=frontcover&amp;dq=software+architecture+design+patterns+in+java&amp;hl=en&amp;sa=X&amp;ved=0CB0Q6AEwAGoVChMIktPB556yxwIVhBcsCh3h_wwt#v=onepage&amp;q&amp;f=false">Software Architecture Design Patterns in Java</a> 的 <em>CREATIONAL PATTERNS: Prototype</em> <sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>章节，忽感一阵恍惚。之前写<a href="/blog/2015/07/18/fu-ze-ren-zai-tan-callback-yu-delegation/">负责任再谈 Callback 与 Delegation</a> 时提到了 <strong>Java 不支持 Delegation</strong>，但是这篇设计模式却好像写如何在 Java 中实现 <em>Delegation</em>。此中涉及了 <code>Object.clone()</code> 方法、<code>Cloneable</code> 接口，真真一团乱麻。</p>
 
 <h2>Prototype Pattern</h2>
 
@@ -56,7 +56,19 @@
 
 <h2>Copy Constructor || Copy Factory</h2>
 
-<h2></h2>
+<p>EJ 给出了一种替代解决方案：copy constructor or copy factory。它对比 <code>clone()</code> 简直好处多多：不需要受奇葩语意约束、不会和 <code>final</code> 标识的属性冲突、不抛出无意义的异常、不需要类型转换。</p>
+
+<p><img src="/images/copy_constructor.png"></p>
+
+<p><em>copy constructor</em> 接受的参数是其自身实现的接口类型，它们其实类属于 <em>conversion constructor</em>。注意 <code>HashMap</code> 与 <code>Collection</code> 的构造方法里，都有这种 <em>conversion constructor</em>，但是它们都是 <em>shallow copy</em>。</p>
+
+<h2>序列化以及其他</h2>
+
+<p><a href="http://stackoverflow.com/questions/23892962/is-object-deserialization-a-proper-way-to-implement-prototype-pattern-in-java">Is Object deserialization a proper way to implement Prototype pattern in Java?</a> 细致讨论了通过序列化实现 <em>Prototype Pattern</em> 的可能性。结论是<strong>可以</strong>，但代价是巨大的，还不如 <code>clone</code> 呢。。问题中的每一个回答每一个评论都值得细细品味。</p>
+
+<p><img src="/images/kluge.png"></p>
+
+<p>kluge [英][k&#8217;lu:dʒ] [美][k&#8217;lu:dʒ] n.由不配套的元件拼凑而成的计算机，异机种系统; </p>
 <div class="footnotes">
 <hr/>
 <ol>
