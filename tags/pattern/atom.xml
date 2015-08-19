@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: Pattern | Hedley]]></title>
   <link href="http://hedleyyan.github.io/tags/pattern/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2015-08-19T22:09:45+08:00</updated>
+  <updated>2015-08-19T22:23:17+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[hedley]]></name>
@@ -52,7 +52,7 @@
 </ul>
 
 
-<p>鉴于以上种种，我们可以很保守的说：珍爱生命，远离 <em>clone</em>。</p>
+<p>鉴于以上种种，我们可以很保守的说：珍爱生命，远离 <em>clone()</em>。</p>
 
 <h2>Copy Constructor || Copy Factory</h2>
 
@@ -68,7 +68,9 @@
 
 <p><img src="/images/kluge.png"></p>
 
-<p>kluge [英][k&#8217;lu:dʒ] [美][k&#8217;lu:dʒ] n.由不配套的元件拼凑而成的计算机，异机种系统; </p>
+<p><font size="14px"><strong>kluge</strong></font> [英][k&#8217;lu:dʒ] [美][k&#8217;lu:dʒ]   n.由不配套的元件拼凑而成的计算机，异机种系统</p>
+
+<p><a href="http://stackoverflow.com/questions/665860/deep-clone-utility-recomendation/">Deep clone utility recomendation.</a> 给出了实现 <em>deep clone</em> 的一个开源类库 <em><a href="https://github.com/kostaskougios/cloning">The cloning library</a></em>，此贴子的回答评论同样精彩。略看了一眼 <em>The cloning library</em> 的简介和评价，期待度较高，貌似是通过反射实现的，等有空研究一下代码再表。</p>
 <div class="footnotes">
 <hr/>
 <ol>
