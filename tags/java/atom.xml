@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: Java | Hedley]]></title>
   <link href="http://hedleyyan.github.io/tags/java/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2015-08-06T22:03:56+08:00</updated>
+  <updated>2015-08-19T14:54:01+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[hedley]]></name>
@@ -12,6 +12,61 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Cloneable 接口与 Prototype Pattern]]></title>
+    <link href="http://hedleyyan.github.io/blog/2015/08/18/prototype-pattern/"/>
+    <updated>2015-08-18T14:53:29+08:00</updated>
+    <id>http://hedleyyan.github.io/blog/2015/08/18/prototype-pattern</id>
+    <content type="html"><![CDATA[<p>看到  <a href="https://books.google.com.hk/books?id=FqfKFl4Bm7UC&amp;printsec=frontcover&amp;dq=software+architecture+design+patterns+in+java&amp;hl=en&amp;sa=X&amp;ved=0CB0Q6AEwAGoVChMIktPB556yxwIVhBcsCh3h_wwt#v=onepage&amp;q&amp;f=false">Software Architecture Design Patterns in Java</a> 的 <em>CREATIONAL PATTERNS: Prototype</em><sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup> 章节，忽感一阵恍惚。之前写<a href="/blog/2015/07/18/fu-ze-ren-zai-tan-callback-yu-delegation/">负责任再谈 Callback 与 Delegation</a> 时提到了 <strong>Java 不支持 Delegation</strong>，但是这篇设计模式却好像写如何在 Java 中实现 <em>Delegation</em>。此中涉及了 <code>Object.clone()</code> 方法、<code>Cloneable</code> 接口，真真一团乱麻。</p>
+
+<h2><em>Prototype Pattern</em></h2>
+
+<p>先看 <em>Prototype Pattern</em> 的 <a href="https://en.wikipedia.org/wiki/Prototype_pattern">Wiki</a>，一开始提到的便是 <em>Not to be confused with Prototype-based programming</em>，<em>Delegation</em> 正是 <em>Prototype-based programming</em> 的语言特性<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup>。总之，<em>Prototype Pattern</em> 是创建对象的一种方法，<em>Delegation</em> 是语言的一种天赋。</p>
+
+<h2><em>Object.clone()</em> 与 <em>Cloneable interface</em></h2>
+
+<p>了解 <code>clone</code> 之前，看 <a href="https://books.google.com.hk/books?id=ka2VUBqHiWkC&amp;pg=PA54&amp;dq=Item+11:+OVERRIDE+CLONE+JUDICIOUSLY&amp;hl=en&amp;sa=X&amp;ved=0CB0Q6AEwAGoVChMI9vu89beyxwIVClssCh21QQYo#v=onepage&amp;q=Item%2011%3A%20OVERRIDE%20CLONE%20JUDICIOUSLY&amp;f=false">Effective Java, Item 11: Override clone judiciously</a> 是必修课！</p>
+
+<p>随便翻看几个 Java 实现 <em>Prototype Pattern</em> 的例子『<a href="http://www.blackwasp.co.uk/Prototype.aspx">戳这里</a>、<a href="http://www.tutorialspoint.com/design_pattern/prototype_pattern.htm">戳这里</a>、<a href="http://howtodoinjava.com/2013/01/04/prototype-design-pattern-in-java/">戳这里</a>』，也包括最开始提到的 <em>CREATIONAL PATTERNS: Prototype</em>，都是通过 <code>Object</code> 基类中的 <code>clone()</code> 方法直接或间接实现的。</p>
+
+<p><code>clone()</code> 方法是原生方法，它类似 <code>new</code>，会生成新对象，也是一种“构造方法”，所以对构造方法的一些约束对其同样适用<sup id="fnref:3"><a href="#fn:3" rel="footnote">3</a></sup>。</p>
+
+<p><code>clone()</code> 方法是 <code>protected</code> 方法，想要调用之还需要绑定 <code>Cloneable</code> 接口。这个奇葩设定很恶心，虽说<strong>约定优于配置</strong>，但这种约定实在是太不优雅。按照地球人的理解，一个接口应该提供一种服务，<code>Cloneable</code> 接口提供 <code>clone()</code> 方法天经地义，但又由于其特殊性，<code>clone()</code> 方法的原生实现 Java 需要自己提供，而接口声明的方法又不能给出一个默认实现<sup id="fnref:4"><a href="#fn:4" rel="footnote">4</a></sup>，然后这个 <code>clone</code> 方法便写在了 <code>Object</code> 里，<code>Cloneable</code> 接口也只是作为一个标识接口用：所有实现了 <code>Cloneable</code> 的类重写 <code>clone()</code> 方法，通过 <code>super.clone()</code> 来调用 <code>Object.clone()</code> 的原生实现，然后根据需要再做一些适当的调整。</p>
+
+<p>所谓适当的调整，是因为 <code>Object</code> 的 <code>clone()</code> 方法只是 <em>shallow copy</em>，如此 <em>clone</em> 出来的对象，其 <em>mutable</em> 的引用还是同一个引用，并非副本。</p>
+
+<p><blockquote><p>By convention, the object returned by this method should be independent of this object (which is being cloned). To achieve this independence, it may be necessary to modify one or more fields of the object returned by super.clone before returning it. Typically, this means copying any mutable objects that comprise the internal &ldquo;deep structure&rdquo; of the object being cloned and replacing the references to these objects with references to the copies. If a class contains only primitive fields or references to immutable objects, then it is usually the case that no fields in the object returned by super.clone need to be modified.</p></blockquote></p>
+
+<p>了解了这些之后，你以为就可以妥妥的使用 <code>clone()</code> 了吗？还要注意这些限制</p>
+
+<ul>
+<li>All classes that implement Cloneable should override clone with a public method whose return type is the class itself.</li>
+<li>If you override the clone method in a nonfinal class, you should return an object obtained by invoking super.clone. If all of a class’s superclasses obey this rule, then invoking super.clone will eventually invoke Object’s clone method, creating an instance of the right class.</li>
+<li>In effect, the clone method functions as another constructor; you must ensure that it does no harm to the original object and that it prop- erly establishes invariants on the clone.</li>
+<li>Like a constructor, a clone method should not invoke any nonfinal methods on the clone under construction</li>
+<li>The clone architecture is incompatible with normal use of final fields referring to mutable objects.</li>
+<li>Object’s clone method is declared to throw CloneNotSupportedException, but overriding clone methods can omit this declaration. Public clone methods should omit it because methods that don’t throw checked exceptions are easier to use.</li>
+<li>If you decide to make a thread-safe class implement Cloneable, remember that its clone method must be properly synchronized just like any other method.</li>
+<li>Given all of the problems associated with Cloneable, it’s safe to say that other interfaces should not extend it, and that classes designed for inheritance (Item 17) should not implement it.</li>
+</ul>
+
+<div class="footnotes">
+<hr/>
+<ol>
+<li id="fn:1">
+<p>Page 95.<a href="#fnref:1" rev="footnote">&#8617;</a></p></li>
+<li id="fn:2">
+<p>language feature<a href="#fnref:2" rev="footnote">&#8617;</a></p></li>
+<li id="fn:3">
+<p>主要就是这一条：Never call overridable methods from constructors, either directly or indirectly.<a href="#fnref:3" rev="footnote">&#8617;</a></p></li>
+<li id="fn:4">
+<p>JKD8 可以做到，咋不早出这个特性嘞<a href="#fnref:4" rev="footnote">&#8617;</a></p></li>
+</ol>
+</div>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[MySQL5.5 以下版本通过 Java 转义实现 Emoji 存取]]></title>
@@ -484,6 +539,7 @@ bucket.announce() // alerts "these are my things: planes, trains, and automobile
 
 <ul>
 <li><a href="https://static.aminer.org/pdf/PDF/000/522/451/using_prototypical_objects_to_implement_shared_behavior_in_object_oriented.pdf">Using Prototypical Objects to Implement Shared Behavior in Object Oriented Systems</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Prototype-based_programming">Prototype-based Programming</a></li>
 <li><a href="http://stackoverflow.com/questions/44912/java-delegates#comment13546516_44916">Java Delegates?</a></li>
 <li><a href="http://stackoverflow.com/questions/20311779/is-there-delegate-in-java-8-jdk8/30925223#30925223">Is there delegate in Java 8 (JDK8)?</a></li>
 <li><a href="http://stackoverflow.com/questions/1746332/delegates-and-callbacks">C# does not implement delegates</a></li>
@@ -1010,211 +1066,6 @@ public class SuspiciousSort {
 <h1>总结</h1>
 
 <p>注意边界，注意转型，注意 <code>byte</code> <code>char</code>，注意特殊运算。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[扑朔迷离浮点运算]]></title>
-    <link href="http://hedleyyan.github.io/blog/2015/06/20/fu-dian-yun-suan/"/>
-    <updated>2015-06-20T09:44:10+08:00</updated>
-    <id>http://hedleyyan.github.io/blog/2015/06/20/fu-dian-yun-suan</id>
-    <content type="html"><![CDATA[<p>此文深入剖析困扰哥已久的浮点数表示和运算。</p>
-
-<h1>定义</h1>
-
-<p>Java 浮点数定义采纳 <a href="http://www.eecs.berkeley.edu/~wkahan/ieee754status/IEEE754.PDF">IEEE Standard 754</a> 标准：单精度 <code>float</code> 32 位，双精度 <code>double</code> 64 位。本文主要以 <code>float</code> 为例。</p>
-
-<p><img src="/images/float.png"></p>
-
-<!--more-->
-
-
-<ul>
-<li>最高位符号位
-
-<ul>
-<li>0 正 1 负</li>
-</ul>
-</li>
-<li>接 8 位指数位，并有 127 的偏移量
-
-<ul>
-<li>所以指数范围为：0 - 127 ~ (2<sup>8</sup> - 1) - 127</li>
-<li>全 0 和全 1 保留用特殊表示，所以指数域的修正范围为 -126 ~ 127</li>
-</ul>
-</li>
-<li>剩下 23 位为尾数域
-
-<ul>
-<li>IEEE 要求浮点数必须是规范的，即小数点的左侧必须为1，这样腾出了一个二进制位来保存更多的尾数，即我们用 23 位尾数域表达了 24 位的尾数</li>
-<li>所以尾数域上限为 2<sup>24</sup> - 1，即 0 ~ 16777215</li>
-<li>10<sup>7</sup> &lt; 16777215 &lt; 10<sup>8</sup>，所以 <code>float</code> 可以精确到小数点后 7 位（<a href="#%E7%B2%BE%E5%BA%A6">存疑</a>）</li>
-</ul>
-</li>
-</ul>
-
-
-<p><img class="right" src="/images/Snip20150622_1.png" width="300" height="350"></p>
-
-<ul>
-<li>特殊表示
-
-<ul>
-<li>指数全为 0，尾数为 0 时，表示 0</li>
-<li>指数全为 1，尾数为 0 时，表示无穷大</li>
-<li>指数全为 1，尾数不为 0 时，表示 <code>NaN</code></li>
-</ul>
-</li>
-</ul>
-
-
-<p>示例图中的数字表示解析：</p>
-
-<ul>
-<li>符号位 0 ，表示正数</li>
-<li>指数位 <code>01111100</code> ，表示 2<sup>6</sup> + 2<sup>5</sup> + 2<sup>4</sup> + 2<sup>3</sup> + 2<sup>2</sup> - 127 = -3</li>
-<li>尾数域左侧补 1 位，表示 <code>101</code></li>
-<li>最后值为 1 * 2<sup>-3</sup> + 1 * 2<sup>-5</sup> = 0.15625</li>
-</ul>
-
-
-<h2><a name="精度">精度</a></h2>
-
-<pre><code class="java">    public static void main(String[] args) {
-        float c = 1.0009765625F;
-        System.out.println(Integer.toBinaryString(Float.floatToIntBits(c)));
-        System.out.println(c);
-        System.out.println(String.format("%.11f", c));
-    }
-</code></pre>
-
-<p>输出：</p>
-
-<pre><code>111111100000000010000000000000
-1.0009766
-1.00097656250
-</code></pre>
-
-<p>示例中的 <code>c</code> 精确到小数点后 10 位，可以精确的由二进制表示：1.0009765625 = 2<sup>0</sup> + 2<sup>-10</sup>。</p>
-
-<ul>
-<li>第一行输出为其二进制表示，进行验证</li>
-<li><code>0 01111111 00000000010000000000000</code>
-
-<ul>
-<li>指数：2<sup>7</sup> - 1 - 127 = 0</li>
-<li>尾数：1.0000000001 = 2<sup>0</sup> + 2<sup>-10</sup></li>
-</ul>
-</li>
-</ul>
-
-
-<p>以上输出的第二行表示 Java 对 <code>float</code> 处理的默认精度为 7 位，但是这不表示它的存储就丢失了精度。输出的第三行加入了指定的精度，即得到了无精度损失的浮点数。</p>
-
-<p>所以这里得到我的<strong>个人结论</strong>： <code>float</code> 的 7 位精度是<strong>规约</strong>，而不是表示结构的限制。</p>
-
-<h2>二进制表示方法</h2>
-
-<p>0.1 = 1.6 / 16</p>
-
-<p>= 1 / 16 + 0.6 / 1</p>
-
-<p>= 1 / 16 + 1.2 / 32</p>
-
-<p>= 1 / 16 + 1 / 32 + 0.2 / 32</p>
-
-<p>= 1 / 16 + 1 / 32 + 1.6 / 2<sup>8</sup></p>
-
-<p>= 1 / 2<sup>4</sup> + 1 / 2<sup>5</sup> + 1 / 2<sup>8</sup> + 0.6 / 2<sup>8</sup></p>
-
-<p>= &hellip;</p>
-
-<p>第 6 步又回到了第 2 步一样的分子 0.6 ，所以这是一个无限循环小数</p>
-
-<p>0.1 = 0.00011001 00011001 00011001 00011001&hellip;</p>
-
-<h1>场景</h1>
-
-<h2><em>Puzzle 2</em></h2>
-
-<pre><code class="java">    public static void main(String args[]) {
-        System.out.println(2.00 - 1.10);    // 0.8999999999999999
-    }
-</code></pre>
-
-<p>这个简单的算式得到的结果不是期望的 0.9 ，而是 0.8999999999999999 。因为 1.1 不能被精确的保存为 <code>double</code> 类型，而被保存为了最接近 1.1 的值，不幸的是，这个值与 2.0 做减法运算后得到的不是最接近 0.9 的 <code>double</code> 值，而是输出的这个奇葩数。</p>
-
-<pre><code class="java">    public static void main(String args[]) {
-        System.out.println(new BigDecimal("2.00").subtract(new BigDecimal("1.10")));    // 0.90
-    }
-</code></pre>
-
-<p><strong>秘籍</strong>：需要精确表示时，用 <code>BigDecimal(String str)</code> ，永远不要用浮点数做运算。</p>
-
-<h2><em>Puzzle 28: Looper</em></h2>
-
-<pre><code class="java">    while (i == i + 1) {
-
-    }
-</code></pre>
-
-<p>给 <code>i</code> 一个声明，使上面的语句进入无限循环状态。。</p>
-
-<pre><code class="java">    double i = 1.0 / 0.0;
-    // Better yet, you can take advantage of a constant that is provided for you by the standard libraries:
-    double i = Double.POSITIVE_INFINITY;
-    // In fact, any sufficiently large floating-point value will do; for example:
-    double i = 1.0e40;
-</code></pre>
-
-<p>无穷大不用说。因为浮点数不能精确保存值，当一个数很大时，它的后继邻接数 <em>(ulp)</em> 与其差值可以大于 1 。</p>
-
-<p><blockquote><p>The distance between adjacent floating-point values is called an ulp, which is an acronym for unit in the last place. In release 5.0, the Math.ulp method was introduced to calculate the ulp of a float or double value.</p></blockquote></p>
-
-<p><strong>秘籍：不要用浮点数做循环索引。</strong></p>
-
-<h2><em>Puzzle 87: Strained Relations</em></h2>
-
-<p>数学上对于 <code>=</code> 的定义满足相等关系 <em>(equivalence relation)</em> 的三个条件</p>
-
-<ul>
-<li>自反性：x ~ x for all x.</li>
-<li>对称性：if x ~ y, then y ~ x.</li>
-<li>传递性：if x ~ y and y ~ z, then x ~ z.</li>
-</ul>
-
-
-<p>那么 <em>Java</em> 中的 <code>==</code> 呢</p>
-
-<pre><code class="java">    public static void main(String[] args) throws Exception {
-        // 自反性不满足
-        System.out.println(Double.NaN == Double.NaN);   // false
-
-        // 传递性不满足
-        long x = Long.MAX_VALUE;
-        double y = (double)Long.MAX_VALUE;
-        long z = Long.MAX_VALUE - 1;
-        System.out.print((x == y) + " ");   // Imprecise! true
-        System.out.print((y == z) + " ");   // Imprecise! true
-        System.out.println(x == z);         // Precise    false
-
-        // 对称性满足
-    }
-</code></pre>
-
-<h1>总结</h1>
-
-<p>注意浮点数的精度丢失以及类型转换，相对于 <code>float</code> ，优先用 <code>double</code> 。</p>
-
-<h1>引用</h1>
-
-<ul>
-<li><a href="http://www.eecs.berkeley.edu/~wkahan/ieee754status/IEEE754.PDF">IEEE Standard 754</a></li>
-<li><a href="http://book.douban.com/subject/1328664/">Java Puzzlers</a></li>
-<li><a href="http://justjavac.iteye.com/blog/1073775">学习 Java 浮点数必看文章</a></li>
-<li><a href="http://hujiantao224.iteye.com/blog/727155">Java 浮点数表示详解</a></li>
-</ul>
-
 ]]></content>
   </entry>
   

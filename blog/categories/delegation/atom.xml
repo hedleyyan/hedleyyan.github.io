@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Delegation | Hedley]]></title>
   <link href="http://hedleyyan.github.io/blog/categories/delegation/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2015-08-06T22:03:56+08:00</updated>
+  <updated>2015-08-19T14:54:01+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[hedley]]></name>
@@ -350,6 +350,7 @@ bucket.announce() // alerts "these are my things: planes, trains, and automobile
 
 <ul>
 <li><a href="https://static.aminer.org/pdf/PDF/000/522/451/using_prototypical_objects_to_implement_shared_behavior_in_object_oriented.pdf">Using Prototypical Objects to Implement Shared Behavior in Object Oriented Systems</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Prototype-based_programming">Prototype-based Programming</a></li>
 <li><a href="http://stackoverflow.com/questions/44912/java-delegates#comment13546516_44916">Java Delegates?</a></li>
 <li><a href="http://stackoverflow.com/questions/20311779/is-there-delegate-in-java-8-jdk8/30925223#30925223">Is there delegate in Java 8 (JDK8)?</a></li>
 <li><a href="http://stackoverflow.com/questions/1746332/delegates-and-callbacks">C# does not implement delegates</a></li>

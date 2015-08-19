@@ -9,7 +9,7 @@
   <meta name="author" content="hedley">
 
   
-  <meta name="description" content="我不输出好文，我只是好文的搬运工。十分钟搞清字符集和字符编码带你走进 Unicode 和 UTF-8 的前世今生。总而言之，Unicode 是标准，UTF-8 是实现。 MySQL 过招 Emoji 通常 MySQL 的默认字符集都会配置为 UTF-8，只支持单字符不超过 3 bytes 的存储1 &hellip;">
+  <meta name="description" content="看到 Software Architecture Design Patterns in Java 的 CREATIONAL PATTERNS: Prototype1 章节，忽感一阵恍惚。之前写负责任再谈 Callback 与 Delegation 时提到了 Java 不支持 Delegation， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -103,6 +103,89 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/08/18/prototype-pattern/">Cloneable 接口与 Prototype Pattern</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-08-18T14:53:29+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>18</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>2:53 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>看到  <a href="https://books.google.com.hk/books?id=FqfKFl4Bm7UC&amp;printsec=frontcover&amp;dq=software+architecture+design+patterns+in+java&amp;hl=en&amp;sa=X&amp;ved=0CB0Q6AEwAGoVChMIktPB556yxwIVhBcsCh3h_wwt#v=onepage&amp;q&amp;f=false">Software Architecture Design Patterns in Java</a> 的 <em>CREATIONAL PATTERNS: Prototype</em><sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup> 章节，忽感一阵恍惚。之前写<a href="/blog/2015/07/18/fu-ze-ren-zai-tan-callback-yu-delegation/">负责任再谈 Callback 与 Delegation</a> 时提到了 <strong>Java 不支持 Delegation</strong>，但是这篇设计模式却好像写如何在 Java 中实现 <em>Delegation</em>。此中涉及了 <code>Object.clone()</code> 方法、<code>Cloneable</code> 接口，真真一团乱麻。</p>
+
+<h2><em>Prototype Pattern</em></h2>
+
+<p>先看 <em>Prototype Pattern</em> 的 <a href="https://en.wikipedia.org/wiki/Prototype_pattern">Wiki</a>，一开始提到的便是 <em>Not to be confused with Prototype-based programming</em>，<em>Delegation</em> 正是 <em>Prototype-based programming</em> 的语言特性<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup>。总之，<em>Prototype Pattern</em> 是创建对象的一种方法，<em>Delegation</em> 是语言的一种天赋。</p>
+
+<h2><em>Object.clone()</em> 与 <em>Cloneable interface</em></h2>
+
+<p>了解 <code>clone</code> 之前，看 <a href="https://books.google.com.hk/books?id=ka2VUBqHiWkC&amp;pg=PA54&amp;dq=Item+11:+OVERRIDE+CLONE+JUDICIOUSLY&amp;hl=en&amp;sa=X&amp;ved=0CB0Q6AEwAGoVChMI9vu89beyxwIVClssCh21QQYo#v=onepage&amp;q=Item%2011%3A%20OVERRIDE%20CLONE%20JUDICIOUSLY&amp;f=false">Effective Java, Item 11: Override clone judiciously</a> 是必修课！</p>
+
+<p>随便翻看几个 Java 实现 <em>Prototype Pattern</em> 的例子『<a href="http://www.blackwasp.co.uk/Prototype.aspx">戳这里</a>、<a href="http://www.tutorialspoint.com/design_pattern/prototype_pattern.htm">戳这里</a>、<a href="http://howtodoinjava.com/2013/01/04/prototype-design-pattern-in-java/">戳这里</a>』，也包括最开始提到的 <em>CREATIONAL PATTERNS: Prototype</em>，都是通过 <code>Object</code> 基类中的 <code>clone()</code> 方法直接或间接实现的。</p>
+
+<p><code>clone()</code> 方法是原生方法，它类似 <code>new</code>，会生成新对象，也是一种“构造方法”，所以对构造方法的一些约束对其同样适用<sup id="fnref:3"><a href="#fn:3" rel="footnote">3</a></sup>。</p>
+
+<p><code>clone()</code> 方法是 <code>protected</code> 方法，想要调用之还需要绑定 <code>Cloneable</code> 接口。这个奇葩设定很恶心，虽说<strong>约定优于配置</strong>，但这种约定实在是太不优雅。按照地球人的理解，一个接口应该提供一种服务，<code>Cloneable</code> 接口提供 <code>clone()</code> 方法天经地义，但又由于其特殊性，<code>clone()</code> 方法的原生实现 Java 需要自己提供，而接口声明的方法又不能给出一个默认实现<sup id="fnref:4"><a href="#fn:4" rel="footnote">4</a></sup>，然后这个 <code>clone</code> 方法便写在了 <code>Object</code> 里，<code>Cloneable</code> 接口也只是作为一个标识接口用：所有实现了 <code>Cloneable</code> 的类重写 <code>clone()</code> 方法，通过 <code>super.clone()</code> 来调用 <code>Object.clone()</code> 的原生实现，然后根据需要再做一些适当的调整。</p>
+
+<p>所谓适当的调整，是因为 <code>Object</code> 的 <code>clone()</code> 方法只是 <em>shallow copy</em>，如此 <em>clone</em> 出来的对象，其 <em>mutable</em> 的引用还是同一个引用，并非副本。</p>
+
+<blockquote><p>By convention, the object returned by this method should be independent of this object (which is being cloned). To achieve this independence, it may be necessary to modify one or more fields of the object returned by super.clone before returning it. Typically, this means copying any mutable objects that comprise the internal &#8220;deep structure&#8221; of the object being cloned and replacing the references to these objects with references to the copies. If a class contains only primitive fields or references to immutable objects, then it is usually the case that no fields in the object returned by super.clone need to be modified.</p></blockquote>
+
+
+<p>了解了这些之后，你以为就可以妥妥的使用 <code>clone()</code> 了吗？还要注意这些限制</p>
+
+<ul>
+<li>All classes that implement Cloneable should override clone with a public method whose return type is the class itself.</li>
+<li>If you override the clone method in a nonfinal class, you should return an object obtained by invoking super.clone. If all of a class’s superclasses obey this rule, then invoking super.clone will eventually invoke Object’s clone method, creating an instance of the right class.</li>
+<li>In effect, the clone method functions as another constructor; you must ensure that it does no harm to the original object and that it prop- erly establishes invariants on the clone.</li>
+<li>Like a constructor, a clone method should not invoke any nonfinal methods on the clone under construction</li>
+<li>The clone architecture is incompatible with normal use of final fields referring to mutable objects.</li>
+<li>Object’s clone method is declared to throw CloneNotSupportedException, but overriding clone methods can omit this declaration. Public clone methods should omit it because methods that don’t throw checked exceptions are easier to use.</li>
+<li>If you decide to make a thread-safe class implement Cloneable, remember that its clone method must be properly synchronized just like any other method.</li>
+<li>Given all of the problems associated with Cloneable, it’s safe to say that other interfaces should not extend it, and that classes designed for inheritance (Item 17) should not implement it.</li>
+</ul>
+
+
+<p><br/><br/><p class='post-footer'>
+            original link:
+            <a href='http://hedleyyan.github.io/blog/2015/08/18/prototype-pattern/'><a href="http://hedleyyan.github.io/blog/2015/08/18/prototype-pattern/">http://hedleyyan.github.io/blog/2015/08/18/prototype-pattern/</a></a><br/>
+            written by <a href='http://hedleyyan.github.io'>hedley</a>
+            &nbsp;posted at <a href='http://hedleyyan.github.io'><a href="http://hedleyyan.github.io">http://hedleyyan.github.io</a></a>
+            </p></p>
+<div class="footnotes">
+<hr/>
+<ol>
+<li id="fn:1">
+<p>Page 95.<a href="#fnref:1" rev="footnote">&#8617;</a></p></li>
+<li id="fn:2">
+<p>language feature<a href="#fnref:2" rev="footnote">&#8617;</a></p></li>
+<li id="fn:3">
+<p>主要就是这一条：Never call overridable methods from constructors, either directly or indirectly.<a href="#fnref:3" rev="footnote">&#8617;</a></p></li>
+<li id="fn:4">
+<p>JKD8 可以做到，咋不早出这个特性嘞<a href="#fnref:4" rev="footnote">&#8617;</a></p></li>
+</ol>
+</div>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -769,61 +852,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/05/17/octopress-da-jian-ji-lu/">Octopress 搭建记录</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-05-17T22:29:18+08:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>17</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>10:29 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>本文是小站搭建的流水账记录，收集了各种用到的链接地址。</p>
-
-<h1>搭建</h1>
-
-<ul>
-<li>参照 <a href="http://octopress.org/docs/setup/">octopress 官方搭建手册</a>，一步一步来。到 <code>gem install bundler</code> 时候卡壳，网络不通</li>
-<li>修改 <a href="http://ruby.taobao.org/">RubyGems 镜像</a>，连接通了。但是一直报缺少依赖包的异常，按照提示手动一个个安装完依赖包</li>
-<li>安装完毕，修改 <code>_config.yml</code> 配置文件</li>
-</ul>
-
-
-<h1>留言系统</h1>
-
-<ul>
-<li>参照<a href="http://droidyue.com/blog/2014/07/29/integrate-duoshuo-in-octopress/">这篇文章</a>添加多说评论</li>
-<li><a href="http://shenchaofei.cn/duoshuo-comment-box-css-custom/328.html">修改多说样式</a>，样式代码添加在多说系统的管理后台的基本设置里。代码位于 <code>source/downloads/code/duoshuo.css</code></li>
-</ul>
-
-
-<h1>访问速度</h1>
-
-<p>参照<a href="http://droidyue.com/blog/2014/06/22/fix-octopress-slow-loading-speed-issue-in-china-mainland/">这篇文章</a>替换若干 <em>google</em> 源。</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2015/05/17/octopress-da-jian-ji-lu/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/2">&larr; Older</a>
@@ -837,19 +865,23 @@
     <section>
   <h1><i class="fa fa-tags"></i>&nbsp;Tags</h1>
   <ul class="tag-cloud">
-    <a style="font-size: 109%" href="/tags/framework/">Framework</a>
+    <a style="font-size: 107%" href="/tags/framework/">Framework</a>
 <a style="font-size: 180%" href="/tags/java/">Java</a>
 <a style="font-size: 70%" href="/tags/mysql/">MySQL</a>
-<a style="font-size: 109%" href="/tags/pattern/">Pattern</a>
-<a style="font-size: 109%" href="/tags/tips/">tips</a>
-<a style="font-size: 109%" href="/tags/gui-yue/">规约</a>
-<a style="font-size: 132%" href="/tags/pei-zhi/">配置</a>
+<a style="font-size: 128%" href="/tags/pattern/">Pattern</a>
+<a style="font-size: 107%" href="/tags/tips/">tips</a>
+<a style="font-size: 128%" href="/tags/gui-yue/">规约</a>
+<a style="font-size: 128%" href="/tags/pei-zhi/">配置</a>
 
   </ul>
 </section>
 <section>
   <h1><i class="fa fa-list"></i>&nbsp;Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/08/18/prototype-pattern/">Cloneable 接口与 Prototype Pattern</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2015/08/05/mysql5-dot-5-yi-xia-ban-ben-tong-guo-java-zhuan-yi-shi-xian-emoji-cun-qu/">MySQL5.5 以下版本通过 Java 转义实现 Emoji 存取</a>
@@ -877,10 +909,6 @@
     
       <li class="post">
         <a href="/blog/2015/06/20/fu-dian-yun-suan/">扑朔迷离浮点运算</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/06/16/cang-zhou-shi-jie-dao-diao-cha-wen-juan/">沧州市街道调查问卷</a>
       </li>
     
   </ul>
