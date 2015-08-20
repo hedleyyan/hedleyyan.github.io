@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: Pattern | Hedley]]></title>
   <link href="http://hedleyyan.github.io/tags/pattern/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2015-08-19T22:23:17+08:00</updated>
+  <updated>2015-08-20T09:16:50+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[hedley]]></name>
@@ -14,7 +14,7 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Cloneable 接口与 Prototype Pattern]]></title>
+    <title type="html"><![CDATA[Java 实现 Prototype Pattern 的若干途径]]></title>
     <link href="http://hedleyyan.github.io/blog/2015/08/18/prototype-pattern/"/>
     <updated>2015-08-18T14:53:29+08:00</updated>
     <id>http://hedleyyan.github.io/blog/2015/08/18/prototype-pattern</id>
@@ -32,7 +32,7 @@
 
 <p><code>clone()</code> 方法是原生方法，它类似 <code>new</code>，会生成新对象，也是一种“构造方法”，所以对构造方法的一些约束对其同样适用<sup id="fnref:3"><a href="#fn:3" rel="footnote">3</a></sup>。</p>
 
-<p><code>clone()</code> 方法是 <code>protected</code> 方法，想要调用之还需要绑定 <code>Cloneable</code> 接口。这个奇葩设定很恶心，虽说<strong>约定优于配置</strong>，但这种约定实在是太不优雅。按照地球人的理解，一个接口应该提供一种服务，<code>Cloneable</code> 接口提供 <code>clone()</code> 方法天经地义，但又由于其特殊性，<code>clone()</code> 方法的原生实现 Java 需要自己提供，而接口声明的方法又不能给出一个默认实现<sup id="fnref:4"><a href="#fn:4" rel="footnote">4</a></sup>，然后这个 <code>clone</code> 方法便写在了 <code>Object</code> 里，<code>Cloneable</code> 接口只是作为一个标识接口用：所有实现了 <code>Cloneable</code> 的类需要重写 <code>clone()</code> 方法，通过 <code>super.clone()</code> 来调用 <code>Object.clone()</code> 的原生实现，然后根据需要再做一些适当的调整。</p>
+<p><code>clone()</code> 方法是 <code>protected</code> 方法，想要调用之还需要绑定 <code>Cloneable</code> 接口。这个奇葩设定很恶心，虽说<strong>约定优于配置</strong>，但这种约定实在是太不优雅。按照地球人的理解，一个接口应该提供一种服务，<code>Cloneable</code> 接口提供 <code>clone()</code> 方法天经地义，但又由于其特殊性，<code>clone()</code> 方法的原生实现 Java 需要自己提供，而接口声明的方法又不能给出一个默认实现<sup id="fnref:4"><a href="#fn:4" rel="footnote">4</a></sup>，然后这个 <code>clone()</code> 方法便写在了 <code>Object</code> 里，<code>Cloneable</code> 接口只是作为一个标识接口用：所有实现了 <code>Cloneable</code> 的类需要重写 <code>clone()</code> 方法，通过 <code>super.clone()</code> 来调用 <code>Object.clone()</code> 的原生实现，然后根据需要再做一些适当的调整。</p>
 
 <p>所谓适当的调整，是因为 <code>Object</code> 的 <code>clone()</code> 方法只是 <em>shallow copy</em>，如此 <em>clone</em> 出来的对象，其包含的 <em>mutable</em> 的引用还是同一个引用，并非副本。</p>
 
@@ -68,7 +68,7 @@
 
 <p><img src="/images/kluge.png"></p>
 
-<p><font size="14px"><strong>kluge</strong></font> [英][k&#8217;lu:dʒ] [美][k&#8217;lu:dʒ]   n.由不配套的元件拼凑而成的计算机，异机种系统</p>
+<p><font size="8px"><strong>kluge</strong></font> [英][k&#8217;lu:dʒ] [美][k&#8217;lu:dʒ]  &nbsp;&nbsp; n.由不配套的元件拼凑而成的计算机，异机种系统</p>
 
 <p><a href="http://stackoverflow.com/questions/665860/deep-clone-utility-recomendation/">Deep clone utility recomendation.</a> 给出了实现 <em>deep clone</em> 的一个开源类库 <em><a href="https://github.com/kostaskougios/cloning">The cloning library</a></em>，此贴子的回答评论同样精彩。略看了一眼 <em>The cloning library</em> 的简介和评价，期待度较高，貌似是通过反射实现的，等有空研究一下代码再表。</p>
 <div class="footnotes">
