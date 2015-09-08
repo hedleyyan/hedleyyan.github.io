@@ -9,13 +9,7 @@
   <meta name="author" content="hedley">
 
   
-  <meta name="description" content="Gallery &nbsp;Tags Framework
-Java
-MySQL
-Pattern
-tips
-规约
-配置 &nbsp;Recent Posts Java 如何实现 Prototype Pattern MySQL5.5 以下版本通过 Java 转义实现 Emoji 存取 bigfoot &hellip;">
+  <meta name="description" content="Gallery Fading LightClassic view from Rigwood Jetty on Coniston Water an old archive shot similar to an old post but a little later on."> Bowness &hellip;&#8221;>
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -122,23 +116,25 @@ tips
 
 <body>
 
-	<div id="lightgallery">
-	  <a href="">
-	      <img src="img/thumb-1.jpg" />
-	  </a>
-	  <a href="">
-	      <img src="img/thumb-2.jpg" />
-	  </a>
-	</div>
+        <div class="demo-gallery">
+            <ul id="lightgallery" class="list-unstyled row">
+                <li class="col-xs-6 col-sm-4 col-md-3" data-responsive="img/1-375.jpg 375, img/1-480.jpg 480, img/1.jpg 800" data-src="img/1-1600.jpg" data-sub-html="<h4>Fading Light</h4><p>Classic view from Rigwood Jetty on Coniston Water an old archive shot similar to an old post but a little later on.</p>&#8221;>
+                    <a href="">
+                        <img class="img-responsive" src="img/thumb-1.jpg">
+                    </a>
+                </li>
+                <li class="col-xs-6 col-sm-4 col-md-3" data-responsive="img/2-375.jpg 375, img/2-480.jpg 480, img/2.jpg 800" data-src="img/2-1600.jpg" data-sub-html="<h4>Bowness Bay</h4><p>A beautiful Sunrise this morning taken En-route to Keswick not one as planned but I&#8217;m extremely happy I was passing the right place at the right time&#8230;.</p>&#8221;>
+                    <a href="">
+                        <img class="img-responsive" src="img/thumb-2.jpg">
+                    </a>
+                </li>
+            </ul>
+        </div>
 
         <script type="text/javascript">
         $(document).ready(function(){
             $('#lightgallery').lightGallery();
         });
-
-        $('#selector1').lightGallery({
-    		selector: 'li a '
-		})
 
         </script>
         <script src="https://cdn.jsdelivr.net/picturefill/2.3.1/picturefill.min.js"></script>
