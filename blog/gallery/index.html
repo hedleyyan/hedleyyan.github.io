@@ -44,16 +44,6 @@ tips
   });
 </script>
 
-<!-- lightgallery plugins -->
-<script src="/javascripts/gallery/lightgallery.js"></script>
-<script src="/javascripts/gallery/lg-thumbnail.js"></script>
-<script src="/javascripts/gallery/lg-fullscreen.js"></script>
-<script type="text/javascript">
-  $(document).ready(function() {
-      $("#lightgallery").lightGallery(); 
-  });
-</script>
-
 <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="http://fonts.useso.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="http://fonts.useso.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
@@ -141,6 +131,21 @@ tips
 	  </a>
 	</div>
 
+        <script type="text/javascript">
+        $(document).ready(function(){
+            $('#lightgallery').lightGallery();
+        });
+        </script>
+        <script src="https://cdn.jsdelivr.net/picturefill/2.3.1/picturefill.min.js"></script>
+        <script src="/javascripts/gallery/lightgallery.js"></script>
+        <script src="/javascripts/gallery/lg-fullscreen.js"></script>
+        <script src="/javascripts/gallery/lg-thumbnail.js"></script>
+        <script src="/javascripts/gallery/lg-video.js"></script>
+        <script src="/javascripts/gallery/lg-autoplay.js"></script>
+        <script src="/javascripts/gallery/lg-zoom.js"></script>
+        <script src="/javascripts/gallery/lg-hash.js"></script>
+        <script src="/javascripts/gallery/lg-pager.js"></script>
+        <script src="../lib/jquery.mousewheel.min.js"></script>
 </body>  
   
     <footer>
