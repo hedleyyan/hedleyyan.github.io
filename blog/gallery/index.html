@@ -5,13 +5,17 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Hedley</title>
+  <title>Gallery - Hedley</title>
   <meta name="author" content="hedley">
 
   
-  <meta name="description" content="本文是小站搭建的流水账记录，收集了各种用到的链接地址。 搭建 参照 octopress 官方搭建手册，一步一步来。到 gem install bundler 时候卡壳，网络不通
-修改 RubyGems 镜像，连接通了。但是一直报缺少依赖包的异常，按照提示手动一个个安装完依赖包
-安装完毕，修改 &hellip;">
+  <meta name="description" content="Gallery &nbsp;Tags Framework
+Java
+MySQL
+Pattern
+tips
+规约
+配置 &nbsp;Recent Posts Java 如何实现 Prototype Pattern MySQL5.5 以下版本通过 Java 转义实现 Emoji 存取 bigfoot &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -20,7 +24,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://hedleyyan.github.io/posts/2/">
+  <link rel="canonical" href="http://hedleyyan.github.io/blog/gallery/">
   <link href="/images/favicon_32.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Hedley" type="application/atom+xml">
@@ -104,142 +108,54 @@
 </nav>
   <div id="main">
     <div id="content">
-      <div class="blog-index">
+      <div>
+<article role="article">
   
-  
-  
-    <article>
-      
   <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/05/17/octopress-da-jian-ji-lu/">Octopress 搭建记录</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-05-17T22:29:18+08:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>17</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>10:29 pm</span></time>
-        
-      </p>
+    <h1 class="entry-title">Gallery</h1>
     
   </header>
-
-
-  <div class="entry-content"><p>本文是小站搭建的流水账记录，收集了各种用到的链接地址。</p>
-
-<h1>搭建</h1>
-
-<ul>
-<li>参照 <a href="http://octopress.org/docs/setup/">octopress 官方搭建手册</a>，一步一步来。到 <code>gem install bundler</code> 时候卡壳，网络不通</li>
-<li>修改 <a href="http://ruby.taobao.org/">RubyGems 镜像</a>，连接通了。但是一直报缺少依赖包的异常，按照提示手动一个个安装完依赖包</li>
-<li>安装完毕，修改 <code>_config.yml</code> 配置文件</li>
-</ul>
-
-
-<h1>留言系统</h1>
-
-<ul>
-<li>参照<a href="http://droidyue.com/blog/2014/07/29/integrate-duoshuo-in-octopress/">这篇文章</a>添加多说评论</li>
-<li><a href="http://shenchaofei.cn/duoshuo-comment-box-css-custom/328.html">修改多说样式</a>，样式代码添加在多说系统的管理后台的基本设置里。代码位于 <code>source/downloads/code/duoshuo.css</code></li>
-</ul>
-
-
-<h1>访问速度</h1>
-
-<p>参照<a href="http://droidyue.com/blog/2014/06/22/fix-octopress-slow-loading-speed-issue-in-china-mainland/">这篇文章</a>替换若干 <em>google</em> 源。</p>
-
-</div>
   
+  
+
   
     <footer>
-      <a rel="full-article" href="/blog/2015/05/17/octopress-da-jian-ji-lu/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/05/16/a-glossary-of-name-reuse/">A Glossary of Name Reuse</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-05-16T17:07:57+08:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>16</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>5:07 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>此文大概就是《Java Puzzlers》中 <em>Classier Pazzlers</em> 一节的简单翻译和整理，粗略总结了 <em>Java</em> 有关<strong>命名重复</strong>的场景和代码示例。</p>
-
-<h1>Overriding</h1>
-
-<blockquote><p>An instance method overrides all accessible instance methods with the same signature in superclasses.</p><footer><strong>JLS 8.4.8.1</strong></footer></blockquote>
-
-
-<p>重写的规范定义包括：</p>
-
-<ul>
-<li>Context 包括两个类，一个子类，一个父类。</li>
-<li>载体必须是实例方法 <em>(instance methods)</em>，而非静态方法。</li>
-<li>必须是同样签名 <em>(signature)</em> 和返回类型。</li>
-<li>重写方法不能缩小可见范围。</li>
-</ul>
-
-
-<p>重写是面向对象编程的核心概念，是<strong>唯一</strong>鼓励使用的 <em>Name Reuse</em> 场景。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">class</span> <span class="nc">Base</span> <span class="o">{</span>
-</span><span class='line'>    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">f</span><span class="o">()</span> <span class="o">{</span> <span class="o">}</span>
-</span><span class='line'><span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="kd">class</span> <span class="nc">Derived</span> <span class="kd">extends</span> <span class="n">Base</span> <span class="o">{</span>
-</span><span class='line'>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">f</span><span class="o">()</span> <span class="o">{</span> <span class="o">}</span> <span class="c1">// overrrides Base.f()</span>
-</span><span class='line'><span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
+      
+        <div class="sharing">
+  
+  
+  
 </div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2015/05/16/a-glossary-of-name-reuse/">Read on &rarr;</a>
+
+      
     </footer>
   
+</article>
 
 
-    </article>
-  
-  <div class="pagination">
-    
-    <a href="/blog/archives">Blog Archives</a>
-    
-    <a class="next" href="/index.html">Newer &rarr;</a>
-    
-  </div>
+
+  <section>
+   <div class="ds-thread" data-thread-key="" data-title="gallery" data-url="http://hedleyyan.github.io/blog/gallery/index.html"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"hedleyyan"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- 多说公共JS代码 end -->
+  </section>
+
+
 </div>
+
 <aside class="sidebar">
   
     <section>
@@ -297,19 +213,6 @@
 <h1><i class="fa fa-comments"></i>&nbsp;Recent Comments</h1>
 <ul class="ds-recent-comments" data-num-items="6" data-show-avatars="1" data-show-time="1" data-show-title="1" data-show-admin="1" data-excerpt-length="26"></ul>
 
-<!--多说js加载开始，一个页面只需要加载一次 -->
-<script type="text/javascript">
-  var duoshuoQuery = {short_name:"hedleyyan"};
-  (function() {
-    var ds = document.createElement('script');
-    ds.type = 'text/javascript';ds.async = true;
-    ds.src = 'http://static.duoshuo.com/embed.js';
-    ds.charset = 'UTF-8';
-    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
-  })();
-</script>
-<!--多说js加载结束，一个页面只需要加载一次 -->
-
 </section><section>
   <h1><i class="fa fa-globe"></i>&nbsp;Visitor Map</h1>
   <br>
@@ -318,6 +221,7 @@
 
   
 </aside>
+
 
     </div>
   </div>

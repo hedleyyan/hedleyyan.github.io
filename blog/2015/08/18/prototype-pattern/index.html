@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Java 实现 Prototype Pattern 的若干途径 - Hedley</title>
+  <title>Java 如何实现 Prototype Pattern - Hedley</title>
   <meta name="author" content="hedley">
 
   
@@ -96,6 +96,7 @@
 <ul class="main-navigation">
   <li><a href="/"><i class="fa fa-home"></i>&nbsp;首页</a></li>
   <li><a href="/blog/archives"><i class="fa fa-archive"></i>&nbsp;归档</a></li>
+  <li><a href="/blog/gallery"><i class="fa fa-picture-o"></i>&nbsp;画廊</a></li>
 </ul>
 
 </nav>
@@ -106,7 +107,7 @@
   
   <header>
     
-      <h1 class="entry-title">Java 实现 Prototype Pattern 的若干途径</h1>
+      <h1 class="entry-title">Java 如何实现 Prototype Pattern</h1>
     
     
       <p class="meta">
@@ -169,7 +170,7 @@
 
 <h2>序列化以及其他</h2>
 
-<p><a href="http://stackoverflow.com/questions/23892962/is-object-deserialization-a-proper-way-to-implement-prototype-pattern-in-java">Is Object deserialization a proper way to implement Prototype pattern in Java?</a> 细致讨论了通过序列化实现 <em>Prototype Pattern</em> 的可能性。结论是<strong>可以</strong>，但代价是巨大的，还不如 <code>clone</code> 呢。。问题中的每一个回答每一个评论都值得细细品味。</p>
+<p><a href="http://stackoverflow.com/questions/23892962/is-object-deserialization-a-proper-way-to-implement-prototype-pattern-in-java">Is Object deserialization a proper way to implement Prototype pattern in Java?</a> 细致讨论了通过序列化实现 <em>Prototype Pattern</em> 的可能性。结论是<strong>可以</strong>，但代价是巨大的，还不如 <code>clone</code> 呢！其实 XML、JSON 都可以作为实现原型模式的手段，只要能得到一个对象的副本就行了呗。问题中的每一个回答每一个评论都值得细细品味。</p>
 
 <p><img src="/images/kluge.png"></p>
 
@@ -243,7 +244,7 @@
 
 
   <section>
-   <div class="ds-thread" data-thread-key="/blog/2015/08/18/prototype-pattern" data-title="Java 实现 Prototype Pattern 的若干途径" data-url="http://hedleyyan.github.io/blog/2015/08/18/prototype-pattern/"></div>
+   <div class="ds-thread" data-thread-key="/blog/2015/08/18/prototype-pattern" data-title="Java 如何实现 Prototype Pattern" data-url="http://hedleyyan.github.io/blog/2015/08/18/prototype-pattern/"></div>
 <!-- 多说评论框 end -->
 <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 <script type="text/javascript">
@@ -283,7 +284,7 @@ var duoshuoQuery = {short_name:"hedleyyan"};
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2015/08/18/prototype-pattern/">Java 实现 Prototype Pattern 的若干途径</a>
+        <a href="/blog/2015/08/18/prototype-pattern/">Java 如何实现 Prototype Pattern</a>
       </li>
     
       <li class="post">
