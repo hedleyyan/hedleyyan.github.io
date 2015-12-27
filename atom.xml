@@ -4,7 +4,7 @@
   <title><![CDATA[Hedley]]></title>
   <link href="http://hedleyyan.github.io/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2015-09-22T16:47:16+08:00</updated>
+  <updated>2015-12-27T19:06:27+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[hedley]]></name>
@@ -12,6 +12,156 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Sed 循环处理]]></title>
+    <link href="http://hedleyyan.github.io/blog/2015/12/27/sed-xun-huan-chu-li/"/>
+    <updated>2015-12-27T17:38:03+08:00</updated>
+    <id>http://hedleyyan.github.io/blog/2015/12/27/sed-xun-huan-chu-li</id>
+    <content type="html"><![CDATA[<p><em>sed</em> 是 <em>shell</em> 编程中很常见的流编辑命令，主要用于批量替换。</p>
+
+<p><em>sed</em> 的默认编辑单位是『行』，如果要处理的信息分布于多个行中，需要考虑多行处理命令：<em>N、P、D</em>。<em><a href="http://www.grymoire.com/Unix/Sed.html#uh-51">click here, nice tutorial</a></em></p>
+
+<p>考虑以下情景：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>% cat onetwo                                                                            
+</span><span class='line'>one two onw two one two xxx one
+</span><span class='line'>two yyy one
+</span><span class='line'>two zzz one    
+</span><span class='line'>two kkk two one
+</span><span class='line'>twx xxx yyy one two one
+</span><span class='line'>xxxxx
+</span><span class='line'>xxx
+</span><span class='line'>
+</span><span class='line'>yyy one 
+</span><span class='line'>x two one
+</span><span class='line'>xx one
+</span><span class='line'>
+</span><span class='line'>two x
+</span><span class='line'>x one
+</span><span class='line'>two one
+</span><span class='line'>two</span></code></pre></td></tr></table></div></figure>
+
+
+<p>如果一行以 <em>one</em> 结尾，而且下一行以 <em>two</em> 开头，那么就把这两个邻接行拼接成一行，并把 <em>one two</em> 替换为 <em>1 2</em>。</p>
+
+<p>在只了解 <em>N、P、D</em> 之后，想出一个比较有意思的解决方案：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>cat onetwo.sed
+</span><span class='line'>#!/usr/bin/sed -f
+</span><span class='line'>/one *$/ {
+</span><span class='line'>      # 连接下一行，$!N 表示如果读到最后一行单独处理 
+</span><span class='line'>        $!N
+</span><span class='line'>        # 替换 prefix + one + 回车符 + two 为 回车符 + prefix + 1 2
+</span><span class='line'>        s/^\(.*\)one *\ntwo/\
+</span><span class='line'>\11 2/
+</span><span class='line'>        /^\n/ !P
+</span><span class='line'>        D
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<p>表达式 <em>s/a/b/</em> 中，查找字符串 <em>a</em> 如果包含回车符，用 <code>\n</code> 表示。但是如果替换字符串 <em>b</em> 中如果包含回车符，需要用 <code>\ + 回车</code> 表示。并且回车后的替换内容要顶头，不能排版加空格、tab<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>。</p>
+
+<p>以上解决方案的关键点在于替换时在开头又加了一个<strong>换行符</strong>，如此后面执行 <em>D</em> 则删除了模式空间中的这个<strong>空行</strong>，继续读入下一行处理，以此达到循环处理的目的。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>% ./onetwo.sed onetwo
+</span><span class='line'>one two onw two one two xxx 1 2 yyy 1 2 zzz 1 2 kkk two one
+</span><span class='line'>twx xxx yyy one two one
+</span><span class='line'>xxxxx
+</span><span class='line'>xxx
+</span><span class='line'>
+</span><span class='line'>yyy one 
+</span><span class='line'>x two one
+</span><span class='line'>xx one
+</span><span class='line'>
+</span><span class='line'>two x
+</span><span class='line'>x 1 2 1 2</span></code></pre></td></tr></table></div></figure>
+
+
+<p>后面了解了 <em>t</em> 命令后，更直接的解决方案如下：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>% cat onetwot.sed     
+</span><span class='line'>#!/bin/bash 
+</span><span class='line'>sed  '
+</span><span class='line'>/one/ {
+</span><span class='line'>        :again
+</span><span class='line'>                $!N
+</span><span class='line'>                s/one *\ntwo/1 2/
+</span><span class='line'>                t again
+</span><span class='line'>
+</span><span class='line'>}
+</span><span class='line'>' $1</span></code></pre></td></tr></table></div></figure>
+
+
+<p><em>t</em> 命令相当于一个 <em>while</em>，当 <em>t</em> 之前最近的一个 <em>s/a/b/</em> 命令匹配成功时，继续循环。得到同样的运行结果。</p>
+
+<p><br/><br/><p class='post-footer'>
+            original link:
+            <a href='http://hedleyyan.github.io/blog/2015/12/27/sed-xun-huan-chu-li/'><a href="http://hedleyyan.github.io/blog/2015/12/27/sed-xun-huan-chu-li/">http://hedleyyan.github.io/blog/2015/12/27/sed-xun-huan-chu-li/</a></a><br/>
+            written by <a href='http://hedleyyan.github.io'>hedley</a>
+            &nbsp;posted at <a href='http://hedleyyan.github.io'><a href="http://hedleyyan.github.io">http://hedleyyan.github.io</a></a>
+            </p></p>
+<div class="footnotes">
+<hr/>
+<ol>
+<li id="fn:1">
+<p>取决于不同的 sed 版本，但是顶头写肯定是 ok 的。<a href="#fnref:1" rev="footnote">&#8617;</a></p></li>
+</ol>
+</div>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Java 如何实现 Prototype Pattern]]></title>
