@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Eclipse Plugin | Hedley]]></title>
+  <link href="http://hedleyyan.github.io/blog/categories/eclipse-plugin/atom.xml" rel="self"/>
+  <link href="http://hedleyyan.github.io/"/>
+  <updated>2016-01-15T17:24:04+08:00</updated>
+  <id>http://hedleyyan.github.io/</id>
+  <author>
+    <name><![CDATA[hedley]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Code Folding Plugin 4 Eclipse]]></title>
+    <link href="http://hedleyyan.github.io/blog/2016/01/15/code-folding-plugin-4-eclipse/"/>
+    <updated>2016-01-15T16:51:38+08:00</updated>
+    <id>http://hedleyyan.github.io/blog/2016/01/15/code-folding-plugin-4-eclipse</id>
+    <content type="html"><![CDATA[<p>生活中有很多小巧惊艳的效率工具，它们使世界更美好。</p>
+
+<p><em>Coffee-Bytes code folding</em> 是基于 <em>eclipse</em> 的一款代码折叠小插件。</p>
+
+<p><a href="http://hedleyyan.github.io/downloads/resource/code_folding.rar">戳我下载</a></p>
+
+<h2>安装</h2>
+
+<p>解压缩后，把 <code>features</code> 和 <code>plugins</code> 中的文件分别拷贝到 <em>eclipse</em> 根目录下的相应位置，安装完毕。重启 <em>eclipse</em> 生效。</p>
+
+<h2>配置</h2>
+
+<p>打开 <code>General</code> 标签下最后的 <code>User Defined Regions</code>，在相应标签下自定义你习惯的代码折叠块的开始和结束标记。</p>
+
+<p><img src="/images/code_folding/1.png"></p>
+
+<p><img src="/images/code_folding/2.png"></p>
+
+<p><img src="/images/code_folding/3.png"></p>
+
+<ul>
+<li>建议把 <code>Advanced</code> 标签下的选项全部勾选，这样在折叠代码的时候会甩下最后一行，尤其 <code>if / else if</code> 代码块的折叠效果会更精准</li>
+</ul>
+
+]]></content>
+  </entry>
+  
+</feed>
