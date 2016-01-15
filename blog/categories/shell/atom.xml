@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Shell | Hedley]]></title>
   <link href="http://hedleyyan.github.io/blog/categories/shell/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2015-12-27T19:06:27+08:00</updated>
+  <updated>2016-01-15T15:30:21+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[hedley]]></name>
@@ -47,7 +47,7 @@ two
 
 <p>在只了解 <em>N、P、D</em> 之后，想出一个比较有意思的解决方案：</p>
 
-<pre><code>cat onetwo.sed
+<pre><code>% cat onetwo.sed
 #!/usr/bin/sed -f
 /one *$/ {
         # 连接下一行，$!N 表示如果读到最后一行单独处理 
@@ -94,11 +94,17 @@ sed  '
 </code></pre>
 
 <p><em>t</em> 命令相当于一个 <em>while</em>，当 <em>t</em> 之前最近的一个 <em>s/a/b/</em> 命令匹配成功时，继续循环。得到同样的运行结果。</p>
+
+<p>此小实例只做趣味讨论，<em>shell</em> 中的流处理<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup>都是面向行<sup id="fnref:3"><a href="#fn:3" rel="footnote">3</a></sup>单位的，对于内容有 overlap 的循环处理，效率低且不好用。</p>
 <div class="footnotes">
 <hr/>
 <ol>
 <li id="fn:1">
 <p>取决于不同的 sed 版本，但是顶头写肯定是 ok 的。<a href="#fnref:1" rev="footnote">&#8617;</a></p></li>
+<li id="fn:2">
+<p>sed, awk, grep etc..<a href="#fnref:2" rev="footnote">&#8617;</a></p></li>
+<li id="fn:3">
+<p>or 块，比如 awk 中的 FS=&lsquo;\n&rsquo;<a href="#fnref:3" rev="footnote">&#8617;</a></p></li>
 </ol>
 </div>
 
