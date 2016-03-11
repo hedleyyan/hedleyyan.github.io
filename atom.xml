@@ -4,7 +4,7 @@
   <title><![CDATA[Hedley]]></title>
   <link href="http://hedleyyan.github.io/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2016-03-11T18:08:08+08:00</updated>
+  <updated>2016-03-11T18:10:07+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[hedley]]></name>
@@ -22,9 +22,17 @@
 
 <h2>快捷键</h2>
 
-<p><code>CMD + t</code>: 新建 TAB
-<code>CMD + ALT + ←/→</code>: 在 TAB 间切换
-<code>CMD + 1 ~ 6</code>: 切换不同的视图。默认布局情况 <code>CMD + 2</code> 切换到 <code>Content</code> 查看选中的表数据；<code>CMD + 6</code> 切换到 <code>Query</code> 写 SQL。如果从导航栏点击鼠标切换库，光标焦点会从编辑栏丢失，这时用 <code>CMD + 6</code> 切换继续编辑</p>
+<ul>
+<li><code>CMD + t</code>: 新建 TAB</li>
+<li><code>CMD + ALT + ←/→</code>: 在 TAB 间切换</li>
+<li><code>CMD + 1 ~ 6</code>: 切换不同的视图。
+
+<ul>
+<li>默认布局情况 <code>CMD + 2</code> 切换到 <code>Content</code> 查看选中的表数据；<code>CMD + 6</code> 切换到 <code>Query</code> 写 SQL。如果从导航栏点击鼠标切换库，光标焦点会从编辑栏丢失，这时用 <code>CMD + 6</code> 切换继续编辑</li>
+</ul>
+</li>
+</ul>
+
 
 <p>这几个快捷键在很多应用中都适用，常用的比如 <code>Chrome</code>，<code>ST</code>。</p>
 
