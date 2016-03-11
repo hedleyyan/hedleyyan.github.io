@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://hedleyyan.github.io/blog/2016/01/27/ru-he-yong-jd-eclipse-qing-song-diao-shi-fan-bian-yi-yuan-dai-ma/</loc>
+    <lastmod>2016-01-27T09:47:58+08:00</lastmod>
+  </url>
+  <url>
     <loc>http://hedleyyan.github.io/blog/2016/01/15/code-folding-plugin-4-eclipse/</loc>
     <lastmod>2016-01-15T16:51:38+08:00</lastmod>
   </url>
@@ -69,6 +73,30 @@
     <loc>http://hedleyyan.github.io/blog/gallery/</loc>
   </url>
   <url>
+    <loc>http://hedleyyan.github.io/tags/java/</loc>
+  </url>
+  <url>
+    <loc>http://hedleyyan.github.io/tags/gui-yue/</loc>
+  </url>
+  <url>
+    <loc>http://hedleyyan.github.io/tags/pei-zhi/</loc>
+  </url>
+  <url>
+    <loc>http://hedleyyan.github.io/tags/tips/</loc>
+  </url>
+  <url>
+    <loc>http://hedleyyan.github.io/tags/pattern/</loc>
+  </url>
+  <url>
+    <loc>http://hedleyyan.github.io/tags/framework/</loc>
+  </url>
+  <url>
+    <loc>http://hedleyyan.github.io/tags/mysql/</loc>
+  </url>
+  <url>
+    <loc>http://hedleyyan.github.io/tags/shell/</loc>
+  </url>
+  <url>
     <loc>http://hedleyyan.github.io/blog/categories/ji-chu/</loc>
   </url>
   <url>
@@ -132,30 +160,9 @@
     <loc>http://hedleyyan.github.io/blog/categories/coffee-bytes-code-folding/</loc>
   </url>
   <url>
-    <loc>http://hedleyyan.github.io/tags/java/</loc>
+    <loc>http://hedleyyan.github.io/blog/categories/eclipse/</loc>
   </url>
   <url>
-    <loc>http://hedleyyan.github.io/tags/gui-yue/</loc>
-  </url>
-  <url>
-    <loc>http://hedleyyan.github.io/tags/pei-zhi/</loc>
-  </url>
-  <url>
-    <loc>http://hedleyyan.github.io/tags/tips/</loc>
-  </url>
-  <url>
-    <loc>http://hedleyyan.github.io/tags/pattern/</loc>
-  </url>
-  <url>
-    <loc>http://hedleyyan.github.io/tags/framework/</loc>
-  </url>
-  <url>
-    <loc>http://hedleyyan.github.io/tags/mysql/</loc>
-  </url>
-  <url>
-    <loc>http://hedleyyan.github.io/tags/shell/</loc>
-  </url>
-  <url>
-    <loc>http://hedleyyan.github.io/posts/2/</loc>
+    <loc>http://hedleyyan.github.io/blog/categories/debug/</loc>
   </url>
 </urlset>

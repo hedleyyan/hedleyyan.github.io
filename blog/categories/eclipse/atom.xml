@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Eclipse | Hedley]]></title>
+  <link href="http://hedleyyan.github.io/blog/categories/eclipse/atom.xml" rel="self"/>
+  <link href="http://hedleyyan.github.io/"/>
+  <updated>2016-03-11T16:19:36+08:00</updated>
+  <id>http://hedleyyan.github.io/</id>
+  <author>
+    <name><![CDATA[hedley]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Eclipse 轻松 Debug 反编译源代码]]></title>
+    <link href="http://hedleyyan.github.io/blog/2016/01/27/ru-he-yong-jd-eclipse-qing-song-diao-shi-fan-bian-yi-yuan-dai-ma/"/>
+    <updated>2016-01-27T09:47:58+08:00</updated>
+    <id>http://hedleyyan.github.io/blog/2016/01/27/ru-he-yong-jd-eclipse-qing-song-diao-shi-fan-bian-yi-yuan-dai-ma</id>
+    <content type="html"><![CDATA[<ul>
+<li>安装反编译源码插件：<a href="http://jd.benow.ca/">JD-Eclipse</a></li>
+<li>安装基于 <em>JD-Eclipse</em> 的代码重组插件：<a href="https://gauchoacomecable.wordpress.com/2011/10/14/eclipse-debug-java-without-source-code-jd-eclipse-and-realignment/">Realignment fragment</a>
+
+<ul>
+<li>反编译源码的工具满街都是，但这个行数重组对齐的强化插件才是真的屌</li>
+</ul>
+</li>
+<li>Happy Debug!</li>
+</ul>
+
+]]></content>
+  </entry>
+  
+</feed>
