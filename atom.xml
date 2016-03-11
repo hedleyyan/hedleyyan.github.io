@@ -4,7 +4,7 @@
   <title><![CDATA[Hedley]]></title>
   <link href="http://hedleyyan.github.io/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2016-03-11T16:19:36+08:00</updated>
+  <updated>2016-03-11T18:08:08+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[hedley]]></name>
@@ -14,13 +14,57 @@
 
   
   <entry>
+    <title type="html"><![CDATA[Some Tips About Sequel Pro]]></title>
+    <link href="http://hedleyyan.github.io/blog/2016/03/11/some-tips-about-sequel-pro/"/>
+    <updated>2016-03-11T16:28:30+08:00</updated>
+    <id>http://hedleyyan.github.io/blog/2016/03/11/some-tips-about-sequel-pro</id>
+    <content type="html"><![CDATA[<p><a href="http://www.sequelpro.com/download">Sequel Pro</a> 是一款基于 Mac 的 MySQL IDE，分享几个关于其操作提高效率的小技巧。</p>
+
+<h2>快捷键</h2>
+
+<p><code>CMD + t</code>: 新建 TAB
+<code>CMD + ALT + ←/→</code>: 在 TAB 间切换
+<code>CMD + 1 ~ 6</code>: 切换不同的视图。默认布局情况 <code>CMD + 2</code> 切换到 <code>Content</code> 查看选中的表数据；<code>CMD + 6</code> 切换到 <code>Query</code> 写 SQL。如果从导航栏点击鼠标切换库，光标焦点会从编辑栏丢失，这时用 <code>CMD + 6</code> 切换继续编辑</p>
+
+<p>这几个快捷键在很多应用中都适用，常用的比如 <code>Chrome</code>，<code>ST</code>。</p>
+
+<h2>工作流</h2>
+
+<p>导航栏里的表名匹配非常好用，如果在编辑栏中写的正嗨，怎么用键盘切换到导航栏呢？</p>
+
+<ul>
+<li>需要一点前提准备，在打开一个新的 TAB 后，需要在导航栏里任意选中两次不同的表，以来激活 <code>Table History</code> <sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup></li>
+<li>光标焦点在编辑栏，<code>CTRL + ALT + ←/→</code> 光标焦点移动到导航栏</li>
+<li><code>SHIFT + TAB</code> 光标焦点移动到导航栏表名匹配，输入搜表</li>
+<li><code>CMD + 6</code> 返回编辑栏继续彪 SQL</li>
+</ul>
+
+
+<p><br/><br/><p class='post-footer'>
+            original link:
+            <a href='http://hedleyyan.github.io/blog/2016/03/11/some-tips-about-sequel-pro/'><a href="http://hedleyyan.github.io/blog/2016/03/11/some-tips-about-sequel-pro/">http://hedleyyan.github.io/blog/2016/03/11/some-tips-about-sequel-pro/</a></a><br/>
+            written by <a href='http://hedleyyan.github.io'>hedley</a>
+            &nbsp;posted at <a href='http://hedleyyan.github.io'><a href="http://hedleyyan.github.io">http://hedleyyan.github.io</a></a>
+            </p></p>
+<div class="footnotes">
+<hr/>
+<ol>
+<li id="fn:1">
+<p>是讨厌了点，不过一劳永逸，后面再操作起来带你飞<a href="#fnref:1" rev="footnote">&#8617;</a></p></li>
+</ol>
+</div>
+
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[Eclipse 轻松 Debug 反编译源代码]]></title>
     <link href="http://hedleyyan.github.io/blog/2016/01/27/ru-he-yong-jd-eclipse-qing-song-diao-shi-fan-bian-yi-yuan-dai-ma/"/>
     <updated>2016-01-27T09:47:58+08:00</updated>
     <id>http://hedleyyan.github.io/blog/2016/01/27/ru-he-yong-jd-eclipse-qing-song-diao-shi-fan-bian-yi-yuan-dai-ma</id>
     <content type="html"><![CDATA[<ul>
 <li>安装反编译源码插件：<a href="http://jd.benow.ca/">JD-Eclipse</a></li>
-<li>安装基于 <em>JD-Eclipse</em> 的代码重组插件：<a href="https://gauchoacomecable.wordpress.com/2011/10/14/eclipse-debug-java-without-source-code-jd-eclipse-and-realignment/">Realignment fragment</a>
+<li>安装基于 <em>JD-Eclipse</em> 的代码重组插件：<a href="https://gauchoacomecable.wordpress.com/2011/10/14/eclipse-debug-java-without-source-code-jd-eclipse-and-realignment/">Realignment Fragment</a>
 
 <ul>
 <li>反编译源码的工具满街都是，但这个行数重组对齐的强化插件才是真的屌</li>
