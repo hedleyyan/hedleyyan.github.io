@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Jstat | Hedley]]></title>
   <link href="http://hedleyyan.github.io/blog/categories/jstat/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2016-09-21T11:23:50+08:00</updated>
+  <updated>2016-09-21T11:46:28+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[hedley]]></name>
@@ -18,7 +18,15 @@
     <link href="http://hedleyyan.github.io/blog/2016/09/21/jvm-diao-shi-da-za-hui/"/>
     <updated>2016-09-21T11:19:33+08:00</updated>
     <id>http://hedleyyan.github.io/blog/2016/09/21/jvm-diao-shi-da-za-hui</id>
-    <content type="html"><![CDATA[<h2><a href="http://xmlandmore.blogspot.hk/2012/07/jstat-java-virtual-machine-statistics.html">jstat</a> - Java Virtual Machine Statistics Monitoring Tool</h2>
+    <content type="html"><![CDATA[<h2><a href="http://xmlandmore.blogspot.hk/2012/07/jstat-java-virtual-machine-statistics.html">jstat</a> - Statistics Monitoring</h2>
+
+<p>// TODO</p>
+
+<h2><a href="http://xmlandmore.blogspot.hk/2013/04/analyze-hanging-programs-using-java.html">jstack</a> - Stack Trace</h2>
+
+<p>// TODO
+<a href="http://xmlandmore.blogspot.hk/2012/08/understanding-jvm-thread-states.html">Generating Thread Dumps in HotSpot</a>
+<a href="https://community.oracle.com/blogs/sdo/2009/10/16/fun-jstack">Fun With JStack Blog</a></p>
 ]]></content>
   </entry>
   
