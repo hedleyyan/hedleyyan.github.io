@@ -4,7 +4,7 @@
   <title><![CDATA[Hedley]]></title>
   <link href="http://hedleyyan.github.io/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2016-03-14T10:52:26+08:00</updated>
+  <updated>2016-09-21T11:23:50+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[hedley]]></name>
@@ -12,6 +12,22 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[JVM 调试大杂烩]]></title>
+    <link href="http://hedleyyan.github.io/blog/2016/09/21/jvm-diao-shi-da-za-hui/"/>
+    <updated>2016-09-21T11:19:33+08:00</updated>
+    <id>http://hedleyyan.github.io/blog/2016/09/21/jvm-diao-shi-da-za-hui</id>
+    <content type="html"><![CDATA[<h2><a href="http://xmlandmore.blogspot.hk/2012/07/jstat-java-virtual-machine-statistics.html">jstat</a> - Java Virtual Machine Statistics Monitoring Tool</h2>
+
+<p><br/><br/><p class='post-footer'>
+            original link:
+            <a href='http://hedleyyan.github.io/blog/2016/09/21/jvm-diao-shi-da-za-hui/'><a href="http://hedleyyan.github.io/blog/2016/09/21/jvm-diao-shi-da-za-hui/">http://hedleyyan.github.io/blog/2016/09/21/jvm-diao-shi-da-za-hui/</a></a><br/>
+            written by <a href='http://hedleyyan.github.io'>hedley</a>
+            &nbsp;posted at <a href='http://hedleyyan.github.io'><a href="http://hedleyyan.github.io">http://hedleyyan.github.io</a></a>
+            </p></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Some Tips About Sequel Pro]]></title>
