@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Mat | Hedley]]></title>
   <link href="http://hedleyyan.github.io/blog/categories/mat/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2016-09-21T16:11:55+08:00</updated>
+  <updated>2016-09-21T16:15:05+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[hedley]]></name>
@@ -24,13 +24,17 @@
 
 <h2><a href="http://xmlandmore.blogspot.hk/2013/04/analyze-hanging-programs-using-java.html">jstack</a> - Stack Trace</h2>
 
-<p>// TODO
-<a href="http://xmlandmore.blogspot.hk/2012/08/understanding-jvm-thread-states.html">Generating Thread Dumps in HotSpot</a>
-<a href="http://geekexplains.blogspot.hk/2008/07/threadstate-in-java-blocked-vs-waiting.html">Thread.State in Java? BLOCKED vs WAITING</a>
-<a href="https://community.oracle.com/blogs/sdo/2009/10/16/fun-jstack">Fun With JStack Blog</a>
-<a href="http://stackoverflow.com/questions/28378592/java-thread-state-transition-waiting-to-blocked-or-runnable">Java thread state transition, WAITING to BLOCKED, or RUNNABLE?</a></p>
+<p>// TODO</p>
 
-<p><img src="/images/JVM/states_trans.jpg"></p>
+<p><a href="http://xmlandmore.blogspot.hk/2012/08/understanding-jvm-thread-states.html">Generating Thread Dumps in HotSpot</a></p>
+
+<p><a href="http://geekexplains.blogspot.hk/2008/07/threadstate-in-java-blocked-vs-waiting.html">Thread.State in Java? BLOCKED vs WAITING</a></p>
+
+<p><a href="https://community.oracle.com/blogs/sdo/2009/10/16/fun-jstack">Fun With JStack Blog</a></p>
+
+<p><a href="http://stackoverflow.com/questions/28378592/java-thread-state-transition-waiting-to-blocked-or-runnable">Java thread state transition, WAITING to BLOCKED, or RUNNABLE?</a></p>
+
+<p><img src="/images/JVM/states_trans.png"></p>
 ]]></content>
   </entry>
   
