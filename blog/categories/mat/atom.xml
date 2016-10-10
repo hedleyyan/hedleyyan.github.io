@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Mat | Hedley]]></title>
   <link href="http://hedleyyan.github.io/blog/categories/mat/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2016-10-10T16:25:48+08:00</updated>
+  <updated>2016-10-10T17:40:58+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[hedley]]></name>
@@ -22,7 +22,7 @@
 
 <h2><a href="http://xmlandmore.blogspot.hk/2012/01/understanding-garbage-collection.html">Understanding Garbage Collection</a></h2>
 
-<p>了解 JVM 内存回收机制，以及年轻代、伊甸园、年老代代表的意义。<a href="http://xmlandmore.blogspot.hk/2012/03/case-study-of-javalangoutofmemoryerror.html">Full GC</a> 发生很频繁时，关注是否分配内存不足<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>、死锁、或者内存泄露。</p>
+<p>了解 JVM 内存回收机制，以及年轻代、伊甸园、年老代的意义。<a href="http://xmlandmore.blogspot.hk/2012/03/case-study-of-javalangoutofmemoryerror.html">Full GC</a> 发生很频繁时，关注是否分配内存不足<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>、死锁、或者内存泄露。</p>
 
 <ul>
 <li><a href="http://xmlandmore.blogspot.hk/2012/03/understanding-garbage-collector-output.html">Understanding Garbage Collector Output of Hotspot VM</a></li>
@@ -31,27 +31,41 @@
 
 <h2><a href="http://xmlandmore.blogspot.hk/2012/07/jstat-java-virtual-machine-statistics.html">jstat</a> - Statistics Monitoring</h2>
 
-<p>一系列调试选项，常用 <code>jstat -gcutil</code>。</p>
+<p>一系列调试选项，常用 <code>jstat -gcutil</code> 排查内存问题。</p>
 
 <h2><a href="http://xmlandmore.blogspot.hk/2013/04/analyze-hanging-programs-using-java.html">jstack</a> - Stack Trace</h2>
 
-<p>// TODO</p>
+<ul>
+<li><a href="http://xmlandmore.blogspot.hk/2012/08/understanding-jvm-thread-states.html">Generating Thread Dumps in HotSpot</a> - 等同于 <code>jstack [PID] &gt; threaddump.log</code></li>
+<li><a href="http://geekexplains.blogspot.hk/2008/07/threadstate-in-java-blocked-vs-waiting.html">Thread.State in Java? BLOCKED vs WAITING</a></li>
+<li><a href="https://community.oracle.com/blogs/sdo/2009/10/16/fun-jstack">Fun With JStack Blog</a></li>
+<li><a href="http://stackoverflow.com/questions/28378592/java-thread-state-transition-waiting-to-blocked-or-runnable">Java thread state transition, WAITING to BLOCKED, or RUNNABLE?</a></li>
+</ul>
 
-<p><a href="http://xmlandmore.blogspot.hk/2012/08/understanding-jvm-thread-states.html">Generating Thread Dumps in HotSpot</a></p>
 
-<p><a href="http://geekexplains.blogspot.hk/2008/07/threadstate-in-java-blocked-vs-waiting.html">Thread.State in Java? BLOCKED vs WAITING</a></p>
+<p>了解不同的线程状态。通常用来排查是否有死锁发生，以及找出高 CPU 消耗的线程状态。</p>
 
-<p><a href="https://community.oracle.com/blogs/sdo/2009/10/16/fun-jstack">Fun With JStack Blog</a></p>
+<ul>
+<li><code>top -Hp [PID]</code> - 找出进程内最耗费CPU的线程</li>
+<li><code>printf "%x\n" [PID]</code> - 得到线程号 TID</li>
+<li><code>jstack [PID] | grep [TID]</code> - 观察线程信息</li>
+</ul>
 
-<p><a href="http://stackoverflow.com/questions/28378592/java-thread-state-transition-waiting-to-blocked-or-runnable">Java thread state transition, WAITING to BLOCKED, or RUNNABLE?</a></p>
 
 <p><img src="/images/JVM/states_trans.png"></p>
 
 <h2><a href="http://xmlandmore.blogspot.hk/2013/08/diagnosing-outofmemoryerror-or-memory_10.html">jmap</a> - Memory Map</h2>
 
-<p>// TODO</p>
+<p>分析 JVM 的内存状态，是排查内存泄露的关键。</p>
 
-<p><a href="http://xmlandmore.blogspot.hk/2014/01/eclipse-mat-understand-incoming-and.html">Eclipse MAT</a></p>
+<ul>
+<li><code>jmap -heap [PID]</code> - 进程堆内存使用情况</li>
+<li><code>jmap -histo[:live] [PID] | head 15</code> - 对象占用图。对象占用图粒度很粗，无法获得更详细的对象状态</li>
+<li><code>jmap -dump:format=b,file=dump.hprof [PID]</code> - 生成 dump 文件。执行时间稍长，用此可以进行进一步的精准分析</li>
+</ul>
+
+
+<p>基于 <code>dump.hprof</code> 可以进行进一步分析，首选主流<a href="http://xmlandmore.blogspot.hk/2014/01/eclipse-mat-understand-incoming-and.html">Eclipse MAT</a>，关于 <code>MAT</code> 的资料很多，不一而足。</p>
 
 <p><a href="http://xmlandmore.blogspot.hk/2014/01/eclipse-mat-querying-heap-objects-using.html">OQL</a></p>
 
