@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>JVM 调试大杂烩 - Hedley</title>
+  <title>HotSpot JVM 调试大杂烩 - Hedley</title>
   <meta name="author" content="hedley">
 
   
-  <meta name="description" content="jstat - Statistics Monitoring // TODO jstack - Stack Trace // TODO Generating Thread Dumps in HotSpot Thread.State in Java? BLOCKED vs WAITING Fun &hellip;">
+  <meta name="description" content="此文的 JVM 环境特指 HotSpot JVM Understanding Garbage Collection 了解 JVM 内存回收机制，以及年轻代、伊甸园、年老代代表的意义。Full GC 发生很频繁时，关注是否分配内存不足1、死锁、或者内存泄露。 Understanding &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -107,7 +107,7 @@
   
   <header>
     
-      <h1 class="entry-title">JVM 调试大杂烩</h1>
+      <h1 class="entry-title">HotSpot JVM 调试大杂烩</h1>
     
     
       <p class="meta">
@@ -123,9 +123,21 @@
   </header>
 
 
-<div class="entry-content"><h2><a href="http://xmlandmore.blogspot.hk/2012/07/jstat-java-virtual-machine-statistics.html">jstat</a> - Statistics Monitoring</h2>
+<div class="entry-content"><blockquote><p>此文的 JVM 环境特指 HotSpot JVM</p></blockquote>
 
-<p>// TODO</p>
+
+<h2><a href="http://xmlandmore.blogspot.hk/2012/01/understanding-garbage-collection.html">Understanding Garbage Collection</a></h2>
+
+<p>了解 JVM 内存回收机制，以及年轻代、伊甸园、年老代代表的意义。<a href="http://xmlandmore.blogspot.hk/2012/03/case-study-of-javalangoutofmemoryerror.html">Full GC</a> 发生很频繁时，关注是否分配内存不足<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>、死锁、或者内存泄露。</p>
+
+<ul>
+<li><a href="http://xmlandmore.blogspot.hk/2012/03/understanding-garbage-collector-output.html">Understanding Garbage Collector Output of Hotspot VM</a></li>
+</ul>
+
+
+<h2><a href="http://xmlandmore.blogspot.hk/2012/07/jstat-java-virtual-machine-statistics.html">jstat</a> - Statistics Monitoring</h2>
+
+<p>一系列调试选项，常用 <code>jstat -gcutil</code>。</p>
 
 <h2><a href="http://xmlandmore.blogspot.hk/2013/04/analyze-hanging-programs-using-java.html">jstack</a> - Stack Trace</h2>
 
@@ -141,12 +153,30 @@
 
 <p><img src="/images/JVM/states_trans.png"></p>
 
+<h2><a href="http://xmlandmore.blogspot.hk/2013/08/diagnosing-outofmemoryerror-or-memory_10.html">jmap</a> - Memory Map</h2>
+
+<p>// TODO</p>
+
+<p><a href="http://xmlandmore.blogspot.hk/2014/01/eclipse-mat-understand-incoming-and.html">Eclipse MAT</a></p>
+
+<p><a href="http://xmlandmore.blogspot.hk/2014/01/eclipse-mat-querying-heap-objects-using.html">OQL</a></p>
+
+<p><a href="https://www.ibm.com/support/knowledgecenter/SS3KLZ/com.ibm.java.diagnostics.memory.analyzer.doc/queryingheapobjects.html">OQL 2</a></p>
+
 <p><br/><br/><p class='post-footer'>
             original link:
             <a href='http://hedleyyan.github.io/blog/2016/09/21/jvm-diao-shi-da-za-hui/'><a href="http://hedleyyan.github.io/blog/2016/09/21/jvm-diao-shi-da-za-hui/">http://hedleyyan.github.io/blog/2016/09/21/jvm-diao-shi-da-za-hui/</a></a><br/>
             written by <a href='http://hedleyyan.github.io'>hedley</a>
             &nbsp;posted at <a href='http://hedleyyan.github.io'><a href="http://hedleyyan.github.io">http://hedleyyan.github.io</a></a>
             </p></p>
+<div class="footnotes">
+<hr/>
+<ol>
+<li id="fn:1">
+<p>For old generation space OutOfMemoryErrors, increase -Xms and -Xmx; For permanent generation OutOfMemoryErrors, increase -XX:PermSize and -XX:MaxPermSize<a href="#fnref:1" rev="footnote">&#8617;</a></p></li>
+</ol>
+</div>
+
 </div>
 
 
@@ -193,7 +223,7 @@
 
 
   <section>
-   <div class="ds-thread" data-thread-key="/blog/2016/09/21/jvm-diao-shi-da-za-hui" data-title="JVM 调试大杂烩" data-url="http://hedleyyan.github.io/blog/2016/09/21/jvm-diao-shi-da-za-hui/"></div>
+   <div class="ds-thread" data-thread-key="/blog/2016/09/21/jvm-diao-shi-da-za-hui" data-title="HotSpot JVM 调试大杂烩" data-url="http://hedleyyan.github.io/blog/2016/09/21/jvm-diao-shi-da-za-hui/"></div>
 <!-- 多说评论框 end -->
 <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 <script type="text/javascript">
@@ -235,7 +265,7 @@ var duoshuoQuery = {short_name:"hedleyyan"};
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2016/09/21/jvm-diao-shi-da-za-hui/">JVM 调试大杂烩</a>
+        <a href="/blog/2016/09/21/jvm-diao-shi-da-za-hui/">HotSpot JVM 调试大杂烩</a>
       </li>
     
       <li class="post">

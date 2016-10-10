@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Jstat | Hedley]]></title>
   <link href="http://hedleyyan.github.io/blog/categories/jstat/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2016-09-21T16:15:05+08:00</updated>
+  <updated>2016-10-10T16:25:48+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[hedley]]></name>
@@ -14,13 +14,24 @@
 
   
   <entry>
-    <title type="html"><![CDATA[JVM 调试大杂烩]]></title>
+    <title type="html"><![CDATA[HotSpot JVM 调试大杂烩]]></title>
     <link href="http://hedleyyan.github.io/blog/2016/09/21/jvm-diao-shi-da-za-hui/"/>
     <updated>2016-09-21T11:19:33+08:00</updated>
     <id>http://hedleyyan.github.io/blog/2016/09/21/jvm-diao-shi-da-za-hui</id>
-    <content type="html"><![CDATA[<h2><a href="http://xmlandmore.blogspot.hk/2012/07/jstat-java-virtual-machine-statistics.html">jstat</a> - Statistics Monitoring</h2>
+    <content type="html"><![CDATA[<p><blockquote><p>此文的 JVM 环境特指 HotSpot JVM</p></blockquote></p>
 
-<p>// TODO</p>
+<h2><a href="http://xmlandmore.blogspot.hk/2012/01/understanding-garbage-collection.html">Understanding Garbage Collection</a></h2>
+
+<p>了解 JVM 内存回收机制，以及年轻代、伊甸园、年老代代表的意义。<a href="http://xmlandmore.blogspot.hk/2012/03/case-study-of-javalangoutofmemoryerror.html">Full GC</a> 发生很频繁时，关注是否分配内存不足<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>、死锁、或者内存泄露。</p>
+
+<ul>
+<li><a href="http://xmlandmore.blogspot.hk/2012/03/understanding-garbage-collector-output.html">Understanding Garbage Collector Output of Hotspot VM</a></li>
+</ul>
+
+
+<h2><a href="http://xmlandmore.blogspot.hk/2012/07/jstat-java-virtual-machine-statistics.html">jstat</a> - Statistics Monitoring</h2>
+
+<p>一系列调试选项，常用 <code>jstat -gcutil</code>。</p>
 
 <h2><a href="http://xmlandmore.blogspot.hk/2013/04/analyze-hanging-programs-using-java.html">jstack</a> - Stack Trace</h2>
 
@@ -35,6 +46,24 @@
 <p><a href="http://stackoverflow.com/questions/28378592/java-thread-state-transition-waiting-to-blocked-or-runnable">Java thread state transition, WAITING to BLOCKED, or RUNNABLE?</a></p>
 
 <p><img src="/images/JVM/states_trans.png"></p>
+
+<h2><a href="http://xmlandmore.blogspot.hk/2013/08/diagnosing-outofmemoryerror-or-memory_10.html">jmap</a> - Memory Map</h2>
+
+<p>// TODO</p>
+
+<p><a href="http://xmlandmore.blogspot.hk/2014/01/eclipse-mat-understand-incoming-and.html">Eclipse MAT</a></p>
+
+<p><a href="http://xmlandmore.blogspot.hk/2014/01/eclipse-mat-querying-heap-objects-using.html">OQL</a></p>
+
+<p><a href="https://www.ibm.com/support/knowledgecenter/SS3KLZ/com.ibm.java.diagnostics.memory.analyzer.doc/queryingheapobjects.html">OQL 2</a></p>
+<div class="footnotes">
+<hr/>
+<ol>
+<li id="fn:1">
+<p>For old generation space OutOfMemoryErrors, increase -Xms and -Xmx; For permanent generation OutOfMemoryErrors, increase -XX:PermSize and -XX:MaxPermSize<a href="#fnref:1" rev="footnote">&#8617;</a></p></li>
+</ol>
+</div>
+
 ]]></content>
   </entry>
   
