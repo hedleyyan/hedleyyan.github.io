@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Jmap | Hedley]]></title>
   <link href="http://hedleyyan.github.io/blog/categories/jmap/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2016-10-11T09:49:01+08:00</updated>
+  <updated>2016-10-11T14:59:16+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[hedley]]></name>
@@ -65,7 +65,7 @@
 </ul>
 
 
-<p>基于 <code>dump.hprof</code> 进行分析，首选主流 <a href="http://xmlandmore.blogspot.hk/2014/01/eclipse-mat-understand-incoming-and.html">Eclipse MAT</a>。<code>MAT</code> 开上帝视角，通过 <a href="http://xmlandmore.blogspot.hk/2014/01/eclipse-mat-querying-heap-objects-using.html">OQL</a> 可以精确定位到每个对象，用做详细的分析挖掘很好用。不过相对的它的缺点也很明显：重量级。如果 dump 文件不大，直接用 <code>MAT</code> 分析没有问题。但现实运行环境中，dump 文件通常很大<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup>，一般需要面临以下问题：从服务器压缩传输到个人机器，压缩和传输的时间成本很高；解压缩后用 <code>MAT</code> 导入，如果个人机器的内存吃不消，更是无法进行解析<sup id="fnref:3"><a href="#fn:3" rel="footnote">3</a></sup>。</p>
+<p>基于 <code>dump.hprof</code> 进行分析，首选主流 <a href="http://xmlandmore.blogspot.hk/2014/01/eclipse-mat-understand-incoming-and.html">Eclipse MAT</a>。<code>MAT</code> 可以开上帝视角，通过 <a href="http://xmlandmore.blogspot.hk/2014/01/eclipse-mat-querying-heap-objects-using.html">OQL</a> 精确定位到每个对象，用做详细的分析挖掘很好用。不过相对的它的缺点也很明显：重量级。如果 dump 文件不大，直接用 <code>MAT</code> 分析没有问题。但现实运行环境中，dump 文件通常很大<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup>，一般需要面临以下问题：从服务器压缩传输到个人机器，压缩和传输的时间成本很高；解压缩后用 <code>MAT</code> 导入，如果个人机器的内存不够，无法进行解析<sup id="fnref:3"><a href="#fn:3" rel="footnote">3</a></sup>。</p>
 
 <p><a href="https://www.ibm.com/support/knowledgecenter/SS3KLZ/com.ibm.java.diagnostics.memory.analyzer.doc/queryingheapobjects.html">OQL 2</a></p>
 <div class="footnotes">
