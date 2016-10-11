@@ -9,7 +9,7 @@
   <meta name="author" content="hedley">
 
   
-  <meta name="description" content="此文的 JVM 环境特指 HotSpot JVM Understanding Garbage Collection 了解 JVM 内存回收机制，以及年轻代、伊甸园、年老代的意义。Full GC 发生很频繁时，关注是否分配内存不足1、死锁、或者内存泄露。 Understanding Garbage &hellip;">
+  <meta name="description" content="正文 由于我自己机器上的服务器配置，到公司联网后，需要手动设置 IP 10.0.xx.xx。一旦出了公司连入其他网络，又需要把 IP 改为自动获得。通常操作顺序是 系统偏好设置 -&gt; 网络 -&gt; Wi-Fi -&gt; 高级 -&gt; TCP/IP -&gt; 使用 DHCP，很麻烦 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -110,6 +110,59 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2016/10/10/os-x-ming-ling-xing-she-ding-zhi-ding-ip/">OS X 通过命令行设置特定 IP</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2016-10-10T22:07:02+08:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>10</span><span class='date-suffix'>th</span>, <span class='date-year'>2016</span></span> <span class='time'>10:07 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>正文</h2>
+
+<p>由于我自己机器上的服务器配置，到公司联网后，需要手动设置 IP <code>10.0.xx.xx</code>。一旦出了公司连入其他网络，又需要把 IP 改为自动获得。通常操作顺序是 <code>系统偏好设置 -&gt; 网络 -&gt; Wi-Fi -&gt; 高级 -&gt; TCP/IP -&gt; 使用 DHCP</code>，很麻烦。</p>
+
+<p>查阅了一些资料，Mac OS X 其实可以通过命令行来执行：</p>
+
+<ul>
+<li><code>sudo networksetup -setmanualwithdhcprouter Wi-Fi 10.0.xx.xx</code> - 手动设置 IP</li>
+<li><code>sudo networksetup -setdhcp Wi-Fi</code> - 自动获得 IP</li>
+</ul>
+
+
+<p>可以写入脚本，配合 [Alfred][] 的 Workflows 功能更赞。</p>
+
+<h2>引用</h2>
+
+<p><a href="https://developer.apple.com/legacy/library/documentation/Darwin/Reference/ManPages/man8/networksetup.8.html">OS X Man Pages</a>
+<a href="http://serverfault.com/questions/638949/os-x-command-line-ipv4-interface-reset">OS X Command Line IPv4 interface Reset</a></p>
+
+<p><br/><br/><p class='post-footer'>
+            original link:
+            <a href='http://hedleyyan.github.io/blog/2016/10/10/os-x-ming-ling-xing-she-ding-zhi-ding-ip/'><a href="http://hedleyyan.github.io/blog/2016/10/10/os-x-ming-ling-xing-she-ding-zhi-ding-ip/">http://hedleyyan.github.io/blog/2016/10/10/os-x-ming-ling-xing-she-ding-zhi-ding-ip/</a></a><br/>
+            written by <a href='http://hedleyyan.github.io'>hedley</a>
+            &nbsp;posted at <a href='http://hedleyyan.github.io'><a href="http://hedleyyan.github.io">http://hedleyyan.github.io</a></a>
+            </p></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2016/09/21/jvm-diao-shi-da-za-hui/">HotSpot JVM 调试大杂烩</a></h1>
     
     
@@ -170,13 +223,11 @@
 <ul>
 <li><code>jmap -heap [PID]</code> - 进程堆内存使用情况</li>
 <li><code>jmap -histo[:live] [PID] | head 15</code> - 对象占用图。对象占用图粒度很粗，无法获得更详细的对象状态</li>
-<li><code>jmap -dump:format=b,file=dump.hprof [PID]</code> - 生成 dump 文件。执行时间稍长，用此可以进行进一步的精准分析</li>
+<li><code>jmap -dump:format=b,file=dump.hprof [PID]</code> - 生成 dump 文件。执行时间稍长，基于此可进行进一步的精准分析</li>
 </ul>
 
 
-<p>基于 <code>dump.hprof</code> 可以进行进一步分析，首选主流<a href="http://xmlandmore.blogspot.hk/2014/01/eclipse-mat-understand-incoming-and.html">Eclipse MAT</a>，关于 <code>MAT</code> 的资料很多，不一而足。</p>
-
-<p><a href="http://xmlandmore.blogspot.hk/2014/01/eclipse-mat-querying-heap-objects-using.html">OQL</a></p>
+<p>基于 <code>dump.hprof</code> 进行分析，首选主流 <a href="http://xmlandmore.blogspot.hk/2014/01/eclipse-mat-understand-incoming-and.html">Eclipse MAT</a>。<code>MAT</code> 开上帝视角，通过 <a href="http://xmlandmore.blogspot.hk/2014/01/eclipse-mat-querying-heap-objects-using.html">OQL</a> 可以精确定位到每个对象，用做详细的分析挖掘很好用。不过相对的它的缺点也很明显：重量级。如果 dump 文件不大，直接用 <code>MAT</code> 分析没有问题。但现实运行环境中，dump 文件通常很大<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup>，一般需要面临以下问题：从服务器压缩传输到个人机器，压缩和传输的时间成本很高；解压缩后用 <code>MAT</code> 导入，如果个人机器的内存吃不消，更是无法进行解析<sup id="fnref:3"><a href="#fn:3" rel="footnote">3</a></sup>。</p>
 
 <p><a href="https://www.ibm.com/support/knowledgecenter/SS3KLZ/com.ibm.java.diagnostics.memory.analyzer.doc/queryingheapobjects.html">OQL 2</a></p>
 
@@ -191,6 +242,10 @@
 <ol>
 <li id="fn:1">
 <p>For old generation space OutOfMemoryErrors, increase -Xms and -Xmx; For permanent generation OutOfMemoryErrors, increase -XX:PermSize and -XX:MaxPermSize<a href="#fnref:1" rev="footnote">&#8617;</a></p></li>
+<li id="fn:2">
+<p>我曾经分析过的线上压力一般服务器的 dump 在 10G 左右<a href="#fnref:2" rev="footnote">&#8617;</a></p></li>
+<li id="fn:3">
+<p>Eclipse 在导入 dump 文件后，会进行索引分析，占用大量内存。内存不足时会报 OutOfMemoryError<a href="#fnref:3" rev="footnote">&#8617;</a></p></li>
 </ol>
 </div>
 
@@ -1033,51 +1088,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/07/10/zhuang-shi-zhe-mo-shi-decorate-pattern-yu-hui-diao-ji-zhi-callback-framework/">不负责瞎说说 Patterns 与 Frameworks</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-07-10T17:11:00+08:00'><span class='date'><span class='date-month'>Jul</span> <span class='date-day'>10</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>5:11 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h1>引出</h1>
-
-<p><a href="https://books.google.com.hk/books?id=ka2VUBqHiWkC&amp;pg=PA85&amp;dq=The+disadvantage+of+wrapper+classes&amp;hl=en&amp;sa=X&amp;ved=0CB0Q6AEwAGoVChMI5L-T5PnPxgIVCQuOCh1joQq6#v=onepage&amp;q=The%20disadvantage%20of%20wrapper%20classes&amp;f=false">Effective Java, Item 16</a> 中说 <em>Wrapper classes are not suited for use in callback frameworks</em>，想不明白，一顿 Google 依旧看个似懂非懂。我想把这些凌乱的线索都整理出来，抽抽剪剪排列组合一下，也许就看的透彻点了呢。</p>
-
-<p>关于 <em>Wrapper class</em> 的引出问题，个人认为比较<a href="http://programmers.stackexchange.com/questions/117628/why-are-wrapper-classes-not-suited-for-use-in-callback-frameworks">炫酷的解答</a>。</p>
-
-<blockquote><p>Because a wrapped object doesn&#8217;t know of its wrapper, it passes a reference to itself(this) and callbacks elude the wrapper. This is known as the SELF problem [Lieberman86]. This leads to subtle bugs, like the wrapper missing the event. Or the wrapper and wrapped object both registering for the same events - leading to duplicate processing and potential concurrency issues as well. If you don&#8217;t know (don&#8217;t have the source code) where callbacks are registered, it may be impossible to work around this problem.</p></blockquote>
-
-
-<h1>Panttern? Framework?</h1>
-
-<p>引出中的 <em>Wrapper class</em> 是 <em>Decorator pattern</em> 的引出概念，<em>callback frameworks</em> 是一种 <em>framework</em>。从翻译上看，<em>pattern</em> 译为 <strong>模式</strong>，<em>framework</em> 译为 <strong>框架</strong>。那么这个 <em>pattern</em> 与 <em>framework</em> 有毛的区别呢？</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2015/07/10/zhuang-shi-zhe-mo-shi-decorate-pattern-yu-hui-diao-ji-zhi-callback-framework/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/2">&larr; Older</a>
@@ -1095,9 +1105,9 @@
 <a style="font-size: 180%" href="/tags/java/">Java</a>
 <a style="font-size: 105%" href="/tags/mysql/">MySQL</a>
 <a style="font-size: 125%" href="/tags/pattern/">Pattern</a>
-<a style="font-size: 70%" href="/tags/shell/">shell</a>
+<a style="font-size: 105%" href="/tags/shell/">shell</a>
 <a style="font-size: 70%" href="/tags/shortcut/">shortcut</a>
-<a style="font-size: 151%" href="/tags/tips/">tips</a>
+<a style="font-size: 160%" href="/tags/tips/">tips</a>
 <a style="font-size: 125%" href="/tags/gui-yue/">规约</a>
 <a style="font-size: 151%" href="/tags/pei-zhi/">配置</a>
 
@@ -1106,6 +1116,10 @@
 <section>
   <h1><i class="fa fa-list"></i>&nbsp;Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2016/10/10/os-x-ming-ling-xing-she-ding-zhi-ding-ip/">OS X 通过命令行设置特定 IP</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2016/09/21/jvm-diao-shi-da-za-hui/">HotSpot JVM 调试大杂烩</a>
@@ -1133,10 +1147,6 @@
     
       <li class="post">
         <a href="/blog/2015/08/05/mysql5-dot-5-yi-xia-ban-ben-tong-guo-java-zhuan-yi-shi-xian-emoji-cun-qu/">MySQL5.5 以下版本通过 Java 转义实现 Emoji 存取</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/07/31/bigfoot-dot-js-zhu-jiao-shi-xian/">bigfoot.js 注脚之 Octopress 篇</a>
       </li>
     
   </ul>

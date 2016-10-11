@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Oql | Hedley]]></title>
   <link href="http://hedleyyan.github.io/blog/categories/oql/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2016-10-10T17:40:58+08:00</updated>
+  <updated>2016-10-11T09:49:01+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[hedley]]></name>
@@ -61,13 +61,11 @@
 <ul>
 <li><code>jmap -heap [PID]</code> - 进程堆内存使用情况</li>
 <li><code>jmap -histo[:live] [PID] | head 15</code> - 对象占用图。对象占用图粒度很粗，无法获得更详细的对象状态</li>
-<li><code>jmap -dump:format=b,file=dump.hprof [PID]</code> - 生成 dump 文件。执行时间稍长，用此可以进行进一步的精准分析</li>
+<li><code>jmap -dump:format=b,file=dump.hprof [PID]</code> - 生成 dump 文件。执行时间稍长，基于此可进行进一步的精准分析</li>
 </ul>
 
 
-<p>基于 <code>dump.hprof</code> 可以进行进一步分析，首选主流<a href="http://xmlandmore.blogspot.hk/2014/01/eclipse-mat-understand-incoming-and.html">Eclipse MAT</a>，关于 <code>MAT</code> 的资料很多，不一而足。</p>
-
-<p><a href="http://xmlandmore.blogspot.hk/2014/01/eclipse-mat-querying-heap-objects-using.html">OQL</a></p>
+<p>基于 <code>dump.hprof</code> 进行分析，首选主流 <a href="http://xmlandmore.blogspot.hk/2014/01/eclipse-mat-understand-incoming-and.html">Eclipse MAT</a>。<code>MAT</code> 开上帝视角，通过 <a href="http://xmlandmore.blogspot.hk/2014/01/eclipse-mat-querying-heap-objects-using.html">OQL</a> 可以精确定位到每个对象，用做详细的分析挖掘很好用。不过相对的它的缺点也很明显：重量级。如果 dump 文件不大，直接用 <code>MAT</code> 分析没有问题。但现实运行环境中，dump 文件通常很大<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup>，一般需要面临以下问题：从服务器压缩传输到个人机器，压缩和传输的时间成本很高；解压缩后用 <code>MAT</code> 导入，如果个人机器的内存吃不消，更是无法进行解析<sup id="fnref:3"><a href="#fn:3" rel="footnote">3</a></sup>。</p>
 
 <p><a href="https://www.ibm.com/support/knowledgecenter/SS3KLZ/com.ibm.java.diagnostics.memory.analyzer.doc/queryingheapobjects.html">OQL 2</a></p>
 <div class="footnotes">
@@ -75,6 +73,10 @@
 <ol>
 <li id="fn:1">
 <p>For old generation space OutOfMemoryErrors, increase -Xms and -Xmx; For permanent generation OutOfMemoryErrors, increase -XX:PermSize and -XX:MaxPermSize<a href="#fnref:1" rev="footnote">&#8617;</a></p></li>
+<li id="fn:2">
+<p>我曾经分析过的线上压力一般服务器的 dump 在 10G 左右<a href="#fnref:2" rev="footnote">&#8617;</a></p></li>
+<li id="fn:3">
+<p>Eclipse 在导入 dump 文件后，会进行索引分析，占用大量内存。内存不足时会报 OutOfMemoryError<a href="#fnref:3" rev="footnote">&#8617;</a></p></li>
 </ol>
 </div>
 

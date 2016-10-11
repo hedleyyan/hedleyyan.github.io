@@ -9,9 +9,7 @@
   <meta name="author" content="hedley">
 
   
-  <meta name="description" content="搜索了若干资料，如何让光标焦点从 Editor 移动到 FOLDERS 状态栏。偶然复现过一次，却百思不得其解。 经过不懈尝试，终得破解大法！这下一口气看 LOG 不要太爽！ 点击 FOLDERS 中任意一个文件
-再次左键点击这个文件，不要松开，紧接着点击右键
-Bingo！ 秘籍：左 C + [ &hellip;">
+  <meta name="description" content="引出 Effective Java, Item 16 中说 Wrapper classes are not suited for use in callback frameworks，想不明白，一顿 Google 依旧看个似懂非懂。我想把这些凌乱的线索都整理出来，抽抽剪剪排列组合一下， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -106,6 +104,51 @@ Bingo！ 秘籍：左 C + [ &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/07/10/zhuang-shi-zhe-mo-shi-decorate-pattern-yu-hui-diao-ji-zhi-callback-framework/">不负责瞎说说 Patterns 与 Frameworks</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-07-10T17:11:00+08:00'><span class='date'><span class='date-month'>Jul</span> <span class='date-day'>10</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>5:11 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1>引出</h1>
+
+<p><a href="https://books.google.com.hk/books?id=ka2VUBqHiWkC&amp;pg=PA85&amp;dq=The+disadvantage+of+wrapper+classes&amp;hl=en&amp;sa=X&amp;ved=0CB0Q6AEwAGoVChMI5L-T5PnPxgIVCQuOCh1joQq6#v=onepage&amp;q=The%20disadvantage%20of%20wrapper%20classes&amp;f=false">Effective Java, Item 16</a> 中说 <em>Wrapper classes are not suited for use in callback frameworks</em>，想不明白，一顿 Google 依旧看个似懂非懂。我想把这些凌乱的线索都整理出来，抽抽剪剪排列组合一下，也许就看的透彻点了呢。</p>
+
+<p>关于 <em>Wrapper class</em> 的引出问题，个人认为比较<a href="http://programmers.stackexchange.com/questions/117628/why-are-wrapper-classes-not-suited-for-use-in-callback-frameworks">炫酷的解答</a>。</p>
+
+<blockquote><p>Because a wrapped object doesn&#8217;t know of its wrapper, it passes a reference to itself(this) and callbacks elude the wrapper. This is known as the SELF problem [Lieberman86]. This leads to subtle bugs, like the wrapper missing the event. Or the wrapper and wrapped object both registering for the same events - leading to duplicate processing and potential concurrency issues as well. If you don&#8217;t know (don&#8217;t have the source code) where callbacks are registered, it may be impossible to work around this problem.</p></blockquote>
+
+
+<h1>Panttern? Framework?</h1>
+
+<p>引出中的 <em>Wrapper class</em> 是 <em>Decorator pattern</em> 的引出概念，<em>callback frameworks</em> 是一种 <em>framework</em>。从翻译上看，<em>pattern</em> 译为 <strong>模式</strong>，<em>framework</em> 译为 <strong>框架</strong>。那么这个 <em>pattern</em> 与 <em>framework</em> 有毛的区别呢？</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2015/07/10/zhuang-shi-zhe-mo-shi-decorate-pattern-yu-hui-diao-ji-zhi-callback-framework/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -493,9 +536,9 @@ Bingo！ 秘籍：左 C + [ &hellip;">
 <a style="font-size: 180%" href="/tags/java/">Java</a>
 <a style="font-size: 105%" href="/tags/mysql/">MySQL</a>
 <a style="font-size: 125%" href="/tags/pattern/">Pattern</a>
-<a style="font-size: 70%" href="/tags/shell/">shell</a>
+<a style="font-size: 105%" href="/tags/shell/">shell</a>
 <a style="font-size: 70%" href="/tags/shortcut/">shortcut</a>
-<a style="font-size: 151%" href="/tags/tips/">tips</a>
+<a style="font-size: 160%" href="/tags/tips/">tips</a>
 <a style="font-size: 125%" href="/tags/gui-yue/">规约</a>
 <a style="font-size: 151%" href="/tags/pei-zhi/">配置</a>
 
@@ -504,6 +547,10 @@ Bingo！ 秘籍：左 C + [ &hellip;">
 <section>
   <h1><i class="fa fa-list"></i>&nbsp;Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2016/10/10/os-x-ming-ling-xing-she-ding-zhi-ding-ip/">OS X 通过命令行设置特定 IP</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2016/09/21/jvm-diao-shi-da-za-hui/">HotSpot JVM 调试大杂烩</a>
@@ -531,10 +578,6 @@ Bingo！ 秘籍：左 C + [ &hellip;">
     
       <li class="post">
         <a href="/blog/2015/08/05/mysql5-dot-5-yi-xia-ban-ben-tong-guo-java-zhuan-yi-shi-xian-emoji-cun-qu/">MySQL5.5 以下版本通过 Java 转义实现 Emoji 存取</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/07/31/bigfoot-dot-js-zhu-jiao-shi-xian/">bigfoot.js 注脚之 Octopress 篇</a>
       </li>
     
   </ul>
