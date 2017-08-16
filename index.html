@@ -289,78 +289,6 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2016/03/11/some-tips-about-sequel-pro/">Some Tips About Sequel Pro</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2016-03-11T16:28:30+08:00'><span class='date'><span class='date-month'>Mar</span> <span class='date-day'>11</span><span class='date-suffix'>th</span>, <span class='date-year'>2016</span></span> <span class='time'>4:28 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="http://www.sequelpro.com/download">Sequel Pro</a> 是一款基于 Mac 的 MySQL IDE，分享几个关于其操作提高效率的小技巧。</p>
-
-<h2>快捷键</h2>
-
-<ul>
-<li><code>CMD + t</code>: 新建 TAB</li>
-<li><code>CMD + ALT + ←/→</code>: 在 TAB 间切换</li>
-<li><code>CMD + 1 ~ 6</code>: 切换不同的视图。
-
-<ul>
-<li>默认布局情况 <code>CMD + 2</code> 切换到 <code>Content</code> 查看选中的表数据；<code>CMD + 6</code> 切换到 <code>Query</code> 写 SQL。如果从导航栏点击鼠标切换库，光标焦点会从编辑栏丢失，这时用 <code>CMD + 6</code> 切换继续编辑</li>
-</ul>
-</li>
-</ul>
-
-
-<p>这几个快捷键在很多应用中都适用，常用的比如 <code>Chrome</code>，<code>ST</code>。</p>
-
-<h2>工作流</h2>
-
-<p>导航栏里的表名匹配非常好用，如果在编辑栏中写的正嗨，怎么用键盘切换到导航栏呢？</p>
-
-<ul>
-<li>需要一点前提准备，在打开一个新的 TAB 后，需要在导航栏里任意选中两次不同的表，以来激活 <code>Table History</code> <sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup></li>
-<li>光标焦点在编辑栏，<code>CTRL + ALT + ←/→</code> 光标焦点移动到导航栏</li>
-<li><code>SHIFT + TAB</code> 光标焦点移动到导航栏表名匹配，输入搜表</li>
-<li><code>CMD + 6</code> 返回编辑栏继续彪 SQL</li>
-</ul>
-
-
-<p><br/><br/><p class='post-footer'>
-            original link:
-            <a href='http://hedleyyan.github.io/blog/2016/03/11/some-tips-about-sequel-pro/'><a href="http://hedleyyan.github.io/blog/2016/03/11/some-tips-about-sequel-pro/">http://hedleyyan.github.io/blog/2016/03/11/some-tips-about-sequel-pro/</a></a><br/>
-            written by <a href='http://hedleyyan.github.io'>hedley</a>
-            &nbsp;posted at <a href='http://hedleyyan.github.io'><a href="http://hedleyyan.github.io">http://hedleyyan.github.io</a></a>
-            </p></p>
-<div class="footnotes">
-<hr/>
-<ol>
-<li id="fn:1">
-<p>是讨厌了点，不过一劳永逸，后面再操作起来带你飞<a href="#fnref:1" rev="footnote">&#8617;</a></p></li>
-</ol>
-</div>
-
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
       <h1 class="entry-title"><a href="/blog/2016/01/27/ru-he-yong-jd-eclipse-qing-song-diao-shi-fan-bian-yi-yuan-dai-ma/">Eclipse 轻松 Debug 反编译源代码</a></h1>
     
     
@@ -1116,6 +1044,51 @@
 
     </article>
   
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/07/10/zhuang-shi-zhe-mo-shi-decorate-pattern-yu-hui-diao-ji-zhi-callback-framework/">不负责瞎说说 Patterns 与 Frameworks</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-07-10T17:11:00+08:00'><span class='date'><span class='date-month'>Jul</span> <span class='date-day'>10</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>5:11 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1>引出</h1>
+
+<p><a href="https://books.google.com.hk/books?id=ka2VUBqHiWkC&amp;pg=PA85&amp;dq=The+disadvantage+of+wrapper+classes&amp;hl=en&amp;sa=X&amp;ved=0CB0Q6AEwAGoVChMI5L-T5PnPxgIVCQuOCh1joQq6#v=onepage&amp;q=The%20disadvantage%20of%20wrapper%20classes&amp;f=false">Effective Java, Item 16</a> 中说 <em>Wrapper classes are not suited for use in callback frameworks</em>，想不明白，一顿 Google 依旧看个似懂非懂。我想把这些凌乱的线索都整理出来，抽抽剪剪排列组合一下，也许就看的透彻点了呢。</p>
+
+<p>关于 <em>Wrapper class</em> 的引出问题，个人认为比较<a href="http://programmers.stackexchange.com/questions/117628/why-are-wrapper-classes-not-suited-for-use-in-callback-frameworks">炫酷的解答</a>。</p>
+
+<blockquote><p>Because a wrapped object doesn&#8217;t know of its wrapper, it passes a reference to itself(this) and callbacks elude the wrapper. This is known as the SELF problem [Lieberman86]. This leads to subtle bugs, like the wrapper missing the event. Or the wrapper and wrapped object both registering for the same events - leading to duplicate processing and potential concurrency issues as well. If you don&#8217;t know (don&#8217;t have the source code) where callbacks are registered, it may be impossible to work around this problem.</p></blockquote>
+
+
+<h1>Panttern? Framework?</h1>
+
+<p>引出中的 <em>Wrapper class</em> 是 <em>Decorator pattern</em> 的引出概念，<em>callback frameworks</em> 是一种 <em>framework</em>。从翻译上看，<em>pattern</em> 译为 <strong>模式</strong>，<em>framework</em> 译为 <strong>框架</strong>。那么这个 <em>pattern</em> 与 <em>framework</em> 有毛的区别呢？</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2015/07/10/zhuang-shi-zhe-mo-shi-decorate-pattern-yu-hui-diao-ji-zhi-callback-framework/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
   <div class="pagination">
     
       <a class="prev" href="/posts/2">&larr; Older</a>
@@ -1131,11 +1104,10 @@
   <ul class="tag-cloud">
     <a style="font-size: 105%" href="/tags/framework/">Framework</a>
 <a style="font-size: 180%" href="/tags/java/">Java</a>
-<a style="font-size: 105%" href="/tags/mysql/">MySQL</a>
+<a style="font-size: 70%" href="/tags/mysql/">MySQL</a>
 <a style="font-size: 125%" href="/tags/pattern/">Pattern</a>
 <a style="font-size: 105%" href="/tags/shell/">shell</a>
-<a style="font-size: 70%" href="/tags/shortcut/">shortcut</a>
-<a style="font-size: 160%" href="/tags/tips/">tips</a>
+<a style="font-size: 151%" href="/tags/tips/">tips</a>
 <a style="font-size: 125%" href="/tags/gui-yue/">规约</a>
 <a style="font-size: 151%" href="/tags/pei-zhi/">配置</a>
 
@@ -1151,10 +1123,6 @@
     
       <li class="post">
         <a href="/blog/2016/09/21/jvm-diao-shi-da-za-hui/">HotSpot JVM 调试大杂烩</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2016/03/11/some-tips-about-sequel-pro/">Some Tips About Sequel Pro</a>
       </li>
     
       <li class="post">
@@ -1175,6 +1143,10 @@
     
       <li class="post">
         <a href="/blog/2015/08/05/mysql5-dot-5-yi-xia-ban-ben-tong-guo-java-zhuan-yi-shi-xian-emoji-cun-qu/">MySQL5.5 以下版本通过 Java 转义实现 Emoji 存取</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/07/31/bigfoot-dot-js-zhu-jiao-shi-xian/">bigfoot.js 注脚之 Octopress 篇</a>
       </li>
     
   </ul>
@@ -1224,7 +1196,7 @@ MathJax.Hub.Config({
 <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" type="text/javascript"></script>
 
 <p>
-  Copyright &copy; 2016 - hedley -
+  Copyright &copy; 2017 - hedley -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 </footer>
