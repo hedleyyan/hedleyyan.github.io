@@ -4,7 +4,7 @@
   <title><![CDATA[Hedley]]></title>
   <link href="http://hedleyyan.github.io/atom.xml" rel="self"/>
   <link href="http://hedleyyan.github.io/"/>
-  <updated>2017-08-16T11:57:20+08:00</updated>
+  <updated>2017-12-02T23:06:28+08:00</updated>
   <id>http://hedleyyan.github.io/</id>
   <author>
     <name><![CDATA[hedley]]></name>
@@ -2845,7 +2845,7 @@
 <li><em>Octopress Snippets</em> ： <code>CMD + SHIFT + P</code> 接输入 <code>Snippet</code> ，调用语法模板</li>
 <li><em>Markdown Extended</em> ： <code>CMD + SHIFT + P</code> 接输入 <code>Set Syntax</code> ，设为 <code>Markdown Extended</code>。代码片段彩色显示</li>
 <li><em>Markdown Preview</em> ： 主要用到 <code>Preview in browser</code> 来进行静态预览，以及 <code>cheat sheet</code> 来查看语法</li>
-<li><em>Monokai Neue</em> ： <code>Color Scheme</code> 修改， Markdown 颜色显示。修改 <code>Packages/Monokai Neue/Monokai-Neue.tmTheme</code> 文件，在 <code>settings -&gt; settings</code> 代码段下修改 <code>&lt;key&gt;selection&lt;/key&gt; &lt;string&gt;#00B2EE&lt;/string&gt;</code>，更改选中背景颜色</li>
+<li><em>Monokai Neue</em> ： <code>Color Scheme</code> 修改， Markdown 颜色显示。修改 <code>Packages/Monokai Neue   /Monokai-Neue.tmTheme</code> 文件，在 <code>settings -&gt; settings</code> 代码段下修改 <code>&lt;key&gt;selection&lt;/key&gt; &lt;string&gt;#00B2EE&lt;/string&gt;</code>，更改选中背景颜色</li>
 </ul>
 
 
@@ -2911,6 +2911,12 @@
 <h2>数学公式</h2>
 
 <p>参考<a href="http://www.tuicool.com/articles/miaUR3">kramdown配置</a>。</p>
+
+<!-- rake generate -->
+
+
+<!-- rake deploy -->
+
 
 <p><br/><br/><p class='post-footer'>
             original link:
