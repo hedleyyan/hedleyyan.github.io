@@ -72,13 +72,13 @@
     <loc>http://hedleyyan.github.io/404.html</loc>
   </url>
   <url>
-    <loc>http://hedleyyan.github.io/blog/archives/</loc>
-  </url>
-  <url>
     <loc>http://hedleyyan.github.io/</loc>
   </url>
   <url>
     <loc>http://hedleyyan.github.io/blog/gallery/</loc>
+  </url>
+  <url>
+    <loc>http://hedleyyan.github.io/blog/archives/</loc>
   </url>
   <url>
     <loc>http://hedleyyan.github.io/tags/java/</loc>
@@ -196,8 +196,5 @@
   </url>
   <url>
     <loc>http://hedleyyan.github.io/blog/categories/shou-dong-she-ding-di-zhi/</loc>
-  </url>
-  <url>
-    <loc>http://hedleyyan.github.io/posts/2/</loc>
   </url>
 </urlset>
