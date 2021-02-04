@@ -45,10 +45,6 @@
     <lastmod>2015-06-20T09:44:10+08:00</lastmod>
   </url>
   <url>
-    <loc>http://hedleyyan.github.io/blog/2015/06/16/cang-zhou-shi-jie-dao-diao-cha-wen-juan/</loc>
-    <lastmod>2015-06-16T17:22:13+08:00</lastmod>
-  </url>
-  <url>
     <loc>http://hedleyyan.github.io/blog/2015/06/05/huang-miu-tong-ku-de-nei-bu-lei/</loc>
     <lastmod>2015-06-05T11:25:38+08:00</lastmod>
   </url>
@@ -73,30 +69,6 @@
     <loc>http://hedleyyan.github.io/blog/archives/</loc>
   </url>
   <url>
-    <loc>http://hedleyyan.github.io/tags/java/</loc>
-  </url>
-  <url>
-    <loc>http://hedleyyan.github.io/tags/gui-yue/</loc>
-  </url>
-  <url>
-    <loc>http://hedleyyan.github.io/tags/pei-zhi/</loc>
-  </url>
-  <url>
-    <loc>http://hedleyyan.github.io/tags/tips/</loc>
-  </url>
-  <url>
-    <loc>http://hedleyyan.github.io/tags/pattern/</loc>
-  </url>
-  <url>
-    <loc>http://hedleyyan.github.io/tags/framework/</loc>
-  </url>
-  <url>
-    <loc>http://hedleyyan.github.io/tags/mysql/</loc>
-  </url>
-  <url>
-    <loc>http://hedleyyan.github.io/tags/shell/</loc>
-  </url>
-  <url>
     <loc>http://hedleyyan.github.io/blog/categories/ji-chu/</loc>
   </url>
   <url>
@@ -107,9 +79,6 @@
   </url>
   <url>
     <loc>http://hedleyyan.github.io/blog/categories/nested-class/</loc>
-  </url>
-  <url>
-    <loc>http://hedleyyan.github.io/blog/categories/diao-cha/</loc>
   </url>
   <url>
     <loc>http://hedleyyan.github.io/blog/categories/float/</loc>
@@ -176,6 +145,30 @@
   </url>
   <url>
     <loc>http://hedleyyan.github.io/blog/categories/shou-dong-she-ding-di-zhi/</loc>
+  </url>
+  <url>
+    <loc>http://hedleyyan.github.io/tags/java/</loc>
+  </url>
+  <url>
+    <loc>http://hedleyyan.github.io/tags/gui-yue/</loc>
+  </url>
+  <url>
+    <loc>http://hedleyyan.github.io/tags/pei-zhi/</loc>
+  </url>
+  <url>
+    <loc>http://hedleyyan.github.io/tags/tips/</loc>
+  </url>
+  <url>
+    <loc>http://hedleyyan.github.io/tags/pattern/</loc>
+  </url>
+  <url>
+    <loc>http://hedleyyan.github.io/tags/framework/</loc>
+  </url>
+  <url>
+    <loc>http://hedleyyan.github.io/tags/mysql/</loc>
+  </url>
+  <url>
+    <loc>http://hedleyyan.github.io/tags/shell/</loc>
   </url>
   <url>
     <loc>http://hedleyyan.github.io/posts/2/</loc>
